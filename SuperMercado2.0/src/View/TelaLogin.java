@@ -63,12 +63,12 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonAcessar);
-        jButtonAcessar.setBounds(270, 290, 90, 40);
+        jButtonAcessar.setBounds(250, 290, 90, 40);
 
         jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonCancelar.setText("Cancelar");
         getContentPane().add(jButtonCancelar);
-        jButtonCancelar.setBounds(380, 290, 100, 40);
+        jButtonCancelar.setBounds(350, 290, 100, 40);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Logo Fenix.png"))); // NOI18N
         jLabel4.setText("jLabel4");
@@ -77,9 +77,9 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundotelaLogin.png"))); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 0, 490, 370);
+        jLabel1.setBounds(0, 0, 490, 370);
 
-        setSize(new java.awt.Dimension(515, 406));
+        setSize(new java.awt.Dimension(496, 406));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -87,6 +87,7 @@ public class TelaLogin extends javax.swing.JFrame {
         if(jTextFieldNome.getText().equals("1") && jTextFieldSenha.getText().equals("1")){
             TelaPrincipal telaPrincipal = new TelaPrincipal();
             telaPrincipal.setVisible(true);
+            dispose();
         }else{
             JOptionPane.showMessageDialog(null,"Usuário ou senha incorreto");
         }
