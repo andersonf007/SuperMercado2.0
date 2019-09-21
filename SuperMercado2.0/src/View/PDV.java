@@ -27,20 +27,104 @@ public class PDV extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabelNomeProduto = new javax.swing.JLabel();
+        jTextFieldCodigo = new javax.swing.JTextField();
+        jTextFieldValorUnitario = new javax.swing.JTextField();
+        jTextFieldQuantidade = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabelCPF = new javax.swing.JLabel();
+        jLabelNome1 = new javax.swing.JLabel();
+        jLabelValorTotal = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        jLabelNomeProduto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabelNomeProduto.setText("NOME DO PRODUTO");
+        getContentPane().add(jLabelNomeProduto);
+        jLabelNomeProduto.setBounds(220, 32, 330, 40);
 
-        pack();
+        jTextFieldCodigo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        getContentPane().add(jTextFieldCodigo);
+        jTextFieldCodigo.setBounds(20, 150, 240, 50);
+
+        jTextFieldValorUnitario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        getContentPane().add(jTextFieldValorUnitario);
+        jTextFieldValorUnitario.setBounds(20, 250, 240, 50);
+
+        jTextFieldQuantidade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        getContentPane().add(jTextFieldQuantidade);
+        jTextFieldQuantidade.setBounds(20, 350, 240, 50);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel2.setText("Quantidade:");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(20, 300, 200, 50);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel3.setText("Código:");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(20, 100, 160, 50);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel4.setText("Valor Unitário:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(20, 200, 240, 50);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(270, 110, 470, 370);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setText("CPF:");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(270, 500, 60, 20);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("Nome:");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(10, 500, 60, 20);
+        getContentPane().add(jLabelCPF);
+        jLabelCPF.setBounds(310, 500, 160, 20);
+        getContentPane().add(jLabelNome1);
+        jLabelNome1.setBounds(60, 500, 200, 20);
+
+        jLabelValorTotal.setBackground(new java.awt.Color(204, 255, 255));
+        jLabelValorTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        getContentPane().add(jLabelValorTotal);
+        jLabelValorTotal.setBounds(610, 490, 130, 40);
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton1.setText("Confirmar");
+        getContentPane().add(jButton1);
+        jButton1.setBounds(623, 550, 120, 40);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_telaprincipal.jpg"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(-20, -60, 2060, 1300);
+
+        setSize(new java.awt.Dimension(768, 645));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -79,5 +163,21 @@ public class PDV extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabelCPF;
+    private javax.swing.JLabel jLabelNome1;
+    private javax.swing.JLabel jLabelNomeProduto;
+    private javax.swing.JLabel jLabelValorTotal;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextFieldCodigo;
+    private javax.swing.JTextField jTextFieldQuantidade;
+    private javax.swing.JTextField jTextFieldValorUnitario;
     // End of variables declaration//GEN-END:variables
 }
