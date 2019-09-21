@@ -84,9 +84,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().add(jPanel3);
         jPanel3.setBounds(400, 20, 120, 130);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Logo Fenix.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Logo Fenix 2 .png"))); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(60, 160, 420, 280);
+        jLabel1.setBounds(50, 150, 420, 280);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_telaprincipal2.jpg"))); // NOI18N
         getContentPane().add(jLabel2);

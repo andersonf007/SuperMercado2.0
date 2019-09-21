@@ -44,16 +44,16 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel2.setText("SENHA:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(40, 320, 60, 40);
+        jLabel2.setBounds(10, 320, 60, 40);
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel3.setText("LOGIN:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(40, 270, 60, 40);
+        jLabel3.setBounds(10, 270, 60, 40);
         getContentPane().add(jTextFieldNome);
-        jTextFieldNome.setBounds(90, 270, 150, 40);
+        jTextFieldNome.setBounds(60, 270, 150, 40);
         getContentPane().add(jTextFieldSenha);
-        jTextFieldSenha.setBounds(90, 320, 150, 40);
+        jTextFieldSenha.setBounds(60, 320, 150, 40);
 
         jButtonAcessar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonAcessar.setText("Acessar");
@@ -70,10 +70,10 @@ public class TelaLogin extends javax.swing.JFrame {
         getContentPane().add(jButtonCancelar);
         jButtonCancelar.setBounds(350, 290, 100, 40);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Logo Fenix.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Logo Fenix 2 .png"))); // NOI18N
         jLabel4.setText("jLabel4");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(40, 0, 430, 260);
+        jLabel4.setBounds(20, 0, 430, 300);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundotelaLogin.png"))); // NOI18N
         getContentPane().add(jLabel1);
