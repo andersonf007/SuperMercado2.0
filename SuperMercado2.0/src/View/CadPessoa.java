@@ -52,12 +52,10 @@ public class CadPessoa extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTextFieldNome = new javax.swing.JTextField();
-        jDateChooserDataAdmissao = new com.toedter.calendar.JDateChooser();
         jComboBoxSexo = new javax.swing.JComboBox();
         jTextFieldSalario = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jComboBoxTipoPessoa = new javax.swing.JComboBox();
         jTextFieldCargo = new javax.swing.JTextField();
@@ -145,9 +143,9 @@ public class CadPessoa extends javax.swing.JFrame {
         jLabel5.setBounds(40, 250, 90, 20);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel7.setText("Rg:");
+        jLabel7.setText("Rg/IE:");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(260, 250, 30, 20);
+        jLabel7.setBounds(260, 250, 60, 20);
 
         jTextFieldCPFCNPJ.setEnabled(false);
         jPanel1.add(jTextFieldCPFCNPJ);
@@ -178,10 +176,6 @@ public class CadPessoa extends javax.swing.JFrame {
         jPanel1.add(jTextFieldNome);
         jTextFieldNome.setBounds(40, 70, 360, 30);
 
-        jDateChooserDataAdmissao.setEnabled(false);
-        jPanel1.add(jDateChooserDataAdmissao);
-        jDateChooserDataAdmissao.setBounds(380, 350, 170, 30);
-
         jComboBoxSexo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jComboBoxSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Feminino" }));
         jComboBoxSexo.setEnabled(false);
@@ -193,19 +187,14 @@ public class CadPessoa extends javax.swing.JFrame {
         jTextFieldSalario.setBounds(40, 350, 150, 30);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel6.setText("Cargo:");
+        jLabel6.setText("Senha:");
         jPanel1.add(jLabel6);
         jLabel6.setBounds(200, 320, 60, 20);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel9.setText("Salário:");
+        jLabel9.setText("Login:");
         jPanel1.add(jLabel9);
         jLabel9.setBounds(40, 320, 60, 20);
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel8.setText("Data de admissão:");
-        jPanel1.add(jLabel8);
-        jLabel8.setBounds(380, 320, 150, 20);
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel16.setText("Tipo de pessoa:");
@@ -285,7 +274,6 @@ public class CadPessoa extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JComboBox jComboBoxSexo;
     private javax.swing.JComboBox jComboBoxTipoPessoa;
-    private com.toedter.calendar.JDateChooser jDateChooserDataAdmissao;
     private com.toedter.calendar.JDateChooser jDateChooserDataNasc;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -301,7 +289,6 @@ public class CadPessoa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextFieldBairro;
