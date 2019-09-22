@@ -5,6 +5,8 @@
  */
 package View;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author anderson
@@ -47,18 +49,18 @@ public class CadPessoa extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jTextFieldCPFCNPJ = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextFieldRG = new javax.swing.JTextField();
+        jTextFieldRGIE = new javax.swing.JTextField();
         jDateChooserDataNasc = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTextFieldNome = new javax.swing.JTextField();
         jComboBoxSexo = new javax.swing.JComboBox();
-        jTextFieldSalario = new javax.swing.JTextField();
+        jTextFieldLogin = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jComboBoxTipoPessoa = new javax.swing.JComboBox();
-        jTextFieldCargo = new javax.swing.JTextField();
+        jTextFieldSenha = new javax.swing.JTextField();
         jButtonSalvar = new javax.swing.JButton();
         scrollPane1 = new java.awt.ScrollPane();
 
@@ -71,6 +73,11 @@ public class CadPessoa extends javax.swing.JFrame {
 
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.setEnabled(false);
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButtonCancelar);
         jButtonCancelar.setBounds(620, 320, 90, 30);
 
@@ -156,18 +163,18 @@ public class CadPessoa extends javax.swing.JFrame {
         jPanel1.add(jLabel3);
         jLabel3.setBounds(420, 250, 170, 20);
 
-        jTextFieldRG.setEnabled(false);
-        jPanel1.add(jTextFieldRG);
-        jTextFieldRG.setBounds(260, 280, 150, 30);
+        jTextFieldRGIE.setEnabled(false);
+        jPanel1.add(jTextFieldRGIE);
+        jTextFieldRGIE.setBounds(260, 280, 150, 30);
 
         jDateChooserDataNasc.setEnabled(false);
         jPanel1.add(jDateChooserDataNasc);
         jDateChooserDataNasc.setBounds(420, 280, 170, 30);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Nome:");
+        jLabel2.setText("Nome / Razão Social:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(40, 40, 60, 20);
+        jLabel2.setBounds(40, 40, 180, 20);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Sexo:");
@@ -182,9 +189,9 @@ public class CadPessoa extends javax.swing.JFrame {
         jPanel1.add(jComboBoxSexo);
         jComboBoxSexo.setBounds(550, 70, 150, 30);
 
-        jTextFieldSalario.setEnabled(false);
-        jPanel1.add(jTextFieldSalario);
-        jTextFieldSalario.setBounds(40, 350, 150, 30);
+        jTextFieldLogin.setEnabled(false);
+        jPanel1.add(jTextFieldLogin);
+        jTextFieldLogin.setBounds(40, 350, 150, 30);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Senha:");
@@ -203,12 +210,17 @@ public class CadPessoa extends javax.swing.JFrame {
 
         jComboBoxTipoPessoa.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jComboBoxTipoPessoa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecionar", "Física", "Jurídica", "Funcionário" }));
+        jComboBoxTipoPessoa.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxTipoPessoaItemStateChanged(evt);
+            }
+        });
         jPanel1.add(jComboBoxTipoPessoa);
         jComboBoxTipoPessoa.setBounds(410, 70, 130, 30);
 
-        jTextFieldCargo.setEnabled(false);
-        jPanel1.add(jTextFieldCargo);
-        jTextFieldCargo.setBounds(200, 350, 170, 30);
+        jTextFieldSenha.setEnabled(false);
+        jPanel1.add(jTextFieldSenha);
+        jTextFieldSenha.setBounds(200, 350, 170, 30);
 
         jButtonSalvar.setText("Salvar");
         jButtonSalvar.setEnabled(false);
@@ -225,13 +237,80 @@ public class CadPessoa extends javax.swing.JFrame {
         getContentPane().add(scrollPane1);
         scrollPane1.setBounds(30, 430, 710, 170);
 
-        pack();
+        setSize(new java.awt.Dimension(780, 655));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
   
 
     }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jComboBoxTipoPessoaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxTipoPessoaItemStateChanged
+            if(jComboBoxTipoPessoa.getSelectedItem().equals("Física")){
+                jTextFieldCep.setEnabled(true);
+                jTextFieldLogradouro.setEnabled(true);
+                jTextFieldNumero.setEnabled(true);
+                jTextFieldCidade.setEnabled(true);
+                jTextFieldBairro.setEnabled(true);
+                jTextFieldUf.setEnabled(true);
+                jTextFieldTelefone.setEnabled(true);
+                jTextFieldCPFCNPJ.setEnabled(true);
+                jTextFieldRGIE.setEnabled(true);
+                jComboBoxSexo.setEnabled(true);
+                jDateChooserDataNasc.setEnabled(true);
+                jTextFieldSenha.setEnabled(false);
+                jTextFieldLogin.setEnabled(false);
+                jButtonSalvar.setEnabled(true);           
+                jButtonCancelar.setEnabled(true);
+            }else if(jComboBoxTipoPessoa.getSelectedItem().equals("Jurídica")){
+                jTextFieldCep.setEnabled(true);
+                jTextFieldLogradouro.setEnabled(true);
+                jTextFieldNumero.setEnabled(true);
+                jTextFieldCidade.setEnabled(true);
+                jTextFieldBairro.setEnabled(true);
+                jTextFieldUf.setEnabled(true);
+                jTextFieldTelefone.setEnabled(true);
+                jTextFieldCPFCNPJ.setEnabled(true);
+                jTextFieldRGIE.setEnabled(true);
+                jButtonSalvar.setEnabled(true);       
+                jButtonCancelar.setEnabled(true);
+            }else{
+                jTextFieldCep.setEnabled(false);
+                jTextFieldLogradouro.setEnabled(false);
+                jTextFieldNumero.setEnabled(false);
+                jTextFieldCidade.setEnabled(false);
+                jTextFieldBairro.setEnabled(false);
+                jTextFieldUf.setEnabled(false);
+                jTextFieldTelefone.setEnabled(false);
+                jTextFieldCPFCNPJ.setEnabled(false);
+                jTextFieldRGIE.setEnabled(false);
+                jComboBoxSexo.setEnabled(false);
+                jDateChooserDataNasc.setEnabled(false);
+                jTextFieldLogin.setEnabled(true);
+                jTextFieldSenha.setEnabled(true);
+                jButtonSalvar.setEnabled(true);
+                jButtonCancelar.setEnabled(true);
+            }
+    }//GEN-LAST:event_jComboBoxTipoPessoaItemStateChanged
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        jTextFieldCep.setEnabled(false);
+        jTextFieldLogradouro.setEnabled(false);
+        jTextFieldNumero.setEnabled(false);
+        jTextFieldCidade.setEnabled(false);
+        jTextFieldBairro.setEnabled(false);
+        jTextFieldUf.setEnabled(false);
+        jTextFieldTelefone.setEnabled(false);
+        jTextFieldCPFCNPJ.setEnabled(false);
+        jTextFieldRGIE.setEnabled(false);
+        jComboBoxSexo.setEnabled(false);
+        jDateChooserDataNasc.setEnabled(false);
+        jTextFieldSenha.setEnabled(false);
+        jTextFieldLogin.setEnabled(false);
+        jButtonSalvar.setEnabled(false);           
+        jButtonCancelar.setEnabled(false);
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,14 +372,14 @@ public class CadPessoa extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextFieldBairro;
     private javax.swing.JTextField jTextFieldCPFCNPJ;
-    private javax.swing.JTextField jTextFieldCargo;
     private javax.swing.JTextField jTextFieldCep;
     private javax.swing.JTextField jTextFieldCidade;
+    private javax.swing.JTextField jTextFieldLogin;
     private javax.swing.JTextField jTextFieldLogradouro;
     private javax.swing.JTextField jTextFieldNome;
     private javax.swing.JTextField jTextFieldNumero;
-    private javax.swing.JTextField jTextFieldRG;
-    private javax.swing.JTextField jTextFieldSalario;
+    private javax.swing.JTextField jTextFieldRGIE;
+    private javax.swing.JTextField jTextFieldSenha;
     private javax.swing.JTextField jTextFieldTelefone;
     private javax.swing.JTextField jTextFieldUf;
     private java.awt.ScrollPane scrollPane1;
