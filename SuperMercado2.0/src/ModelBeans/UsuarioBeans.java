@@ -9,12 +9,12 @@ package ModelBeans;
  *
  * @author anderson
  */
-public class Usuario{
+public class UsuarioBeans{
     private String nome;
     private String login;
     private String senha;
 
-    public Usuario(String login, String senha, String nome) {
+    public UsuarioBeans(String login, String senha, String nome) {
         this.nome = nome;
         this.login = login;
         this.senha = senha;

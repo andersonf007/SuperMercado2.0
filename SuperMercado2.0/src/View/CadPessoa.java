@@ -5,9 +5,9 @@
  */
 package View;
 
-import ModelBeans.PessoaFisica;
-import ModelBeans.PessoaJuridica;
-import ModelBeans.Usuario;
+import ModelBeans.PessoaFisicaBeans;
+import ModelBeans.PessoaJuridicaBeans;
+import ModelBeans.UsuarioBeans;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -261,7 +261,7 @@ public class CadPessoa extends javax.swing.JFrame {
                 String sexo = jComboBoxSexo.getSelectedItem().toString();
                 Date dataNasc = jDateChooserDataNasc.getDate();
                 String tipo = jComboBoxTipoPessoa.getSelectedItem().toString();
-                PessoaFisica pessoaFisica = new PessoaFisica(cpfcnpj, rgie, sexo, dataNasc, numero, nome, tipo, cep, logradouro, cidade, bairro, uf, telefone);
+                PessoaFisicaBeans pessoaFisica = new PessoaFisicaBeans(cpfcnpj, rgie, sexo, dataNasc, numero, nome, tipo, cep, logradouro, cidade, bairro, uf, telefone);
                 
                 
                 jTextFieldNome.setText("");
@@ -301,7 +301,7 @@ public class CadPessoa extends javax.swing.JFrame {
                 String cpfcnpj = jTextFieldCPFCNPJ.getText();
                 String rgie = jTextFieldRGIE.getText();
                 String tipo = jComboBoxTipoPessoa.getSelectedItem().toString();
-                PessoaJuridica pessoaJuridica = new PessoaJuridica(cep, rgie, numero, nome, tipo, cep, logradouro, cidade, bairro, uf, telefone);
+                PessoaJuridicaBeans pessoaJuridica = new PessoaJuridicaBeans(cep, rgie, numero, nome, tipo, cep, logradouro, cidade, bairro, uf, telefone);
      
                 
                 jTextFieldNome.setText("");
@@ -333,7 +333,7 @@ public class CadPessoa extends javax.swing.JFrame {
                 String nome = jTextFieldNome.getText();
                 String login = jTextFieldLogin.getText();
                 String senha = jTextFieldSenha.getText();
-                Usuario usuario = new Usuario(login, senha, nome); 
+                UsuarioBeans usuario = new UsuarioBeans(login, senha, nome); 
                 
                 jTextFieldCep.setEnabled(false);
                 jTextFieldLogradouro.setEnabled(false);

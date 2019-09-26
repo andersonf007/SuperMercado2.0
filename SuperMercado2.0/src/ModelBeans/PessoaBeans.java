@@ -9,7 +9,7 @@ package ModelBeans;
  *
  * @author anderson
  */
-public class Pessoa {
+public class PessoaBeans {
     
     private int codigo;
     private int numero;
@@ -22,7 +22,7 @@ public class Pessoa {
     private String uf;
     private String telefone;
 
-     Pessoa(int numero,String nome,String tipo,String cep,String logradouro,String cidade,String bairro,String uf,String telefone){
+     PessoaBeans(int numero,String nome,String tipo,String cep,String logradouro,String cidade,String bairro,String uf,String telefone){
       //this.codigo = codigo;
       this.numero = numero;
       this.nome = nome;

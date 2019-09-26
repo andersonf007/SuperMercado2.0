@@ -9,12 +9,12 @@ package ModelBeans;
  *
  * @author anderson
  */
-public class PessoaJuridica extends Pessoa {
+public class PessoaJuridicaBeans extends PessoaBeans {
     
     private String cnpj;
     private String ie;
                                                 //retirado int codigo
-    public PessoaJuridica(String cnpj, String ie, int numero, String nome, String tipo, String cep, String logradouro, String cidade, String bairro, String uf, String telefone) {
+    public PessoaJuridicaBeans(String cnpj, String ie, int numero, String nome, String tipo, String cep, String logradouro, String cidade, String bairro, String uf, String telefone) {
                //retirado codigo
         super( numero, nome, tipo, cep, logradouro, cidade, bairro, uf, telefone);
         this.cnpj = cnpj;

@@ -11,14 +11,14 @@ import java.util.Date;
  *
  * @author anderson
  */
-public class PessoaFisica extends Pessoa{
+public class PessoaFisicaBeans extends PessoaBeans{
 
     private String cpf;
     private String rg;
     private String sexo;
     private Date dataNascimento;
                                                                                 //retirado int codigo
-    public PessoaFisica(String cpf, String rg, String sexo, Date dataNascimento, int numero, String nome, String tipo, String cep, String logradouro, String cidade, String bairro, String uf, String telefone) {
+    public PessoaFisicaBeans(String cpf, String rg, String sexo, Date dataNascimento, int numero, String nome, String tipo, String cep, String logradouro, String cidade, String bairro, String uf, String telefone) {
             //retirado codigo
         super( numero, nome, tipo, cep, logradouro, cidade, bairro, uf, telefone);
         this.cpf = cpf;
