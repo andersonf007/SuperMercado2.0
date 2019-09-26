@@ -13,9 +13,10 @@ public class PessoaJuridica extends Pessoa {
     
     private String cnpj;
     private String ie;
-
-    public PessoaJuridica(String cnpj, String ie, int codigo, int numero, String nome, String tipo, String cep, String logradouro, String cidade, String bairro, String uf, String telefone) {
-        super(codigo, numero, nome, tipo, cep, logradouro, cidade, bairro, uf, telefone);
+                                                //retirado int codigo
+    public PessoaJuridica(String cnpj, String ie, int numero, String nome, String tipo, String cep, String logradouro, String cidade, String bairro, String uf, String telefone) {
+               //retirado codigo
+        super( numero, nome, tipo, cep, logradouro, cidade, bairro, uf, telefone);
         this.cnpj = cnpj;
         this.ie = ie;
     }

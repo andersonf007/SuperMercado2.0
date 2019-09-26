@@ -5,6 +5,10 @@
  */
 package View;
 
+import ModelBeans.PessoaFisica;
+import ModelBeans.PessoaJuridica;
+import ModelBeans.Usuario;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,6 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class CadPessoa extends javax.swing.JFrame {
 
+    
     /**
      * Creates new form CadastroClientes
      */
@@ -242,7 +247,110 @@ public class CadPessoa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-  
+        if(jComboBoxTipoPessoa.getSelectedItem().equals("Física")){
+                String nome = jTextFieldNome.getText();
+                String cep = jTextFieldCep.getText();
+                String logradouro = jTextFieldLogradouro.getText();
+                int numero = Integer.parseInt(jTextFieldNumero.getText());
+                String cidade = jTextFieldCidade.getText();
+                String bairro = jTextFieldBairro.getText();
+                String uf = jTextFieldUf.getText();
+                String telefone = jTextFieldTelefone.getText();
+                String cpfcnpj = jTextFieldCPFCNPJ.getText();
+                String rgie = jTextFieldRGIE.getText();
+                String sexo = jComboBoxSexo.getSelectedItem().toString();
+                Date dataNasc = jDateChooserDataNasc.getDate();
+                String tipo = jComboBoxTipoPessoa.getSelectedItem().toString();
+                PessoaFisica pessoaFisica = new PessoaFisica(cpfcnpj, rgie, sexo, dataNasc, numero, nome, tipo, cep, logradouro, cidade, bairro, uf, telefone);
+                
+                
+                jTextFieldNome.setText("");
+                jTextFieldCep.setText("");
+                jTextFieldLogradouro.setText("");
+                jTextFieldNumero.setText("");
+                jTextFieldCidade.setText("");
+                jTextFieldBairro.setText("");
+                jTextFieldUf.setText("");
+                jTextFieldTelefone.setText("");
+                jTextFieldCPFCNPJ.setText("");
+                jTextFieldRGIE.setText("");
+                jTextFieldCep.setEnabled(false);
+                jTextFieldLogradouro.setEnabled(false);
+                jTextFieldNumero.setEnabled(false);
+                jTextFieldCidade.setEnabled(false);
+                jTextFieldBairro.setEnabled(false);
+                jTextFieldUf.setEnabled(false);
+                jTextFieldTelefone.setEnabled(false);
+                jTextFieldCPFCNPJ.setEnabled(false);
+                jTextFieldRGIE.setEnabled(false);
+                jComboBoxSexo.setEnabled(false);
+                jDateChooserDataNasc.setEnabled(false);
+                jTextFieldLogin.setEnabled(false);
+                jTextFieldSenha.setEnabled(false);
+                jButtonSalvar.setEnabled(true);
+                jButtonCancelar.setEnabled(true);
+            }else if(jComboBoxTipoPessoa.getSelectedItem().equals("Jurídica")){
+                String nome = jTextFieldNome.getText();
+                String cep = jTextFieldCep.getText();
+                String logradouro = jTextFieldLogradouro.getText();
+                int numero = Integer.parseInt(jTextFieldNumero.getText());
+                String cidade = jTextFieldCidade.getText();
+                String bairro = jTextFieldBairro.getText();
+                String uf = jTextFieldUf.getText();
+                String telefone = jTextFieldTelefone.getText();
+                String cpfcnpj = jTextFieldCPFCNPJ.getText();
+                String rgie = jTextFieldRGIE.getText();
+                String tipo = jComboBoxTipoPessoa.getSelectedItem().toString();
+                PessoaJuridica pessoaJuridica = new PessoaJuridica(cep, rgie, numero, nome, tipo, cep, logradouro, cidade, bairro, uf, telefone);
+     
+                
+                jTextFieldNome.setText("");
+                jTextFieldCep.setText("");
+                jTextFieldLogradouro.setText("");
+                jTextFieldNumero.setText("");
+                jTextFieldCidade.setText("");
+                jTextFieldBairro.setText("");
+                jTextFieldUf.setText("");
+                jTextFieldTelefone.setText("");
+                jTextFieldCPFCNPJ.setText("");
+                jTextFieldRGIE.setText("");
+                jTextFieldCep.setEnabled(false);
+                jTextFieldLogradouro.setEnabled(false);
+                jTextFieldNumero.setEnabled(false);
+                jTextFieldCidade.setEnabled(false);
+                jTextFieldBairro.setEnabled(false);
+                jTextFieldUf.setEnabled(false);
+                jTextFieldTelefone.setEnabled(false);
+                jTextFieldCPFCNPJ.setEnabled(false);
+                jTextFieldRGIE.setEnabled(false);
+                jComboBoxSexo.setEnabled(false);
+                jDateChooserDataNasc.setEnabled(false);
+                jTextFieldLogin.setEnabled(false);
+                jTextFieldSenha.setEnabled(false);
+                jButtonSalvar.setEnabled(true);
+                jButtonCancelar.setEnabled(true);
+            }else{
+                String nome = jTextFieldNome.getText();
+                String login = jTextFieldLogin.getText();
+                String senha = jTextFieldSenha.getText();
+                Usuario usuario = new Usuario(login, senha, nome); 
+                
+                jTextFieldCep.setEnabled(false);
+                jTextFieldLogradouro.setEnabled(false);
+                jTextFieldNumero.setEnabled(false);
+                jTextFieldCidade.setEnabled(false);
+                jTextFieldBairro.setEnabled(false);
+                jTextFieldUf.setEnabled(false);
+                jTextFieldTelefone.setEnabled(false);
+                jTextFieldCPFCNPJ.setEnabled(false);
+                jTextFieldRGIE.setEnabled(false);
+                jComboBoxSexo.setEnabled(false);
+                jDateChooserDataNasc.setEnabled(false);
+                jTextFieldLogin.setEnabled(true);
+                jTextFieldSenha.setEnabled(true);
+                jButtonSalvar.setEnabled(true);
+                jButtonCancelar.setEnabled(true);
+            }
 
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 

@@ -22,8 +22,8 @@ public class Pessoa {
     private String uf;
     private String telefone;
 
-     Pessoa(int codigo,int numero,String nome,String tipo,String cep,String logradouro,String cidade,String bairro,String uf,String telefone){
-      this.codigo = codigo;
+     Pessoa(int numero,String nome,String tipo,String cep,String logradouro,String cidade,String bairro,String uf,String telefone){
+      //this.codigo = codigo;
       this.numero = numero;
       this.nome = nome;
       this.tipo = tipo;
@@ -34,10 +34,7 @@ public class Pessoa {
       this.uf = uf;
       this.telefone = telefone;
      }
-     
-     Pessoa(String nome){
-         this.nome = nome;
-     }
+   
     /**
      * @return the codigo
      */
