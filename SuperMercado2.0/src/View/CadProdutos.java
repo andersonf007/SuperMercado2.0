@@ -5,6 +5,8 @@
  */
 package View;
 
+import ModelBeans.ProdutoBeans;
+
 /**
  *
  * @author anderson
@@ -39,6 +41,7 @@ public class CadProdutos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -71,6 +74,11 @@ public class CadProdutos extends javax.swing.JFrame {
 
         jButtonSalvar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonSalvar.setText("Salvar");
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonSalvar);
         jButtonSalvar.setBounds(300, 150, 100, 40);
 
@@ -79,8 +87,24 @@ public class CadProdutos extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(-10, -10, 530, 390);
 
-        pack();
+        setSize(new java.awt.Dimension(461, 413));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        String descricao = jTextFieldDescricao.getText();
+        Double estoque = Double.parseDouble(jTextFieldEstoque.getText());
+        Double valorCusto = Double.parseDouble(jTextFieldValorDeCusto.getText());
+        Double valorVenda = Double.parseDouble(jTextFieldValorDeVenda.getText());
+        ProdutoBeans produto = new ProdutoBeans(descricao, estoque, valorCusto, valorVenda);
+        
+        
+        jTextFieldDescricao.setText("");
+        jTextFieldEstoque.setText("");
+        jTextFieldValorDeCusto.setText("");
+        jTextFieldValorDeVenda.setText("");
+        
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     /**
      * @param args the command line arguments
