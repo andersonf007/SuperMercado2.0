@@ -5,12 +5,16 @@
  */
 package View;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author anderson
  */
 public class PDV extends javax.swing.JFrame {
 
+    private static PDV pdv;
+    
     /**
      * Creates new form PDV
      */
@@ -53,6 +57,11 @@ public class PDV extends javax.swing.JFrame {
         jLabelNomeProduto.setBounds(220, 32, 330, 40);
 
         jTextFieldCodigo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTextFieldCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldCodigoKeyPressed(evt);
+            }
+        });
         getContentPane().add(jTextFieldCodigo);
         jTextFieldCodigo.setBounds(20, 150, 240, 50);
 
@@ -126,6 +135,12 @@ public class PDV extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(768, 645));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextFieldCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCodigoKeyPressed
+        if(evt.getKeyCode() == 127){
+            JOptionPane.showMessageDialog(null, "entrou");
+        }
+    }//GEN-LAST:event_jTextFieldCodigoKeyPressed
 
     /**
      * @param args the command line arguments
