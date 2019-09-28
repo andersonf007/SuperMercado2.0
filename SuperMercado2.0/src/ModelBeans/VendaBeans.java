@@ -13,6 +13,12 @@ public class VendaBeans {
     private double valor;
     private int pesquisa;
 
+    public VendaBeans(int numero, Date dataVenda, double valor) {
+        this.numero = numero;
+        this.dataVenda = dataVenda;
+        this.valor = valor;
+    }   
+
     /**
      * @return the numero
      */
