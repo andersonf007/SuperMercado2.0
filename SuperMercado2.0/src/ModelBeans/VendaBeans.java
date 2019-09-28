@@ -14,16 +14,16 @@ public class VendaBeans {
     private int pesquisa;
 
     /**
-     * @return the id_pessoa
+     * @return the numero
      */
-    public int getId_pessoa() {
+    public int getNumedo() {
         return numero;
     }
 
     /**
-     * @param numero the id_pessoa to set
+     * @param numero the numero to set
      */
-    public void setId_pessoa(int numero) {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
 
