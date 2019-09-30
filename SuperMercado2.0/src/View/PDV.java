@@ -5,7 +5,9 @@
  */
 package View;
 
+import Controllers.PdvController;
 import ModelBeans.ModelTabela;
+import ModelBeans.ProdutoBeans;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -153,9 +155,19 @@ public class PDV extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void receberProduto(ProdutoBeans produtoBeans){   
+        jTextFieldCodigo.setText(Double.toString(produtoBeans.getId()));
+        jLabelNomeProduto.setText(produtoBeans.getNome());
+        jTextFieldValorUnitario.setText(Double.toString(produtoBeans.getValorVenda()));
+        jTextFieldQuantidade.setText(Integer.toString(1));
+        jTextFieldQuantidade.setEnabled(true);
+        jTextFieldValorUnitario.setEnabled(true);        
+        getContentPane().repaint();   
+    }
+    
     private void jTextFieldCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCodigoKeyPressed
         if(evt.getKeyCode() == 127){
-            JOptionPane.showMessageDialog(null, "entrou");
+            PdvController.abrirListagemProdutos();
         }
     }//GEN-LAST:event_jTextFieldCodigoKeyPressed
 

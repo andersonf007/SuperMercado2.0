@@ -5,17 +5,28 @@
  */
 package View;
 
+import ModelBeans.ModelTabela;
+import ModelBeans.ProdutoBeans;
+import ModelDao.ProdutoDAO;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+
 /**
  *
  * @author anderson
  */
 public class BuscarProdutos extends javax.swing.JFrame {
 
+    ProdutoBeans produtoBeans = new ProdutoBeans();
+    ProdutoDAO produtoDAO = new ProdutoDAO();
     /**
      * Creates new form BuscarProdutos
      */
     public BuscarProdutos() {
         initComponents();
+        preencherTabela();
     }
 
     /**
@@ -28,12 +39,12 @@ public class BuscarProdutos extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableProdutos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -44,7 +55,12 @@ public class BuscarProdutos extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jTableProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableProdutosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTableProdutos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -67,6 +83,39 @@ public class BuscarProdutos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTableProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProdutosMouseClicked
+        String nome_Produto = ""+jTableProdutos.getValueAt(jTableProdutos.getSelectedRow(), 1);
+        produtoBeans.setPesquisar(nome_Produto);
+        ProdutoBeans produtoBeansInstancia = produtoDAO.procurarProdutoNome(nome_Produto);
+        
+    }//GEN-LAST:event_jTableProdutosMouseClicked
+
+    public void preencherTabela() {
+        ArrayList dados = new ArrayList();
+        String[] colunas = new String[]{"ID", "Descrição", "V. Venda", "Estoque"};
+
+        //falta implementar o metodo ára trazer todos os produtos
+            do {
+                dados.add(new Object[]{produtoInfo.rs.getInt("id_produto"), produtoInfo.rs.getString("descricao"), produtoInfo.rs.getDouble("valorvenda"), produtoInfo.rs.getDouble("quantidadeestoque")});
+
+            } while (produtoInfo.rs.next());
+   
+        ModelTabela modelo = new ModelTabela(dados, colunas);
+
+        jTableProdutos.setModel(modelo);
+        jTableProdutos.getColumnModel().getColumn(0).setPreferredWidth(50);
+        jTableProdutos.getColumnModel().getColumn(0).setResizable(false);
+        jTableProdutos.getColumnModel().getColumn(1).setPreferredWidth(225);
+        jTableProdutos.getColumnModel().getColumn(1).setResizable(false);
+        jTableProdutos.getColumnModel().getColumn(2).setPreferredWidth(109);
+        jTableProdutos.getColumnModel().getColumn(2).setResizable(false);
+        jTableProdutos.getColumnModel().getColumn(3).setPreferredWidth(100);
+        jTableProdutos.getColumnModel().getColumn(3).setResizable(false);
+        jTableProdutos.getTableHeader().setReorderingAllowed(false);
+        jTableProdutos.setAutoResizeMode(jTableProdutos.AUTO_RESIZE_OFF);
+        jTableProdutos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -104,6 +153,6 @@ public class BuscarProdutos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableProdutos;
     // End of variables declaration//GEN-END:variables
 }

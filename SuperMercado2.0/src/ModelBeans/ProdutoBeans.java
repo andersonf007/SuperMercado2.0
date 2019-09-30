@@ -18,6 +18,7 @@ public class ProdutoBeans {
     private int Quantidade;
     private Double ValorCusto;
     private Double ValorVenda;
+    private String pesquisar;
 
     public ProdutoBeans(String nome,Double id, String tipo, Double estoque,int quantidade, Double valorCusto, Double valorVenda) {
         Nome = nome;
@@ -28,6 +29,9 @@ public class ProdutoBeans {
         ValorVenda = valorVenda;
         Quantidade = quantidade;
     }
+    
+    public ProdutoBeans(){};
+    
     public int getQuantidade() {
         return Quantidade;
     }
@@ -82,6 +86,20 @@ public class ProdutoBeans {
 
     public void setId(Double id) {
         Id = id;
+    }
+
+    /**
+     * @return the pesquisar
+     */
+    public String getPesquisar() {
+        return pesquisar;
+    }
+
+    /**
+     * @param pesquisar the pesquisar to set
+     */
+    public void setPesquisar(String pesquisar) {
+        this.pesquisar = pesquisar;
     }
  
 }

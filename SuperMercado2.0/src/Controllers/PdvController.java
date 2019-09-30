@@ -5,6 +5,8 @@
  */
 package Controllers;
 
+import ModelBeans.ProdutoBeans;
+import View.BuscarProdutos;
 import View.PDV;
 
 /**
@@ -18,5 +20,13 @@ public class PdvController {
         if(pdv == null) pdv = new PDV();
         
         pdv.setVisible(true);
+    }
+    
+    public static void RecebeInformacoesProduto(ProdutoBeans produtoBeans){
+        pdv.receberProduto(produtoBeans);
+    }
+    
+    public static void abrirListagemProdutos(){
+        new BuscarProdutos().setVisible(true);
     }
 }
