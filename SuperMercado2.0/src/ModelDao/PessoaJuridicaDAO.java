@@ -12,7 +12,9 @@ public class PessoaJuridicaDAO {
     public void adicionarClienteJuridico(PessoaJuridicaBeans clienteJuridico){
         boolean existe = false;
         for(int j = 0; j <= ClientesJuridico.size();j++){
-            if(ClientesJuridico.get(j).equals(clienteJuridico)){ // Verifica se já existe o cliente
+            if(ClientesJuridico.size() == 0){
+                continue;
+            }else if(ClientesJuridico.get(j).equals(clienteJuridico)){ // Verifica se já existe o cliente
                 existe = true;
             }
         }

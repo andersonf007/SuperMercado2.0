@@ -12,7 +12,9 @@ public class UsuarioDAO {
         boolean existe = false;
         boolean adicionou = false;
         for(int j = 0; j <= Funcionarios.size();j++){  // Verifica se o funcionario já existe
-            if(Funcionarios.get(j).equals(funcionario)){
+            if(Funcionarios.size() == 0){
+                continue;
+            }else if(Funcionarios.get(j).equals(funcionario)){
                 existe = true;
             }
         }

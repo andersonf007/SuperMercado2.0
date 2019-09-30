@@ -5,7 +5,10 @@
  */
 package View;
 
+import ModelBeans.ModelTabela;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -14,12 +17,16 @@ import javax.swing.JOptionPane;
 public class PDV extends javax.swing.JFrame {
 
     private static PDV pdv;
+    String descricao, id, valor, quantidade;
+    ArrayList lista = new ArrayList();  
+    double total =0;
     
     /**
      * Creates new form PDV
      */
     public PDV() {
         initComponents();
+        jTextFieldCodigo.requestFocus();
     }
 
     /**
@@ -39,13 +46,13 @@ public class PDV extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableListaDeProdutos = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabelCPF = new javax.swing.JLabel();
         jLabelNome1 = new javax.swing.JLabel();
         jLabelValorTotal = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButtonConfirmar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -70,6 +77,11 @@ public class PDV extends javax.swing.JFrame {
         jTextFieldValorUnitario.setBounds(20, 250, 240, 50);
 
         jTextFieldQuantidade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTextFieldQuantidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldQuantidadeKeyPressed(evt);
+            }
+        });
         getContentPane().add(jTextFieldQuantidade);
         jTextFieldQuantidade.setBounds(20, 350, 240, 50);
 
@@ -88,7 +100,7 @@ public class PDV extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(20, 200, 240, 50);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableListaDeProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -99,7 +111,7 @@ public class PDV extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableListaDeProdutos);
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(270, 110, 470, 370);
@@ -123,10 +135,15 @@ public class PDV extends javax.swing.JFrame {
         getContentPane().add(jLabelValorTotal);
         jLabelValorTotal.setBounds(610, 490, 130, 40);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton1.setText("Confirmar");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(623, 550, 120, 40);
+        jButtonConfirmar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonConfirmar.setText("Confirmar");
+        jButtonConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConfirmarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonConfirmar);
+        jButtonConfirmar.setBounds(623, 550, 120, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_telaprincipal.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -142,6 +159,57 @@ public class PDV extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextFieldCodigoKeyPressed
 
+    private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonConfirmarActionPerformed
+
+    private void jTextFieldQuantidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldQuantidadeKeyPressed
+        if(evt.getKeyCode() == 32){
+            if(jTextFieldCodigo.getText().isEmpty() || jTextFieldQuantidade.getText().isEmpty() || jTextFieldValorUnitario .getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Favor, preencha todos os campos \n ou selecione o campo codigo e aperte F2");
+            }else{
+                preencherTabela();
+                jTextFieldCodigo.setText("");
+                jLabelNomeProduto.setText("");
+                total += Double.parseDouble(jTextFieldValorUnitario.getText());
+                jLabelValorTotal.setText(Double.toString(total));
+                jTextFieldValorUnitario.setText("");
+                jTextFieldQuantidade.setText("");
+                jTextFieldCodigo.requestFocus();    
+            }
+        }
+    }//GEN-LAST:event_jTextFieldQuantidadeKeyPressed
+    
+    public void preencherTabela() {
+           
+           id = jTextFieldCodigo.getText();
+           descricao = jLabelNomeProduto.getText(); 
+           valor = jTextFieldValorUnitario.getText();
+           quantidade = jTextFieldQuantidade.getText();
+          
+           
+        String[] colunas = new String[]{"ID", "Descrição", "Quantidade", "Valor"};
+
+        lista.add(new Object[]{id, descricao, quantidade, valor});            
+        
+        ModelTabela modelo = new ModelTabela(lista, colunas);
+
+        jTableListaDeProdutos.setModel(modelo);
+        jTableListaDeProdutos.getColumnModel().getColumn(0).setPreferredWidth(25);
+        jTableListaDeProdutos.getColumnModel().getColumn(0).setResizable(false);
+        jTableListaDeProdutos.getColumnModel().getColumn(1).setPreferredWidth(300);
+        jTableListaDeProdutos.getColumnModel().getColumn(1).setResizable(false);
+        jTableListaDeProdutos.getColumnModel().getColumn(2).setPreferredWidth(80);
+        jTableListaDeProdutos.getColumnModel().getColumn(2).setResizable(false);
+        jTableListaDeProdutos.getColumnModel().getColumn(3).setPreferredWidth(78);
+        jTableListaDeProdutos.getColumnModel().getColumn(3).setResizable(false);
+        jTableListaDeProdutos.getTableHeader().setReorderingAllowed(false);
+        jTableListaDeProdutos.setAutoResizeMode(jTableListaDeProdutos.AUTO_RESIZE_OFF);
+        jTableListaDeProdutos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        jButtonConfirmar.setEnabled(true);
+        jTextFieldQuantidade.setEnabled(false);
+        jTextFieldValorUnitario.setEnabled(false);
+    }
     /**
      * @param args the command line arguments
      */
@@ -178,7 +246,7 @@ public class PDV extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonConfirmar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -190,7 +258,7 @@ public class PDV extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelNomeProduto;
     private javax.swing.JLabel jLabelValorTotal;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableListaDeProdutos;
     private javax.swing.JTextField jTextFieldCodigo;
     private javax.swing.JTextField jTextFieldQuantidade;
     private javax.swing.JTextField jTextFieldValorUnitario;

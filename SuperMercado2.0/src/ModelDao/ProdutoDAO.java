@@ -13,7 +13,9 @@ public class ProdutoDAO {
     public void adicionarProduto(ProdutoBeans produto) {
         boolean existe = false;
         for(int j = 0;j <= Produtos.size();j++){
-            if(Produtos.get(j).equals(produto)){
+            if(Produtos.size() == 0){
+               continue;
+            }else if(Produtos.get(j).equals(produto)){
                 existe = true;
             }
         }
