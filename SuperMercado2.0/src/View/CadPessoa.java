@@ -8,6 +8,9 @@ package View;
 import ModelBeans.PessoaFisicaBeans;
 import ModelBeans.PessoaJuridicaBeans;
 import ModelBeans.UsuarioBeans;
+import ModelDao.PessoaFisicaDAO;
+import ModelDao.PessoaJuridicaDAO;
+import ModelDao.UsuarioDAO;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -17,6 +20,9 @@ import javax.swing.JOptionPane;
  */
 public class CadPessoa extends javax.swing.JFrame {
 
+    PessoaFisicaDAO pessoaFisicaDAO  = new PessoaFisicaDAO();
+    PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
+    UsuarioDAO usuarioDAO = new UsuarioDAO();
     
     /**
      * Creates new form CadastroClientes
@@ -261,8 +267,8 @@ public class CadPessoa extends javax.swing.JFrame {
                 String sexo = jComboBoxSexo.getSelectedItem().toString();
                 Date dataNasc = jDateChooserDataNasc.getDate();
                 String tipo = jComboBoxTipoPessoa.getSelectedItem().toString();
-                PessoaFisicaBeans pessoaFisica = new PessoaFisicaBeans(cpfcnpj, rgie, sexo, dataNasc, numero, nome, tipo, cep, logradouro, cidade, bairro, uf, telefone);
-                
+                PessoaFisicaBeans pessoaFisica = new PessoaFisicaBeans(cpfcnpj, rgie, sexo, dataNasc, numero, numero, nome, tipo, cep, logradouro, cidade, bairro, uf, telefone);
+                pessoaFisicaDAO.adicionarClienteFisico(pessoaFisica);
                 
                 jTextFieldNome.setText("");
                 jTextFieldCep.setText("");
@@ -289,7 +295,9 @@ public class CadPessoa extends javax.swing.JFrame {
                 jTextFieldSenha.setEnabled(false);
                 jButtonSalvar.setEnabled(true);
                 jButtonCancelar.setEnabled(true);
+                
             }else if(jComboBoxTipoPessoa.getSelectedItem().equals("Jurídica")){
+                
                 String nome = jTextFieldNome.getText();
                 String cep = jTextFieldCep.getText();
                 String logradouro = jTextFieldLogradouro.getText();
@@ -301,8 +309,8 @@ public class CadPessoa extends javax.swing.JFrame {
                 String cpfcnpj = jTextFieldCPFCNPJ.getText();
                 String rgie = jTextFieldRGIE.getText();
                 String tipo = jComboBoxTipoPessoa.getSelectedItem().toString();
-                PessoaJuridicaBeans pessoaJuridica = new PessoaJuridicaBeans(cep, rgie, numero, nome, tipo, cep, logradouro, cidade, bairro, uf, telefone);
-     
+                PessoaJuridicaBeans pessoaJuridica = new PessoaJuridicaBeans(cep, rgie, numero, numero, nome, tipo, cep, logradouro, cidade, bairro, uf, telefone);
+                pessoaJuridicaDAO.adicionarClienteJuridico(pessoaJuridica);
                 
                 jTextFieldNome.setText("");
                 jTextFieldCep.setText("");
@@ -329,11 +337,13 @@ public class CadPessoa extends javax.swing.JFrame {
                 jTextFieldSenha.setEnabled(false);
                 jButtonSalvar.setEnabled(true);
                 jButtonCancelar.setEnabled(true);
+                
             }else{
                 String nome = jTextFieldNome.getText();
                 String login = jTextFieldLogin.getText();
                 String senha = jTextFieldSenha.getText();
-                UsuarioBeans usuario = new UsuarioBeans(login, senha, nome); 
+                UsuarioBeans usuario = new UsuarioBeans(nome, login, login, senha); 
+                usuarioDAO.adicionarUsuario(usuario);
                 
                 jTextFieldCep.setEnabled(false);
                 jTextFieldLogradouro.setEnabled(false);

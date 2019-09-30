@@ -1,17 +1,19 @@
-package Repositorios;
-import ModelBeans.ClienteFisico;
+package ModelDao;
+import ModelBeans.PessoaFisicaBeans;
 import java.util.ArrayList;
-public class RepositorioClienteFisico {
-    private ArrayList<ClienteFisico> ClientesFisico;
+public class PessoaFisicaDAO {
+    private ArrayList<PessoaFisicaBeans> ClientesFisico = new ArrayList<PessoaFisicaBeans>();
 
-    RepositorioClienteFisico(){
-        ClientesFisico = new ArrayList<ClienteFisico>();
-    }
+    //PessoaFisicaDAO(){
+    //    ClientesFisico = new ArrayList<PessoaFisicaBeans>();
+    //}
 
-    public void adicionarClienteFisico(ClienteFisico clienteFisico){
+    public void adicionarClienteFisico(PessoaFisicaBeans clienteFisico){
         boolean existe = false;
         for(int j = 0; j <= ClientesFisico.size();j++){
-            if(ClientesFisico.get(j).equals(clienteFisico)){ // Verifica se já existe o cliente
+            if(ClientesFisico.size() == 0){
+                continue;
+            }else if(ClientesFisico.get(j).equals(clienteFisico)){ // Verifica se já existe o cliente
                 existe = true;
             }
         }
@@ -23,7 +25,7 @@ public class RepositorioClienteFisico {
         }
     }
 
-    public void excluirClienteFisico(ClienteFisico clienteFisico){
+    public void excluirClienteFisico(PessoaFisicaBeans clienteFisico){
         boolean existe = false;
         for(int j = 0; j <= ClientesFisico.size();j++){
             if(ClientesFisico.get(j).equals(clienteFisico)){
@@ -38,7 +40,7 @@ public class RepositorioClienteFisico {
         }
     }
 
-    public ClienteFisico buscarClienteFisicoCPF(String cpf){
+    public PessoaFisicaBeans buscarClienteFisicoCPF(String cpf){
         for(int i = 0; i <= ClientesFisico.size();i++){
             if(ClientesFisico.get(i).getCpf().equals(cpf)){
                 return ClientesFisico.get(i);
@@ -46,7 +48,7 @@ public class RepositorioClienteFisico {
         }
         return null;
     }
-    public ClienteFisico buscarClienteFisicoNome(String nome){
+    public PessoaFisicaBeans buscarClienteFisicoNome(String nome){
         for(int i = 0; i <= ClientesFisico.size();i++){
             if(ClientesFisico.get(i).getNome().equals(nome)){
                 return ClientesFisico.get(i);

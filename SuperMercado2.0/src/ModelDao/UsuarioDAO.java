@@ -1,15 +1,14 @@
-package Repositorios;
-import ModelBeans.Funcionario;
+package ModelDao;
 
 import java.util.ArrayList;
-public class RepositorioFuncionario {
-    private ArrayList<Funcionario> Funcionarios;
+public class UsuarioDAO {
+    private ArrayList<ModelBeans.UsuarioBeans> Funcionarios = new ArrayList<ModelBeans.UsuarioBeans>();
 
-    RepositorioFuncionario(){
-        Funcionarios = new ArrayList<Funcionario>();
-    }
+    /*UsuarioDAO(){
+        Funcionarios = new ArrayList<ModelBeans.UsuarioBeans>();
+    }*/
 
-    public void adicionarFuncionario( Funcionario funcionario){
+    public void adicionarUsuario( ModelBeans.UsuarioBeans funcionario){
         boolean existe = false;
         boolean adicionou = false;
         for(int j = 0; j <= Funcionarios.size();j++){  // Verifica se o funcionario já existe
@@ -36,7 +35,7 @@ public class RepositorioFuncionario {
             System.out.println("Funcionário adicionado com sucesso");
         }
     }
-    public void excluirFuncionario(Funcionario funcionario){
+    public void excluirFuncionario(ModelBeans.UsuarioBeans funcionario){
         boolean excluiu = false;
         boolean existe = false;
         for(int j = 0; j <= Funcionarios.size();j++){ // Verifica se o funcionário existe
@@ -64,7 +63,7 @@ public class RepositorioFuncionario {
         }
     }
 
-    public Funcionario buscarFuncionarioId(String Id){
+    public ModelBeans.UsuarioBeans buscarFuncionarioId(String Id){
         for(int i = 0; i <= Funcionarios.size();i++){
             if(Funcionarios.get(i).getId().equals(Id)){
                 return Funcionarios.get(i);
@@ -72,7 +71,7 @@ public class RepositorioFuncionario {
         }
         return null;
     }
-    public Funcionario buscarFuncionarioNome(String Nome){
+    public ModelBeans.UsuarioBeans buscarFuncionarioNome(String Nome){
         for(int i = 0; i <= Funcionarios.size();i++){
             if(Funcionarios.get(i).getNome().equals(Nome)){
                 return Funcionarios.get(i);

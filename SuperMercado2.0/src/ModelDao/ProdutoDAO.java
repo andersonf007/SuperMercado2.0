@@ -1,16 +1,16 @@
-package Repositorios;
-import ModelBeans.Produto;
+package ModelDao;
+import ModelBeans.ProdutoBeans;
 
 import java.util.ArrayList;
 
-public class RepositorioProdutos {
-    private ArrayList<Produto> Produtos;
+public class ProdutoDAO {
+    private ArrayList<ProdutoBeans> Produtos = new ArrayList<ProdutoBeans>();
 
-    RepositorioProdutos() {
-        Produtos = new ArrayList<Produto>();
-    }
+    /*ProdutoDAO() {
+        Produtos = new ArrayList<ProdutoBeans>();
+    }*/
 
-    void adicionarProduto(Produto produto) {
+    public void adicionarProduto(ProdutoBeans produto) {
         boolean existe = false;
         for(int j = 0;j <= Produtos.size();j++){
             if(Produtos.get(j).equals(produto)){
@@ -25,7 +25,7 @@ public class RepositorioProdutos {
         }
 
     }
-    void excluirProduto(Produto produto){
+    public void excluirProduto(ProdutoBeans produto){
         boolean existe = false;
         for (int j = 0; j <= Produtos.size();j++){
             if(Produtos.get(j).equals(produto)){
@@ -40,7 +40,7 @@ public class RepositorioProdutos {
         }
     }
 
-    Produto procurarProdutoId(Double id) {
+    public ProdutoBeans procurarProdutoId(Double id) {
         for (int i = 0; i <= Produtos.size(); i++) {
             if (Produtos.get(i).getId() == id) {
                 return Produtos.get(i);
@@ -49,7 +49,7 @@ public class RepositorioProdutos {
         return null;
     }
 
-    Produto procurarProdutoNome(String nome) {
+    public ProdutoBeans procurarProdutoNome(String nome) {
         for (int i = 0; i <= Produtos.size(); i++) {
             if (Produtos.get(i).getNome().equals(nome)) {
                 return Produtos.get(i);

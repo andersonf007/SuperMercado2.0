@@ -11,170 +11,88 @@ package ModelBeans;
  */
 public class PessoaBeans {
     
-    private int codigo;
-    private int numero;
-    private String nome;
-    private String tipo;
-    private String cep;
-    private String logradouro;
-    private String cidade;
-    private String bairro;
-    private String uf;
-    private String telefone;
+   private int Codigo;
+    private String Nome;
+    private String Cep;
+    private String Logradouro;
+    private String Cidade;
+    private String Bairro;
+    private String Uf;
+    private String Telefone;
 
-     PessoaBeans(int numero,String nome,String tipo,String cep,String logradouro,String cidade,String bairro,String uf,String telefone){
-      //this.codigo = codigo;
-      this.numero = numero;
-      this.nome = nome;
-      this.tipo = tipo;
-      this.cep = cep;
-      this.logradouro = logradouro;
-      this.cidade = cidade;
-      this.bairro = bairro;
-      this.uf = uf;
-      this.telefone = telefone;
-     }
-   
-    /**
-     * @return the codigo
-     */
+    public PessoaBeans(int codigo, int numero, String nome, String tipo, String cep, String logradouro, String cidade, String bairro, String uf, String telefone){
+        this.Codigo = codigo;
+        this.Nome = nome;
+        this.Cep = cep;
+        this.Logradouro = logradouro;
+        this.Cidade = cidade;
+        this.Bairro = bairro;
+        this.Uf = uf;
+        this.Telefone = telefone;
+
+    }
+
     public int getCodigo() {
-        return codigo;
+        return Codigo;
     }
 
-    /**
-     * @param codigo the codigo to set
-     */
     public void setCodigo(int codigo) {
-        this.codigo = codigo;
+        Codigo = codigo;
     }
 
-    /**
-     * @return the numero
-     */
-    public int getNumero() {
-        return numero;
-    }
-
-    /**
-     * @param numero the numero to set
-     */
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
-
-    /**
-     * @return the nome
-     */
     public String getNome() {
-        return nome;
+        return Nome;
     }
 
-    /**
-     * @param nome the nome to set
-     */
     public void setNome(String nome) {
-        this.nome = nome;
+        Nome = nome;
     }
 
-    /**
-     * @return the tipo
-     */
-    public String getTipo() {
-        return tipo;
-    }
-
-    /**
-     * @param tipo the tipo to set
-     */
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    /**
-     * @return the cep
-     */
     public String getCep() {
-        return cep;
+        return Cep;
     }
 
-    /**
-     * @param cep the cep to set
-     */
     public void setCep(String cep) {
-        this.cep = cep;
+        Cep = cep;
     }
 
-    /**
-     * @return the logradouro
-     */
     public String getLogradouro() {
-        return logradouro;
+        return Logradouro;
     }
 
-    /**
-     * @param logradouro the logradouro to set
-     */
     public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro;
+        Logradouro = logradouro;
     }
 
-    /**
-     * @return the cidade
-     */
     public String getCidade() {
-        return cidade;
+        return Cidade;
     }
 
-    /**
-     * @param cidade the cidade to set
-     */
     public void setCidade(String cidade) {
-        this.cidade = cidade;
+        Cidade = cidade;
     }
 
-    /**
-     * @return the bairro
-     */
     public String getBairro() {
-        return bairro;
+        return Bairro;
     }
 
-    /**
-     * @param bairro the bairro to set
-     */
     public void setBairro(String bairro) {
-        this.bairro = bairro;
+        Bairro = bairro;
     }
 
-    /**
-     * @return the uf
-     */
     public String getUf() {
-        return uf;
+        return Uf;
     }
 
-    /**
-     * @param uf the uf to set
-     */
     public void setUf(String uf) {
-        this.uf = uf;
+        Uf = uf;
     }
 
-    /**
-     * @return the telefone
-     */
     public String getTelefone() {
-        return telefone;
+        return Telefone;
     }
 
-    /**
-     * @param telefone the telefone to set
-     */
     public void setTelefone(String telefone) {
-        this.telefone = telefone;
+        Telefone = telefone;
     }
-    
-    
-    
 }

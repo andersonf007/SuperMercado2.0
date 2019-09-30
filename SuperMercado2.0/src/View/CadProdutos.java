@@ -6,6 +6,7 @@
 package View;
 
 import ModelBeans.ProdutoBeans;
+import ModelDao.ProdutoDAO;
 
 /**
  *
@@ -13,6 +14,8 @@ import ModelBeans.ProdutoBeans;
  */
 public class CadProdutos extends javax.swing.JFrame {
 
+    ProdutoDAO produtoDao = new ProdutoDAO();
+    
     /**
      * Creates new form CadProdutos
      */
@@ -96,8 +99,8 @@ public class CadProdutos extends javax.swing.JFrame {
         Double estoque = Double.parseDouble(jTextFieldEstoque.getText());
         Double valorCusto = Double.parseDouble(jTextFieldValorDeCusto.getText());
         Double valorVenda = Double.parseDouble(jTextFieldValorDeVenda.getText());
-        ProdutoBeans produto = new ProdutoBeans(descricao, estoque, valorCusto, valorVenda);
-        
+        ProdutoBeans produto = new ProdutoBeans(descricao, estoque, descricao, estoque, WIDTH, valorCusto, valorVenda);
+        produtoDao.adicionarProduto(produto);
         
         jTextFieldDescricao.setText("");
         jTextFieldEstoque.setText("");

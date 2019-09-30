@@ -1,13 +1,15 @@
-package Repositorios;
-import ModelBeans.ClienteJuridico;
+package ModelDao;
+import ModelBeans.PessoaJuridicaBeans;
 import java.util.ArrayList;
 
-public class RepositorioClienteJuridico {
-    private ArrayList<ClienteJuridico> ClientesJuridico;
-    RepositorioClienteJuridico(){
-        ClientesJuridico = new ArrayList<ClienteJuridico>();
-    }
-    public void adicionarClienteJuridico(ClienteJuridico clienteJuridico){
+public class PessoaJuridicaDAO {
+    private ArrayList<PessoaJuridicaBeans> ClientesJuridico = new ArrayList<PessoaJuridicaBeans>();
+    
+    /*PessoaJuridicaDAO(){
+        ClientesJuridico = new ArrayList<PessoaJuridicaBeans>();
+    }*/
+    
+    public void adicionarClienteJuridico(PessoaJuridicaBeans clienteJuridico){
         boolean existe = false;
         for(int j = 0; j <= ClientesJuridico.size();j++){
             if(ClientesJuridico.get(j).equals(clienteJuridico)){ // Verifica se já existe o cliente
@@ -22,7 +24,7 @@ public class RepositorioClienteJuridico {
         }
     }
 
-    public void excluirClienteFisico(ClienteJuridico clienteJuridico){
+    public void excluirClienteFisico(PessoaJuridicaBeans clienteJuridico){
         boolean existe = false;
         for(int j = 0; j <= ClientesJuridico.size();j++){
             if(ClientesJuridico.get(j).equals(clienteJuridico)){
@@ -37,7 +39,7 @@ public class RepositorioClienteJuridico {
         }
     }
 
-    public ClienteJuridico buscarClienteJuridicoCNPJ(String cnpj){
+    public PessoaJuridicaBeans buscarClienteJuridicoCNPJ(String cnpj){
         for(int i = 0; i <= ClientesJuridico.size();i++){
             if(ClientesJuridico.get(i).getCnpj().equals(cnpj)){
                 return ClientesJuridico.get(i);
@@ -45,7 +47,7 @@ public class RepositorioClienteJuridico {
         }
         return null;
     }
-    public ClienteJuridico buscarClienteFisicoNome(String nome){
+    public PessoaJuridicaBeans buscarClienteFisicoNome(String nome){
         for(int i = 0; i <= ClientesJuridico.size();i++){
             if(ClientesJuridico.get(i).getNome().equals(nome)){
                 return ClientesJuridico.get(i);

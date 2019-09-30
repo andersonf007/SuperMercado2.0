@@ -11,73 +11,77 @@ package ModelBeans;
  */
 public class ProdutoBeans {
 
-    private String descricao;
-    private Double estoque;
+    private String Nome;
+    private Double Id;
+    private String Tipo;
+    private Double Estoque;
+    private int Quantidade;
     private Double ValorCusto;
     private Double ValorVenda;
 
-    public ProdutoBeans(String descricao, Double estoque, Double ValorCusto, Double ValorVenda) {
-        this.descricao = descricao;
-        this.estoque = estoque;
-        this.ValorCusto = ValorCusto;
-        this.ValorVenda = ValorVenda;
+    public ProdutoBeans(String nome,Double id, String tipo, Double estoque,int quantidade, Double valorCusto, Double valorVenda) {
+        Nome = nome;
+        Id  = id;
+        Tipo = tipo;
+        Estoque = estoque;
+        ValorCusto = valorCusto;
+        ValorVenda = valorVenda;
+        Quantidade = quantidade;
+    }
+    public int getQuantidade() {
+        return Quantidade;
     }
 
-    /**
-     * @return the descricao
-     */
-    public String getDescricao() {
-        return descricao;
+    public void setQuantidade(int quantidade) {
+        Quantidade = quantidade;
     }
 
-    /**
-     * @param descricao the descricao to set
-     */
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public String getNome() {
+        return Nome;
     }
 
-    /**
-     * @return the estoque
-     */
+    public void setNome(String nome) {
+        Nome = nome;
+    }
+
+    public String getTipo() {
+        return Tipo;
+    }
+
+    public void setTipo(String tipo) {
+        Tipo = tipo;
+    }
+
     public Double getEstoque() {
-        return estoque;
+        return Estoque;
     }
 
-    /**
-     * @param estoque the estoque to set
-     */
     public void setEstoque(Double estoque) {
-        this.estoque = estoque;
+        Estoque = estoque;
     }
 
-    /**
-     * @return the ValorCusto
-     */
     public Double getValorCusto() {
         return ValorCusto;
     }
 
-    /**
-     * @param ValorCusto the ValorCusto to set
-     */
-    public void setValorCusto(Double ValorCusto) {
-        this.ValorCusto = ValorCusto;
+    public void setValorCusto(Double valorCusto) {
+        ValorCusto = valorCusto;
     }
 
-    /**
-     * @return the ValorVenda
-     */
     public Double getValorVenda() {
         return ValorVenda;
     }
 
-    /**
-     * @param ValorVenda the ValorVenda to set
-     */
-    public void setValorVenda(Double ValorVenda) {
-        this.ValorVenda = ValorVenda;
+    public void setValorVenda(Double valorVenda) {
+        ValorVenda = valorVenda;
     }
 
-    
+    public Double getId() {
+        return Id;
+    }
+
+    public void setId(Double id) {
+        Id = id;
+    }
+ 
 }

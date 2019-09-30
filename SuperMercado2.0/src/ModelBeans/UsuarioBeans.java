@@ -1,67 +1,58 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ModelBeans;
-
-/**
- *
- * @author anderson
- */
 public class UsuarioBeans{
-    private String nome;
-    private String login;
-    private String senha;
 
-    public UsuarioBeans(String login, String senha, String nome) {
-        this.nome = nome;
-        this.login = login;
-        this.senha = senha;
+ private boolean Cargo; // False para funcionario e True para Administrador
+    private String Nome;
+    private String Id;
+    private String Login;
+    private String Senha;
+
+
+    public UsuarioBeans(String nome, String id, String login, String senha) {
+        this.Nome = nome;
+        this.Id = id;
+        this.Login = login;
+        this.Senha = senha;
+
     }
-    
-    
-    /**
-     * @return the nome
-     */
+
     public String getNome() {
-        return nome;
+        return Nome;
     }
 
-    /**
-     * @param nome the nome to set
-     */
     public void setNome(String nome) {
-        this.nome = nome;
+        Nome = nome;
     }
-    
-    /**
-     * @return the login
-     */
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
+    }
+
     public String getLogin() {
-        return login;
+        return Login;
     }
 
-    /**
-     * @param login the login to set
-     */
     public void setLogin(String login) {
-        this.login = login;
+        Login = login;
     }
 
-    /**
-     * @return the senha
-     */
     public String getSenha() {
-        return senha;
+        return Senha;
     }
 
-    /**
-     * @param senha the senha to set
-     */
     public void setSenha(String senha) {
-        this.senha = senha;
+        Senha = senha;
     }
-    
-    
-}
+
+    public boolean isADM() {
+        return Cargo;
+    }
+    public void setCargo(boolean cargo) {
+        Cargo = cargo;
+    }
+
+  }
