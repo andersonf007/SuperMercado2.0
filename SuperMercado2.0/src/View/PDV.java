@@ -6,7 +6,9 @@
 package View;
 
 import Controllers.PdvController;
+import Controllers.PessoaController;
 import ModelBeans.ModelTabela;
+import ModelBeans.PessoaBeans;
 import ModelBeans.ProdutoBeans;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -49,12 +51,11 @@ public class PDV extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableListaDeProdutos = new javax.swing.JTable();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabelCPF = new javax.swing.JLabel();
         jLabelNome1 = new javax.swing.JLabel();
         jLabelValorTotal = new javax.swing.JLabel();
         jButtonConfirmar = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -87,10 +88,18 @@ public class PDV extends javax.swing.JFrame {
         getContentPane().add(jTextFieldQuantidade);
         jTextFieldQuantidade.setBounds(20, 350, 240, 50);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel2.setText("Quantidade:");
+        jLabel2.setBackground(new java.awt.Color(204, 255, 204));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Adicionar Cliente");
+        jLabel2.setToolTipText("");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 300, 200, 50);
+        jLabel2.setBounds(30, 440, 160, 40);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel3.setText("Código:");
@@ -118,17 +127,10 @@ public class PDV extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(270, 110, 470, 370);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("CPF:");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(270, 500, 60, 20);
-
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Nome:");
         getContentPane().add(jLabel6);
         jLabel6.setBounds(10, 500, 60, 20);
-        getContentPane().add(jLabelCPF);
-        jLabelCPF.setBounds(310, 500, 160, 20);
         getContentPane().add(jLabelNome1);
         jLabelNome1.setBounds(60, 500, 200, 20);
 
@@ -147,6 +149,11 @@ public class PDV extends javax.swing.JFrame {
         getContentPane().add(jButtonConfirmar);
         jButtonConfirmar.setBounds(623, 550, 120, 40);
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel7.setText("Quantidade:");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(20, 300, 200, 50);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_telaprincipal.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(-20, -60, 2060, 1300);
@@ -163,6 +170,11 @@ public class PDV extends javax.swing.JFrame {
         jTextFieldQuantidade.setEnabled(true);
         jTextFieldValorUnitario.setEnabled(true);        
         getContentPane().repaint();   
+    }
+    
+    public void receberPessoa(PessoaBeans pessoaBeans){
+        jLabelNome1.setText(pessoaBeans.getNome());
+        int idCliente = pessoaBeans.getCodigo();
     }
     
     private void jTextFieldCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCodigoKeyPressed
@@ -191,6 +203,10 @@ public class PDV extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jTextFieldQuantidadeKeyPressed
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        PessoaController.openBuscarPessoaFisica();
+    }//GEN-LAST:event_jLabel2MouseClicked
     
     public void preencherTabela() {
            
@@ -263,9 +279,8 @@ public class PDV extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabelCPF;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelNome1;
     private javax.swing.JLabel jLabelNomeProduto;
     private javax.swing.JLabel jLabelValorTotal;

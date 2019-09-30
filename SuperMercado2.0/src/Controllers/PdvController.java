@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+import ModelBeans.PessoaBeans;
 import ModelBeans.ProdutoBeans;
 import View.BuscarProdutos;
 import View.PDV;
@@ -28,5 +29,9 @@ public class PdvController {
     
     public static void abrirListagemProdutos(){
         new BuscarProdutos().setVisible(true);
+    }
+    
+    public static void receberInformacoesPessoa(PessoaBeans pessoaBeans){
+        pdv.receberPessoa(pessoaBeans);
     }
 }

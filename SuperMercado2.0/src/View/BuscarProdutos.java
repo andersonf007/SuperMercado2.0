@@ -87,7 +87,7 @@ public class BuscarProdutos extends javax.swing.JFrame {
         String nome_Produto = ""+jTableProdutos.getValueAt(jTableProdutos.getSelectedRow(), 1);
         produtoBeans.setPesquisar(nome_Produto);
         ProdutoBeans produtoBeansInstancia = produtoDAO.procurarProdutoNome(nome_Produto);
-        
+        this.dispose();
     }//GEN-LAST:event_jTableProdutosMouseClicked
 
     public void preencherTabela() {

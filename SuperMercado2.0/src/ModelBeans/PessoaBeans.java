@@ -19,7 +19,8 @@ public class PessoaBeans {
     private String Bairro;
     private String Uf;
     private String Telefone;
-
+    private String pesquisa;
+    
     public PessoaBeans(int codigo, int numero, String nome, String tipo, String cep, String logradouro, String cidade, String bairro, String uf, String telefone){
         this.Codigo = codigo;
         this.Nome = nome;
@@ -31,6 +32,8 @@ public class PessoaBeans {
         this.Telefone = telefone;
 
     }
+    
+    public PessoaBeans(){};
 
     public int getCodigo() {
         return Codigo;
@@ -95,4 +98,20 @@ public class PessoaBeans {
     public void setTelefone(String telefone) {
         Telefone = telefone;
     }
+
+    /**
+     * @return the pesquisa
+     */
+    public String getPesquisa() {
+        return pesquisa;
+    }
+
+    /**
+     * @param pesquisa the pesquisa to set
+     */
+    public void setPesquisa(String pesquisa) {
+        this.pesquisa = pesquisa;
+    }
+    
+    
 }

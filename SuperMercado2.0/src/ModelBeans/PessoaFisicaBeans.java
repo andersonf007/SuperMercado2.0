@@ -17,6 +17,7 @@ public class PessoaFisicaBeans extends PessoaBeans{
     private String rg;
     private String sexo;
     private Date dataNascimento;
+    private String pesquisar;
 
     public PessoaFisicaBeans(String cpf, String rg, String sexo, Date dataNascimento, int codigo, int numero, String nome, String tipo, String cep, String logradouro, String cidade, String bairro, String uf, String telefone) {
         super(codigo, numero, nome, tipo, cep, logradouro, cidade, bairro, uf, telefone);
@@ -25,6 +26,8 @@ public class PessoaFisicaBeans extends PessoaBeans{
         this.sexo = sexo;
         this.dataNascimento = dataNascimento;
     }
+    
+    public PessoaFisicaBeans(){};
     /**
      * @return the cpf
      */
@@ -79,6 +82,20 @@ public class PessoaFisicaBeans extends PessoaBeans{
      */
     public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    /**
+     * @return the pesquisar
+     */
+    public String getPesquisar() {
+        return pesquisar;
+    }
+
+    /**
+     * @param pesquisar the pesquisar to set
+     */
+    public void setPesquisar(String pesquisar) {
+        this.pesquisar = pesquisar;
     }
     
    
