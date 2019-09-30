@@ -1,12 +1,12 @@
 package ModelDao;
-
+import ModelBeans.UsuarioBeans;
 import java.util.ArrayList;
 public class UsuarioDAO {
-    private ArrayList<ModelBeans.UsuarioBeans> Funcionarios = new ArrayList<ModelBeans.UsuarioBeans>();
+    private ArrayList<ModelBeans.UsuarioBeans> Funcionarios;
 
-    /*UsuarioDAO(){
+    UsuarioDAO(){
         Funcionarios = new ArrayList<ModelBeans.UsuarioBeans>();
-    }*/
+    }
 
     public void adicionarUsuario( ModelBeans.UsuarioBeans funcionario){
         boolean existe = false;
