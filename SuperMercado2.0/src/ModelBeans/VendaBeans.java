@@ -4,13 +4,11 @@
  * and open the template in the editor.
  */
 package ModelBeans;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class VendaBeans {
     
     private int numero;
-    private ArrayList <ProdutoBeans> produtos;
     private Date dataVenda;
     private double valor;
     private int pesquisa;
@@ -21,14 +19,6 @@ public class VendaBeans {
         this.valor = valor;
     } 
   
-    public ArrayList<Produto> getProdutos() {
-        return produtos;
-    }
-
-    public void setProdutos(ArrayList<Produto> produtos) {
-        this.produtos = produtos;
-    }
-
     /**
      * @return the numero
      */
