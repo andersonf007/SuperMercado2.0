@@ -17,8 +17,8 @@ public class VendaBeans {
         this.numero = numero;
         this.dataVenda = dataVenda;
         this.valor = valor;
-    }   
-
+    } 
+  
     /**
      * @return the numero
      */
