@@ -1,6 +1,7 @@
 package ModelDao;
 
 import java.util.ArrayList;
+
 public class UsuarioDAO {
     private ArrayList<ModelBeans.UsuarioBeans> Funcionarios = new ArrayList<ModelBeans.UsuarioBeans>();
 
@@ -37,6 +38,7 @@ public class UsuarioDAO {
             System.out.println("Funcionário adicionado com sucesso");
         }
     }
+    
     public void excluirFuncionario(ModelBeans.UsuarioBeans funcionario){
         boolean excluiu = false;
         boolean existe = false;
@@ -65,14 +67,15 @@ public class UsuarioDAO {
         }
     }
 
-    public ModelBeans.UsuarioBeans buscarFuncionarioId(String Id){
+    public ModelBeans.UsuarioBeans buscarFuncionarioId(int Id){
         for(int i = 0; i <= Funcionarios.size();i++){
-            if(Funcionarios.get(i).getId().equals(Id)){
+            if(Funcionarios.get(i).getId()== Id){
                 return Funcionarios.get(i);
             }
         }
         return null;
     }
+   
     public ModelBeans.UsuarioBeans buscarFuncionarioNome(String Nome){
         for(int i = 0; i <= Funcionarios.size();i++){
             if(Funcionarios.get(i).getNome().equals(Nome)){
@@ -81,4 +84,18 @@ public class UsuarioDAO {
         }
         return null;
     }
+    
+    public ArrayList<ModelBeans.UsuarioBeans> getUsuarios() {
+        return Funcionarios;
+    }
+     
+    public ModelBeans.UsuarioBeans buscarFuncionarioLoginSenha(String login, String senha){
+        for (int i = 0; i <= Funcionarios.size();i++){
+            if(Funcionarios.get(i).getLogin().equals(login) && Funcionarios.get(i).getSenha().equals(senha)){
+                return Funcionarios.get(i);
+            }
+        }
+        return null;
+    }
+    
 }

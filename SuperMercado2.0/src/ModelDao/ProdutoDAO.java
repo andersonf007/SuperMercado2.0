@@ -59,4 +59,8 @@ public class ProdutoDAO {
         }
         return null;
     }
+    
+    public ArrayList<ProdutoBeans> getProdutos() {
+        return Produtos;
+    }
 }

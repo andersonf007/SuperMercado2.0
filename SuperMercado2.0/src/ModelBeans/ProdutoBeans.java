@@ -12,15 +12,15 @@ package ModelBeans;
 public class ProdutoBeans {
 
     private String Nome;
-    private Double Id;
+    private double Id;
     private String Tipo;
-    private Double Estoque;
+    private double Estoque;
     private int Quantidade;
-    private Double ValorCusto;
-    private Double ValorVenda;
+    private double ValorCusto;
+    private double ValorVenda;
     private String pesquisar;
 
-    public ProdutoBeans(String nome,Double id, String tipo, Double estoque,int quantidade, Double valorCusto, Double valorVenda) {
+    public ProdutoBeans(String nome,double id, String tipo, double estoque,int quantidade, double valorCusto, double valorVenda) {
         Nome = nome;
         Id  = id;
         Tipo = tipo;
@@ -56,19 +56,19 @@ public class ProdutoBeans {
         Tipo = tipo;
     }
 
-    public Double getEstoque() {
+    public double getEstoque() {
         return Estoque;
     }
 
-    public void setEstoque(Double estoque) {
+    public void setEstoque(double estoque) {
         Estoque = estoque;
     }
 
-    public Double getValorCusto() {
+    public double getValorCusto() {
         return ValorCusto;
     }
 
-    public void setValorCusto(Double valorCusto) {
+    public void setValorCusto(double valorCusto) {
         ValorCusto = valorCusto;
     }
 

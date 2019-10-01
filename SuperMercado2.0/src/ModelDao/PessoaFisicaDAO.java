@@ -48,9 +48,23 @@ public class PessoaFisicaDAO {
         }
         return null;
     }
+    
     public PessoaFisicaBeans buscarClienteFisicoNome(String nome){
         for(int i = 0; i <= ClientesFisico.size();i++){
             if(ClientesFisico.get(i).getNome().equals(nome)){
+                return ClientesFisico.get(i);
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<PessoaFisicaBeans> getClientesFisico() {
+        return ClientesFisico;
+    }
+    
+    public PessoaFisicaBeans buscarClienteFisicoCodigo(int codigo){
+        for(int i = 0; i <= ClientesFisico.size();i++){
+            if(ClientesFisico.get(i).getCodigo() == codigo){
                 return ClientesFisico.get(i);
             }
         }

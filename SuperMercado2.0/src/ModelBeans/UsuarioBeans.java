@@ -3,12 +3,12 @@ public class UsuarioBeans{
 
  private boolean Cargo; // False para funcionario e True para Administrador
     private String Nome;
-    private String Id;
+    private int Id;
     private String Login;
     private String Senha;
 
 
-    public UsuarioBeans(String nome, String id, String login, String senha) {
+    public UsuarioBeans(String nome, int id, String login, String senha) {
         this.Nome = nome;
         this.Id = id;
         this.Login = login;
@@ -24,11 +24,11 @@ public class UsuarioBeans{
         Nome = nome;
     }
 
-    public String getId() {
+    public int getId() {
         return Id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         Id = id;
     }
 

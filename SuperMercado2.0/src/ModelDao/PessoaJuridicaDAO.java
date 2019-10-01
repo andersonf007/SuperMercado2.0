@@ -49,6 +49,7 @@ public class PessoaJuridicaDAO {
         }
         return null;
     }
+    
     public PessoaJuridicaBeans buscarClienteFisicoNome(String nome){
         for(int i = 0; i <= ClientesJuridico.size();i++){
             if(ClientesJuridico.get(i).getNome().equals(nome)){
@@ -57,4 +58,17 @@ public class PessoaJuridicaDAO {
         }
         return null;
     }
+
+     public ArrayList<PessoaJuridicaBeans> getClientesJuridico() {
+        return ClientesJuridico;
+    }
+     
+    public PessoaJuridicaBeans buscarClienteFisicoCodigo(int codigo){
+        for(int i = 0; i <= ClientesJuridico.size();i++){
+            if(ClientesJuridico.get(i).getCodigo() == codigo){
+                return ClientesJuridico.get(i);
+            }
+        }
+        return null;
+    } 
 }
