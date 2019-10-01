@@ -1,15 +1,16 @@
 package ModelDao;
 import ModelBeans.ProdutoBeans;
-
+import View.BuscarProdutos;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class ProdutoDAO {
-    private ArrayList<ProdutoBeans> Produtos = new ArrayList<ProdutoBeans>();
+    
+    private ArrayList<ProdutoBeans> Produtos ;
 
-    /*ProdutoDAO() {
+    public ProdutoDAO() {
         Produtos = new ArrayList<ProdutoBeans>();
-    }*/
+    }
 
     public void adicionarProduto(ProdutoBeans produto) {
         boolean existe = false;
@@ -22,12 +23,14 @@ public class ProdutoDAO {
         }
         if(!existe){
             Produtos.add(produto);
+            BuscarProdutos.teste(Produtos);
             JOptionPane.showMessageDialog(null, "Produto adicionado com sucesso");
         }else {
             JOptionPane.showMessageDialog(null, "O produto não pode ser adicionado");
         }
 
     }
+    
     public void excluirProduto(ProdutoBeans produto){
         boolean existe = false;
         for (int j = 0; j <= Produtos.size();j++){

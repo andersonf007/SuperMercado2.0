@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controllers.ProdutosController;
 import ModelBeans.ModelTabela;
 import ModelBeans.ProdutoBeans;
 import ModelDao.ProdutoDAO;
@@ -20,7 +21,12 @@ import javax.swing.ListSelectionModel;
 public class BuscarProdutos extends javax.swing.JFrame {
 
     ProdutoBeans produtoBeans = new ProdutoBeans();
-    ProdutoDAO produtoDAO = new ProdutoDAO();
+    ProdutoDAO produtoDAO = ProdutosController.CriaProdutoDao();  
+    static ArrayList<ProdutoBeans> Produtos = new ArrayList<ProdutoBeans>();
+    
+    public static void teste(ArrayList<ProdutoBeans> produto){
+        Produtos = produto;
+    }
     /**
      * Creates new form BuscarProdutos
      */
@@ -91,15 +97,19 @@ public class BuscarProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_jTableProdutosMouseClicked
 
     public void preencherTabela() {
+        
         ArrayList dados = new ArrayList();
-        String[] colunas = new String[]{"ID", "Descrição", "V. Venda", "Estoque"};
+        String[] colunas = new String[]{"ID", "Descrição", "V. Venda"};
 
-        //falta implementar o metodo ára trazer todos os produtos
-            do {
-                dados.add(new Object[]{produtoInfo.rs.getInt("id_produto"), produtoInfo.rs.getString("descricao"), produtoInfo.rs.getDouble("valorvenda"), produtoInfo.rs.getDouble("quantidadeestoque")});
-
-            } while (produtoInfo.rs.next());
-   
+        //Produtos = produtoDAO.getProdutos();
+        if(Produtos.size() == 0){
+            JOptionPane.showMessageDialog(null, "Não existe produtos cadastrados");
+        }else{
+            for(int i = 0; i < Produtos.size(); i++){
+                dados.add(new Object[]{Produtos.get(i).getId(), Produtos.get(i).getNome(), Produtos.get(i).getValorVenda()});
+            }
+        }
+  
         ModelTabela modelo = new ModelTabela(dados, colunas);
 
         jTableProdutos.setModel(modelo);
@@ -109,8 +119,6 @@ public class BuscarProdutos extends javax.swing.JFrame {
         jTableProdutos.getColumnModel().getColumn(1).setResizable(false);
         jTableProdutos.getColumnModel().getColumn(2).setPreferredWidth(109);
         jTableProdutos.getColumnModel().getColumn(2).setResizable(false);
-        jTableProdutos.getColumnModel().getColumn(3).setPreferredWidth(100);
-        jTableProdutos.getColumnModel().getColumn(3).setResizable(false);
         jTableProdutos.getTableHeader().setReorderingAllowed(false);
         jTableProdutos.setAutoResizeMode(jTableProdutos.AUTO_RESIZE_OFF);
         jTableProdutos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

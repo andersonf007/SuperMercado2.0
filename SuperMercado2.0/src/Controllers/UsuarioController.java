@@ -10,11 +10,11 @@ public class UsuarioController {
         this.repositorioUsuario = new UsuarioDAO();
     }
 
-    public void CadastrarUsuario(String nome,String login, String senha){
+    public void CadastrarUsuario(String nome,boolean adm,String login, String senha){
         Random gerador = new Random();
         int id = gerador.nextInt();
         if(verificarLoginSenha(login,senha)){
-            UsuarioBeans usuario = new UsuarioBeans(nome,id,login,senha);
+            UsuarioBeans usuario = new UsuarioBeans(nome,adm,id,login,senha);
             repositorioUsuario.adicionarUsuario(usuario);
         }else{
             System.out.println("Erro ao Cadastrar Usuario");
@@ -38,8 +38,8 @@ public class UsuarioController {
         return repositorioUsuario.buscarFuncionarioNome(nome);
     }
 
-    public void ExcluirUsuario(String nome, int id, String login, String senha){
-        UsuarioBeans usuario = new UsuarioBeans(nome,id,login,senha);
+    public void ExcluirUsuario(String nome,boolean adm, int id, String login, String senha){
+        UsuarioBeans usuario = new UsuarioBeans(nome,adm,id,login,senha);
         repositorioUsuario.excluirFuncionario(usuario);
     }
 

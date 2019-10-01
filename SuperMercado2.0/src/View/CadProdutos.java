@@ -5,6 +5,8 @@
  */
 package View;
 
+import Controllers.PdvController;
+import Controllers.ProdutosController;
 import ModelBeans.ProdutoBeans;
 import ModelDao.ProdutoDAO;
 
@@ -14,7 +16,7 @@ import ModelDao.ProdutoDAO;
  */
 public class CadProdutos extends javax.swing.JFrame {
 
-    ProdutoDAO produtoDao = new ProdutoDAO();
+    ProdutoDAO produtoDao = ProdutosController.CriaProdutoDao();  
     
     /**
      * Creates new form CadProdutos
@@ -107,6 +109,7 @@ public class CadProdutos extends javax.swing.JFrame {
         jTextFieldValorDeCusto.setText("");
         jTextFieldValorDeVenda.setText("");
         
+        PdvController.abrirListagemProdutos();
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     /**
