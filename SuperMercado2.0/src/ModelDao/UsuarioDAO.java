@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class UsuarioDAO {
     private ArrayList<ModelBeans.UsuarioBeans> Funcionarios;
 
-    UsuarioDAO(){
+    public UsuarioDAO(){
         Funcionarios = new ArrayList<ModelBeans.UsuarioBeans>();
     }
 

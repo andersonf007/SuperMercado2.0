@@ -5,6 +5,7 @@ import java.util.Random;
 import ModelBeans.UsuarioBeans;
 public class UsuarioController {
     private UsuarioDAO repositorioUsuario;
+    
     public UsuarioController(){
         this.repositorioUsuario = new UsuarioDAO();
     }
