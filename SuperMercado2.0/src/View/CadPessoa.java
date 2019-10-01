@@ -73,6 +73,7 @@ public class CadPessoa extends javax.swing.JFrame {
         jComboBoxTipoPessoa = new javax.swing.JComboBox();
         jTextFieldSenha = new javax.swing.JTextField();
         jButtonSalvar = new javax.swing.JButton();
+        jCheckBoxAdm = new javax.swing.JCheckBox();
         scrollPane1 = new java.awt.ScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -243,6 +244,10 @@ public class CadPessoa extends javax.swing.JFrame {
         jPanel1.add(jButtonSalvar);
         jButtonSalvar.setBounds(620, 260, 90, 30);
 
+        jCheckBoxAdm.setText("Administrador");
+        jPanel1.add(jCheckBoxAdm);
+        jCheckBoxAdm.setBounds(410, 350, 140, 30);
+
         getContentPane().add(jPanel1);
         jPanel1.setBounds(10, 10, 730, 410);
         getContentPane().add(scrollPane1);
@@ -342,7 +347,10 @@ public class CadPessoa extends javax.swing.JFrame {
                 String nome = jTextFieldNome.getText();
                 String login = jTextFieldLogin.getText();
                 String senha = jTextFieldSenha.getText();
-                UsuarioBeans usuario = new UsuarioBeans(nome, login, login, senha); 
+                boolean adm = jCheckBoxAdm.isSelected();
+                int quantidade = usuarioDAO.quantidadeUsuarios();
+                int id = quantidade++;                
+                UsuarioBeans usuario = new UsuarioBeans(nome,adm, id, login, senha); 
                 usuarioDAO.adicionarUsuario(usuario);
                 
                 jTextFieldCep.setEnabled(false);
@@ -469,6 +477,7 @@ public class CadPessoa extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JCheckBox jCheckBoxAdm;
     private javax.swing.JComboBox jComboBoxSexo;
     private javax.swing.JComboBox jComboBoxTipoPessoa;
     private com.toedter.calendar.JDateChooser jDateChooserDataNasc;

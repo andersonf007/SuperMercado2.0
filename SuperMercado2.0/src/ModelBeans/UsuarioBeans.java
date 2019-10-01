@@ -1,19 +1,19 @@
 package ModelBeans;
 public class UsuarioBeans{
 
- private boolean Cargo; // False para funcionario e True para Administrador
+    private boolean adm; // False para funcionario e True para Administrador
     private String Nome;
     private int Id;
     private String Login;
     private String Senha;
 
 
-    public UsuarioBeans(String nome, int id, String login, String senha) {
+    public UsuarioBeans(String nome, boolean adm,int id, String login, String senha) {
         this.Nome = nome;
         this.Id = id;
         this.Login = login;
         this.Senha = senha;
-
+        this.adm = adm;
     }
 
     public String getNome() {
@@ -49,10 +49,10 @@ public class UsuarioBeans{
     }
 
     public boolean isADM() {
-        return Cargo;
+        return adm;
     }
-    public void setCargo(boolean cargo) {
-        Cargo = cargo;
+    public void setAdm(boolean cargo) {
+        adm = cargo;
     }
 
   }

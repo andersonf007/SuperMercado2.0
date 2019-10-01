@@ -1,6 +1,7 @@
 package ModelDao;
 import ModelBeans.PessoaJuridicaBeans;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class PessoaJuridicaDAO {
     private ArrayList<PessoaJuridicaBeans> ClientesJuridico = new ArrayList<PessoaJuridicaBeans>();
@@ -20,9 +21,9 @@ public class PessoaJuridicaDAO {
         }
         if(!existe){
             ClientesJuridico.add(clienteJuridico);
-            System.out.println("Cliente adicionado com sucesso");
+            JOptionPane.showMessageDialog(null, "Cliente adicionado com sucesso");
         }else {
-            System.out.println("Erro ao adicionar o cliente");
+            JOptionPane.showMessageDialog(null, "Erro ao adicionar o cliente");
         }
     }
 

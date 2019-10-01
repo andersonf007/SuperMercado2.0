@@ -1,6 +1,7 @@
 package ModelDao;
 import ModelBeans.UsuarioBeans;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class UsuarioDAO {
     private ArrayList<ModelBeans.UsuarioBeans> Funcionarios;
@@ -32,10 +33,10 @@ public class UsuarioDAO {
                 }
             }
         }
-        if(!adicionou){ // Caso contrario ele acusa um erro já que não é possível existir um funcionario sem um gerente/administrador
-            System.out.println("Não é possível adicionar o Funcionário");
+        if(!adicionou){ // Caso contrario ele acusa um erro já que não é possível existir um funcionario sem um gerente/administrador 
+            JOptionPane.showMessageDialog(null, "Não é possível adicionar o Funcionário");
         }else {
-            System.out.println("Funcionário adicionado com sucesso");
+            JOptionPane.showMessageDialog(null, "Funcionário adicionado com sucesso");
         }
     }
     
@@ -96,6 +97,15 @@ public class UsuarioDAO {
             }
         }
         return null;
+    }
+    
+    public int quantidadeUsuarios(){
+        if(Funcionarios.size() == 0){
+            return 0;
+        }else{
+            return Funcionarios.size();
+        }
+        
     }
     
 }

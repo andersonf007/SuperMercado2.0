@@ -1,6 +1,7 @@
 package ModelDao;
 import ModelBeans.PessoaFisicaBeans;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 public class PessoaFisicaDAO {
     private ArrayList<PessoaFisicaBeans> ClientesFisico = new ArrayList<PessoaFisicaBeans>();
 
@@ -19,9 +20,9 @@ public class PessoaFisicaDAO {
         }
         if(!existe){
             ClientesFisico.add(clienteFisico);
-            System.out.println("Cliente adicionado com sucesso");
+            JOptionPane.showMessageDialog(null, "Cliente adicionado com sucesso");  
         }else {
-            System.out.println("Erro ao adicionar o cliente");
+            JOptionPane.showMessageDialog(null, "Erro ao adicionar o cliente");
         }
     }
 

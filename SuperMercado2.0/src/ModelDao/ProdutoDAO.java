@@ -2,6 +2,7 @@ package ModelDao;
 import ModelBeans.ProdutoBeans;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class ProdutoDAO {
     private ArrayList<ProdutoBeans> Produtos = new ArrayList<ProdutoBeans>();
@@ -21,9 +22,9 @@ public class ProdutoDAO {
         }
         if(!existe){
             Produtos.add(produto);
-            System.out.println("Produto adicionado com sucesso");
+            JOptionPane.showMessageDialog(null, "Produto adicionado com sucesso");
         }else {
-            System.out.println("O produto não pode ser adicionado");
+            JOptionPane.showMessageDialog(null, "O produto não pode ser adicionado");
         }
 
     }
