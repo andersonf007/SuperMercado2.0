@@ -1,5 +1,5 @@
 package Controllers;
 import ModelBeans.UsuarioBeans;
-public class ControllerVendas {
+public class VendasController {
       
 }

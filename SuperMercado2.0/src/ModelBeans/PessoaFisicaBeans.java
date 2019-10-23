@@ -20,7 +20,7 @@ public class PessoaFisicaBeans extends PessoaBeans{
     private String pesquisar;
 
     public PessoaFisicaBeans(String cpf, String rg, String sexo, Date dataNascimento, int codigo, int numero, String nome, String tipo, String cep, String logradouro, String cidade, String bairro, String uf, String telefone) {
-        super(codigo, numero, nome, tipo, cep, logradouro, cidade, bairro, uf, telefone);
+        super(codigo, numero, nome, tipo, telefone);
         this.cpf = cpf;
         this.rg = rg;
         this.sexo = sexo;
