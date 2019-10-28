@@ -348,10 +348,10 @@ public class CadPessoa extends javax.swing.JFrame {
                 String login = jTextFieldLogin.getText();
                 String senha = jTextFieldSenha.getText();
                 boolean adm = jCheckBoxAdm.isSelected();
-                int quantidade = usuarioDAO.quantidadeUsuarios();
+                int quantidade = usuarioDAO.quantidade();
                 int id = quantidade++;                
                 UsuarioBeans usuario = new UsuarioBeans(nome,adm, id, login, senha); 
-                usuarioDAO.adicionarUsuario(usuario);
+                usuarioDAO.cadastrar(usuario);
                 
                 jTextFieldCep.setEnabled(false);
                 jTextFieldLogradouro.setEnabled(false);

@@ -15,4 +15,7 @@ public abstract class CadastroBeans {
     
     public abstract void editar(Object object);
     
+    public abstract Object buscar(Object object);
+    
+    public abstract int quantidade();
 }
