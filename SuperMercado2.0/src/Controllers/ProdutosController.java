@@ -22,32 +22,4 @@ public class ProdutosController {
         }         
             return ProdutoDao;
     }
-    
-    public ProdutosController(){
-        ProdutoDao = new ProdutoDAO();
-    }
-
-    public void adicionarProduto(String nome, String tipo, Double estoque,int quantidade, Double valorCusto, Double valorVenda){
-        Random gerador = new Random();
-        double id = gerador.nextDouble();
-        ProdutoBeans produto = new ProdutoBeans(nome,id,tipo,estoque,quantidade,valorCusto,valorVenda);
-        ProdutoDao.adicionarProduto(produto);
-    }
-
-    public void excluirProduto(String nome,Double Id, String tipo, Double estoque,int quantidade, Double valorCusto, Double valorVenda){
-        ProdutoBeans produto = new ProdutoBeans(nome,Id,tipo,estoque,quantidade,valorCusto,valorVenda);
-        ProdutoDao.excluirProduto(produto);
-    }
-
-    public ArrayList<ProdutoBeans> listarProdutos(){
-        return ProdutoDao.getProdutos();
-    }
-
-    public ProdutoBeans buscarProdutoId(double Id){
-        return ProdutoDao.procurarProdutoId(Id);
-    }
-
-    public ProdutoBeans buscarProdutoNome(String nome){
-        return ProdutoDao.procurarProdutoNome(nome);
-    }
 }

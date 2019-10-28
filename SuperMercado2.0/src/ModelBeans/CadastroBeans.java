@@ -11,8 +11,8 @@ package ModelBeans;
  */
 public abstract class CadastroBeans {
     
-    public abstract void cadastrar();
+    public abstract void cadastrar(Object object);
     
-    public abstract void editar();
+    public abstract void editar(Object object);
     
 }
