@@ -1,75 +1,17 @@
 package ModelDao;
-import ModelBeans.PessoaFisicaBeans;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
-public class PessoaFisicaDAO {
-    private ArrayList<PessoaFisicaBeans> ClientesFisico = new ArrayList<PessoaFisicaBeans>();
+import ModelBeans.CadastroBeans;
 
-    //PessoaFisicaDAO(){
-    //    ClientesFisico = new ArrayList<PessoaFisicaBeans>();
-    //}
+public class PessoaFisicaDAO extends CadastroBeans{
 
-    public void adicionarClienteFisico(PessoaFisicaBeans clienteFisico){
-        boolean existe = false;
-        for(int j = 0; j <= ClientesFisico.size();j++){
-            if(ClientesFisico.size() == 0){
-                continue;
-            }else if(ClientesFisico.get(j).equals(clienteFisico)){ // Verifica se já existe o cliente
-                existe = true;
-            }
-        }
-        if(!existe){
-            ClientesFisico.add(clienteFisico);
-            JOptionPane.showMessageDialog(null, "Cliente adicionado com sucesso");  
-        }else {
-            JOptionPane.showMessageDialog(null, "Erro ao adicionar o cliente");
-        }
+    @Override
+    public void cadastrar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void excluirClienteFisico(PessoaFisicaBeans clienteFisico){
-        boolean existe = false;
-        for(int j = 0; j <= ClientesFisico.size();j++){
-            if(ClientesFisico.get(j).equals(clienteFisico)){
-                existe = true;
-            }
-        }
-        if(existe){
-            ClientesFisico.remove(clienteFisico);
-            System.out.println("Cliente Removido com sucesso");
-        }else {
-            System.out.println("O cliente não pode ser removido");
-        }
+    @Override
+    public void editar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    public PessoaFisicaBeans buscarClienteFisicoCPF(String cpf){
-        for(int i = 0; i <= ClientesFisico.size();i++){
-            if(ClientesFisico.get(i).getCpf().equals(cpf)){
-                return ClientesFisico.get(i);
-            }
-        }
-        return null;
-    }
-    
-    public PessoaFisicaBeans buscarClienteFisicoNome(String nome){
-        for(int i = 0; i <= ClientesFisico.size();i++){
-            if(ClientesFisico.get(i).getNome().equals(nome)){
-                return ClientesFisico.get(i);
-            }
-        }
-        return null;
-    }
-
-    public ArrayList<PessoaFisicaBeans> getClientesFisico() {
-        return ClientesFisico;
-    }
-    
-    public PessoaFisicaBeans buscarClienteFisicoCodigo(int codigo){
-        for(int i = 0; i <= ClientesFisico.size();i++){
-            if(ClientesFisico.get(i).getCodigo() == codigo){
-                return ClientesFisico.get(i);
-            }
-        }
-        return null;
-    }
+   
 
 }

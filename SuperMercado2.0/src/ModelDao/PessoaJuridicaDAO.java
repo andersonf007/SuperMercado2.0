@@ -1,75 +1,15 @@
 package ModelDao;
-import ModelBeans.PessoaJuridicaBeans;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
+import ModelBeans.CadastroBeans;
 
-public class PessoaJuridicaDAO {
-    private ArrayList<PessoaJuridicaBeans> ClientesJuridico = new ArrayList<PessoaJuridicaBeans>();
-    
-    /*PessoaJuridicaDAO(){
-        ClientesJuridico = new ArrayList<PessoaJuridicaBeans>();
-    }*/
-    
-    public void adicionarClienteJuridico(PessoaJuridicaBeans clienteJuridico){
-        boolean existe = false;
-        for(int j = 0; j <= ClientesJuridico.size();j++){
-            if(ClientesJuridico.size() == 0){
-                continue;
-            }else if(ClientesJuridico.get(j).equals(clienteJuridico)){ // Verifica se já existe o cliente
-                existe = true;
-            }
-        }
-        if(!existe){
-            ClientesJuridico.add(clienteJuridico);
-            JOptionPane.showMessageDialog(null, "Cliente adicionado com sucesso");
-        }else {
-            JOptionPane.showMessageDialog(null, "Erro ao adicionar o cliente");
-        }
+public class PessoaJuridicaDAO extends CadastroBeans{
+
+    @Override
+    public void cadastrar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void excluirClienteFisico(PessoaJuridicaBeans clienteJuridico){
-        boolean existe = false;
-        for(int j = 0; j <= ClientesJuridico.size();j++){
-            if(ClientesJuridico.get(j).equals(clienteJuridico)){
-                existe = true;
-            }
-        }
-        if(existe){
-            ClientesJuridico.remove(clienteJuridico);
-            System.out.println("Cliente Removido com sucesso");
-        }else {
-            System.out.println("O cliente não pode ser removido");
-        }
-    }
-
-    public PessoaJuridicaBeans buscarClienteJuridicoCNPJ(String cnpj){
-        for(int i = 0; i <= ClientesJuridico.size();i++){
-            if(ClientesJuridico.get(i).getCnpj().equals(cnpj)){
-                return ClientesJuridico.get(i);
-            }
-        }
-        return null;
-    }
-    
-    public PessoaJuridicaBeans buscarClienteFisicoNome(String nome){
-        for(int i = 0; i <= ClientesJuridico.size();i++){
-            if(ClientesJuridico.get(i).getNome().equals(nome)){
-                return ClientesJuridico.get(i);
-            }
-        }
-        return null;
-    }
-
-     public ArrayList<PessoaJuridicaBeans> getClientesJuridico() {
-        return ClientesJuridico;
-    }
-     
-    public PessoaJuridicaBeans buscarClienteFisicoCodigo(int codigo){
-        for(int i = 0; i <= ClientesJuridico.size();i++){
-            if(ClientesJuridico.get(i).getCodigo() == codigo){
-                return ClientesJuridico.get(i);
-            }
-        }
-        return null;
-    } 
+    @Override
+    public void editar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }  
 }
