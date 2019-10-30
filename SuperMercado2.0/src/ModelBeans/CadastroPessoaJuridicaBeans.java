@@ -9,13 +9,13 @@ package ModelBeans;
  *
  * @author anderson
  */
-public abstract class CadastroBeans {
+public abstract class CadastroPessoaJuridicaBeans {
     
-    public abstract void cadastrar(Object object);
+    public abstract void cadastrar(PessoaJuridicaBeans object);
     
-    public abstract void editar(Object object);
+    public abstract void editar(PessoaJuridicaBeans object);
     
-    public abstract Object buscar(Object object);
+    public abstract PessoaJuridicaBeans buscar(PessoaJuridicaBeans object);
     
     public abstract int quantidade();
 }

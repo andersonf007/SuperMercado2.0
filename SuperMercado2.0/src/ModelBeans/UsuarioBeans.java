@@ -48,7 +48,7 @@ public class UsuarioBeans{
         Senha = senha;
     }
 
-    public boolean isADM() {
+    public boolean getAdm() {
         return adm;
     }
     public void setAdm(boolean cargo) {

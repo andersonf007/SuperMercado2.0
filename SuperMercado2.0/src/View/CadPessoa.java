@@ -20,8 +20,8 @@ import javax.swing.JOptionPane;
  */
 public class CadPessoa extends javax.swing.JFrame {
 
-    PessoaFisicaDAO pessoaFisicaDAO  = new PessoaFisicaDAO();
-    PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
+    //PessoaFisicaDAO pessoaFisicaDAO  = new PessoaFisicaDAO();
+    //PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
     UsuarioDAO usuarioDAO = new UsuarioDAO();
     
     /**
@@ -273,7 +273,7 @@ public class CadPessoa extends javax.swing.JFrame {
                 Date dataNasc = jDateChooserDataNasc.getDate();
                 String tipo = jComboBoxTipoPessoa.getSelectedItem().toString();
                 PessoaFisicaBeans pessoaFisica = new PessoaFisicaBeans(cpfcnpj, rgie, sexo, dataNasc, numero, numero, nome, tipo, cep, logradouro, cidade, bairro, uf, telefone);
-                pessoaFisicaDAO.adicionarClienteFisico(pessoaFisica);
+            //    pessoaFisicaDAO.adicionarClienteFisico(pessoaFisica);
                 
                 jTextFieldNome.setText("");
                 jTextFieldCep.setText("");
@@ -315,7 +315,7 @@ public class CadPessoa extends javax.swing.JFrame {
                 String rgie = jTextFieldRGIE.getText();
                 String tipo = jComboBoxTipoPessoa.getSelectedItem().toString();
                 PessoaJuridicaBeans pessoaJuridica = new PessoaJuridicaBeans(cep, rgie, numero, numero, nome, tipo, cep, logradouro, cidade, bairro, uf, telefone);
-                pessoaJuridicaDAO.adicionarClienteJuridico(pessoaJuridica);
+            //    pessoaJuridicaDAO.adicionarClienteJuridico(pessoaJuridica);
                 
                 jTextFieldNome.setText("");
                 jTextFieldCep.setText("");
@@ -349,7 +349,7 @@ public class CadPessoa extends javax.swing.JFrame {
                 String senha = jTextFieldSenha.getText();
                 boolean adm = jCheckBoxAdm.isSelected();
                 int quantidade = usuarioDAO.quantidade();
-                int id = quantidade++;                
+                int id = ++quantidade;                
                 UsuarioBeans usuario = new UsuarioBeans(nome,adm, id, login, senha); 
                 usuarioDAO.cadastrar(usuario);
                 
