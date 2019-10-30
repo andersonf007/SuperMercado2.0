@@ -28,6 +28,7 @@ public class CadPessoa extends javax.swing.JFrame {
     //PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
     UsuarioDAO usuarioDAO = new UsuarioDAO();
     UsuarioBeans usuarioBeans = new UsuarioBeans();
+    ArrayList<UsuarioBeans> ListUsuarioBeans = new ArrayList<UsuarioBeans>();
     
     /**
      * Creates new form CadastroClientes
@@ -479,15 +480,17 @@ public class CadPessoa extends javax.swing.JFrame {
 
     public void preencherTabelaUsuarios() {
         ArrayList dados = new ArrayList();
-        String[] colunas = new String[]{"ID", "nome", "V. Venda", "Estoque"};
+        String[] colunas = new String[]{"ID", "nome", "Login", "ADM"};
 
         try {
-            usuarioBeans = usuarioDAO.buscar();
-            do {
+            ListUsuarioBeans = usuarioDAO.buscar();
+           // do {
+                for(int i = 0; i < ListUsuarioBeans.size(); i++){
+                    dados.add(new Object[]{ListUsuarioBeans.get(i).getId(),ListUsuarioBeans.get(i).getNome(), ListUsuarioBeans.get(i).getLogin(), ListUsuarioBeans.get(i).getAdm()});
 
-                dados.add(new Object[]{usuarioBeans.getId(),usuarioBeans.getNome(), usuarioBeans.getLogin(), usuarioBeans.getAdm()});
-
-            } while (usuarioBeans != null);
+                }
+                
+           // } while (usuarioBeans != null);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "nao foi possivel baixar a tabela de preencimento das pessoas\n" + ex);
         }
@@ -496,11 +499,11 @@ public class CadPessoa extends javax.swing.JFrame {
         jTableUsuarios.setModel(modelo);
         jTableUsuarios.getColumnModel().getColumn(0).setPreferredWidth(50);
         jTableUsuarios.getColumnModel().getColumn(0).setResizable(false);
-        jTableUsuarios.getColumnModel().getColumn(1).setPreferredWidth(225);
+        jTableUsuarios.getColumnModel().getColumn(1).setPreferredWidth(132);
         jTableUsuarios.getColumnModel().getColumn(1).setResizable(false);
         jTableUsuarios.getColumnModel().getColumn(2).setPreferredWidth(109);
         jTableUsuarios.getColumnModel().getColumn(2).setResizable(false);
-        jTableUsuarios.getColumnModel().getColumn(3).setPreferredWidth(100);
+        jTableUsuarios.getColumnModel().getColumn(3).setPreferredWidth(40);
         jTableUsuarios.getColumnModel().getColumn(3).setResizable(false);
         jTableUsuarios.getTableHeader().setReorderingAllowed(false);
         jTableUsuarios.setAutoResizeMode(jTableUsuarios.AUTO_RESIZE_OFF);

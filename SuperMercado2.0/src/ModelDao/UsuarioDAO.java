@@ -8,13 +8,12 @@ import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class UsuarioDAO extends CadastroUsuarioBeans{
     
-    UsuarioBeans usuarioBeans = new UsuarioBeans();
+    ArrayList<UsuarioBeans> ListUsuarioBeans = new ArrayList<UsuarioBeans>();
+    
 
     @Override
     public void cadastrar(UsuarioBeans object) {
@@ -37,7 +36,7 @@ public class UsuarioDAO extends CadastroUsuarioBeans{
     }
 
     @Override
-    public UsuarioBeans buscar() {
+    public ArrayList<UsuarioBeans> buscar() {
             String linha;
         try {
             FileInputStream arquivo = new FileInputStream("usuario.txt");
@@ -47,19 +46,21 @@ public class UsuarioDAO extends CadastroUsuarioBeans{
             do{
                 linha = buffer.readLine();
                 if(linha != null){
+                    UsuarioBeans usuarioBeans = new UsuarioBeans();
                     String[] palavras = linha.split("#");                    
                     usuarioBeans.setId(Integer.parseInt(palavras[0]));
                     usuarioBeans.setNome(palavras[1]);
                     usuarioBeans.setLogin(palavras[2]);
                     usuarioBeans.setSenha(palavras[3]);
                     usuarioBeans.setAdm(Boolean.getBoolean(palavras[4]));
+                    ListUsuarioBeans.add(usuarioBeans);
                 }
             }while(linha != null);
                         
         } catch (Exception ex) {
             //JOptionPane.showMessageDialog(null, "Não existe arquivo de usuario! " + ex);
         }
-        return usuarioBeans;
+        return ListUsuarioBeans;
     }
 
     @Override
