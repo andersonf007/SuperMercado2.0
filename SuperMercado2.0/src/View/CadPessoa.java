@@ -5,14 +5,18 @@
  */
 package View;
 
+import ModelBeans.ModelTabela;
 import ModelBeans.PessoaFisicaBeans;
 import ModelBeans.PessoaJuridicaBeans;
 import ModelBeans.UsuarioBeans;
 import ModelDao.PessoaFisicaDAO;
 import ModelDao.PessoaJuridicaDAO;
 import ModelDao.UsuarioDAO;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -23,12 +27,14 @@ public class CadPessoa extends javax.swing.JFrame {
     //PessoaFisicaDAO pessoaFisicaDAO  = new PessoaFisicaDAO();
     //PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
     UsuarioDAO usuarioDAO = new UsuarioDAO();
+    UsuarioBeans usuarioBeans = new UsuarioBeans();
     
     /**
      * Creates new form CadastroClientes
      */
     public CadPessoa() {
         initComponents();
+        preencherTabelaUsuarios();
     }
 
     /**
@@ -74,7 +80,10 @@ public class CadPessoa extends javax.swing.JFrame {
         jTextFieldSenha = new javax.swing.JTextField();
         jButtonSalvar = new javax.swing.JButton();
         jCheckBoxAdm = new javax.swing.JCheckBox();
-        scrollPane1 = new java.awt.ScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableUsuarios = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTablePessoa = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -250,10 +259,40 @@ public class CadPessoa extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(10, 10, 730, 410);
-        getContentPane().add(scrollPane1);
-        scrollPane1.setBounds(30, 430, 710, 170);
 
-        setSize(new java.awt.Dimension(780, 655));
+        jTableUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(jTableUsuarios);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(740, 230, 340, 190);
+
+        jTablePessoa.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(jTablePessoa);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(740, 10, 340, 190);
+
+        setSize(new java.awt.Dimension(1100, 464));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -438,6 +477,36 @@ public class CadPessoa extends javax.swing.JFrame {
         jButtonCancelar.setEnabled(false);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
+    public void preencherTabelaUsuarios() {
+        ArrayList dados = new ArrayList();
+        String[] colunas = new String[]{"ID", "nome", "V. Venda", "Estoque"};
+
+        try {
+            usuarioBeans = usuarioDAO.buscar();
+            do {
+
+                dados.add(new Object[]{usuarioBeans.getId(),usuarioBeans.getNome(), usuarioBeans.getLogin(), usuarioBeans.getAdm()});
+
+            } while (usuarioBeans != null);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "nao foi possivel baixar a tabela de preencimento das pessoas\n" + ex);
+        }
+        ModelTabela modelo = new ModelTabela(dados, colunas);
+
+        jTableUsuarios.setModel(modelo);
+        jTableUsuarios.getColumnModel().getColumn(0).setPreferredWidth(50);
+        jTableUsuarios.getColumnModel().getColumn(0).setResizable(false);
+        jTableUsuarios.getColumnModel().getColumn(1).setPreferredWidth(225);
+        jTableUsuarios.getColumnModel().getColumn(1).setResizable(false);
+        jTableUsuarios.getColumnModel().getColumn(2).setPreferredWidth(109);
+        jTableUsuarios.getColumnModel().getColumn(2).setResizable(false);
+        jTableUsuarios.getColumnModel().getColumn(3).setPreferredWidth(100);
+        jTableUsuarios.getColumnModel().getColumn(3).setResizable(false);
+        jTableUsuarios.getTableHeader().setReorderingAllowed(false);
+        jTableUsuarios.setAutoResizeMode(jTableUsuarios.AUTO_RESIZE_OFF);
+        jTableUsuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+    }
     /**
      * @param args the command line arguments
      */
@@ -497,6 +566,10 @@ public class CadPessoa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTablePessoa;
+    private javax.swing.JTable jTableUsuarios;
     private javax.swing.JTextField jTextFieldBairro;
     private javax.swing.JTextField jTextFieldCPFCNPJ;
     private javax.swing.JTextField jTextFieldCep;
@@ -509,6 +582,5 @@ public class CadPessoa extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldSenha;
     private javax.swing.JTextField jTextFieldTelefone;
     private javax.swing.JTextField jTextFieldUf;
-    private java.awt.ScrollPane scrollPane1;
     // End of variables declaration//GEN-END:variables
 }

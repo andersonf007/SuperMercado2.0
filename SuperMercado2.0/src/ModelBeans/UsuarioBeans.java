@@ -15,6 +15,8 @@ public class UsuarioBeans{
         this.Senha = senha;
         this.adm = adm;
     }
+    
+    public UsuarioBeans(){}
 
     public String getNome() {
         return Nome;

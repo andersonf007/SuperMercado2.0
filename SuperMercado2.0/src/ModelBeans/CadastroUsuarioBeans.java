@@ -15,7 +15,7 @@ public abstract class CadastroUsuarioBeans {
     
     public abstract void editar(UsuarioBeans object);
     
-    public abstract UsuarioBeans buscar(UsuarioBeans object);
+    public abstract UsuarioBeans buscar();
     
     public abstract int quantidade();
 }

@@ -13,6 +13,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class UsuarioDAO extends CadastroUsuarioBeans{
+    
+    UsuarioBeans usuarioBeans = new UsuarioBeans();
 
     @Override
     public void cadastrar(UsuarioBeans object) {
@@ -35,8 +37,29 @@ public class UsuarioDAO extends CadastroUsuarioBeans{
     }
 
     @Override
-    public UsuarioBeans buscar(UsuarioBeans object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public UsuarioBeans buscar() {
+            String linha;
+        try {
+            FileInputStream arquivo = new FileInputStream("usuario.txt");
+            InputStreamReader input = new InputStreamReader(arquivo);
+            BufferedReader buffer = new BufferedReader(input);
+            
+            do{
+                linha = buffer.readLine();
+                if(linha != null){
+                    String[] palavras = linha.split("#");                    
+                    usuarioBeans.setId(Integer.parseInt(palavras[0]));
+                    usuarioBeans.setNome(palavras[1]);
+                    usuarioBeans.setLogin(palavras[2]);
+                    usuarioBeans.setSenha(palavras[3]);
+                    usuarioBeans.setAdm(Boolean.getBoolean(palavras[4]));
+                }
+            }while(linha != null);
+                        
+        } catch (Exception ex) {
+            //JOptionPane.showMessageDialog(null, "Não existe arquivo de usuario! " + ex);
+        }
+        return usuarioBeans;
     }
 
     @Override
