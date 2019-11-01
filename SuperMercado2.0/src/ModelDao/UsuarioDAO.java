@@ -13,7 +13,6 @@ import javax.swing.JOptionPane;
 public class UsuarioDAO extends CadastroUsuarioBeans{
     
     ArrayList<UsuarioBeans> ListUsuarioBeans = new ArrayList<UsuarioBeans>();
-    
 
     @Override
     public void cadastrar(UsuarioBeans object) {
@@ -85,7 +84,35 @@ public class UsuarioDAO extends CadastroUsuarioBeans{
         return contador;
     }
    
-    public boolean validador(String senha){
+    public boolean validador(UsuarioBeans usuario){ // Não vi necessidade de verificar ID já que gera automaticamente
+        char[] especiais = {'#','@','%','&','*','(',')','+','-','$','!','?','/','|','=','§','¹','²','³','£','*','-',',','<','>','.',';',':'};
+        char[] numeros = {'0','1','2','3','4','5','6','7','8','9'};
+        for(int i = 0; i < usuario.getNome().length();i++){
+            for (char especiai : especiais) {
+                if (usuario.getNome().charAt(i) == especiai) {
+                    return false;
+                }
+            }
+            for (char numb : numeros){
+                if(usuario.getNome().charAt(i) == numb){
+                    return false;
+                }
+            }
+        }
+        for(int i = 0; i < usuario.getLogin().length();i++) {
+            for (char especiai : especiais) {
+                if (usuario.getNome().charAt(i) == especiai) {
+                    return false;
+                }
+            }
+        }
+        for(int i = 0; i < usuario.getSenha().length();i++) {
+            for (char especiai : especiais) {
+                if (usuario.getNome().charAt(i) == especiai) {
+                    return false;
+                }
+            }
+        }
         return true;
     }
 }
