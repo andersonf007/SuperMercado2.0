@@ -32,7 +32,7 @@ public class UsuarioDAO extends CadastroUsuarioBeans{
 
     @Override
     public void editar(UsuarioBeans object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
@@ -52,8 +52,8 @@ public class UsuarioDAO extends CadastroUsuarioBeans{
                         usuarioBeans.setNome(palavras[1]);
                         usuarioBeans.setLogin(palavras[2]);
                         usuarioBeans.setSenha(palavras[3]);
-                        usuarioBeans.setAdm(Boolean.getBoolean(palavras[4]));
-                        usuarioBeans.setAtivo(Boolean.getBoolean(palavras[5]));
+                        usuarioBeans.setAdm(Boolean.parseBoolean(palavras[4]));
+                        usuarioBeans.setAtivo(Boolean.parseBoolean(palavras[5]));
                         ListUsuarioBeans.add(usuarioBeans);
                     }                    
             }while(linha != null);

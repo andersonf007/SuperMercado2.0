@@ -84,6 +84,7 @@ public class CadPessoa extends javax.swing.JFrame {
         jButtonSalvar = new javax.swing.JButton();
         jCheckBoxAtivo = new javax.swing.JCheckBox();
         jCheckBoxAdm = new javax.swing.JCheckBox();
+        jButtonEditar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableUsuarios = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -104,7 +105,7 @@ public class CadPessoa extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonCancelar);
-        jButtonCancelar.setBounds(620, 320, 90, 30);
+        jButtonCancelar.setBounds(620, 340, 90, 30);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Logradouro:");
@@ -265,6 +266,15 @@ public class CadPessoa extends javax.swing.JFrame {
         jPanel1.add(jCheckBoxAdm);
         jCheckBoxAdm.setBounds(390, 350, 100, 30);
 
+        jButtonEditar.setText("Editar");
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonEditar);
+        jButtonEditar.setBounds(620, 300, 90, 30);
+
         getContentPane().add(jPanel1);
         jPanel1.setBounds(10, 10, 730, 410);
 
@@ -394,7 +404,7 @@ public class CadPessoa extends javax.swing.JFrame {
                 String nome = jTextFieldNome.getText();
                 String login = jTextFieldLogin.getText();
                 String senha = jTextFieldSenha.getText();
-                boolean adm = jCheckBoxAtivo.isSelected();
+                boolean adm = jCheckBoxAdm.isSelected();
                 boolean ativo = jCheckBoxAtivo.isSelected();
                 int quantidade = usuarioDAO.confereQuantidadeDeUsuariosRegistrados();
                 int id = ++quantidade;                
@@ -488,6 +498,23 @@ public class CadPessoa extends javax.swing.JFrame {
         jButtonCancelar.setEnabled(false);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        int codigo = Integer.parseInt(""+jTableUsuarios.getValueAt(jTableUsuarios.getSelectedRow(), 1));
+        ListUsuarioBeans.clear(); //limpa o arrray list
+        ListUsuarioBeans = usuarioDAO.busca();
+        
+        for(int i = 0; i < ListUsuarioBeans.size(); i++){
+            if(ListUsuarioBeans.get(i).getId() == codigo){
+                jTextFieldNome.setText(ListUsuarioBeans.get(i).getNome());
+                jTextFieldLogin.setText(ListUsuarioBeans.get(i).getLogin());
+                jTextFieldSenha.setText(ListUsuarioBeans.get(i).getSenha());
+                jCheckBoxAdm.setSelected(ListUsuarioBeans.get(i).getAdm());
+                jCheckBoxAtivo.setSelected(ListUsuarioBeans.get(i).getAtivo());
+            }
+        }
+        
+    }//GEN-LAST:event_jButtonEditarActionPerformed
+
     public void preencherTabelaUsuarios() {
            
         String[] colunas = new String[]{"ID", "nome", "Login", "ADM"};
@@ -560,6 +587,7 @@ public class CadPessoa extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JCheckBox jCheckBoxAdm;
     private javax.swing.JCheckBox jCheckBoxAtivo;

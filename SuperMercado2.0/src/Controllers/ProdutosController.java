@@ -14,12 +14,5 @@ public class ProdutosController {
         
         buscarProdutos.setVisible(true);
     }
-    
-    public static ProdutoDAO CriaProdutoDao(){
-        if(ProdutoDao == null){
-            ProdutoDao = new ProdutoDAO();
-            return ProdutoDao;
-        }         
-            return ProdutoDao;
-    }
+   
 }
