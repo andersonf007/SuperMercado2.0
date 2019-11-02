@@ -1,5 +1,12 @@
-1#sfd#df#df#false
-2#dfff#ffff#dffff#true
-3#ssssssss#sss#ssss#true
-4#111#555#hkjkj#false
-5#ddd#ddd#dd#false
+1#a#a#a#false#false
+2#b#b#b#false#false
+3#c#c#c#false#false
+4#d#d#d#false#false
+5#e#e#e#false#false
+6#f#f#f#false#false
+7#q#q#q#false#false
+8#d#d#d#false#false
+9#5#5#4#true#true
+10#w#w#w#true#true
+11#6#1#1#true#true
+12#0#0#0#true#true

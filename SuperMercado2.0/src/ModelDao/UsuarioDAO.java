@@ -20,7 +20,7 @@ public class UsuarioDAO extends CadastroUsuarioBeans{
         try {
             FileOutputStream arquivo = new FileOutputStream("usuario.txt",true);
             PrintWriter pr = new PrintWriter(arquivo);
-            pr.println(object.getId()+"#"+object.getNome()+"#"+object.getLogin()+"#"+object.getSenha()+"#"+object.getAdm());
+            pr.println(object.getId()+"#"+object.getNome()+"#"+object.getLogin()+"#"+object.getSenha()+"#"+object.getAdm()+"#"+object.getAtivo());
             pr.close();
             arquivo.close();
             
@@ -36,7 +36,7 @@ public class UsuarioDAO extends CadastroUsuarioBeans{
     }
 
     @Override
-    public ArrayList<UsuarioBeans> buscar() {
+    public ArrayList<UsuarioBeans> busca() {
             String linha;
         try {
             FileInputStream arquivo = new FileInputStream("usuario.txt");
@@ -47,14 +47,15 @@ public class UsuarioDAO extends CadastroUsuarioBeans{
                 linha = buffer.readLine();
                 if(linha != null){
                     UsuarioBeans usuarioBeans = new UsuarioBeans();
-                    String[] palavras = linha.split("#");                    
-                    usuarioBeans.setId(Integer.parseInt(palavras[0]));
-                    usuarioBeans.setNome(palavras[1]);
-                    usuarioBeans.setLogin(palavras[2]);
-                    usuarioBeans.setSenha(palavras[3]);
-                    usuarioBeans.setAdm(Boolean.getBoolean(palavras[4]));
-                    ListUsuarioBeans.add(usuarioBeans);
-                }
+                    String[] palavras = linha.split("#");
+                        usuarioBeans.setId(Integer.parseInt(palavras[0]));
+                        usuarioBeans.setNome(palavras[1]);
+                        usuarioBeans.setLogin(palavras[2]);
+                        usuarioBeans.setSenha(palavras[3]);
+                        usuarioBeans.setAdm(Boolean.getBoolean(palavras[4]));
+                        usuarioBeans.setAtivo(Boolean.getBoolean(palavras[5]));
+                        ListUsuarioBeans.add(usuarioBeans);
+                    }                    
             }while(linha != null);
                         
         } catch (Exception ex) {
@@ -64,7 +65,7 @@ public class UsuarioDAO extends CadastroUsuarioBeans{
     }
 
     @Override
-    public int quantidade() {
+    public int confereQuantidadeDeUsuariosRegistrados() {
             String linha;
             int contador = 0;
         try {

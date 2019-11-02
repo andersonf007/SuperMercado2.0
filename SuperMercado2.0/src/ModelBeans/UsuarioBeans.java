@@ -6,14 +6,16 @@ public class UsuarioBeans{
     private int Id;
     private String Login;
     private String Senha;
+    private boolean ativo;
 
 
-    public UsuarioBeans(String nome, boolean adm,int id, String login, String senha) {
+    public UsuarioBeans(String nome, boolean adm,int id, String login, String senha, boolean ativo) {
         this.Nome = nome;
         this.Id = id;
         this.Login = login;
         this.Senha = senha;
         this.adm = adm;
+        this.ativo = ativo;
     }
     
     public UsuarioBeans(){}
@@ -57,4 +59,13 @@ public class UsuarioBeans{
         adm = cargo;
     }
 
+    public boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    
   }

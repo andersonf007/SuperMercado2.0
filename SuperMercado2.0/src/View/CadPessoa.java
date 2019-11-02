@@ -16,7 +16,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -29,7 +31,7 @@ public class CadPessoa extends javax.swing.JFrame {
     UsuarioDAO usuarioDAO = new UsuarioDAO();
     UsuarioBeans usuarioBeans = new UsuarioBeans();
     ArrayList<UsuarioBeans> ListUsuarioBeans = new ArrayList<UsuarioBeans>();
-    
+    ArrayList dados = new ArrayList(); 
     /**
      * Creates new form CadastroClientes
      */
@@ -80,6 +82,7 @@ public class CadPessoa extends javax.swing.JFrame {
         jComboBoxTipoPessoa = new javax.swing.JComboBox();
         jTextFieldSenha = new javax.swing.JTextField();
         jButtonSalvar = new javax.swing.JButton();
+        jCheckBoxAtivo = new javax.swing.JCheckBox();
         jCheckBoxAdm = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableUsuarios = new javax.swing.JTable();
@@ -254,9 +257,13 @@ public class CadPessoa extends javax.swing.JFrame {
         jPanel1.add(jButtonSalvar);
         jButtonSalvar.setBounds(620, 260, 90, 30);
 
+        jCheckBoxAtivo.setText("Ativo");
+        jPanel1.add(jCheckBoxAtivo);
+        jCheckBoxAtivo.setBounds(500, 350, 70, 30);
+
         jCheckBoxAdm.setText("Administrador");
         jPanel1.add(jCheckBoxAdm);
-        jCheckBoxAdm.setBounds(410, 350, 140, 30);
+        jCheckBoxAdm.setBounds(390, 350, 100, 30);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(10, 10, 730, 410);
@@ -387,11 +394,14 @@ public class CadPessoa extends javax.swing.JFrame {
                 String nome = jTextFieldNome.getText();
                 String login = jTextFieldLogin.getText();
                 String senha = jTextFieldSenha.getText();
-                boolean adm = jCheckBoxAdm.isSelected();
-                int quantidade = usuarioDAO.quantidade();
+                boolean adm = jCheckBoxAtivo.isSelected();
+                boolean ativo = jCheckBoxAtivo.isSelected();
+                int quantidade = usuarioDAO.confereQuantidadeDeUsuariosRegistrados();
                 int id = ++quantidade;                
-                UsuarioBeans usuario = new UsuarioBeans(nome,adm, id, login, senha); 
+                UsuarioBeans usuario = new UsuarioBeans(nome,adm, id, login, senha,ativo); 
                 usuarioDAO.cadastrar(usuario);
+                
+                preencherTabelaUsuarios();
                 
                 jTextFieldCep.setEnabled(false);
                 jTextFieldLogradouro.setEnabled(false);
@@ -479,23 +489,25 @@ public class CadPessoa extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     public void preencherTabelaUsuarios() {
-        ArrayList dados = new ArrayList();
+           
         String[] colunas = new String[]{"ID", "nome", "Login", "ADM"};
-
+        
         try {
-            ListUsuarioBeans = usuarioDAO.buscar();
-           // do {
+            ListUsuarioBeans.clear(); //limpa o arrray list
+            ListUsuarioBeans = usuarioDAO.busca();           
+            int quantidadeRegistro = usuarioDAO.confereQuantidadeDeUsuariosRegistrados();
+            quantidadeRegistro--;//subtrai para ter o valor correspondente a posicao do array
+            if(dados.isEmpty()){
                 for(int i = 0; i < ListUsuarioBeans.size(); i++){
                     dados.add(new Object[]{ListUsuarioBeans.get(i).getId(),ListUsuarioBeans.get(i).getNome(), ListUsuarioBeans.get(i).getLogin(), ListUsuarioBeans.get(i).getAdm()});
-
                 }
-                
-           // } while (usuarioBeans != null);
+            }else {
+                dados.add(new Object[]{ListUsuarioBeans.get(quantidadeRegistro).getId(),ListUsuarioBeans.get(quantidadeRegistro).getNome(), ListUsuarioBeans.get(quantidadeRegistro).getLogin(), ListUsuarioBeans.get(quantidadeRegistro).getAdm()});
+            }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "nao foi possivel baixar a tabela de preencimento das pessoas\n" + ex);
         }
         ModelTabela modelo = new ModelTabela(dados, colunas);
-
         jTableUsuarios.setModel(modelo);
         jTableUsuarios.getColumnModel().getColumn(0).setPreferredWidth(50);
         jTableUsuarios.getColumnModel().getColumn(0).setResizable(false);
@@ -550,6 +562,7 @@ public class CadPessoa extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JCheckBox jCheckBoxAdm;
+    private javax.swing.JCheckBox jCheckBoxAtivo;
     private javax.swing.JComboBox jComboBoxSexo;
     private javax.swing.JComboBox jComboBoxTipoPessoa;
     private com.toedter.calendar.JDateChooser jDateChooserDataNasc;
