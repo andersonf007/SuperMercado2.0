@@ -468,6 +468,8 @@ public class CadPessoa extends javax.swing.JFrame {
                 jButtonCancelar.setEnabled(true);
                 jCheckBoxAdm.setEnabled(false);
                 jCheckBoxAtivo.setEnabled(false);
+                
+                flag = 0;
             }
 
     }//GEN-LAST:event_jButtonSalvarActionPerformed

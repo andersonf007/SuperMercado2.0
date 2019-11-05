@@ -23,7 +23,7 @@ public class CadProdutos extends javax.swing.JFrame {
     ProdutoDAO produtoDao = new ProdutoDAO();
     ArrayList<ProdutoBeans> ListProdutoBeans = new ArrayList<ProdutoBeans>();
     ArrayList dados = new ArrayList();
-    
+    int flag = 0,codigo;
     /**
      * Creates new form CadProdutos
      */
@@ -86,11 +86,18 @@ public class CadProdutos extends javax.swing.JFrame {
         jLabel5.setText("Descrição:");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(30, 30, 150, 40);
+
+        jTextFieldDescricao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldDescricaoMouseClicked(evt);
+            }
+        });
         getContentPane().add(jTextFieldDescricao);
         jTextFieldDescricao.setBounds(30, 70, 140, 40);
 
         jButtonSalvar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButtonSalvar.setText("Salvar");
+        jButtonSalvar.setEnabled(false);
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalvarActionPerformed(evt);
@@ -110,6 +117,11 @@ public class CadProdutos extends javax.swing.JFrame {
 
             }
         ));
+        jTableProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableProdutosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableProdutos);
 
         getContentPane().add(jScrollPane1);
@@ -127,6 +139,12 @@ public class CadProdutos extends javax.swing.JFrame {
 
         jButtonCancelar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.setEnabled(false);
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonCancelar);
         jButtonCancelar.setBounds(400, 40, 90, 30);
 
@@ -145,16 +163,66 @@ public class CadProdutos extends javax.swing.JFrame {
         Double valorCusto = Double.parseDouble(jTextFieldValorDeCusto.getText());
         Double valorVenda = Double.parseDouble(jTextFieldValorDeVenda.getText());
         boolean ativo = jCheckBoxAtivo.isSelected();
-        int quantidade = produtoDao.confereQuantidadeDeProdutosRegistrados();
-        int id = ++quantidade;
-        ProdutoBeans produto = new ProdutoBeans(descricao,id, estoque, ativo, valorCusto, valorVenda);
-        produtoDao.cadastrar(produto);
+        if(flag == 1){
+            int id = codigo;
+            ProdutoBeans produto = new ProdutoBeans(descricao,id, estoque, ativo, valorCusto, valorVenda);
+            produtoDao.editar(produto);
+        }else{
+            int quantidade = produtoDao.confereQuantidadeDeProdutosRegistrados();
+            int id = ++quantidade;
+            ProdutoBeans produto = new ProdutoBeans(descricao,id, estoque, ativo, valorCusto, valorVenda);
+            produtoDao.cadastrar(produto);
+        }        
+        
+        preencherTabelaUsuarios();
+        
+        jButtonEditar.setEnabled(false);
+        jButtonSalvar.setEnabled(false);
+        jButtonCancelar.setEnabled(false);
         
         jTextFieldDescricao.setText("");
         jTextFieldEstoque.setText("");
         jTextFieldValorDeCusto.setText("");
         jTextFieldValorDeVenda.setText("");
+        
+        flag = 0;
     }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jTableProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProdutosMouseClicked
+        flag = 1;
+        codigo = Integer.parseInt(""+jTableProdutos.getValueAt(jTableProdutos.getSelectedRow(), 0));
+        ListProdutoBeans.clear(); //limpa o arrray list
+        ListProdutoBeans = produtoDao.busca();
+        
+        jButtonSalvar.setEnabled(false);
+        jButtonEditar.setEnabled(true);
+        
+        for(int i = 0; i < ListProdutoBeans.size(); i++){
+            if(ListProdutoBeans.get(i).getId() == codigo){
+                jTextFieldDescricao.setText(ListProdutoBeans.get(i).getNome());
+                jTextFieldEstoque.setText(String.valueOf(ListProdutoBeans.get(i).getEstoque()));
+                jTextFieldValorDeCusto.setText(String.valueOf(ListProdutoBeans.get(i).getValorCusto()));
+                jTextFieldValorDeVenda.setText(String.valueOf(ListProdutoBeans.get(i).getValorVenda()));
+                jCheckBoxAtivo.setSelected(ListProdutoBeans.get(i).getAtivo());
+            }
+        }
+    }//GEN-LAST:event_jTableProdutosMouseClicked
+
+    private void jTextFieldDescricaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldDescricaoMouseClicked
+        jButtonSalvar.setEnabled(true);
+        jButtonCancelar.setEnabled(true);
+    }//GEN-LAST:event_jTextFieldDescricaoMouseClicked
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        jTextFieldDescricao.setText("");
+        jTextFieldEstoque.setText("");
+        jTextFieldValorDeCusto.setText("");
+        jTextFieldValorDeVenda.setText("");
+        jButtonEditar.setEnabled(false);
+        jButtonSalvar.setEnabled(false);
+        jButtonCancelar.setEnabled(false);
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+   
     public void preencherTabelaUsuarios() {
            
         String[] colunas = new String[]{"ID", "Descrição", "Estoque", "V. Venda"};
