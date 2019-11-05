@@ -16,7 +16,7 @@ import ModelDao.ProdutoDAO;
  */
 public class CadProdutos extends javax.swing.JFrame {
 
-    ProdutoDAO produtoDao = ProdutosController.CriaProdutoDao();  
+    //ProdutoDAO produtoDao = ProdutosController.CriaProdutoDao();  
     
     /**
      * Creates new form CadProdutos
@@ -43,6 +43,11 @@ public class CadProdutos extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTextFieldDescricao = new javax.swing.JTextField();
         jButtonSalvar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableProdutos = new javax.swing.JTable();
+        jCheckBoxAtivo = new javax.swing.JCheckBox();
+        jButtonEditar = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -77,7 +82,7 @@ public class CadProdutos extends javax.swing.JFrame {
         getContentPane().add(jTextFieldDescricao);
         jTextFieldDescricao.setBounds(30, 70, 140, 40);
 
-        jButtonSalvar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonSalvar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButtonSalvar.setText("Salvar");
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,14 +90,44 @@ public class CadProdutos extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonSalvar);
-        jButtonSalvar.setBounds(300, 150, 100, 40);
+        jButtonSalvar.setBounds(290, 20, 90, 30);
+
+        jTableProdutos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(jTableProdutos);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(190, 100, 310, 260);
+
+        jCheckBoxAtivo.setText("Ativo");
+        getContentPane().add(jCheckBoxAtivo);
+        jCheckBoxAtivo.setBounds(200, 50, 81, 23);
+
+        jButtonEditar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jButtonEditar.setText("Editar");
+        getContentPane().add(jButtonEditar);
+        jButtonEditar.setBounds(290, 60, 90, 30);
+
+        jButtonCancelar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jButtonCancelar.setText("Cancelar");
+        getContentPane().add(jButtonCancelar);
+        jButtonCancelar.setBounds(400, 40, 90, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_telaprincipal.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(-10, -10, 530, 390);
 
-        setSize(new java.awt.Dimension(461, 413));
+        setSize(new java.awt.Dimension(527, 413));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -148,12 +183,17 @@ public class CadProdutos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JCheckBox jCheckBoxAtivo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableProdutos;
     private javax.swing.JTextField jTextFieldDescricao;
     private javax.swing.JTextField jTextFieldEstoque;
     private javax.swing.JTextField jTextFieldValorDeCusto;
