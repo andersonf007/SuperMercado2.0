@@ -27,9 +27,7 @@ public class PdvController {
         pdv.receberProduto(produtoBeans);
     }
     
-    public static void abrirListagemProdutos(){
-        new BuscarProdutos().setVisible(true);
-    }
+    
     
     public static void receberInformacoesPessoa(PessoaBeans pessoaBeans){
         pdv.receberPessoa(pessoaBeans);

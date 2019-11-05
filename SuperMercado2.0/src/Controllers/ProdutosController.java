@@ -18,4 +18,7 @@ public class ProdutosController {
         cadProdutos.setVisible(true);
     }
    
+    public static void abrirListagemProdutos(){
+        new BuscarProdutos().setVisible(true);
+    }
 }

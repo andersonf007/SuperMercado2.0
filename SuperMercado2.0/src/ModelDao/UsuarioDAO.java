@@ -53,7 +53,7 @@ public class UsuarioDAO extends CadastroUsuarioBeans{
                     //***edited
                     String[] palavras = linha.split("#");
                     if(Integer.parseInt(palavras[0]) == object.getId()){
-                        FileWriter fw = new FileWriter(file,false);
+                        FileWriter fw = new FileWriter(file);
                         try (BufferedWriter bw = new BufferedWriter(fw)) {
                             putData = linha.replace(linha,object.getId()+"#"+object.getNome()+"#"+object.getLogin()+"#"+object.getSenha()+"#"+object.getAdm()+"#"+object.getAtivo());
                             //bw.append(putData);

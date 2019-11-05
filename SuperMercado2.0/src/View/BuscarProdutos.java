@@ -20,8 +20,7 @@ import javax.swing.ListSelectionModel;
  */
 public class BuscarProdutos extends javax.swing.JFrame {
 
-    ProdutoBeans produtoBeans = new ProdutoBeans();
-    ProdutoDAO produtoDAO = ProdutosController.CriaProdutoDao();  
+    ProdutoBeans produtoBeans = new ProdutoBeans();  
     static ArrayList<ProdutoBeans> Produtos = new ArrayList<ProdutoBeans>();
     
     public static void teste(ArrayList<ProdutoBeans> produto){
@@ -92,7 +91,7 @@ public class BuscarProdutos extends javax.swing.JFrame {
     private void jTableProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProdutosMouseClicked
         String nome_Produto = ""+jTableProdutos.getValueAt(jTableProdutos.getSelectedRow(), 1);
         produtoBeans.setPesquisar(nome_Produto);
-        ProdutoBeans produtoBeansInstancia = produtoDAO.procurarProdutoNome(nome_Produto);
+        //ProdutoBeans produtoBeansInstancia = produtoDAO.procurarProdutoNome(nome_Produto);
         this.dispose();
     }//GEN-LAST:event_jTableProdutosMouseClicked
 

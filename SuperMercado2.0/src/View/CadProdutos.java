@@ -16,7 +16,7 @@ import ModelDao.ProdutoDAO;
  */
 public class CadProdutos extends javax.swing.JFrame {
 
-    //ProdutoDAO produtoDao = ProdutosController.CriaProdutoDao();  
+    ProdutoDAO produtoDao = new ProdutoDAO();
     
     /**
      * Creates new form CadProdutos
@@ -114,6 +114,7 @@ public class CadProdutos extends javax.swing.JFrame {
 
         jButtonEditar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButtonEditar.setText("Editar");
+        jButtonEditar.setEnabled(false);
         getContentPane().add(jButtonEditar);
         jButtonEditar.setBounds(290, 60, 90, 30);
 
@@ -136,15 +137,17 @@ public class CadProdutos extends javax.swing.JFrame {
         Double estoque = Double.parseDouble(jTextFieldEstoque.getText());
         Double valorCusto = Double.parseDouble(jTextFieldValorDeCusto.getText());
         Double valorVenda = Double.parseDouble(jTextFieldValorDeVenda.getText());
-        ProdutoBeans produto = new ProdutoBeans(descricao, estoque, descricao, estoque, WIDTH, valorCusto, valorVenda);
-        produtoDao.adicionarProduto(produto);
+        boolean ativo = jCheckBoxAtivo.isSelected();
+        int quantidade = produtoDao.confereQuantidadeDeProdutosRegistrados();
+        int id = ++quantidade;
+        ProdutoBeans produto = new ProdutoBeans(descricao,id, estoque, ativo, valorCusto, valorVenda);
+        produtoDao.cadastrar(produto);
         
         jTextFieldDescricao.setText("");
         jTextFieldEstoque.setText("");
         jTextFieldValorDeCusto.setText("");
         jTextFieldValorDeVenda.setText("");
         
-        PdvController.abrirListagemProdutos();
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     /**

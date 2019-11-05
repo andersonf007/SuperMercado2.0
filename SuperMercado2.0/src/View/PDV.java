@@ -7,6 +7,7 @@ package View;
 
 import Controllers.PdvController;
 import Controllers.PessoaController;
+import Controllers.ProdutosController;
 import ModelBeans.ModelTabela;
 import ModelBeans.PessoaBeans;
 import ModelBeans.ProdutoBeans;
@@ -174,7 +175,7 @@ public class PDV extends javax.swing.JFrame {
     
     private void jTextFieldCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCodigoKeyPressed
         if(evt.getKeyCode() == 127){
-            PdvController.abrirListagemProdutos();
+            ProdutosController.abrirListagemProdutos();
         }
     }//GEN-LAST:event_jTextFieldCodigoKeyPressed
 
