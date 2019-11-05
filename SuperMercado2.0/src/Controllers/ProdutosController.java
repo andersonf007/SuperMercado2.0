@@ -1,18 +1,21 @@
 package Controllers;
-import ModelDao.ProdutoDAO;
-import java.util.ArrayList;
-import java.util.Random;
-import ModelBeans.ProdutoBeans;
 import View.BuscarProdutos;
-import View.PDV;
+import View.CadProdutos;
+
 public class ProdutosController {
-    private static ProdutoDAO ProdutoDao;
+    static CadProdutos cadProdutos;
     static BuscarProdutos buscarProdutos;
     
     public static void abreBuscarProdutos(){
         if(buscarProdutos == null) buscarProdutos = new BuscarProdutos();
         
         buscarProdutos.setVisible(true);
+    }
+    
+    public static void abreCadProdutos(){
+        if(cadProdutos == null) cadProdutos = new CadProdutos();
+        
+        cadProdutos.setVisible(true);
     }
    
 }

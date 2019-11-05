@@ -5,6 +5,10 @@
  */
 package View;
 
+import Controllers.CadPessoaController;
+import Controllers.PdvController;
+import Controllers.ProdutosController;
+
 /**
  *
  * @author anderson
@@ -108,18 +112,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        CadPessoa cadPessoa = new CadPessoa();
-        cadPessoa.setVisible(true);
+        CadPessoaController cadPessoaController = new CadPessoaController();
+        cadPessoaController.abreCadastro();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PDV pdv = new PDV();
-        pdv.setVisible(true);
+        PdvController pdv = new PdvController();
+        pdv.abrePdv();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        CadProdutos cadProduto = new CadProdutos();
-        cadProduto.setVisible(true);
+        ProdutosController produtosController = new ProdutosController();
+        produtosController.abreCadProdutos();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
