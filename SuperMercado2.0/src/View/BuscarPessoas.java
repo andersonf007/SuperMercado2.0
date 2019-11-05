@@ -17,7 +17,7 @@ public class BuscarPessoas extends javax.swing.JFrame {
 
     PessoaBeans pessoaBeans = new PessoaBeans();
     PessoaFisicaBeans pessoaFisicaBeans = new PessoaFisicaBeans();
-    PessoaDAO pessoaDAO = new PessoaDAO(); 
+     
     /**
      * Creates new form BuscarPessoas
      */
@@ -42,13 +42,13 @@ public class BuscarPessoas extends javax.swing.JFrame {
 
         jTablePessoas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jTablePessoas.addMouseListener(new java.awt.event.MouseAdapter() {

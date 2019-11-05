@@ -343,19 +343,21 @@ public class CadPessoa extends javax.swing.JFrame {
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         if(jComboBoxTipoPessoa.getSelectedItem().equals("Física")){
                 String nome = jTextFieldNome.getText();
+                String telefone = jTextFieldTelefone.getText();
+                String cpfCnpj = jTextFieldCPFCNPJ.getText();
+                String rgie = jTextFieldRGIE.getText();
+                String sexo = jComboBoxSexo.getSelectedItem().toString();
+                Date dataNasc = jDateChooserDataNasc.getDate();
+                String tipo = jComboBoxTipoPessoa.getSelectedItem().toString();
+                
                 String cep = jTextFieldCep.getText();
                 String logradouro = jTextFieldLogradouro.getText();
                 int numero = Integer.parseInt(jTextFieldNumero.getText());
                 String cidade = jTextFieldCidade.getText();
                 String bairro = jTextFieldBairro.getText();
                 String uf = jTextFieldUf.getText();
-                String telefone = jTextFieldTelefone.getText();
-                String cpfcnpj = jTextFieldCPFCNPJ.getText();
-                String rgie = jTextFieldRGIE.getText();
-                String sexo = jComboBoxSexo.getSelectedItem().toString();
-                Date dataNasc = jDateChooserDataNasc.getDate();
-                String tipo = jComboBoxTipoPessoa.getSelectedItem().toString();
-                PessoaFisicaBeans pessoaFisica = new PessoaFisicaBeans(cpfcnpj, rgie, sexo, dataNasc, numero, numero, nome, tipo, cep, logradouro, cidade, bairro, uf, telefone);
+                
+                //PessoaFisicaBeans pessoaFisica = new PessoaFisicaBeans(cpfCnpj, rgie, sexo, dataNasc, numero, numero, nome, tipo, cep, logradouro, cidade, bairro, uf, telefone);
             //    pessoaFisicaDAO.adicionarClienteFisico(pessoaFisica);
                 
                 jTextFieldNome.setText("");
