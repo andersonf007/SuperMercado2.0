@@ -37,88 +37,37 @@ public class UsuarioDAO extends CadastroUsuarioBeans{
 
     @Override
     public void editar(UsuarioBeans object) {
-         
-        try {
-            
-            String linha, putData;
-            File file = new File("usuario.txt");
-            FileReader fr = new FileReader(file);
-            try (BufferedReader br = new BufferedReader(fr)) {                
-            //file.createNewFile();             
-                //while( (linha=br.readLine()) != null ){ //***editted
-                //**deleted**verify = br.readLine();**
-                do{
-                    linha = br.readLine();
-                    //if (linha != null) {
-                    //***edited
-                    String[] palavras = linha.split("#");
-                    if(Integer.parseInt(palavras[0]) == object.getId()){
-                        FileWriter fw = new FileWriter(file);
-                        try (BufferedWriter bw = new BufferedWriter(fw)) {
-                            putData = linha.replace(linha,object.getId()+"#"+object.getNome()+"#"+object.getLogin()+"#"+object.getSenha()+"#"+object.getAdm()+"#"+object.getAtivo());
-                            //bw.append(putData);
-                            bw.write(putData);
-                            bw.flush();
-                            bw.close();
-                        }
-                    }
-                    //linha = br.readLine();
-                }while(linha != null);
-                //}
-                /*
-                InputStream is = new FileInputStream("usuario.txt");
-                InputStreamReader isr = new InputStreamReader(is);
-                BufferedReader br = new BufferedReader(isr);
-                //BufferedWriter bw = new BufferedWriter(isr);
-                String linha = br.readLine();
-                while (linha != null) {
-                String[] palavras = linha.split("#");
-                if(Integer.parseInt(palavras[0]) == object.getId()){
-                linha = linha.replace(linha, object.getId()+"#"+object.getNome()+"#"+object.getLogin()+"#"+object.getSenha()+"#"+object.getAdm()+"#"+object.getAtivo());
-                //linha.write(linha + System.getProperty("line.separator"));
-                }
-                linha = br.readLine();
-                }
-                 */
-                /*File arquivo = new File("usuario.txt");
-                FileWriter writer = new FileWriter(arquivo);
-                Scanner scanner = new Scanner((Readable) writer);
-                while(scanner.hasNextLine()){
-                String linha = scanner.nextLine();
-                String[] palavras = linha.split("#");
-                if(Integer.parseInt(palavras[0]) == object.getId()){
-                linha = linha.replace(linha, object.getId()+"#"+object.getNome()+"#"+object.getLogin()+"#"+object.getSenha()+"#"+object.getAdm()+"#"+object.getAtivo());
-                writer.write(linha + System.getProperty("line.separator"));
-                }
-                }*/
-                /*
-                FileInputStream arquivo = new FileInputStream("usuario.txt");
-                InputStreamReader input = new InputStreamReader(arquivo);
-                BufferedReader buffer = new BufferedReader(input);
-                do{
-                linha = buffer.readLine();
-                if(linha != null){
-                //UsuarioBeans usuarioBeans = new UsuarioBeans();
-                String[] palavras = linha.split("#");
-                if(Integer.parseInt(palavras[0]) == object.getId()){
-                linha = linha.replace(linha,object.getId()+"#"+object.getNome()+"#"+object.getLogin()+"#"+object.getSenha()+"#"+object.getAdm()+"#"+object.getAtivo());
-                }
-                /*
-                usuarioBeans.setId(Integer.parseInt(palavras[0]));
-                usuarioBeans.setNome(palavras[1]);
-                usuarioBeans.setLogin(palavras[2]);
-                usuarioBeans.setSenha(palavras[3]);
-                usuarioBeans.setAdm(Boolean.parseBoolean(palavras[4]));
-                usuarioBeans.setAtivo(Boolean.parseBoolean(palavras[5]));
-                ListUsuarioBeans.add(usuarioBeans);
-                }
-                }while(linha != null);
-                 */
-            }             
-        } catch (Exception ex) {
-            //JOptionPane.showMessageDialog(null, "Não existe arquivo de usuario! " + ex);
+       try {
+        //lê o arquivo e edita a linha de interesse
+        ArrayList<String> conteudoDoArquivo = new ArrayList<>();
+        File file = new File("usuario.txt");
+        FileReader fr = new FileReader(file);
+        BufferedReader br = new BufferedReader(fr);
+
+        Object[] linhas = br.lines().toArray();
+        for (Object l : linhas) {
+            String linha = (String) l;
+            String[] palavras = linha.split("#");
+            if (Integer.parseInt(palavras[0]) == object.getId()) {
+                linha = linha.replace(linha,object.getId() + "#" + object.getNome() + "#" + object.getLogin() + "#" + object.getSenha() + "#" + object.getAdm() + "#" + object.getAtivo());
+            }
+            conteudoDoArquivo.add(linha);
         }
+        br.close();
+
+        //reescreve o arquivo
+        FileWriter fw = new FileWriter(file);
+        BufferedWriter bw = new BufferedWriter(fw);
+        for(String linha: conteudoDoArquivo){
+            bw.append(linha).append("\n");
+        }
+        bw.flush();
+        bw.close();
+    } catch (Exception ex) {
+        System.out.println(ex.getMessage());
+        ex.printStackTrace();
     }
+}
 
     @Override
     public ArrayList<UsuarioBeans> busca() {

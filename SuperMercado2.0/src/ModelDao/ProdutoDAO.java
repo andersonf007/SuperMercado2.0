@@ -3,8 +3,12 @@ import ModelBeans.CadastroProdutos;
 import ModelBeans.CadastroUsuarioBeans;
 import ModelBeans.ProdutoBeans;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -29,8 +33,37 @@ public class ProdutoDAO extends CadastroProdutos{
 
     @Override
     public void editar(ProdutoBeans object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    try {
+        //lê o arquivo e edita a linha de interesse
+        ArrayList<String> conteudoDoArquivo = new ArrayList<>();
+        File file = new File("produto.txt");
+        FileReader fr = new FileReader(file);
+        BufferedReader br = new BufferedReader(fr);
+
+        Object[] linhas = br.lines().toArray();
+        for (Object l : linhas) {
+            String linha = (String) l;
+            String[] palavras = linha.split("#");
+            if (Integer.parseInt(palavras[0]) == object.getId()) {
+                linha = linha.replace(linha,object.getId() + "#" + object.getNome() + "#" + object.getEstoque() + "#" + object.getValorCusto() + "#" + object.getValorVenda() + "#" + object.getAtivo());
+            }
+            conteudoDoArquivo.add(linha);
+        }
+        br.close();
+
+        //reescreve o arquivo
+        FileWriter fw = new FileWriter(file);
+        BufferedWriter bw = new BufferedWriter(fw);
+        for(String linha: conteudoDoArquivo){
+            bw.append(linha).append("\n");
+        }
+        bw.flush();
+        bw.close();
+    } catch (Exception ex) {
+        System.out.println(ex.getMessage());
+        ex.printStackTrace();
     }
+}
 
     @Override
     public ArrayList<ProdutoBeans> busca() {

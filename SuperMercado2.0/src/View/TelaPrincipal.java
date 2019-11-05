@@ -32,12 +32,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jButtonPDV = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonCadPessoa = new javax.swing.JButton();
+        jButtonCadProduto = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
+        jButtonEstoque = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -51,14 +51,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel1.setToolTipText("Venda");
         jPanel1.setLayout(null);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/pdv.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPDV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/pdv.png"))); // NOI18N
+        jButtonPDV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonPDVActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(10, 20, 100, 90);
+        jPanel1.add(jButtonPDV);
+        jButtonPDV.setBounds(10, 20, 100, 90);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(20, 21, 130, 130);
@@ -67,23 +67,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro"));
         jPanel2.setLayout(null);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/cadastre-se.png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCadPessoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/cadastre-se.png"))); // NOI18N
+        jButtonCadPessoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonCadPessoaActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2);
-        jButton2.setBounds(10, 20, 100, 100);
+        jPanel2.add(jButtonCadPessoa);
+        jButtonCadPessoa.setBounds(10, 20, 100, 100);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Produtos.png"))); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCadProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Produtos.png"))); // NOI18N
+        jButtonCadProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonCadProdutoActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3);
-        jButton3.setBounds(120, 20, 100, 100);
+        jPanel2.add(jButtonCadProduto);
+        jButtonCadProduto.setBounds(120, 20, 100, 100);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(160, 20, 230, 130);
@@ -92,9 +92,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Estoque"));
         jPanel3.setLayout(null);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/estoque.png"))); // NOI18N
-        jPanel3.add(jButton4);
-        jButton4.setBounds(10, 20, 100, 100);
+        jButtonEstoque.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/estoque.png"))); // NOI18N
+        jButtonEstoque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEstoqueActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonEstoque);
+        jButtonEstoque.setBounds(10, 20, 100, 100);
 
         getContentPane().add(jPanel3);
         jPanel3.setBounds(400, 20, 120, 130);
@@ -111,20 +116,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonCadPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadPessoaActionPerformed
         CadPessoaController cadPessoaController = new CadPessoaController();
         cadPessoaController.abreCadastro();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonCadPessoaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonPDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPDVActionPerformed
         PdvController pdv = new PdvController();
         pdv.abrePdv();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonPDVActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButtonCadProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadProdutoActionPerformed
         ProdutosController produtosController = new ProdutosController();
         produtosController.abreCadProdutos();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButtonCadProdutoActionPerformed
+
+    private void jButtonEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstoqueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEstoqueActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,10 +171,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonCadPessoa;
+    private javax.swing.JButton jButtonCadProduto;
+    private javax.swing.JButton jButtonEstoque;
+    private javax.swing.JButton jButtonPDV;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
