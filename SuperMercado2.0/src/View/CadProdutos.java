@@ -7,8 +7,12 @@ package View;
 
 import Controllers.PdvController;
 import Controllers.ProdutosController;
+import ModelBeans.ModelTabela;
 import ModelBeans.ProdutoBeans;
 import ModelDao.ProdutoDAO;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -17,12 +21,15 @@ import ModelDao.ProdutoDAO;
 public class CadProdutos extends javax.swing.JFrame {
 
     ProdutoDAO produtoDao = new ProdutoDAO();
+    ArrayList<ProdutoBeans> ListProdutoBeans = new ArrayList<ProdutoBeans>();
+    ArrayList dados = new ArrayList();
     
     /**
      * Creates new form CadProdutos
      */
     public CadProdutos() {
         initComponents();
+        preencherTabelaUsuarios();
     }
 
     /**
@@ -147,9 +154,42 @@ public class CadProdutos extends javax.swing.JFrame {
         jTextFieldEstoque.setText("");
         jTextFieldValorDeCusto.setText("");
         jTextFieldValorDeVenda.setText("");
-        
     }//GEN-LAST:event_jButtonSalvarActionPerformed
+    public void preencherTabelaUsuarios() {
+           
+        String[] colunas = new String[]{"ID", "Descrição", "Estoque", "V. Venda"};
+        
+        try {
+            dados.clear();
+            ListProdutoBeans.clear(); //limpa o arrray list
+            ListProdutoBeans = produtoDao.busca();           
+            int quantidadeRegistro = produtoDao.confereQuantidadeDeProdutosRegistrados();
+            quantidadeRegistro--;//subtrai para ter o valor correspondente a posicao do array
+            if(dados.isEmpty()){
+                for(int i = 0; i < ListProdutoBeans.size(); i++){
+                    dados.add(new Object[]{ListProdutoBeans.get(i).getId(),ListProdutoBeans.get(i).getNome(), ListProdutoBeans.get(i).getEstoque(), ListProdutoBeans.get(i).getValorVenda()});
+                }
+            }else {
+                dados.add(new Object[]{ListProdutoBeans.get(quantidadeRegistro).getId(),ListProdutoBeans.get(quantidadeRegistro).getNome(), ListProdutoBeans.get(quantidadeRegistro).getEstoque(), ListProdutoBeans.get(quantidadeRegistro).getValorVenda()});
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "nao foi possivel baixar a tabela de preencimento das pessoas\n" + ex);
+        }
+        ModelTabela modelo = new ModelTabela(dados, colunas);
+        jTableProdutos.setModel(modelo);
+        jTableProdutos.getColumnModel().getColumn(0).setPreferredWidth(25);
+        jTableProdutos.getColumnModel().getColumn(0).setResizable(false);
+        jTableProdutos.getColumnModel().getColumn(1).setPreferredWidth(147);
+        jTableProdutos.getColumnModel().getColumn(1).setResizable(false);
+        jTableProdutos.getColumnModel().getColumn(2).setPreferredWidth(60);
+        jTableProdutos.getColumnModel().getColumn(2).setResizable(false);
+        jTableProdutos.getColumnModel().getColumn(3).setPreferredWidth(70);
+        jTableProdutos.getColumnModel().getColumn(3).setResizable(false);
+        jTableProdutos.getTableHeader().setReorderingAllowed(false);
+        jTableProdutos.setAutoResizeMode(jTableProdutos.AUTO_RESIZE_OFF);
+        jTableProdutos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
+    }
     /**
      * @param args the command line arguments
      */
