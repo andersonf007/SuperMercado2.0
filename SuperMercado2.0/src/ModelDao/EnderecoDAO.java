@@ -8,10 +8,15 @@ package ModelDao;
 import ModelBeans.CadastroEndereco;
 import ModelBeans.EnderecoBeans;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +24,8 @@ import javax.swing.JOptionPane;
  * @author anderson
  */
 public class EnderecoDAO extends CadastroEndereco{
+    
+    ArrayList<EnderecoBeans> ListEnderecoBeans = new ArrayList<EnderecoBeans>();
 
     @Override
     public void cadastrar(EnderecoBeans object) {
@@ -41,7 +48,72 @@ public class EnderecoDAO extends CadastroEndereco{
 
     @Override
     public void editar(EnderecoBeans object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            //lê o arquivo e edita a linha de interesse
+            ArrayList<String> conteudoDoArquivo = new ArrayList<>();
+            File file = new File("endereco.txt");
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+
+            Object[] linhas = br.lines().toArray();
+            for (Object l : linhas) {
+                String linha = (String) l;
+                String[] palavras = linha.split("#");
+                if (Integer.parseInt(palavras[0]) == object.getId()) {
+                    linha = linha.replace(linha,object.getId()
+                                                +"#"+object.getCep()
+                                                +"#"+object.getCidade()
+                                                +"#"+object.getBairro()
+                                                +"#"+object.getLogradouro()
+                                                +"#"+object.getUf()
+                                                +"#"+object.getNumero() );
+                }
+                conteudoDoArquivo.add(linha);
+            }
+            br.close();
+
+            //reescreve o arquivo
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+            for(String linha: conteudoDoArquivo){
+                bw.append(linha).append("\n");
+            }
+            bw.flush();
+            bw.close();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+    
+    @Override
+    public ArrayList<EnderecoBeans> busca() {
+    String linha;
+        try {
+            FileInputStream arquivo = new FileInputStream("endereco.txt");
+            InputStreamReader input = new InputStreamReader(arquivo);
+            BufferedReader buffer = new BufferedReader(input);
+            
+            do{
+                linha = buffer.readLine();
+                if(linha != null){
+                    EnderecoBeans enderecoBeans = new EnderecoBeans();
+                    String[] palavras = linha.split("#");
+                        enderecoBeans.setId(Integer.parseInt(palavras[0]));
+                        enderecoBeans.setCep(palavras[1]);
+                        enderecoBeans.setCidade(palavras[2]);
+                        enderecoBeans.setBairro(palavras[3]);
+                        enderecoBeans.setLogradouro(palavras[4]);
+                        enderecoBeans.setUf(palavras[5]);
+                        enderecoBeans.setNumero(palavras[6]);
+                        ListEnderecoBeans.add(enderecoBeans);
+                    }                    
+            }while(linha != null);
+                        
+        } catch (Exception ex) {
+            //JOptionPane.showMessageDialog(null, "Não existe arquivo de usuario! " + ex);
+        }
+        return ListEnderecoBeans;
     }
 
     @Override
@@ -65,5 +137,7 @@ public class EnderecoDAO extends CadastroEndereco{
         }
         return contador;
     }
+
+    
     
 }

@@ -5,6 +5,8 @@
  */
 package ModelBeans;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author anderson
@@ -15,6 +17,8 @@ public abstract class CadastroEndereco {
     
     public abstract void editar(EnderecoBeans object);
         
+    public abstract ArrayList<EnderecoBeans> busca();
+    
     public abstract int ConfereQuantidadeRegistros();   
     
 }

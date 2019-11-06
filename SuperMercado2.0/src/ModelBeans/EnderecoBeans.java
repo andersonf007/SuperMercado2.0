@@ -28,6 +28,8 @@ public class EnderecoBeans {
         this.Uf = Uf;
         this.numero = numero;
     }
+
+    public EnderecoBeans() {}
     
     
     
