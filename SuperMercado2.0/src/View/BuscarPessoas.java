@@ -66,9 +66,9 @@ public class BuscarPessoas extends javax.swing.JFrame {
 
     private void jTablePessoasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePessoasMouseClicked
         String nome_pessoa = ""+jTablePessoas.getValueAt(jTablePessoas.getSelectedRow(), 1);
-        pessoaBeans.setPesquisa(nome_pessoa);
-        PessoaBeans pessoaBeansInstancia = pessoaDAO.buscarPessoa(pessoaBeans)
-        PdvController.receberInformacoesPessoa(pessoaBeansInstancia);
+        //pessoaBeans.setPesquisa(nome_pessoa);
+        //PessoaBeans pessoaBeansInstancia = pessoaDAO.buscarPessoa(pessoaBeans)
+        //PdvController.receberInformacoesPessoa(pessoaBeansInstancia);
     }//GEN-LAST:event_jTablePessoasMouseClicked
 
     /**

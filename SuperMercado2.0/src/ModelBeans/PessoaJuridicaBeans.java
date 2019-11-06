@@ -15,7 +15,7 @@ public class PessoaJuridicaBeans extends PessoaBeans {
     private String ie;
 
     public PessoaJuridicaBeans(String cnpj, String ie, int codigo, int numero, String nome, String tipo, String cep, String logradouro, String cidade, String bairro, String uf, String telefone) {
-        super(codigo, numero, nome, tipo, telefone);
+        //super(codigo, numero, nome, tipo, telefone);
         this.cnpj = cnpj;
         this.ie = ie;
     }
