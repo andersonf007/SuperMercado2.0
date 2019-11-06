@@ -5,10 +5,12 @@
  */
 package View;
 
+import ModelBeans.EnderecoBeans;
 import ModelBeans.ModelTabela;
 import ModelBeans.PessoaFisicaBeans;
 import ModelBeans.PessoaJuridicaBeans;
 import ModelBeans.UsuarioBeans;
+import ModelDao.EnderecoDAO;
 import ModelDao.PessoaFisicaDAO;
 import ModelDao.PessoaJuridicaDAO;
 import ModelDao.UsuarioDAO;
@@ -26,10 +28,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CadPessoa extends javax.swing.JFrame {
 
-    //PessoaFisicaDAO pessoaFisicaDAO  = new PessoaFisicaDAO();
+    PessoaFisicaDAO pessoaFisicaDAO  = new PessoaFisicaDAO();
     //PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
     UsuarioDAO usuarioDAO = new UsuarioDAO();
-    UsuarioDAO usuarioDAO3 = new UsuarioDAO();
+    EnderecoDAO enderecoDAO = new EnderecoDAO();
     UsuarioBeans usuarioBeans = new UsuarioBeans();
     ArrayList<UsuarioBeans> ListUsuarioBeans = new ArrayList<UsuarioBeans>();
     ArrayList dados = new ArrayList(); 
@@ -349,16 +351,23 @@ public class CadPessoa extends javax.swing.JFrame {
                 String sexo = jComboBoxSexo.getSelectedItem().toString();
                 Date dataNasc = jDateChooserDataNasc.getDate();
                 String tipo = jComboBoxTipoPessoa.getSelectedItem().toString();
+                boolean ativo = jCheckBoxAtivo.isSelected();
+                int quantidadePessoas = pessoaFisicaDAO.confereQuantidadeDeRegistros();
+                int idPessoa = ++quantidadePessoas;     
                 
                 String cep = jTextFieldCep.getText();
                 String logradouro = jTextFieldLogradouro.getText();
-                int numero = Integer.parseInt(jTextFieldNumero.getText());
+                String numero = jTextFieldNumero.getText();
                 String cidade = jTextFieldCidade.getText();
                 String bairro = jTextFieldBairro.getText();
                 String uf = jTextFieldUf.getText();
+                int quantidadeEndereco = enderecoDAO.ConfereQuantidadeRegistros();
+                int idEndereco = ++quantidadeEndereco;
                 
-                //PessoaFisicaBeans pessoaFisica = new PessoaFisicaBeans(cpfCnpj, rgie, sexo, dataNasc, numero, numero, nome, tipo, cep, logradouro, cidade, bairro, uf, telefone);
-            //    pessoaFisicaDAO.adicionarClienteFisico(pessoaFisica);
+                EnderecoBeans enderecoBeans = new EnderecoBeans(idEndereco,cep,logradouro,cidade,bairro,uf,numero);
+                enderecoDAO.cadastrar(enderecoBeans);
+                PessoaFisicaBeans pessoaFisica = new PessoaFisicaBeans(cpfCnpj,rgie,sexo,dataNasc,idPessoa,nome,telefone,idEndereco,ativo);
+                pessoaFisicaDAO.cadastrar(pessoaFisica);
                 
                 jTextFieldNome.setText("");
                 jTextFieldCep.setText("");
@@ -383,8 +392,9 @@ public class CadPessoa extends javax.swing.JFrame {
                 jDateChooserDataNasc.setEnabled(false);
                 jTextFieldLogin.setEnabled(false);
                 jTextFieldSenha.setEnabled(false);
-                jButtonSalvar.setEnabled(true);
-                jButtonCancelar.setEnabled(true);
+                jButtonSalvar.setEnabled(false);
+                jButtonCancelar.setEnabled(false);
+                jButtonEditar.setEnabled(false);                
                 
             }else if(jComboBoxTipoPessoa.getSelectedItem().equals("Jurídica")){
                 
@@ -425,25 +435,22 @@ public class CadPessoa extends javax.swing.JFrame {
                 jDateChooserDataNasc.setEnabled(false);
                 jTextFieldLogin.setEnabled(false);
                 jTextFieldSenha.setEnabled(false);
-                jButtonSalvar.setEnabled(true);
-                jButtonCancelar.setEnabled(true);
+                jButtonSalvar.setEnabled(false);
+                jButtonCancelar.setEnabled(false);
+                jButtonEditar.setEnabled(false);    
                 
             }else{
+                String nome = jTextFieldNome.getText();
+                String login = jTextFieldLogin.getText();
+                String senha = jTextFieldSenha.getText();
+                boolean adm = jCheckBoxAdm.isSelected();
+                boolean ativo = jCheckBoxAtivo.isSelected();
+                    
                 if(flag == 1){
-                    String nome = jTextFieldNome.getText();
-                    String login = jTextFieldLogin.getText();
-                    String senha = jTextFieldSenha.getText();
-                    boolean adm = jCheckBoxAdm.isSelected();
-                    boolean ativo = jCheckBoxAtivo.isSelected();
                     int id = codigo;                
                     UsuarioBeans usuario = new UsuarioBeans(nome,adm, id, login, senha,ativo); 
                     usuarioDAO.editar(usuario);
                 }else{
-                    String nome = jTextFieldNome.getText();
-                    String login = jTextFieldLogin.getText();
-                    String senha = jTextFieldSenha.getText();
-                    boolean adm = jCheckBoxAdm.isSelected();
-                    boolean ativo = jCheckBoxAtivo.isSelected();
                     int quantidade = usuarioDAO.confereQuantidadeDeUsuariosRegistrados();
                     int id = ++quantidade;                
                     UsuarioBeans usuario = new UsuarioBeans(nome,adm, id, login, senha,ativo); 
@@ -470,6 +477,9 @@ public class CadPessoa extends javax.swing.JFrame {
                 jButtonCancelar.setEnabled(true);
                 jCheckBoxAdm.setEnabled(false);
                 jCheckBoxAtivo.setEnabled(false);
+                jButtonSalvar.setEnabled(false);
+                jButtonCancelar.setEnabled(false);
+                jButtonEditar.setEnabled(false);    
                 
                 flag = 0;
             }

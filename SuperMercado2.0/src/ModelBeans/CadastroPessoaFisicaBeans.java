@@ -17,5 +17,5 @@ public abstract class CadastroPessoaFisicaBeans {
     
     public abstract PessoaFisicaBeans buscar(PessoaFisicaBeans object);
     
-    public abstract int quantidade();    
+    public abstract int confereQuantidadeDeRegistros();    
 }

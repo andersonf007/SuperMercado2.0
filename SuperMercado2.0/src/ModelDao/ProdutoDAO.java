@@ -1,6 +1,5 @@
 package ModelDao;
 import ModelBeans.CadastroProdutos;
-import ModelBeans.CadastroUsuarioBeans;
 import ModelBeans.ProdutoBeans;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
