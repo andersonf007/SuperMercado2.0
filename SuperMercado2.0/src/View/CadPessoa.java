@@ -445,20 +445,7 @@ public class CadPessoa extends javax.swing.JFrame {
 
     private void jComboBoxTipoPessoaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxTipoPessoaItemStateChanged
             if(jComboBoxTipoPessoa.getSelectedItem().equals("Física") || jComboBoxTipoPessoa.getSelectedItem().equals("Jurídica")){
-                jTextFieldNome.setText("");
-                jTextFieldCep.setText("");
-                jTextFieldLogradouro.setText("");
-                jTextFieldNumero.setText("");
-                jTextFieldCidade.setText("");
-                jTextFieldBairro.setText("");
-                jTextFieldUf.setText("");
-                jTextFieldTelefone.setText("");
-                jTextFieldCPFCNPJ.setText("");
-                jTextFieldRGIE.setText("");
-                jTextFieldLogin.setText("");
-                jTextFieldSenha.setText("");
-                jCheckBoxAdm.setSelected(false);
-                jCheckBoxAtivo.setSelected(false);
+                
                 
                 jTextFieldCep.setEnabled(true);
                 jTextFieldLogradouro.setEnabled(true);
@@ -482,21 +469,7 @@ public class CadPessoa extends javax.swing.JFrame {
                 jTableUsuarios.setEnabled(false);
                 
             }else if(jComboBoxTipoPessoa.getSelectedItem().equals("Funcionário")){
-                jTextFieldNome.setText("");
-                jTextFieldCep.setText("");
-                jTextFieldLogradouro.setText("");
-                jTextFieldNumero.setText("");
-                jTextFieldCidade.setText("");
-                jTextFieldBairro.setText("");
-                jTextFieldUf.setText("");
-                jTextFieldTelefone.setText("");
-                jTextFieldCPFCNPJ.setText("");
-                jTextFieldRGIE.setText("");
-                jTextFieldLogin.setText("");
-                jTextFieldSenha.setText("");
-                jCheckBoxAdm.setSelected(false);
-                jCheckBoxAtivo.setSelected(false);
-                
+                                
                 jTextFieldCep.setEnabled(false);
                 jTextFieldLogradouro.setEnabled(false);
                 jTextFieldNumero.setEnabled(false);
@@ -567,13 +540,19 @@ public class CadPessoa extends javax.swing.JFrame {
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
         if(flag == 1){
+            jComboBoxTipoPessoa.setSelectedIndex(3);
             jButtonSalvar.setEnabled(true);
             jButtonEditar.setEnabled(false);
             jTablePessoaFisica.setEnabled(false);
             jTablePessoaJuridica.setEnabled(false);
             jTableUsuarios.setEnabled(false);
         }else if(flag == 2){
-            
+            jComboBoxTipoPessoa.setSelectedIndex(1);
+            jButtonSalvar.setEnabled(true);
+            jButtonEditar.setEnabled(false);
+            jTablePessoaFisica.setEnabled(false);
+            jTablePessoaJuridica.setEnabled(false);
+            jTableUsuarios.setEnabled(false);
         }
         
     }//GEN-LAST:event_jButtonEditarActionPerformed
@@ -607,7 +586,6 @@ public class CadPessoa extends javax.swing.JFrame {
     private void jTablePessoaFisicaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePessoaFisicaMouseClicked
         validacaoDeCampos2();
         
-        
         flag = 2;
         codigoPessoa = Integer.parseInt(""+jTablePessoaFisica.getValueAt(jTablePessoaFisica.getSelectedRow(), 0));
         ListPessoaFisicaBeans.clear();
@@ -620,7 +598,13 @@ public class CadPessoa extends javax.swing.JFrame {
                 jTextFieldNome.setText(ListPessoaFisicaBeans.get(i).getNome());
                 jTextFieldTelefone.setText(ListPessoaFisicaBeans.get(i).getTelefone());
                 jTextFieldCPFCNPJ.setText(ListPessoaFisicaBeans.get(i).getCpf());
-                jTextFieldRGIE.setText(ListPessoaFisicaBeans.get(i).getSexo());
+                jTextFieldRGIE.setText(ListPessoaFisicaBeans.get(i).getRg());
+                jCheckBoxAtivo.setSelected(ListPessoaFisicaBeans.get(i).getAtivo());
+                if("Masculino".equals(ListPessoaFisicaBeans.get(i).getSexo())){
+                    jComboBoxSexo.setSelectedIndex(0);
+                }else{
+                    jComboBoxSexo.setSelectedIndex(1);
+                }
                 codigoEndereco = ListPessoaFisicaBeans.get(i).getCodEndereco();
             }            
         }
@@ -644,6 +628,20 @@ public class CadPessoa extends javax.swing.JFrame {
         if(flag == 1 || flag == 2 || flag ==3){
             jComboBoxTipoPessoa.setEnabled(false);
         }else{
+            jTextFieldNome.setText("");
+            jTextFieldCep.setText("");
+            jTextFieldLogradouro.setText("");
+            jTextFieldNumero.setText("");
+            jTextFieldCidade.setText("");
+            jTextFieldBairro.setText("");
+            jTextFieldUf.setText("");
+            jTextFieldTelefone.setText("");
+            jTextFieldCPFCNPJ.setText("");
+            jTextFieldRGIE.setText("");
+            jTextFieldLogin.setText("");
+            jTextFieldSenha.setText("");
+            jCheckBoxAdm.setSelected(false);
+            jCheckBoxAtivo.setSelected(false);
             jComboBoxTipoPessoa.setEnabled(true);
         }
         
