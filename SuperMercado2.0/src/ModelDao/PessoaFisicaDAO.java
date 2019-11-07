@@ -21,7 +21,7 @@ public class PessoaFisicaDAO extends CadastroPessoaFisicaBeans{
 
     @Override
     public void cadastrar(PessoaFisicaBeans object) {
-       try {
+        try {
             FileOutputStream arquivo = new FileOutputStream("pessoaFisica.txt",true);
             PrintWriter pr = new PrintWriter(arquivo);
             pr.println(object.getCodigo()
@@ -41,7 +41,7 @@ public class PessoaFisicaDAO extends CadastroPessoaFisicaBeans{
 
     @Override
     public void editar(PessoaFisicaBeans object) {
-     try {
+        try {
             //lê o arquivo e edita a linha de interesse
             ArrayList<String> conteudoDoArquivo = new ArrayList<>();
             File file = new File("pessoaFisica.txt");

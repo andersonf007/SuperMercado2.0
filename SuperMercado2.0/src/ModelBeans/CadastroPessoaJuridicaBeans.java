@@ -5,6 +5,8 @@
  */
 package ModelBeans;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author anderson
@@ -15,7 +17,7 @@ public abstract class CadastroPessoaJuridicaBeans {
     
     public abstract void editar(PessoaJuridicaBeans object);
     
-    public abstract PessoaJuridicaBeans buscar(PessoaJuridicaBeans object);
+    public abstract ArrayList<PessoaJuridicaBeans> buscar();
     
-    public abstract int quantidade();
+    public abstract int ConfereQuantidadeDeRegistros();
 }
