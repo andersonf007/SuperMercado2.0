@@ -5,8 +5,6 @@
  */
 package View;
 
-import Controllers.PdvController;
-import Controllers.ProdutosController;
 import ModelBeans.ModelTabela;
 import ModelBeans.ProdutoBeans;
 import ModelDao.ProdutoDAO;
@@ -29,7 +27,7 @@ public class CadProdutos extends javax.swing.JFrame {
      */
     public CadProdutos() {
         initComponents();
-        preencherTabelaUsuarios();
+        preencherTabelaProdutos();
     }
 
     /**
@@ -174,7 +172,7 @@ public class CadProdutos extends javax.swing.JFrame {
             produtoDao.cadastrar(produto);
         }        
         
-        preencherTabelaUsuarios();
+        preencherTabelaProdutos();
         
         jButtonEditar.setEnabled(false);
         jButtonSalvar.setEnabled(false);
@@ -223,7 +221,7 @@ public class CadProdutos extends javax.swing.JFrame {
         jButtonCancelar.setEnabled(false);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
    
-    public void preencherTabelaUsuarios() {
+    public void preencherTabelaProdutos() {
            
         String[] colunas = new String[]{"ID", "Descrição", "Estoque", "V. Venda"};
         

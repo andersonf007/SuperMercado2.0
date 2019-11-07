@@ -5,17 +5,33 @@
  */
 package View;
 
+import ModelBeans.ModelTabela;
+import ModelBeans.ProdutoBeans;
+import ModelDao.ProdutoDAO;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+
 /**
  *
  * @author anderson
  */
 public class Estoque extends javax.swing.JFrame {
 
+    ProdutoDAO produtoDao = new ProdutoDAO();
+    ProdutoBeans produtoBeans = new ProdutoBeans();
+    ArrayList<ProdutoBeans> ListProdutoBeans = new ArrayList<ProdutoBeans>();
+    ArrayList dados = new ArrayList();
+    int codigo;
+    String descricao;
+    boolean ativo;
+    double estoque, valorCusto, valorVenda,estoqueAlterado;
     /**
      * Creates new form Estoque
      */
     public Estoque() {
         initComponents();
+        preencherTabelaUsuarios();
     }
 
     /**
@@ -27,22 +43,152 @@ public class Estoque extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableProdutosAlteracaoEstoque = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jCheckBoxSaida = new javax.swing.JCheckBox();
+        jCheckBoxEntrada = new javax.swing.JCheckBox();
+        jLabel3 = new javax.swing.JLabel();
+        jTextFieldEstoque = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(null);
 
-        pack();
+        jTableProdutosAlteracaoEstoque.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jTableProdutosAlteracaoEstoque.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableProdutosAlteracaoEstoqueMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTableProdutosAlteracaoEstoque);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(205, 21, 320, 280);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Estoque:");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(60, 200, 80, 40);
+
+        jCheckBoxSaida.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jCheckBoxSaida.setText("Saida");
+        getContentPane().add(jCheckBoxSaida);
+        jCheckBoxSaida.setBounds(40, 120, 110, 50);
+
+        jCheckBoxEntrada.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jCheckBoxEntrada.setSelected(true);
+        jCheckBoxEntrada.setText("Entrada");
+        getContentPane().add(jCheckBoxEntrada);
+        jCheckBoxEntrada.setBounds(40, 60, 110, 50);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("Tipo de Movimentação");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(10, 20, 179, 40);
+
+        jTextFieldEstoque.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldEstoqueKeyPressed(evt);
+            }
+        });
+        getContentPane().add(jTextFieldEstoque);
+        jTextFieldEstoque.setBounds(30, 240, 130, 50);
+
+        jLabel4.setText("Precione ENTER para confirmar as alterações");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(10, 330, 270, 20);
+
+        jLabel5.setText("Com o campo de estoque selecionado");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(10, 310, 230, 14);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_telaprincipal2.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(-40, -40, 660, 460);
+
+        setSize(new java.awt.Dimension(551, 400));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTableProdutosAlteracaoEstoqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProdutosAlteracaoEstoqueMouseClicked
+        codigo = Integer.parseInt(""+jTableProdutosAlteracaoEstoque.getValueAt(jTableProdutosAlteracaoEstoque.getSelectedRow(), 0));
+        ListProdutoBeans.clear(); //limpa o arrray list
+        ListProdutoBeans = produtoDao.busca();
+        
+        for(int i = 0; i < ListProdutoBeans.size(); i++){
+            if(ListProdutoBeans.get(i).getId() == codigo){
+                descricao = ListProdutoBeans.get(i).getNome();
+                estoque = ListProdutoBeans.get(i).getEstoque();
+                valorCusto = ListProdutoBeans.get(i).getValorCusto();
+                valorVenda = ListProdutoBeans.get(i).getValorVenda();
+                ativo = ListProdutoBeans.get(i).getAtivo();
+            }
+        }
+    }//GEN-LAST:event_jTableProdutosAlteracaoEstoqueMouseClicked
+
+    private void jTextFieldEstoqueKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldEstoqueKeyPressed
+        if(evt.getKeyCode() == 10){
+            if(jCheckBoxEntrada.isSelected() && jCheckBoxSaida.isSelected()){
+                JOptionPane.showMessageDialog(null, "Marque apenas um tipo de movimentação por vez!");
+            }else{
+                if(jCheckBoxEntrada.isSelected()){
+                    estoqueAlterado = estoque + Double.parseDouble(jTextFieldEstoque.getText());
+                    ProdutoBeans produto = new ProdutoBeans(descricao,codigo, estoqueAlterado, ativo, valorCusto, valorVenda);
+                    produtoDao.editar(produto);
+                }else{
+                    estoqueAlterado = estoque - Double.parseDouble(jTextFieldEstoque.getText());
+                    ProdutoBeans produto = new ProdutoBeans(descricao,codigo, estoqueAlterado, ativo, valorCusto, valorVenda);
+                    produtoDao.editar(produto);
+                }    
+                preencherTabelaUsuarios();
+            }           
+        }
+    }//GEN-LAST:event_jTextFieldEstoqueKeyPressed
+
+    public void preencherTabelaUsuarios() {
+           
+        String[] colunas = new String[]{"ID", "Descrição", "Estoque"};
+        
+        try {
+            dados.clear();
+            ListProdutoBeans.clear(); //limpa o arrray list
+            ListProdutoBeans = produtoDao.busca();           
+          
+            for(int i = 0; i < ListProdutoBeans.size(); i++){
+                if(ListProdutoBeans.get(i).getAtivo()){
+                    dados.add(new Object[]{ListProdutoBeans.get(i).getId(),ListProdutoBeans.get(i).getNome(), ListProdutoBeans.get(i).getEstoque()});
+                }
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "nao foi possivel baixar a tabela de preencimento das pessoas\n" + ex);
+        }
+        ModelTabela modelo = new ModelTabela(dados, colunas);
+        jTableProdutosAlteracaoEstoque.setModel(modelo);
+        jTableProdutosAlteracaoEstoque.getColumnModel().getColumn(0).setPreferredWidth(35);
+        jTableProdutosAlteracaoEstoque.getColumnModel().getColumn(0).setResizable(false);
+        jTableProdutosAlteracaoEstoque.getColumnModel().getColumn(1).setPreferredWidth(219);
+        jTableProdutosAlteracaoEstoque.getColumnModel().getColumn(1).setResizable(false);
+        jTableProdutosAlteracaoEstoque.getColumnModel().getColumn(2).setPreferredWidth(60);
+        jTableProdutosAlteracaoEstoque.getColumnModel().getColumn(2).setResizable(false);
+        jTableProdutosAlteracaoEstoque.getTableHeader().setReorderingAllowed(false);
+        jTableProdutosAlteracaoEstoque.setAutoResizeMode(jTableProdutosAlteracaoEstoque.AUTO_RESIZE_OFF);
+        jTableProdutosAlteracaoEstoque.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+    }
     /**
      * @param args the command line arguments
      */
@@ -79,5 +225,15 @@ public class Estoque extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox jCheckBoxEntrada;
+    private javax.swing.JCheckBox jCheckBoxSaida;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableProdutosAlteracaoEstoque;
+    private javax.swing.JTextField jTextFieldEstoque;
     // End of variables declaration//GEN-END:variables
 }
