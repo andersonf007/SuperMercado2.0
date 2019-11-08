@@ -11,6 +11,7 @@ import Controllers.ProdutosController;
 import ModelBeans.ModelTabela;
 import ModelBeans.PessoaBeans;
 import ModelBeans.ProdutoBeans;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -22,7 +23,9 @@ import javax.swing.ListSelectionModel;
 public class PDV extends javax.swing.JFrame {
 
     private static PDV pdv;
-    String descricao, id, valor, quantidade;
+    String descricao;
+    int id;
+    double valorTotal, valorUnitario, quantidade;
     ArrayList lista = new ArrayList();  
     double total =0;
     
@@ -159,12 +162,13 @@ public class PDV extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void receberProduto(ProdutoBeans produtoBeans){   
-        jTextFieldCodigo.setText(Double.toString(produtoBeans.getId()));
+        jTextFieldCodigo.setText(Integer.toString(produtoBeans.getId()));
         jLabelNomeProduto.setText(produtoBeans.getNome());
         jTextFieldValorUnitario.setText(Double.toString(produtoBeans.getValorVenda()));
         jTextFieldQuantidade.setText(Integer.toString(1));
         jTextFieldQuantidade.setEnabled(true);
-        jTextFieldValorUnitario.setEnabled(true);        
+        jTextFieldValorUnitario.setEnabled(true);    
+        jTextFieldQuantidade.requestFocus();
         getContentPane().repaint();   
     }
     
@@ -174,7 +178,7 @@ public class PDV extends javax.swing.JFrame {
     }
     
     private void jTextFieldCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCodigoKeyPressed
-        if(evt.getKeyCode() == 127){
+        if(evt.getKeyCode() == 113){
             ProdutosController.abrirListagemProdutos();
         }
     }//GEN-LAST:event_jTextFieldCodigoKeyPressed
@@ -184,15 +188,13 @@ public class PDV extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
 
     private void jTextFieldQuantidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldQuantidadeKeyPressed
-        if(evt.getKeyCode() == 32){
+        if(evt.getKeyCode() == 10){
             if(jTextFieldCodigo.getText().isEmpty() || jTextFieldQuantidade.getText().isEmpty() || jTextFieldValorUnitario .getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Favor, preencha todos os campos \n ou selecione o campo codigo e aperte F2");
+                JOptionPane.showMessageDialog(null, "Favor, preencha todos os campos \n ou selecione o campo codigo e aperte F2");
             }else{
                 preencherTabela();
                 jTextFieldCodigo.setText("");
                 jLabelNomeProduto.setText("");
-                total += Double.parseDouble(jTextFieldValorUnitario.getText());
-                jLabelValorTotal.setText(Double.toString(total));
                 jTextFieldValorUnitario.setText("");
                 jTextFieldQuantidade.setText("");
                 jTextFieldCodigo.requestFocus();    
@@ -206,27 +208,35 @@ public class PDV extends javax.swing.JFrame {
     
     public void preencherTabela() {
            
-           id = jTextFieldCodigo.getText();
+           id = Integer.parseInt(jTextFieldCodigo.getText());
            descricao = jLabelNomeProduto.getText(); 
-           valor = jTextFieldValorUnitario.getText();
-           quantidade = jTextFieldQuantidade.getText();
-          
+           //try{
+           valorUnitario = Double.parseDouble(jTextFieldValorUnitario.getText());
+           quantidade = Double.parseDouble(jTextFieldQuantidade.getText());
+           valorTotal = valorUnitario * quantidade;
+           total += valorTotal;
+           jLabelValorTotal.setText(Double.toString(total));
+           //}catch(ArithmeticException ex){
+           //    JOptionPane.showMessageDialog(null, "Digite Os valores correspondentes ao valor unitário e quantidade corretamente! \n"+ex);
+           //}
            
-        String[] colunas = new String[]{"ID", "Descrição", "Quantidade", "Valor"};
-
-        lista.add(new Object[]{id, descricao, quantidade, valor});            
+        String[] colunas = new String[]{"ID", "Descrição","V. unitário", "Quantidade", "V. total"};
+        
+        lista.add(new Object[]{id, descricao,valorUnitario, quantidade,valorTotal });            
         
         ModelTabela modelo = new ModelTabela(lista, colunas);
 
         jTableListaDeProdutos.setModel(modelo);
-        jTableListaDeProdutos.getColumnModel().getColumn(0).setPreferredWidth(25);
+        jTableListaDeProdutos.getColumnModel().getColumn(0).setPreferredWidth(40);
         jTableListaDeProdutos.getColumnModel().getColumn(0).setResizable(false);
-        jTableListaDeProdutos.getColumnModel().getColumn(1).setPreferredWidth(300);
+        jTableListaDeProdutos.getColumnModel().getColumn(1).setPreferredWidth(203);
         jTableListaDeProdutos.getColumnModel().getColumn(1).setResizable(false);
-        jTableListaDeProdutos.getColumnModel().getColumn(2).setPreferredWidth(80);
+        jTableListaDeProdutos.getColumnModel().getColumn(2).setPreferredWidth(70);
         jTableListaDeProdutos.getColumnModel().getColumn(2).setResizable(false);
         jTableListaDeProdutos.getColumnModel().getColumn(3).setPreferredWidth(78);
         jTableListaDeProdutos.getColumnModel().getColumn(3).setResizable(false);
+        jTableListaDeProdutos.getColumnModel().getColumn(4).setPreferredWidth(70);
+        jTableListaDeProdutos.getColumnModel().getColumn(4).setResizable(false);
         jTableListaDeProdutos.getTableHeader().setReorderingAllowed(false);
         jTableListaDeProdutos.setAutoResizeMode(jTableListaDeProdutos.AUTO_RESIZE_OFF);
         jTableListaDeProdutos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

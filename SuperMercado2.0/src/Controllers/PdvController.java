@@ -25,9 +25,7 @@ public class PdvController {
     
     public static void RecebeInformacoesProduto(ProdutoBeans produtoBeans){
         pdv.receberProduto(produtoBeans);
-    }
-    
-    
+    }    
     
     public static void receberInformacoesPessoa(PessoaBeans pessoaBeans){
         pdv.receberPessoa(pessoaBeans);
