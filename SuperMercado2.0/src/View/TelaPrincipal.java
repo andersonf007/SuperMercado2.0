@@ -5,8 +5,8 @@
  */
 package View;
 
-import Controllers.CadPessoaController;
 import Controllers.PdvController;
+import Controllers.PessoaController;
 import Controllers.ProdutosController;
 
 /**
@@ -117,8 +117,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadPessoaActionPerformed
-        CadPessoaController cadPessoaController = new CadPessoaController();
-        cadPessoaController.abreCadastro();
+        PessoaController PessoaController = new PessoaController();
+        PessoaController.abreCadPessoa();
     }//GEN-LAST:event_jButtonCadPessoaActionPerformed
 
     private void jButtonPDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPDVActionPerformed

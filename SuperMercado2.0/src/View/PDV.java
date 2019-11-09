@@ -98,7 +98,7 @@ public class PDV extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(30, 440, 160, 40);
+        jLabel2.setBounds(50, 440, 160, 40);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel3.setText("Código:");
@@ -203,7 +203,7 @@ public class PDV extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldQuantidadeKeyPressed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        PessoaController.openBuscarPessoaFisica();
+        PessoaController.openBuscarPessoa();
     }//GEN-LAST:event_jLabel2MouseClicked
     
     public void preencherTabela() {
