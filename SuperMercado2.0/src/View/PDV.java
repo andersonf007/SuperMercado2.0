@@ -10,6 +10,8 @@ import Controllers.PessoaController;
 import Controllers.ProdutosController;
 import ModelBeans.ModelTabela;
 import ModelBeans.PessoaBeans;
+import ModelBeans.PessoaFisicaBeans;
+import ModelBeans.PessoaJuridicaBeans;
 import ModelBeans.ProdutoBeans;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ public class PDV extends javax.swing.JFrame {
 
     private static PDV pdv;
     String descricao;
-    int id;
+    int id, idCliente;
     double valorTotal, valorUnitario, quantidade;
     ArrayList lista = new ArrayList();  
     double total =0;
@@ -51,10 +53,12 @@ public class PDV extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableListaDeProdutos = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
-        jLabelNome1 = new javax.swing.JLabel();
+        jLabelCpfCnpj = new javax.swing.JLabel();
         jLabelValorTotal = new javax.swing.JLabel();
         jButtonConfirmar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabelNome = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -127,11 +131,11 @@ public class PDV extends javax.swing.JFrame {
         jScrollPane1.setBounds(270, 110, 470, 370);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("Nome:");
+        jLabel6.setText("CPF/CNPJ:");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(10, 500, 60, 20);
-        getContentPane().add(jLabelNome1);
-        jLabelNome1.setBounds(60, 500, 200, 20);
+        jLabel6.setBounds(10, 530, 70, 20);
+        getContentPane().add(jLabelCpfCnpj);
+        jLabelCpfCnpj.setBounds(80, 530, 200, 20);
 
         jLabelValorTotal.setBackground(new java.awt.Color(204, 255, 255));
         jLabelValorTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -153,6 +157,13 @@ public class PDV extends javax.swing.JFrame {
         getContentPane().add(jLabel7);
         jLabel7.setBounds(20, 300, 200, 50);
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("Nome:");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(10, 500, 60, 20);
+        getContentPane().add(jLabelNome);
+        jLabelNome.setBounds(60, 500, 200, 20);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_telaprincipal.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(-20, -60, 2060, 1300);
@@ -172,9 +183,17 @@ public class PDV extends javax.swing.JFrame {
         getContentPane().repaint();   
     }
     
-    public void receberPessoa(PessoaBeans pessoaBeans){
-        jLabelNome1.setText(pessoaBeans.getNome());
-        int idCliente = pessoaBeans.getCodigo();
+    public void receberPessoa(PessoaFisicaBeans pessoaFisicaBean,PessoaJuridicaBeans pessoaJuridicaBeans){
+        if(pessoaJuridicaBeans == null){
+            idCliente = pessoaFisicaBean.getCodigo();
+            jLabelNome.setText(pessoaFisicaBean.getNome());
+            jLabelCpfCnpj.setText(pessoaFisicaBean.getCpf());
+        }else{
+            idCliente = pessoaJuridicaBeans.getCodigo();
+            jLabelNome.setText(pessoaJuridicaBeans.getNome());
+            jLabelCpfCnpj.setText(pessoaJuridicaBeans.getCnpj());
+        } 
+        
     }
     
     private void jTextFieldCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCodigoKeyPressed
@@ -287,7 +306,9 @@ public class PDV extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabelNome1;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabelCpfCnpj;
+    private javax.swing.JLabel jLabelNome;
     private javax.swing.JLabel jLabelNomeProduto;
     private javax.swing.JLabel jLabelValorTotal;
     private javax.swing.JScrollPane jScrollPane1;

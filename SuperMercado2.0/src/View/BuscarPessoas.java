@@ -29,6 +29,7 @@ public class BuscarPessoas extends javax.swing.JFrame {
     ArrayList<PessoaFisicaBeans> ListPessoaFisicaBeans = new ArrayList<PessoaFisicaBeans>();
     ArrayList<PessoaJuridicaBeans> ListPessoaJuridicaBeans = new ArrayList<PessoaJuridicaBeans>();
     ArrayList dados = new ArrayList();
+    PdvController pdvController = new PdvController();
     /**
      * Creates new form BuscarPessoas
      */
@@ -73,10 +74,40 @@ public class BuscarPessoas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTablePessoasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePessoasMouseClicked
-        String nome_pessoa = ""+jTablePessoas.getValueAt(jTablePessoas.getSelectedRow(), 1);
-        //pessoaBeans.setPesquisa(nome_pessoa);
-        //PessoaBeans pessoaBeansInstancia = pessoaDAO.buscarPessoa(pessoaBeans)
-        //PdvController.receberInformacoesPessoa(pessoaBeansInstancia);
+        int codigo = Integer.parseInt(""+jTablePessoas.getValueAt(jTablePessoas.getSelectedRow(), 0));
+        String CnpjCpf = ""+jTablePessoas.getValueAt(jTablePessoas.getSelectedRow(), 2);
+        ListPessoaFisicaBeans = pessoaFisicaDAO.buscar();
+        ListPessoaJuridicaBeans = pessoaJuridicaDAO.buscar();
+        for(int i = 0; i < ListPessoaFisicaBeans.size(); i++){
+            if(codigo == ListPessoaFisicaBeans.get(i).getCodigo() && CnpjCpf.equals(ListPessoaFisicaBeans.get(i).getCpf())){
+                pessoaFisicaBeans.setCodigo(codigo);
+                pessoaFisicaBeans.setNome(ListPessoaFisicaBeans.get(i).getNome());
+                pessoaFisicaBeans.setRg(ListPessoaFisicaBeans.get(i).getRg());
+                pessoaFisicaBeans.setSexo(ListPessoaFisicaBeans.get(i).getSexo());
+                pessoaFisicaBeans.setCpf(CnpjCpf);
+                pessoaFisicaBeans.setTelefone(ListPessoaFisicaBeans.get(i).getTelefone());
+                pessoaFisicaBeans.setCodEndereco(ListPessoaFisicaBeans.get(i).getCodEndereco());
+                pessoaFisicaBeans.setAtivo(ListPessoaFisicaBeans.get(i).getAtivo());
+                PdvController.receberInformacoesPessoa(pessoaFisicaBeans,null);
+                this.dispose();
+            }
+        }
+        for(int i = 0; i < ListPessoaJuridicaBeans.size(); i++){
+            if(codigo == ListPessoaJuridicaBeans.get(i).getCodigo() && CnpjCpf.equals(ListPessoaJuridicaBeans.get(i).getCnpj())){
+                pessoaJuridicaBeans.setCodigo(codigo);
+                pessoaJuridicaBeans.setNome(ListPessoaJuridicaBeans.get(i).getNome());
+                pessoaJuridicaBeans.setIe(ListPessoaJuridicaBeans.get(i).getIe());
+                pessoaJuridicaBeans.setCnpj(CnpjCpf);
+                pessoaJuridicaBeans.setTelefone(ListPessoaJuridicaBeans.get(i).getTelefone());
+                pessoaJuridicaBeans.setCodEndereco(ListPessoaJuridicaBeans.get(i).getCodEndereco());
+                pessoaJuridicaBeans.setAtivo(ListPessoaJuridicaBeans.get(i).getAtivo());
+                PdvController.receberInformacoesPessoa(null,pessoaJuridicaBeans);
+                this.dispose();
+            }
+        }
+        
+
+
     }//GEN-LAST:event_jTablePessoasMouseClicked
 
     public void preencherTabela() {

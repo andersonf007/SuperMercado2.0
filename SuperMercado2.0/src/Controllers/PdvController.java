@@ -6,6 +6,8 @@
 package Controllers;
 
 import ModelBeans.PessoaBeans;
+import ModelBeans.PessoaFisicaBeans;
+import ModelBeans.PessoaJuridicaBeans;
 import ModelBeans.ProdutoBeans;
 import View.BuscarProdutos;
 import View.PDV;
@@ -27,7 +29,9 @@ public class PdvController {
         pdv.receberProduto(produtoBeans);
     }    
     
-    public static void receberInformacoesPessoa(PessoaBeans pessoaBeans){
-        pdv.receberPessoa(pessoaBeans);
+    public static void receberInformacoesPessoa(PessoaFisicaBeans pessoaFisicaBean,PessoaJuridicaBeans pessoaJuridicaBeans){
+        pdv.receberPessoa(pessoaFisicaBean,pessoaJuridicaBeans);
     }
+    
+    
 }
