@@ -23,7 +23,12 @@ public class UsuarioDAO extends CadastroUsuarioBeans{
         try {
             FileOutputStream arquivo = new FileOutputStream("usuario.txt",true);
             PrintWriter pr = new PrintWriter(arquivo);
-            pr.println(object.getId()+"#"+object.getNome()+"#"+object.getLogin()+"#"+object.getSenha()+"#"+object.getAdm()+"#"+object.getAtivo());
+            pr.println(object.getId()
+                        +"#"+object.getNome()
+                        +"#"+object.getLogin()
+                        +"#"+object.getSenha()
+                        +"#"+object.getAdm()
+                        +"#"+object.getAtivo());
             pr.close();
             arquivo.close();
         } catch (Exception ex) {
