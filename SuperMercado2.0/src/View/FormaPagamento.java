@@ -27,22 +27,118 @@ public class FormaPagamento extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxDescontoAcrescimo = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jTextFieldDescontoAcrescimo = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jLabelTotalAPagar = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabelTotalPago = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabelTroco = new javax.swing.JLabel();
+        jComboBoxFormaPagamento = new javax.swing.JComboBox<>();
+        jTextFieldValorPago1 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dinheiro", "Cartão Debito", "Cartão Credito", " " }));
-        getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(30, 40, 140, 50);
+        jComboBoxDescontoAcrescimo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jComboBoxDescontoAcrescimo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Desconto", "Acrescimo" }));
+        getContentPane().add(jComboBoxDescontoAcrescimo);
+        jComboBoxDescontoAcrescimo.setBounds(30, 40, 160, 40);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Troco:");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(460, 190, 60, 22);
+
+        jTextFieldDescontoAcrescimo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jTextFieldDescontoAcrescimo.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextFieldDescontoAcrescimo.setText("0.00");
+        getContentPane().add(jTextFieldDescontoAcrescimo);
+        jTextFieldDescontoAcrescimo.setBounds(210, 40, 110, 40);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setLayout(null);
+
+        jLabelTotalAPagar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabelTotalAPagar.setForeground(new java.awt.Color(0, 0, 255));
+        jLabelTotalAPagar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(jLabelTotalAPagar);
+        jLabelTotalAPagar.setBounds(30, 10, 130, 30);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(390, 40, 190, 50);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("Total à pagar:");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(430, 10, 130, 22);
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel2.setLayout(null);
+
+        jLabelTotalPago.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabelTotalPago.setForeground(new java.awt.Color(0, 0, 255));
+        jLabelTotalPago.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel2.add(jLabelTotalPago);
+        jLabelTotalPago.setBounds(30, 10, 130, 30);
+
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(390, 130, 190, 50);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("Total pago:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(450, 100, 110, 22);
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel3.setLayout(null);
+
+        jLabelTroco.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabelTroco.setForeground(new java.awt.Color(0, 0, 255));
+        jLabelTroco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel3.add(jLabelTroco);
+        jLabelTroco.setBounds(30, 10, 130, 30);
+
+        getContentPane().add(jPanel3);
+        jPanel3.setBounds(390, 220, 190, 50);
+
+        jComboBoxFormaPagamento.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jComboBoxFormaPagamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dinheiro", "Cartão Debito", "Cartão Credito", " " }));
+        getContentPane().add(jComboBoxFormaPagamento);
+        jComboBoxFormaPagamento.setBounds(30, 130, 160, 40);
+
+        jTextFieldValorPago1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jTextFieldValorPago1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        getContentPane().add(jTextFieldValorPago1);
+        jTextFieldValorPago1.setBounds(210, 130, 110, 40);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Logo Fenix 2 .png"))); // NOI18N
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(-40, 190, 380, 283);
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton1.setText("Cancelar");
+        getContentPane().add(jButton1);
+        jButton1.setBounds(470, 420, 100, 40);
+
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton2.setText("Finalizar");
+        getContentPane().add(jButton2);
+        jButton2.setBounds(360, 420, 100, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_telaprincipal2.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(-50, -10, 750, 500);
+        jLabel1.setBounds(-50, -10, 750, 490);
 
         setSize(new java.awt.Dimension(611, 513));
         setLocationRelativeTo(null);
@@ -84,7 +180,22 @@ public class FormaPagamento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBoxDescontoAcrescimo;
+    private javax.swing.JComboBox<String> jComboBoxFormaPagamento;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabelTotalAPagar;
+    private javax.swing.JLabel jLabelTotalPago;
+    private javax.swing.JLabel jLabelTroco;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextField jTextFieldDescontoAcrescimo;
+    private javax.swing.JTextField jTextFieldValorPago1;
     // End of variables declaration//GEN-END:variables
 }

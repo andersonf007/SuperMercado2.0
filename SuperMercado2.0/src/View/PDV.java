@@ -5,15 +5,12 @@
  */
 package View;
 
-import Controllers.PdvController;
 import Controllers.PessoaController;
 import Controllers.ProdutosController;
 import ModelBeans.ModelTabela;
-import ModelBeans.PessoaBeans;
 import ModelBeans.PessoaFisicaBeans;
 import ModelBeans.PessoaJuridicaBeans;
 import ModelBeans.ProdutoBeans;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -65,7 +62,7 @@ public class PDV extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jLabelNomeProduto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabelNomeProduto.setText("NOME DO PRODUTO");
+        jLabelNomeProduto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         getContentPane().add(jLabelNomeProduto);
         jLabelNomeProduto.setBounds(220, 32, 330, 40);
 
@@ -203,7 +200,7 @@ public class PDV extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldCodigoKeyPressed
 
     private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
 
     private void jTextFieldQuantidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldQuantidadeKeyPressed

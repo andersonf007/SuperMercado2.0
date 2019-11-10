@@ -4,20 +4,20 @@
  * and open the template in the editor.
  */
 package ModelBeans;
-import java.util.Date;
 
 public class VendaBeans {
     
     private int numero;
-    private Date dataVenda;
     private double valor;
-    private int pesquisa;
+    private int idProduto;
 
-    public VendaBeans(int numero, Date dataVenda, double valor) {
+    public VendaBeans(int numero, double valor, int idProduto) {
         this.numero = numero;
-        this.dataVenda = dataVenda;
         this.valor = valor;
-    } 
+        this.idProduto = idProduto;
+    }
+
+    public VendaBeans() {}
   
     /**
      * @return the numero
@@ -31,20 +31,6 @@ public class VendaBeans {
      */
     public void setNumero(int numero) {
         this.numero = numero;
-    }
-
-    /**
-     * @return the dataVenda
-     */
-    public Date getDataVenda() {
-        return dataVenda;
-    }
-
-    /**
-     * @param dataVenda the dataVenda to set
-     */
-    public void setDataVenda(Date dataVenda) {
-        this.dataVenda = dataVenda;
     }
 
     /**
