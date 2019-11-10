@@ -11,5 +11,5 @@ package ModelBeans;
  */
 public abstract class CadastroPDV {
     
-    public abstract void cadastrar(ArrayList<>)
+    //public abstract void cadastrar(ArrayList<>)
 }

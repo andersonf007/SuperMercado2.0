@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controllers.FormaPagamentoController;
 import Controllers.PessoaController;
 import Controllers.ProdutosController;
 import ModelBeans.ModelTabela;
@@ -21,7 +22,7 @@ import javax.swing.ListSelectionModel;
  */
 public class PDV extends javax.swing.JFrame {
 
-    private static PDV pdv;
+    FormaPagamentoController formaPagamentoController = new FormaPagamentoController();
     String descricao;
     int id, idCliente;
     double valorTotal, valorUnitario, quantidade;
@@ -200,7 +201,8 @@ public class PDV extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldCodigoKeyPressed
 
     private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
-        
+        formaPagamentoController.abrirFormaPagamento();
+        formaPagamentoController.enviarInformacoesDoPdv(jLabelValorTotal.getText());
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
 
     private void jTextFieldQuantidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldQuantidadeKeyPressed

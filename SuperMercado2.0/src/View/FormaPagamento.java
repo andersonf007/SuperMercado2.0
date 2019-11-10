@@ -5,19 +5,27 @@
  */
 package View;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author anderson
  */
 public class FormaPagamento extends javax.swing.JFrame {
 
+    double valorDescontro,valorTotal,novoValor,valorAcresmico,troco,valorTotalFixo;
     /**
      * Creates new form FormaPagamento
      */
     public FormaPagamento() {
         initComponents();
+        jTextFieldValorPago.requestFocus();
     }
 
+    public void receberInformacoesPDV(String valorTotal){
+        jLabelTotalAPagar.setText(valorTotal);
+        valorTotalFixo = Double.parseDouble(valorTotal);        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,7 +47,7 @@ public class FormaPagamento extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabelTroco = new javax.swing.JLabel();
         jComboBoxFormaPagamento = new javax.swing.JComboBox<>();
-        jTextFieldValorPago1 = new javax.swing.JTextField();
+        jTextFieldValorPago = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -62,6 +70,11 @@ public class FormaPagamento extends javax.swing.JFrame {
         jTextFieldDescontoAcrescimo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jTextFieldDescontoAcrescimo.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextFieldDescontoAcrescimo.setText("0.00");
+        jTextFieldDescontoAcrescimo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldDescontoAcrescimoKeyPressed(evt);
+            }
+        });
         getContentPane().add(jTextFieldDescontoAcrescimo);
         jTextFieldDescontoAcrescimo.setBounds(210, 40, 110, 40);
 
@@ -116,10 +129,15 @@ public class FormaPagamento extends javax.swing.JFrame {
         getContentPane().add(jComboBoxFormaPagamento);
         jComboBoxFormaPagamento.setBounds(30, 130, 160, 40);
 
-        jTextFieldValorPago1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jTextFieldValorPago1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        getContentPane().add(jTextFieldValorPago1);
-        jTextFieldValorPago1.setBounds(210, 130, 110, 40);
+        jTextFieldValorPago.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jTextFieldValorPago.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextFieldValorPago.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldValorPagoKeyPressed(evt);
+            }
+        });
+        getContentPane().add(jTextFieldValorPago);
+        jTextFieldValorPago.setBounds(210, 130, 110, 40);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Logo Fenix 2 .png"))); // NOI18N
         getContentPane().add(jLabel5);
@@ -127,6 +145,11 @@ public class FormaPagamento extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
         jButton1.setBounds(470, 420, 100, 40);
 
@@ -143,6 +166,81 @@ public class FormaPagamento extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(611, 513));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextFieldDescontoAcrescimoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDescontoAcrescimoKeyPressed
+        if(evt.getKeyCode() == 10){
+            if(jLabelTotalPago.getText().isEmpty()){//verifica se ja foi preenchido o valor pago pelo cliente para poder fazer validacoes de pagamento
+                if(jComboBoxDescontoAcrescimo.getSelectedItem().equals("Desconto")){
+                    valorDescontro = Double.parseDouble(jTextFieldDescontoAcrescimo.getText());
+                    valorTotal = Double.parseDouble(jLabelTotalAPagar.getText());
+                    novoValor = valorTotal - valorDescontro;
+                    jLabelTotalAPagar.setText(Double.toString(novoValor));
+                }else{
+                    valorAcresmico = Double.parseDouble(jTextFieldDescontoAcrescimo.getText());
+                    valorTotal = Double.parseDouble(jLabelTotalAPagar.getText());
+                    novoValor = valorTotal + valorAcresmico;
+                    jLabelTotalAPagar.setText(Double.toString(novoValor));
+                } 
+                jTextFieldValorPago.requestFocus();
+            }else{//se entrou aqui significa que foi informado o valor pago mas quiseram altrar o desconto ou acrescimo
+                if(jComboBoxDescontoAcrescimo.getSelectedItem().equals("Desconto")){
+                    valorDescontro = Double.parseDouble(jTextFieldDescontoAcrescimo.getText());
+                    novoValor = valorTotalFixo - valorDescontro;
+                    jLabelTotalAPagar.setText(Double.toString(novoValor));
+                    //altera os labels com as novas informacoes apois o novo desconto
+                    if(Double.parseDouble(jTextFieldValorPago.getText()) < Double.parseDouble(jLabelTotalAPagar.getText())){
+                        JOptionPane.showMessageDialog(null, "Valor informado é inferior a venda. Cuidado com o desconto!");
+                        jTextFieldValorPago.requestFocus();
+                        jLabelTotalPago.setText("");
+                        jLabelTroco.setText("");
+                    }else{
+                        jLabelTotalPago.setText(jTextFieldValorPago.getText());
+                        troco = Double.parseDouble(jLabelTotalPago.getText()) - Double.parseDouble(jLabelTotalAPagar.getText());
+                        jLabelTroco.setText(Double.toString(troco));
+                    }                    
+                }else{
+                    valorAcresmico = Double.parseDouble(jTextFieldDescontoAcrescimo.getText());
+                    novoValor = valorTotalFixo + valorAcresmico;
+                    jLabelTotalAPagar.setText(Double.toString(novoValor));
+                    //altera os labels com as novas informacoes apois o novo acrescimo
+                    if(Double.parseDouble(jTextFieldValorPago.getText()) < Double.parseDouble(jLabelTotalAPagar.getText())){
+                        JOptionPane.showMessageDialog(null, "Valor informado é inferior a venda. Cuidade com o acrescimo!");
+                        jTextFieldValorPago.requestFocus();
+                        jLabelTotalPago.setText("");
+                        jLabelTroco.setText("");
+                    }else{
+                        jLabelTotalPago.setText(jTextFieldValorPago.getText());
+                        troco = Double.parseDouble(jLabelTotalPago.getText()) + Double.parseDouble(jLabelTotalAPagar.getText());
+                        jLabelTroco.setText(Double.toString(troco));
+                    }
+                } 
+            }            
+        }
+    }//GEN-LAST:event_jTextFieldDescontoAcrescimoKeyPressed
+
+    private void jTextFieldValorPagoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldValorPagoKeyPressed
+        if(evt.getKeyCode() == 10){
+            if(Double.parseDouble(jTextFieldValorPago.getText()) < Double.parseDouble(jLabelTotalAPagar.getText())){
+                JOptionPane.showMessageDialog(null, "Valor informado é inferior a venda");
+                jTextFieldValorPago.requestFocus();
+                jLabelTotalPago.setText("");
+                jLabelTroco.setText("");
+            }else{
+                jLabelTotalPago.setText(jTextFieldValorPago.getText());
+                troco = Double.parseDouble(jLabelTotalPago.getText()) - Double.parseDouble(jLabelTotalAPagar.getText());
+                jLabelTroco.setText(Double.toString(troco));
+            }
+        }
+    }//GEN-LAST:event_jTextFieldValorPagoKeyPressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jTextFieldDescontoAcrescimo.setText("0.00");
+        jTextFieldValorPago.setText("");
+        jLabelTotalAPagar.setText("");
+        jLabelTotalPago.setText("");
+        jLabelTroco.setText("");
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,6 +294,6 @@ public class FormaPagamento extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTextFieldDescontoAcrescimo;
-    private javax.swing.JTextField jTextFieldValorPago1;
+    private javax.swing.JTextField jTextFieldValorPago;
     // End of variables declaration//GEN-END:variables
 }

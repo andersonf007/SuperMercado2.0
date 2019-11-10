@@ -5,11 +5,9 @@
  */
 package Controllers;
 
-import ModelBeans.PessoaBeans;
 import ModelBeans.PessoaFisicaBeans;
 import ModelBeans.PessoaJuridicaBeans;
 import ModelBeans.ProdutoBeans;
-import View.BuscarProdutos;
 import View.PDV;
 
 /**
