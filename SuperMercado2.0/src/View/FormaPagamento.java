@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controllers.PdvController;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,19 +14,8 @@ import javax.swing.JOptionPane;
  */
 public class FormaPagamento extends javax.swing.JFrame {
 
+    PdvController pdvController = new PdvController();
     double valorDescontro,valorTotal,novoValor,valorAcresmico,troco,valorTotalFixo;
-    /**
-     * Creates new form FormaPagamento
-     */
-    public FormaPagamento() {
-        initComponents();
-        jTextFieldValorPago.requestFocus();
-    }
-
-    public void receberInformacoesPDV(String valorTotal){
-        jLabelTotalAPagar.setText(valorTotal);
-        valorTotalFixo = Double.parseDouble(valorTotal);        
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,8 +39,8 @@ public class FormaPagamento extends javax.swing.JFrame {
         jComboBoxFormaPagamento = new javax.swing.JComboBox<>();
         jTextFieldValorPago = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
+        jButtonFinalizar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -143,25 +133,25 @@ public class FormaPagamento extends javax.swing.JFrame {
         getContentPane().add(jLabel5);
         jLabel5.setBounds(-40, 190, 380, 283);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton1.setText("Cancelar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonCancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(470, 420, 100, 40);
+        getContentPane().add(jButtonCancelar);
+        jButtonCancelar.setBounds(470, 420, 100, 40);
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton2.setText("Finalizar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonFinalizar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonFinalizar.setText("Finalizar");
+        jButtonFinalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonFinalizarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(360, 420, 100, 40);
+        getContentPane().add(jButtonFinalizar);
+        jButtonFinalizar.setBounds(360, 420, 100, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_telaprincipal2.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -172,6 +162,16 @@ public class FormaPagamento extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public FormaPagamento() {
+        initComponents();
+        jTextFieldValorPago.requestFocus();
+    }
+
+    public void receberInformacoesPDV(String valorTotal){
+        jLabelTotalAPagar.setText(valorTotal);
+        valorTotalFixo = Double.parseDouble(valorTotal);        
+    }
+    
     private void jTextFieldDescontoAcrescimoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDescontoAcrescimoKeyPressed
         if(evt.getKeyCode() == 10){
             if(jLabelTotalPago.getText().isEmpty()){//verifica se ja foi preenchido o valor pago pelo cliente para poder fazer validacoes de pagamento
@@ -238,23 +238,23 @@ public class FormaPagamento extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextFieldValorPagoKeyPressed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         jTextFieldDescontoAcrescimo.setText("0.00");
         jTextFieldValorPago.setText("");
         jLabelTotalAPagar.setText("");
         jLabelTotalPago.setText("");
         jLabelTroco.setText("");
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarActionPerformed
         if(Double.parseDouble(jLabelTotalAPagar.getText()) <= Double.parseDouble(jTextFieldValorPago.getText())){
-            
+            PdvController.receberConfirmacaoPagamento();
         }else{
             JOptionPane.showMessageDialog(null, "Informe o valor para pagamento corretamente!");
             jTextFieldValorPago.requestFocus();
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonFinalizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -292,8 +292,8 @@ public class FormaPagamento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonFinalizar;
     private javax.swing.JComboBox<String> jComboBoxDescontoAcrescimo;
     private javax.swing.JComboBox<String> jComboBoxFormaPagamento;
     private javax.swing.JLabel jLabel1;
