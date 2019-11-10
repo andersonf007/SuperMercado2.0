@@ -249,7 +249,8 @@ public class FormaPagamento extends javax.swing.JFrame {
 
     private void jButtonFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarActionPerformed
         if(Double.parseDouble(jLabelTotalAPagar.getText()) <= Double.parseDouble(jTextFieldValorPago.getText())){
-            PdvController.receberConfirmacaoPagamento();
+            PdvController.receberConfirmacaoPagamento(""+jComboBoxFormaPagamento.getSelectedItem(),""+jComboBoxDescontoAcrescimo.getSelectedItem(),Double.parseDouble(jTextFieldDescontoAcrescimo.getText()));
+            this.dispose();
         }else{
             JOptionPane.showMessageDialog(null, "Informe o valor para pagamento corretamente!");
             jTextFieldValorPago.requestFocus();

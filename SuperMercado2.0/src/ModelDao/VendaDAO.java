@@ -32,7 +32,10 @@ public class VendaDAO extends CadastroVenda{
                     +"#"+object.getIdCliente()
                     +"#"+object.getValor()
                     +"#"+object.getValorAcrescimo()
-                    +"#"+object.getValorDescontro());
+                    +"#"+object.getValorDescontro()
+                    +"#"+object.getFormaPagamento()
+                    +"#"+object.getTipoPessoa());
+                    
             pr.close();
             arquivo.close();
         } catch (Exception ex) {
@@ -58,6 +61,8 @@ public class VendaDAO extends CadastroVenda{
                         vendaBeans.setValor(Double.parseDouble(palavras[2]));
                         vendaBeans.setValorAcrescimo(Double.parseDouble(palavras[3]));
                         vendaBeans.setValorDescontro(Double.parseDouble(palavras[4]));
+                        vendaBeans.setFormaPagamento(palavras[5]);
+                        vendaBeans.setTipoPessoa(palavras[6]);
                         ListVendaBeans.add(vendaBeans);
                     }                    
             }while(linha != null);

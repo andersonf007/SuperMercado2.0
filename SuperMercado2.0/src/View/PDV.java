@@ -12,6 +12,10 @@ import ModelBeans.ModelTabela;
 import ModelBeans.PessoaFisicaBeans;
 import ModelBeans.PessoaJuridicaBeans;
 import ModelBeans.ProdutoBeans;
+import ModelBeans.ProdutosVendaBeans;
+import ModelBeans.VendaBeans;
+import ModelDao.ProdutosVendaDAO;
+import ModelDao.VendaDAO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -23,8 +27,13 @@ import javax.swing.ListSelectionModel;
 public class PDV extends javax.swing.JFrame {
 
     FormaPagamentoController formaPagamentoController = new FormaPagamentoController();
-    String descricao;
+    VendaBeans vendaBeans = new VendaBeans();
+    VendaDAO vendaDAO = new VendaDAO();
+    ProdutosVendaBeans produtosVendaBeans = new ProdutosVendaBeans();
+    ProdutosVendaDAO produtoVendDAO = new ProdutosVendaDAO();
+    String descricao, tipoPessoa = "";
     int id, idCliente;
+    //variaveis sendo utilizadas dentro do metodo preenchertabela
     double valorTotal, valorUnitario, quantidade;
     ArrayList lista = new ArrayList();  
     double total =0;
@@ -77,10 +86,12 @@ public class PDV extends javax.swing.JFrame {
         jTextFieldCodigo.setBounds(20, 150, 240, 50);
 
         jTextFieldValorUnitario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTextFieldValorUnitario.setEnabled(false);
         getContentPane().add(jTextFieldValorUnitario);
         jTextFieldValorUnitario.setBounds(20, 250, 240, 50);
 
         jTextFieldQuantidade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTextFieldQuantidade.setEnabled(false);
         jTextFieldQuantidade.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextFieldQuantidadeKeyPressed(evt);
@@ -142,6 +153,7 @@ public class PDV extends javax.swing.JFrame {
 
         jButtonConfirmar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButtonConfirmar.setText("Confirmar");
+        jButtonConfirmar.setEnabled(false);
         jButtonConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonConfirmarActionPerformed(evt);
@@ -170,8 +182,52 @@ public class PDV extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void confirmacaoPagamento(){
+    public void confirmacaoPagamento(String formaDePagamento,String AcrescimoDesconto,double valorAcrescimoDesconto){
+        int quantidadeRegistros = vendaDAO.confereQuantidadeDeVendasRegistradas();
+        id = ++quantidadeRegistros;
+        vendaBeans.setId(id);
+        vendaBeans.setIdCliente(idCliente);
+        vendaBeans.setTipoPessoa(tipoPessoa);
+        vendaBeans.setValor(total);
+        if(valorAcrescimoDesconto != 0.00){
+            if(AcrescimoDesconto.equals("Desconto")){
+                vendaBeans.setValorDescontro(valorAcrescimoDesconto);
+                vendaBeans.setValorAcrescimo(0);
+            }else{
+                vendaBeans.setValorAcrescimo(valorAcrescimoDesconto);
+                vendaBeans.setValorDescontro(0);
+            }    
+        }else{
+            vendaBeans.setValorAcrescimo(0);
+            vendaBeans.setValorDescontro(0);
+        }      
+        vendaBeans.setFormaPagamento(formaDePagamento);
+        vendaDAO.cadastrar(vendaBeans);
+        for(int i = 0; i < lista.size(); i++){
+            produtosVendaBeans.setIdVenda(id);
+            produtosVendaBeans.setIdProduto(Integer.parseInt(""+jTableListaDeProdutos.getValueAt(i,0)));
+            produtoVendDAO.cadastrar(produtosVendaBeans);
+        }
         
+        jTextFieldCodigo.setText("");
+        jTextFieldQuantidade.setText("");
+        jTextFieldValorUnitario.setText("");
+        jLabelNomeProduto.setText("");
+        jLabelNome.setText("");
+        jLabelCpfCnpj.setText("");
+        jLabelValorTotal.setText("");
+        jTextFieldQuantidade.setEnabled(false);
+        jTextFieldValorUnitario.setEnabled(false);
+        jTableListaDeProdutos.selectAll();
+        jTableListaDeProdutos.clearSelection();
+        valorTotal = 0;
+        valorUnitario = 0;
+        quantidade = 0;
+        total =0;
+        id = 0;
+        idCliente = 0;
+        descricao = "";
+        tipoPessoa = "";
     }
     
     public void receberProduto(ProdutoBeans produtoBeans){   
@@ -180,7 +236,8 @@ public class PDV extends javax.swing.JFrame {
         jTextFieldValorUnitario.setText(Double.toString(produtoBeans.getValorVenda()));
         jTextFieldQuantidade.setText(Integer.toString(1));
         jTextFieldQuantidade.setEnabled(true);
-        jTextFieldValorUnitario.setEnabled(true);    
+        jTextFieldValorUnitario.setEnabled(true);
+        jButtonConfirmar.setEnabled(true);
         jTextFieldQuantidade.requestFocus();
         getContentPane().repaint();   
     }
@@ -190,10 +247,12 @@ public class PDV extends javax.swing.JFrame {
             idCliente = pessoaFisicaBean.getCodigo();
             jLabelNome.setText(pessoaFisicaBean.getNome());
             jLabelCpfCnpj.setText(pessoaFisicaBean.getCpf());
+            tipoPessoa =  "F";
         }else{
             idCliente = pessoaJuridicaBeans.getCodigo();
             jLabelNome.setText(pessoaJuridicaBeans.getNome());
             jLabelCpfCnpj.setText(pessoaJuridicaBeans.getCnpj());
+            tipoPessoa = "J";
         } 
         
     }
@@ -232,15 +291,11 @@ public class PDV extends javax.swing.JFrame {
            
            id = Integer.parseInt(jTextFieldCodigo.getText());
            descricao = jLabelNomeProduto.getText(); 
-           //try{
            valorUnitario = Double.parseDouble(jTextFieldValorUnitario.getText());
            quantidade = Double.parseDouble(jTextFieldQuantidade.getText());
            valorTotal = valorUnitario * quantidade;
            total += valorTotal;
            jLabelValorTotal.setText(Double.toString(total));
-           //}catch(ArithmeticException ex){
-           //    JOptionPane.showMessageDialog(null, "Digite Os valores correspondentes ao valor unitário e quantidade corretamente! \n"+ex);
-           //}
            
         String[] colunas = new String[]{"ID", "Descrição","V. unitário", "Quantidade", "V. total"};
         

@@ -13,17 +13,24 @@ public class VendaBeans {
     private int idCliente;
     private double valorDescontro;
     private double valorAcrescimo;
+    private String formaPagamento;
+    private String tipoPessoa;
 
-    public VendaBeans(int id, double valor, int idCliente, double valorDescontro, double valorAcrescimo) {
+    public VendaBeans(int id, double valor, int idCliente, double valorDescontro, double valorAcrescimo, String formaPagamento, String tipoPessoa) {
         this.id = id;
         this.valor = valor;
         this.idCliente = idCliente;
         this.valorDescontro = valorDescontro;
         this.valorAcrescimo = valorAcrescimo;
+        this.formaPagamento = formaPagamento;
+        this.tipoPessoa = tipoPessoa;
     }
 
-    public VendaBeans() {}
+    
 
+    public VendaBeans() {}
+    
+    
     
     /**
      * @return the id
@@ -95,5 +102,32 @@ public class VendaBeans {
         this.valorAcrescimo = valorAcrescimo;
     }
 
-    
+    /**
+     * @return the formaPagamento
+     */
+    public String getFormaPagamento() {
+        return formaPagamento;
+    }
+
+    /**
+     * @param formaPagamento the formaPagamento to set
+     */
+    public void setFormaPagamento(String formaPagamento) {
+        this.formaPagamento = formaPagamento;
+    }
+
+    /**
+     * @return the tipoPessoa
+     */
+    public String getTipoPessoa() {
+        return tipoPessoa;
+    }
+
+    /**
+     * @param tipoPessoa the tipoPessoa to set
+     */
+    public void setTipoPessoa(String tipoPessoa) {
+        this.tipoPessoa = tipoPessoa;
+    }
+
 }

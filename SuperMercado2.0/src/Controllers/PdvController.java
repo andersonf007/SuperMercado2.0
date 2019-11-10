@@ -31,7 +31,7 @@ public class PdvController {
         pdv.receberPessoa(pessoaFisicaBean,pessoaJuridicaBeans);
     }
     
-    public static void receberConfirmacaoPagamento(){
-        pdv.confirmacaoPagamento();
+    public static void receberConfirmacaoPagamento(String formaDePagamento,String AcrescimoDesconto,double valorAcrescimoDesconto){
+       pdv.confirmacaoPagamento(formaDePagamento, AcrescimoDesconto, valorAcrescimoDesconto);
     }
 }
