@@ -170,6 +170,10 @@ public class PDV extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void confirmacaoPagamento(){
+        
+    }
+    
     public void receberProduto(ProdutoBeans produtoBeans){   
         jTextFieldCodigo.setText(Integer.toString(produtoBeans.getId()));
         jLabelNomeProduto.setText(produtoBeans.getNome());
