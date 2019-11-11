@@ -127,5 +127,41 @@ public class PessoaJuridicaDAO extends CadastroPessoaJuridicaBeans{
         return contador;
     }
 
+    public boolean validadorPessoaJuridica(PessoaJuridicaBeans pessoaJuridica){
+        char[] especiais = {'#', '@', '%', '&', '*', '(', ')', '+', '-', '$', '!', '?', '/', '|', '=', '§', '¹', '²', '³', '£', '*', '-', ',', '<', '>', '.', ';', ':'};
+        char[] numeros = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        int count = -1;
+        for (int i = 0; i < pessoaJuridica.getCnpj().length(); i++) {
+            for (int k = 0; k < numeros.length; k++) {
+                if (pessoaJuridica.getCnpj().charAt(i) == numeros[k]) {
+                    count += 1;
+                }
+            }
+        }
+        if (count != pessoaJuridica.getCnpj().length()) {
+            return false;
+        } else {
+            count = -1;
+        }
+        for (int i = 0; i < pessoaJuridica.getIe().length(); i++) {
+            for (int k = 0; k < numeros.length; k++) {
+                if (pessoaJuridica.getIe().charAt(i) == numeros[k]) {
+                    count += 1;
+                }
+            }
+        }
+        if (count != pessoaJuridica.getIe().length()) {
+            return false;
+        }
+        for (int i = 0; i < pessoaJuridica.getNome().length(); i++) {
+            for (int k = 0; k < especiais.length; k++) {
+                if (pessoaJuridica.getNome().charAt(i) == especiais[k]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
 
 }

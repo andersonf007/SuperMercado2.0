@@ -121,7 +121,7 @@ public class UsuarioDAO extends CadastroUsuarioBeans{
         return contador;
     }
    
-    public boolean validador(UsuarioBeans usuario){ // Não vi necessidade de verificar ID já que gera automaticamente
+    public boolean validadorUsuario(UsuarioBeans usuario){ // Não vi necessidade de verificar ID já que gera automaticamente
         char[] especiais = {'#','@','%','&','*','(',')','+','-','$','!','?','/','|','=','§','¹','²','³','£','*','-',',','<','>','.',';',':'};
         char[] numeros = {'0','1','2','3','4','5','6','7','8','9'};
         for(int i = 0; i < usuario.getNome().length();i++){

@@ -113,5 +113,17 @@ public class ProdutoDAO extends CadastroProdutos{
             //JOptionPane.showMessageDialog(null, "Não existe arquivo de usuario! " + ex);
         }
         return contador;
-    }     
+    }
+    public boolean validadorProduto(ProdutoBeans produto){
+        char[] especiais = {'#', '@', '%', '&', '*', '(', ')', '+', '-', '$', '!', '?', '/', '|', '=', '§', '¹', '²', '³', '£', '*', '-', ',', '<', '>', '.', ';', ':'};
+        char[] numeros = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        for (int i = 0; i < produto.getNome().length();i++){ //Não conseguir fazer verificação no id pq está em string
+            for (int k = 0; k < especiais.length;k++){
+                if(produto.getNome().charAt(i) == especiais[k]){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
