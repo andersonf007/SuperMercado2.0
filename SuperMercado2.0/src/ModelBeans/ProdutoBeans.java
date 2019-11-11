@@ -12,32 +12,30 @@ package ModelBeans;
 public class ProdutoBeans {
 
     private String Nome;
-    private double Id;
-    private String Tipo;
+    private int Id;
     private double Estoque;
-    private int Quantidade;
+    private boolean ativo;
     private double ValorCusto;
     private double ValorVenda;
     private String pesquisar;
 
-    public ProdutoBeans(String nome,double id, String tipo, double estoque,int quantidade, double valorCusto, double valorVenda) {
-        Nome = nome;
-        Id  = id;
-        Tipo = tipo;
-        Estoque = estoque;
-        ValorCusto = valorCusto;
-        ValorVenda = valorVenda;
-        Quantidade = quantidade;
+    public ProdutoBeans(String nome,int id,double estoque,boolean ativo, double valorCusto, double valorVenda) {
+        this.Nome = nome;
+        this.Id  = id;
+        this.Estoque = estoque;
+        this.ValorCusto = valorCusto;
+        this.ValorVenda = valorVenda;
+        this.ativo = ativo;
     }
     
     public ProdutoBeans(){};
     
-    public int getQuantidade() {
-        return Quantidade;
+    public boolean getAtivo() {
+        return ativo;
     }
 
-    public void setQuantidade(int quantidade) {
-        Quantidade = quantidade;
+    public void setAtivo(boolean quantidade) {
+        ativo = quantidade;
     }
 
     public String getNome() {
@@ -46,14 +44,6 @@ public class ProdutoBeans {
 
     public void setNome(String nome) {
         Nome = nome;
-    }
-
-    public String getTipo() {
-        return Tipo;
-    }
-
-    public void setTipo(String tipo) {
-        Tipo = tipo;
     }
 
     public double getEstoque() {
@@ -80,11 +70,11 @@ public class ProdutoBeans {
         ValorVenda = valorVenda;
     }
 
-    public Double getId() {
+    public int getId() {
         return Id;
     }
 
-    public void setId(Double id) {
+    public void setId(int id) {
         Id = id;
     }
 

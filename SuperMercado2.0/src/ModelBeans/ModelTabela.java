@@ -54,18 +54,22 @@ public class ModelTabela extends AbstractTableModel{
         this.colunas = colunas;
     }
     //vai contar quantas colunas tem na nossa tabela
+    @Override
     public int getColumnCount(){
         return colunas.length;
     }
     //vai contar quantas linhas tem na nossa tabela
+    @Override
     public int getRowCount(){
         return linhas.size();
     }
     //responsavem por pegar o nome das colunas e depois vai retornar quantas colunas deu
+    @Override
     public String getColumnName(int numCol){
         return colunas[numCol];
     }
     //responsavel por montar a nossa tabela, responsavel por adicionar as linhas...
+    @Override
     public Object getValueAt(int numLin, int numCol){
         Object[] linha = (Object[])getLinhas().get(numLin);
         return linha[numCol];

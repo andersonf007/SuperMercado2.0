@@ -5,9 +5,9 @@
  */
 package Controllers;
 
-import ModelBeans.PessoaBeans;
+import ModelBeans.PessoaFisicaBeans;
+import ModelBeans.PessoaJuridicaBeans;
 import ModelBeans.ProdutoBeans;
-import View.BuscarProdutos;
 import View.PDV;
 
 /**
@@ -25,13 +25,13 @@ public class PdvController {
     
     public static void RecebeInformacoesProduto(ProdutoBeans produtoBeans){
         pdv.receberProduto(produtoBeans);
+    }    
+    
+    public static void receberInformacoesPessoa(PessoaFisicaBeans pessoaFisicaBean,PessoaJuridicaBeans pessoaJuridicaBeans){
+        pdv.receberPessoa(pessoaFisicaBean,pessoaJuridicaBeans);
     }
     
-    public static void abrirListagemProdutos(){
-        new BuscarProdutos().setVisible(true);
-    }
-    
-    public static void receberInformacoesPessoa(PessoaBeans pessoaBeans){
-        pdv.receberPessoa(pessoaBeans);
+    public static void receberConfirmacaoPagamento(String formaDePagamento,String AcrescimoDesconto,double valorAcrescimoDesconto){
+       pdv.confirmacaoPagamento(formaDePagamento, AcrescimoDesconto, valorAcrescimoDesconto);
     }
 }

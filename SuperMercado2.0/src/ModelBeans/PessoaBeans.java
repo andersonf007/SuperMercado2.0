@@ -12,20 +12,25 @@ package ModelBeans;
 public class PessoaBeans {
     
    private int Codigo;
-    private String Nome;
-   
+    private String Nome;   
     private String Telefone;
-    private String pesquisa;
-    
-    public PessoaBeans(int codigo, int numero, String nome, String tipo,String telefone){
-        this.Codigo = codigo;
-        this.Nome = nome;
-        this.Telefone = telefone;
+    private int CodEndereco;
+    private boolean ativo;
 
+    public PessoaBeans(int Codigo, String Nome, String Telefone, int CodEndereco, boolean ativo) {
+        this.Codigo = Codigo;
+        this.Nome = Nome;
+        this.Telefone = Telefone;
+        this.CodEndereco = CodEndereco;
+        this.ativo = ativo;
     }
+
+   
     
+        
     public PessoaBeans(){};
 
+    
     public int getCodigo() {
         return Codigo;
     }
@@ -51,17 +56,31 @@ public class PessoaBeans {
     }
 
     /**
-     * @return the pesquisa
+     * @return the CodEndereco
      */
-    public String getPesquisa() {
-        return pesquisa;
+    public int getCodEndereco() {
+        return CodEndereco;
     }
 
     /**
-     * @param pesquisa the pesquisa to set
+     * @param CodEndereco the CodEndereco to set
      */
-    public void setPesquisa(String pesquisa) {
-        this.pesquisa = pesquisa;
+    public void setCodEndereco(int CodEndereco) {
+        this.CodEndereco = CodEndereco;
+    }
+
+    /**
+     * @return the ativo
+     */
+    public boolean getAtivo() {
+        return ativo;
+    }
+
+    /**
+     * @param ativo the ativo to set
+     */
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
     
     

@@ -5,10 +5,12 @@
  */
 package View;
 
-import Controllers.PdvController;
-import Controllers.ProdutosController;
+import ModelBeans.ModelTabela;
 import ModelBeans.ProdutoBeans;
 import ModelDao.ProdutoDAO;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -16,13 +18,16 @@ import ModelDao.ProdutoDAO;
  */
 public class CadProdutos extends javax.swing.JFrame {
 
-    ProdutoDAO produtoDao = ProdutosController.CriaProdutoDao();  
-    
+    ProdutoDAO produtoDao = new ProdutoDAO();
+    ArrayList<ProdutoBeans> ListProdutoBeans = new ArrayList<ProdutoBeans>();
+    ArrayList dados = new ArrayList();
+    int flag = 0,codigo;
     /**
      * Creates new form CadProdutos
      */
     public CadProdutos() {
         initComponents();
+        preencherTabelaProdutos();
     }
 
     /**
@@ -43,6 +48,11 @@ public class CadProdutos extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTextFieldDescricao = new javax.swing.JTextField();
         jButtonSalvar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableProdutos = new javax.swing.JTable();
+        jCheckBoxAtivo = new javax.swing.JCheckBox();
+        jButtonEditar = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -74,25 +84,74 @@ public class CadProdutos extends javax.swing.JFrame {
         jLabel5.setText("Descrição:");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(30, 30, 150, 40);
+
+        jTextFieldDescricao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldDescricaoMouseClicked(evt);
+            }
+        });
         getContentPane().add(jTextFieldDescricao);
         jTextFieldDescricao.setBounds(30, 70, 140, 40);
 
-        jButtonSalvar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonSalvar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButtonSalvar.setText("Salvar");
+        jButtonSalvar.setEnabled(false);
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalvarActionPerformed(evt);
             }
         });
         getContentPane().add(jButtonSalvar);
-        jButtonSalvar.setBounds(300, 150, 100, 40);
+        jButtonSalvar.setBounds(290, 20, 90, 30);
+
+        jTableProdutos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jTableProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableProdutosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTableProdutos);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(190, 100, 310, 260);
+
+        jCheckBoxAtivo.setText("Ativo");
+        getContentPane().add(jCheckBoxAtivo);
+        jCheckBoxAtivo.setBounds(200, 50, 81, 23);
+
+        jButtonEditar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jButtonEditar.setText("Editar");
+        jButtonEditar.setEnabled(false);
+        getContentPane().add(jButtonEditar);
+        jButtonEditar.setBounds(290, 60, 90, 30);
+
+        jButtonCancelar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.setEnabled(false);
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonCancelar);
+        jButtonCancelar.setBounds(400, 40, 90, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_telaprincipal.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(-10, -10, 530, 390);
 
-        setSize(new java.awt.Dimension(461, 413));
+        setSize(new java.awt.Dimension(527, 413));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -101,17 +160,102 @@ public class CadProdutos extends javax.swing.JFrame {
         Double estoque = Double.parseDouble(jTextFieldEstoque.getText());
         Double valorCusto = Double.parseDouble(jTextFieldValorDeCusto.getText());
         Double valorVenda = Double.parseDouble(jTextFieldValorDeVenda.getText());
-        ProdutoBeans produto = new ProdutoBeans(descricao, estoque, descricao, estoque, WIDTH, valorCusto, valorVenda);
-        produtoDao.adicionarProduto(produto);
+        boolean ativo = jCheckBoxAtivo.isSelected();
+        if(flag == 1){
+            int id = codigo;
+            ProdutoBeans produto = new ProdutoBeans(descricao,id, estoque, ativo, valorCusto, valorVenda);
+            produtoDao.editar(produto);
+        }else{
+            int quantidade = produtoDao.confereQuantidadeDeProdutosRegistrados();
+            int id = ++quantidade;
+            ProdutoBeans produto = new ProdutoBeans(descricao,id, estoque, ativo, valorCusto, valorVenda);
+            produtoDao.cadastrar(produto);
+        }        
+        
+        preencherTabelaProdutos();
+        
+        jButtonEditar.setEnabled(false);
+        jButtonSalvar.setEnabled(false);
+        jButtonCancelar.setEnabled(false);
         
         jTextFieldDescricao.setText("");
         jTextFieldEstoque.setText("");
         jTextFieldValorDeCusto.setText("");
         jTextFieldValorDeVenda.setText("");
         
-        PdvController.abrirListagemProdutos();
+        flag = 0;
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
+    private void jTableProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProdutosMouseClicked
+        flag = 1;
+        codigo = Integer.parseInt(""+jTableProdutos.getValueAt(jTableProdutos.getSelectedRow(), 0));
+        ListProdutoBeans.clear(); //limpa o arrray list
+        ListProdutoBeans = produtoDao.busca();
+        
+        jButtonSalvar.setEnabled(false);
+        jButtonEditar.setEnabled(true);
+        
+        for(int i = 0; i < ListProdutoBeans.size(); i++){
+            if(ListProdutoBeans.get(i).getId() == codigo){
+                jTextFieldDescricao.setText(ListProdutoBeans.get(i).getNome());
+                jTextFieldEstoque.setText(String.valueOf(ListProdutoBeans.get(i).getEstoque()));
+                jTextFieldValorDeCusto.setText(String.valueOf(ListProdutoBeans.get(i).getValorCusto()));
+                jTextFieldValorDeVenda.setText(String.valueOf(ListProdutoBeans.get(i).getValorVenda()));
+                jCheckBoxAtivo.setSelected(ListProdutoBeans.get(i).getAtivo());
+            }
+        }
+    }//GEN-LAST:event_jTableProdutosMouseClicked
+
+    private void jTextFieldDescricaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldDescricaoMouseClicked
+        jButtonSalvar.setEnabled(true);
+        jButtonCancelar.setEnabled(true);
+    }//GEN-LAST:event_jTextFieldDescricaoMouseClicked
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        jTextFieldDescricao.setText("");
+        jTextFieldEstoque.setText("");
+        jTextFieldValorDeCusto.setText("");
+        jTextFieldValorDeVenda.setText("");
+        jButtonEditar.setEnabled(false);
+        jButtonSalvar.setEnabled(false);
+        jButtonCancelar.setEnabled(false);
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+   
+    public void preencherTabelaProdutos() {
+           
+        String[] colunas = new String[]{"ID", "Descrição", "Estoque", "V. Venda"};
+        
+        try {
+            dados.clear();
+            ListProdutoBeans.clear(); //limpa o arrray list
+            ListProdutoBeans = produtoDao.busca();           
+            int quantidadeRegistro = produtoDao.confereQuantidadeDeProdutosRegistrados();
+            quantidadeRegistro--;//subtrai para ter o valor correspondente a posicao do array
+            if(dados.isEmpty()){
+                for(int i = 0; i < ListProdutoBeans.size(); i++){
+                    dados.add(new Object[]{ListProdutoBeans.get(i).getId(),ListProdutoBeans.get(i).getNome(), ListProdutoBeans.get(i).getEstoque(), ListProdutoBeans.get(i).getValorVenda()});
+                }
+            }else {
+                dados.add(new Object[]{ListProdutoBeans.get(quantidadeRegistro).getId(),ListProdutoBeans.get(quantidadeRegistro).getNome(), ListProdutoBeans.get(quantidadeRegistro).getEstoque(), ListProdutoBeans.get(quantidadeRegistro).getValorVenda()});
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "nao foi possivel baixar a tabela de preencimento das pessoas\n" + ex);
+        }
+        ModelTabela modelo = new ModelTabela(dados, colunas);
+        jTableProdutos.setModel(modelo);
+        jTableProdutos.getColumnModel().getColumn(0).setPreferredWidth(25);
+        jTableProdutos.getColumnModel().getColumn(0).setResizable(false);
+        jTableProdutos.getColumnModel().getColumn(1).setPreferredWidth(147);
+        jTableProdutos.getColumnModel().getColumn(1).setResizable(false);
+        jTableProdutos.getColumnModel().getColumn(2).setPreferredWidth(60);
+        jTableProdutos.getColumnModel().getColumn(2).setResizable(false);
+        jTableProdutos.getColumnModel().getColumn(3).setPreferredWidth(70);
+        jTableProdutos.getColumnModel().getColumn(3).setResizable(false);
+        jTableProdutos.getTableHeader().setReorderingAllowed(false);
+        jTableProdutos.setAutoResizeMode(jTableProdutos.AUTO_RESIZE_OFF);
+        jTableProdutos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+    }
     /**
      * @param args the command line arguments
      */
@@ -148,12 +292,17 @@ public class CadProdutos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JCheckBox jCheckBoxAtivo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableProdutos;
     private javax.swing.JTextField jTextFieldDescricao;
     private javax.swing.JTextField jTextFieldEstoque;
     private javax.swing.JTextField jTextFieldValorDeCusto;

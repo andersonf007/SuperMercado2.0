@@ -17,15 +17,21 @@ public class EnderecoBeans {
     private String Cidade;
     private String Bairro;
     private String Uf;
+    private String numero;
     
-    EnderecoBeans(int id,String Cep,String Logradouro,String Cidade,String Bairro,String Uf){
+    public EnderecoBeans(int id,String Cep,String Logradouro,String Cidade,String Bairro,String Uf,String numero){
         this.id = id;
         this.Cep = Cep;
         this.Logradouro = Logradouro;
         this.Cidade = Cidade;
         this.Bairro = Bairro;
         this.Uf = Uf;
+        this.numero = numero;
     }
+
+    public EnderecoBeans() {}
+    
+    
     
     /**
      * @return the Cep
@@ -109,6 +115,20 @@ public class EnderecoBeans {
      */
     public void setId(int id) {
         this.id = id;
+    }
+
+    /**
+     * @return the numero
+     */
+    public String getNumero() {
+        return numero;
+    }
+
+    /**
+     * @param numero the numero to set
+     */
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
     
     

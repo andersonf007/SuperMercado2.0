@@ -1,5 +1,0 @@
-1#sfd#df#df#false
-2#dfff#ffff#dffff#true
-3#ssssssss#sss#ssss#true
-4#111#555#hkjkj#false
-5#ddd#ddd#dd#false

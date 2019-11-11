@@ -1,12 +1,9 @@
 package Controllers;
-import ModelDao.ProdutoDAO;
-import java.util.ArrayList;
-import java.util.Random;
-import ModelBeans.ProdutoBeans;
 import View.BuscarProdutos;
-import View.PDV;
+import View.CadProdutos;
+
 public class ProdutosController {
-    private static ProdutoDAO ProdutoDao;
+    static CadProdutos cadProdutos;
     static BuscarProdutos buscarProdutos;
     
     public static void abreBuscarProdutos(){
@@ -15,11 +12,13 @@ public class ProdutosController {
         buscarProdutos.setVisible(true);
     }
     
-    public static ProdutoDAO CriaProdutoDao(){
-        if(ProdutoDao == null){
-            ProdutoDao = new ProdutoDAO();
-            return ProdutoDao;
-        }         
-            return ProdutoDao;
+    public static void abreCadProdutos(){
+        if(cadProdutos == null) cadProdutos = new CadProdutos();
+        
+        cadProdutos.setVisible(true);
+    }
+   
+    public static void abrirListagemProdutos(){
+        new BuscarProdutos().setVisible(true);
     }
 }

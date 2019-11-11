@@ -1,7 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package ModelDao;
 
-import ModelBeans.CadastroPessoaFisicaBeans;
-import ModelBeans.PessoaFisicaBeans;
+import ModelBeans.CadastroEndereco;
+import ModelBeans.EnderecoBeans;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -12,26 +17,28 @@ import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.JOptionPane;
 
-public class PessoaFisicaDAO extends CadastroPessoaFisicaBeans{
+/**
+ *
+ * @author anderson
+ */
+public class EnderecoDAO extends CadastroEndereco{
     
-    ArrayList<PessoaFisicaBeans> ListPessoaFisicaBeans = new ArrayList<PessoaFisicaBeans>();
+    ArrayList<EnderecoBeans> ListEnderecoBeans = new ArrayList<EnderecoBeans>();
 
     @Override
-    public void cadastrar(PessoaFisicaBeans object) {
+    public void cadastrar(EnderecoBeans object) {
         try {
-            FileOutputStream arquivo = new FileOutputStream("pessoaFisica.txt",true);
+            FileOutputStream arquivo = new FileOutputStream("endereco.txt",true);
             PrintWriter pr = new PrintWriter(arquivo);
-            pr.println(object.getCodigo()
-                       +"#"+object.getNome()
-                       +"#"+object.getCpf()
-                       +"#"+object.getRg()
-                       +"#"+object.getSexo()
-                       +"#"+object.getTelefone()
-                       +"#"+object.getCodEndereco()
-                       +"#"+object.getAtivo());
+            pr.println(object.getId()
+                       +"#"+object.getCep()
+                       +"#"+object.getCidade()
+                       +"#"+object.getBairro()
+                       +"#"+object.getLogradouro()
+                       +"#"+object.getUf()
+                       +"#"+object.getNumero() );
             pr.close();
             arquivo.close();
         } catch (Exception ex) {
@@ -40,11 +47,11 @@ public class PessoaFisicaDAO extends CadastroPessoaFisicaBeans{
     }
 
     @Override
-    public void editar(PessoaFisicaBeans object) {
+    public void editar(EnderecoBeans object) {
         try {
             //lê o arquivo e edita a linha de interesse
             ArrayList<String> conteudoDoArquivo = new ArrayList<>();
-            File file = new File("pessoaFisica.txt");
+            File file = new File("endereco.txt");
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
 
@@ -52,15 +59,14 @@ public class PessoaFisicaDAO extends CadastroPessoaFisicaBeans{
             for (Object l : linhas) {
                 String linha = (String) l;
                 String[] palavras = linha.split("#");
-                if (Integer.parseInt(palavras[0]) == object.getCodigo()) {
-                    linha = linha.replace(linha,object.getCodigo()
-                                                +"#"+object.getNome()
-                                                +"#"+object.getCpf()
-                                                +"#"+object.getRg()
-                                                +"#"+object.getSexo()
-                                                +"#"+object.getTelefone()
-                                                +"#"+object.getCodEndereco()
-                                                +"#"+object.getAtivo());
+                if (Integer.parseInt(palavras[0]) == object.getId()) {
+                    linha = linha.replace(linha,object.getId()
+                                                +"#"+object.getCep()
+                                                +"#"+object.getCidade()
+                                                +"#"+object.getBairro()
+                                                +"#"+object.getLogradouro()
+                                                +"#"+object.getUf()
+                                                +"#"+object.getNumero() );
                 }
                 conteudoDoArquivo.add(linha);
             }
@@ -79,44 +85,43 @@ public class PessoaFisicaDAO extends CadastroPessoaFisicaBeans{
             ex.printStackTrace();
         }
     }
-
+    
     @Override
-    public ArrayList<PessoaFisicaBeans> buscar() {
-        String linha;
+    public ArrayList<EnderecoBeans> busca() {
+    String linha;
         try {
-            FileInputStream arquivo = new FileInputStream("pessoaFisica.txt");
+            FileInputStream arquivo = new FileInputStream("endereco.txt");
             InputStreamReader input = new InputStreamReader(arquivo);
             BufferedReader buffer = new BufferedReader(input);
             
             do{
                 linha = buffer.readLine();
                 if(linha != null){
-                    PessoaFisicaBeans pessoaFisicaBeans = new PessoaFisicaBeans();
+                    EnderecoBeans enderecoBeans = new EnderecoBeans();
                     String[] palavras = linha.split("#");
-                        pessoaFisicaBeans.setCodigo(Integer.parseInt(palavras[0]));
-                        pessoaFisicaBeans.setNome(palavras[1]);
-                        pessoaFisicaBeans.setCpf(palavras[2]);
-                        pessoaFisicaBeans.setRg(palavras[3]);
-                        pessoaFisicaBeans.setSexo(palavras[4]);
-                        pessoaFisicaBeans.setTelefone(palavras[5]);
-                        pessoaFisicaBeans.setCodEndereco(Integer.parseInt(palavras[6]));
-                        pessoaFisicaBeans.setAtivo(Boolean.parseBoolean(palavras[7]));
-                        ListPessoaFisicaBeans.add(pessoaFisicaBeans);
+                        enderecoBeans.setId(Integer.parseInt(palavras[0]));
+                        enderecoBeans.setCep(palavras[1]);
+                        enderecoBeans.setCidade(palavras[2]);
+                        enderecoBeans.setBairro(palavras[3]);
+                        enderecoBeans.setLogradouro(palavras[4]);
+                        enderecoBeans.setUf(palavras[5]);
+                        enderecoBeans.setNumero(palavras[6]);
+                        ListEnderecoBeans.add(enderecoBeans);
                     }                    
             }while(linha != null);
                         
         } catch (Exception ex) {
             //JOptionPane.showMessageDialog(null, "Não existe arquivo de usuario! " + ex);
         }
-        return ListPessoaFisicaBeans;
+        return ListEnderecoBeans;
     }
 
     @Override
-    public int confereQuantidadeDeRegistros() {
-        String linha;
-        int contador = 0;
+    public int ConfereQuantidadeRegistros() {
+            String linha;
+            int contador = 0;
         try {
-            FileInputStream arquivo = new FileInputStream("pessoaFisica.txt");
+            FileInputStream arquivo = new FileInputStream("Endereco.txt");
             InputStreamReader input = new InputStreamReader(arquivo);
             BufferedReader buffer = new BufferedReader(input);
             
@@ -133,4 +138,6 @@ public class PessoaFisicaDAO extends CadastroPessoaFisicaBeans{
         return contador;
     }
 
+    
+    
 }

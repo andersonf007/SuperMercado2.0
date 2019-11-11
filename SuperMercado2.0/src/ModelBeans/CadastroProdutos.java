@@ -11,13 +11,13 @@ import java.util.ArrayList;
  *
  * @author anderson
  */
-public abstract class CadastroUsuarioBeans {
+public abstract class CadastroProdutos {
     
-    public abstract void cadastrar(UsuarioBeans object);
+    public abstract void cadastrar(ProdutoBeans object);
     
-    public abstract void editar(UsuarioBeans object);
+    public abstract void editar(ProdutoBeans object);
     
-    public abstract ArrayList<UsuarioBeans> busca();
+    public abstract ArrayList<ProdutoBeans> busca();
     
-    public abstract int confereQuantidadeDeUsuariosRegistrados();
+    public abstract int confereQuantidadeDeProdutosRegistrados();
 }

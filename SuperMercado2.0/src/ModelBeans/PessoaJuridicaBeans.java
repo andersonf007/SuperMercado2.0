@@ -14,11 +14,13 @@ public class PessoaJuridicaBeans extends PessoaBeans {
    private String cnpj;
     private String ie;
 
-    public PessoaJuridicaBeans(String cnpj, String ie, int codigo, int numero, String nome, String tipo, String cep, String logradouro, String cidade, String bairro, String uf, String telefone) {
-        super(codigo, numero, nome, tipo, telefone);
+    public PessoaJuridicaBeans(String cnpj, String ie, int Codigo, String Nome, String Telefone, int CodEndereco, boolean ativo) {
+        super(Codigo, Nome, Telefone, CodEndereco, ativo);
         this.cnpj = cnpj;
         this.ie = ie;
     }
+
+    public PessoaJuridicaBeans() {}
 
     public String getCnpj() {
         return cnpj;

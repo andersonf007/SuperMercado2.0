@@ -6,6 +6,7 @@
 package Controllers;
 
 import View.BuscarPessoas;
+import View.CadPessoa;
 
 /**
  *
@@ -14,12 +15,20 @@ import View.BuscarPessoas;
 public class PessoaController {
     
     static BuscarPessoas pessoa;
+    static CadPessoa cadPessoa;
     
-    public static void openBuscarPessoaFisica(){
+    public static void openBuscarPessoa(){
         if(pessoa == null)
             pessoa = new BuscarPessoas();
         
         pessoa.setVisible(true);
+    }
+    
+    public static void abreCadPessoa(){
+        if(cadPessoa == null)
+            cadPessoa = new CadPessoa();
+        
+        cadPessoa.setVisible(true);
     }
     
 }
