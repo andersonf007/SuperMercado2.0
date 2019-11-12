@@ -321,6 +321,7 @@ public class PDV extends javax.swing.JFrame {
         jTextFieldQuantidade.setEnabled(false);
         jTextFieldValorUnitario.setEnabled(false);
     }
+    
     /**
      * @param args the command line arguments
      */

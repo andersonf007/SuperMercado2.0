@@ -7,7 +7,6 @@ package ModelDao;
 
 import ModelBeans.CadastroProdutosVenda;
 import ModelBeans.ProdutosVendaBeans;
-import ModelBeans.UsuarioBeans;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

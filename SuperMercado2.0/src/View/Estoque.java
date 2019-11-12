@@ -86,13 +86,13 @@ public class Estoque extends javax.swing.JFrame {
         jCheckBoxSaida.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jCheckBoxSaida.setText("Saida");
         getContentPane().add(jCheckBoxSaida);
-        jCheckBoxSaida.setBounds(40, 120, 110, 50);
+        jCheckBoxSaida.setBounds(40, 100, 110, 30);
 
         jCheckBoxEntrada.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jCheckBoxEntrada.setSelected(true);
         jCheckBoxEntrada.setText("Entrada");
         getContentPane().add(jCheckBoxEntrada);
-        jCheckBoxEntrada.setBounds(40, 60, 110, 50);
+        jCheckBoxEntrada.setBounds(40, 60, 110, 30);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Tipo de Movimentação");

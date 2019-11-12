@@ -113,7 +113,9 @@ public class BuscarProdutos extends javax.swing.JFrame {
             ListProdutoBeans.clear(); //limpa o arrray list
             ListProdutoBeans = produtoDao.busca();                     
             for(int i = 0; i < ListProdutoBeans.size(); i++){
-                dados.add(new Object[]{ListProdutoBeans.get(i).getId(),ListProdutoBeans.get(i).getNome(), ListProdutoBeans.get(i).getEstoque(), ListProdutoBeans.get(i).getValorVenda()});
+                if(ListProdutoBeans.get(i).getAtivo() == true){
+                    dados.add(new Object[]{ListProdutoBeans.get(i).getId(),ListProdutoBeans.get(i).getNome(), ListProdutoBeans.get(i).getEstoque(), ListProdutoBeans.get(i).getValorVenda()});
+                }              
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "nao foi possivel baixar a tabela de preencimento das pessoas\n" + ex);

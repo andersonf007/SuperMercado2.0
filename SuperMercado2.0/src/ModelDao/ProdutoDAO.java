@@ -114,6 +114,7 @@ public class ProdutoDAO extends CadastroProdutos{
         }
         return contador;
     }
+   
     public boolean validadorProduto(ProdutoBeans produto){
         char[] especiais = {'#', '@', '%', '&', '*', '(', ')', '+', '-', '$', '!', '?', '/', '|', '=', '§', '¹', '²', '³', '£', '*', '-', ',', '<', '>', '.', ';', ':'};
         char[] numeros = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
@@ -123,7 +124,9 @@ public class ProdutoDAO extends CadastroProdutos{
                     return false;
                 }
             }
+            
         }
+        
         return true;
     }
 }

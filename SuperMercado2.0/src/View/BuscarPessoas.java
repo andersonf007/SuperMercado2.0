@@ -7,7 +7,6 @@ package View;
 
 import Controllers.PdvController;
 import ModelBeans.ModelTabela;
-import ModelBeans.PessoaBeans;
 import ModelBeans.PessoaFisicaBeans;
 import ModelBeans.PessoaJuridicaBeans;
 import ModelDao.PessoaFisicaDAO;
@@ -121,10 +120,14 @@ public class BuscarPessoas extends javax.swing.JFrame {
             ListPessoaJuridicaBeans.clear();
             ListPessoaJuridicaBeans = pessoaJuridicaDAO.buscar();
             for(int i = 0; i < ListPessoaFisicaBeans.size(); i++){
-                dados.add(new Object[]{ListPessoaFisicaBeans.get(i).getCodigo(),ListPessoaFisicaBeans.get(i).getNome(), ListPessoaFisicaBeans.get(i).getCpf(), ListPessoaFisicaBeans.get(i).getTelefone()});
+                if(ListPessoaFisicaBeans.get(i).getAtivo() == true){
+                    dados.add(new Object[]{ListPessoaFisicaBeans.get(i).getCodigo(),ListPessoaFisicaBeans.get(i).getNome(), ListPessoaFisicaBeans.get(i).getCpf(), ListPessoaFisicaBeans.get(i).getTelefone()});
+                }
             }
             for(int i = 0; i < ListPessoaJuridicaBeans.size(); i++){
-                dados.add(new Object[]{ListPessoaJuridicaBeans.get(i).getCodigo(),ListPessoaJuridicaBeans.get(i).getNome(), ListPessoaJuridicaBeans.get(i).getCnpj(), ListPessoaJuridicaBeans.get(i).getTelefone()});
+                if(ListPessoaJuridicaBeans.get(i).getAtivo() == true){
+                    dados.add(new Object[]{ListPessoaJuridicaBeans.get(i).getCodigo(),ListPessoaJuridicaBeans.get(i).getNome(), ListPessoaJuridicaBeans.get(i).getCnpj(), ListPessoaJuridicaBeans.get(i).getTelefone()});
+                }
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "nao foi possivel baixar a tabela de preencimento das pessoas\n" + ex);
