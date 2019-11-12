@@ -218,8 +218,6 @@ public class PDV extends javax.swing.JFrame {
         jLabelValorTotal.setText("");
         jTextFieldQuantidade.setEnabled(false);
         jTextFieldValorUnitario.setEnabled(false);
-        jTableListaDeProdutos.selectAll();
-        jTableListaDeProdutos.clearSelection();
         valorTotal = 0;
         valorUnitario = 0;
         quantidade = 0;

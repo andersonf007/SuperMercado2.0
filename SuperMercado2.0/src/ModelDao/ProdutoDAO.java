@@ -129,4 +129,14 @@ public class ProdutoDAO extends CadastroProdutos{
         
         return true;
     }
+    
+    public boolean validarInformacoes(ProdutoBeans object){
+        busca();
+        
+        for(int i = 0; i < ListProdutosBeans.size(); i++){
+            if(null == null){
+                
+            }
+        }
+    }
 }

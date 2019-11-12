@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controllers.EstoqueController;
 import Controllers.PdvController;
 import Controllers.PessoaController;
 import Controllers.ProdutosController;
@@ -132,7 +133,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCadProdutoActionPerformed
 
     private void jButtonEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstoqueActionPerformed
-        // TODO add your handling code here:
+        EstoqueController estoqueController = new EstoqueController();
+        EstoqueController.abrirEstoque();
     }//GEN-LAST:event_jButtonEstoqueActionPerformed
 
     /**

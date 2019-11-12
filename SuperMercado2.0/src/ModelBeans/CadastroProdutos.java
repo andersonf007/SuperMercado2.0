@@ -20,4 +20,6 @@ public abstract class CadastroProdutos {
     public abstract ArrayList<ProdutoBeans> busca();
     
     public abstract int confereQuantidadeDeProdutosRegistrados();
+    
+    public abstract boolean validarInformacoes(ProdutoBeans object);
 }
