@@ -32,37 +32,37 @@ public class ProdutoDAO extends CadastroProdutos{
 
     @Override
     public void editar(ProdutoBeans object) {
-    try {
-        //lê o arquivo e edita a linha de interesse
-        ArrayList<String> conteudoDoArquivo = new ArrayList<>();
-        File file = new File("produto.txt");
-        FileReader fr = new FileReader(file);
-        BufferedReader br = new BufferedReader(fr);
+        try {
+            //lê o arquivo e edita a linha de interesse
+            ArrayList<String> conteudoDoArquivo = new ArrayList<>();
+            File file = new File("produto.txt");
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
 
-        Object[] linhas = br.lines().toArray();
-        for (Object l : linhas) {
-            String linha = (String) l;
-            String[] palavras = linha.split("#");
-            if (Integer.parseInt(palavras[0]) == object.getId()) {
-                linha = linha.replace(linha,object.getId() + "#" + object.getNome() + "#" + object.getEstoque() + "#" + object.getValorCusto() + "#" + object.getValorVenda() + "#" + object.getAtivo());
+            Object[] linhas = br.lines().toArray();
+            for (Object l : linhas) {
+                String linha = (String) l;
+                String[] palavras = linha.split("#");
+                if (Integer.parseInt(palavras[0]) == object.getId()) {
+                    linha = linha.replace(linha,object.getId() + "#" + object.getNome() + "#" + object.getEstoque() + "#" + object.getValorCusto() + "#" + object.getValorVenda() + "#" + object.getAtivo());
+                }
+                conteudoDoArquivo.add(linha);
             }
-            conteudoDoArquivo.add(linha);
-        }
-        br.close();
+            br.close();
 
-        //reescreve o arquivo
-        FileWriter fw = new FileWriter(file);
-        BufferedWriter bw = new BufferedWriter(fw);
-        for(String linha: conteudoDoArquivo){
-            bw.append(linha).append("\n");
+            //reescreve o arquivo
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+            for(String linha: conteudoDoArquivo){
+                bw.append(linha).append("\n");
+            }
+            bw.flush();
+            bw.close();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
-        bw.flush();
-        bw.close();
-    } catch (Exception ex) {
-        System.out.println(ex.getMessage());
-        ex.printStackTrace();
     }
-}
 
     @Override
     public ArrayList<ProdutoBeans> busca() {
@@ -115,6 +115,7 @@ public class ProdutoDAO extends CadastroProdutos{
         return contador;
     }
    
+    @Override
     public boolean validadorProduto(ProdutoBeans produto){
         char[] especiais = {'#', '@', '%', '&', '*', '(', ')', '+', '-', '$', '!', '?', '/', '|', '=', '§', '¹', '²', '³', '£', '*', '-', ',', '<', '>', '.', ';', ':'};
         char[] numeros = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
@@ -130,13 +131,50 @@ public class ProdutoDAO extends CadastroProdutos{
         return true;
     }
     
-    public boolean validarInformacoes(ProdutoBeans object){
+    @Override
+    public boolean validarDuplicidade(ProdutoBeans object){
         busca();
         
         for(int i = 0; i < ListProdutosBeans.size(); i++){
             if(null == null){
                 
             }
+        }
+        return false;
+    }
+    
+    @Override
+    public void alterarEstoque(ProdutoBeans object){
+        try {
+            //lê o arquivo e edita a linha de interesse
+            ArrayList<String> conteudoDoArquivo = new ArrayList<>();
+            File file = new File("produto.txt");
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+
+            Object[] linhas = br.lines().toArray();
+            for (Object l : linhas) {
+                String linha = (String) l;
+                String[] palavras = linha.split("#");
+                if (Integer.parseInt(palavras[0]) == object.getId()) {
+                    double estoqueAtual = Double.parseDouble(palavras[2]) - object.getEstoque();
+                    linha = linha.replace(linha,object.getId() + "#" + palavras[1] + "#" + estoqueAtual + "#" + palavras[3] + "#" + palavras[4] + "#" + palavras[5]);
+                }
+                conteudoDoArquivo.add(linha);
+            }
+            br.close();
+
+            //reescreve o arquivo
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+            for(String linha: conteudoDoArquivo){
+                bw.append(linha).append("\n");
+            }
+            bw.flush();
+            bw.close();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
     }
 }

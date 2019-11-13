@@ -14,11 +14,13 @@ import ModelBeans.PessoaJuridicaBeans;
 import ModelBeans.ProdutoBeans;
 import ModelBeans.ProdutosVendaBeans;
 import ModelBeans.VendaBeans;
+import ModelDao.ProdutoDAO;
 import ModelDao.ProdutosVendaDAO;
 import ModelDao.VendaDAO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -31,12 +33,15 @@ public class PDV extends javax.swing.JFrame {
     VendaDAO vendaDAO = new VendaDAO();
     ProdutosVendaBeans produtosVendaBeans = new ProdutosVendaBeans();
     ProdutosVendaDAO produtoVendDAO = new ProdutosVendaDAO();
+    ProdutoBeans produtoBeans = new ProdutoBeans();
+    ProdutoDAO produtoDAO = new ProdutoDAO();
     String descricao, tipoPessoa = "";
     int id, idCliente;
     //variaveis sendo utilizadas dentro do metodo preenchertabela
     double valorTotal, valorUnitario, quantidade;
     ArrayList lista = new ArrayList();  
     double total =0;
+    ModelTabela modelo;
     
     /**
      * Creates new form PDV
@@ -182,15 +187,34 @@ public class PDV extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void alterarEstoque(){
+        for(int i = 0; i < lista.size(); i++){
+            produtoBeans.setId(Integer.parseInt(""+jTableListaDeProdutos.getValueAt(i,0)));
+            produtoBeans.setEstoque(Double.parseDouble(""+jTableListaDeProdutos.getValueAt(i,3)));
+            produtoDAO.alterarEstoque(produtoBeans);
+        }
+    }
+    
+    void a(){
+        TableModel model = jTableListaDeProdutos.getModel();
+        for(int i=0; i<model.getRowCount(); i++){
+            for(int j=0; j<model.getColumnCount(); j++){
+                model.setValueAt(null, i, j);
+            }
+        }
+
+    }
+    
     public void confirmacaoPagamento(String formaDePagamento,String AcrescimoDesconto,double valorAcrescimoDesconto){
+        ////recebe informacoes para salvar a venda no txt
         int quantidadeRegistros = vendaDAO.confereQuantidadeDeVendasRegistradas();
         id = ++quantidadeRegistros;
         vendaBeans.setId(id);
         vendaBeans.setIdCliente(idCliente);
         vendaBeans.setTipoPessoa(tipoPessoa);
         vendaBeans.setValor(total);
-        if(valorAcrescimoDesconto != 0.00){
-            if(AcrescimoDesconto.equals("Desconto")){
+        if(valorAcrescimoDesconto != 0.00){//confere se houve desconto na finalizacao da venda
+            if(AcrescimoDesconto.equals("Desconto")){//confere se houve desconto ou acrescimo
                 vendaBeans.setValorDescontro(valorAcrescimoDesconto);
                 vendaBeans.setValorAcrescimo(0);
             }else{
@@ -203,12 +227,14 @@ public class PDV extends javax.swing.JFrame {
         }      
         vendaBeans.setFormaPagamento(formaDePagamento);
         vendaDAO.cadastrar(vendaBeans);
+        //cadastra no txt o id do produto e da venda
         for(int i = 0; i < lista.size(); i++){
             produtosVendaBeans.setIdVenda(id);
             produtosVendaBeans.setIdProduto(Integer.parseInt(""+jTableListaDeProdutos.getValueAt(i,0)));
             produtoVendDAO.cadastrar(produtosVendaBeans);
         }
-        
+        alterarEstoque();
+        a();                                                                                                                                                                                                                            
         jTextFieldCodigo.setText("");
         jTextFieldQuantidade.setText("");
         jTextFieldValorUnitario.setText("");
@@ -299,7 +325,7 @@ public class PDV extends javax.swing.JFrame {
         
         lista.add(new Object[]{id, descricao,valorUnitario, quantidade,valorTotal });            
         
-        ModelTabela modelo = new ModelTabela(lista, colunas);
+        modelo = new ModelTabela(lista, colunas);
 
         jTableListaDeProdutos.setModel(modelo);
         jTableListaDeProdutos.getColumnModel().getColumn(0).setPreferredWidth(40);

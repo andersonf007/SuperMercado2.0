@@ -145,6 +145,7 @@ public class FormaPagamento extends javax.swing.JFrame {
 
         jButtonFinalizar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButtonFinalizar.setText("Finalizar");
+        jButtonFinalizar.setEnabled(false);
         jButtonFinalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonFinalizarActionPerformed(evt);
@@ -234,6 +235,7 @@ public class FormaPagamento extends javax.swing.JFrame {
                 jLabelTotalPago.setText(jTextFieldValorPago.getText());
                 troco = Double.parseDouble(jLabelTotalPago.getText()) - Double.parseDouble(jLabelTotalAPagar.getText());
                 jLabelTroco.setText(Double.toString(troco));
+                jButtonFinalizar.setEnabled(true);
             }
         }
     }//GEN-LAST:event_jTextFieldValorPagoKeyPressed

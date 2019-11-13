@@ -47,6 +47,7 @@ public class BuscarProdutos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        getContentPane().setLayout(null);
 
         jTableProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -66,24 +67,10 @@ public class BuscarProdutos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableProdutos);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(10, 10, 452, 330);
 
-        setSize(new java.awt.Dimension(416, 339));
+        setSize(new java.awt.Dimension(491, 389));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -102,6 +89,7 @@ public class BuscarProdutos extends javax.swing.JFrame {
         }
         //ProdutoBeans produtoBeansInstancia = produtoDAO.procurarProdutoNome(nome_Produto);
         this.dispose();
+
     }//GEN-LAST:event_jTableProdutosMouseClicked
 
     public void preencherTabela() {
@@ -124,11 +112,11 @@ public class BuscarProdutos extends javax.swing.JFrame {
         ModelTabela modelo = new ModelTabela(dados, colunas);
 
         jTableProdutos.setModel(modelo);
-        jTableProdutos.getColumnModel().getColumn(0).setPreferredWidth(50);
+        jTableProdutos.getColumnModel().getColumn(0).setPreferredWidth(44);
         jTableProdutos.getColumnModel().getColumn(0).setResizable(false);
         jTableProdutos.getColumnModel().getColumn(1).setPreferredWidth(225);
         jTableProdutos.getColumnModel().getColumn(1).setResizable(false);
-        jTableProdutos.getColumnModel().getColumn(2).setPreferredWidth(109);
+        jTableProdutos.getColumnModel().getColumn(2).setPreferredWidth(100);
         jTableProdutos.getColumnModel().getColumn(2).setResizable(false);
         jTableProdutos.getTableHeader().setReorderingAllowed(false);
         jTableProdutos.setAutoResizeMode(jTableProdutos.AUTO_RESIZE_OFF);
