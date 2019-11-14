@@ -39,7 +39,7 @@ public class PDV extends javax.swing.JFrame {
     int id, idCliente;
     //variaveis sendo utilizadas dentro do metodo preenchertabela
     double valorTotal, valorUnitario, quantidade;
-    ArrayList lista = new ArrayList();  
+    ArrayList lista ;  
     double total =0;
     ModelTabela modelo;
     
@@ -49,6 +49,7 @@ public class PDV extends javax.swing.JFrame {
     public PDV() {
         initComponents();
         jTextFieldCodigo.requestFocus();
+        inicializarArrayDaTabela();
     }
 
     @SuppressWarnings("unchecked")
@@ -62,6 +63,7 @@ public class PDV extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabelFrenteDaTabela = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableListaDeProdutos = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
@@ -127,6 +129,10 @@ public class PDV extends javax.swing.JFrame {
         jLabel4.setText("Valor Unitário:");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(20, 200, 240, 50);
+
+        jLabelFrenteDaTabela.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/tabelaVazia.PNG"))); // NOI18N
+        getContentPane().add(jLabelFrenteDaTabela);
+        jLabelFrenteDaTabela.setBounds(270, 110, 480, 370);
 
         jTableListaDeProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -195,14 +201,13 @@ public class PDV extends javax.swing.JFrame {
         }
     }
     
-    void a(){
-        TableModel model = jTableListaDeProdutos.getModel();
-        for(int i=0; i<model.getRowCount(); i++){
-            for(int j=0; j<model.getColumnCount(); j++){
-                model.setValueAt(null, i, j);
-            }
+    public void inicializarArrayDaTabela(){
+        if(lista != null){
+            lista = null;
+            lista = new ArrayList();
+        }else{
+            lista = new ArrayList();
         }
-
     }
     
     public void confirmacaoPagamento(String formaDePagamento,String AcrescimoDesconto,double valorAcrescimoDesconto){
@@ -233,8 +238,9 @@ public class PDV extends javax.swing.JFrame {
             produtosVendaBeans.setIdProduto(Integer.parseInt(""+jTableListaDeProdutos.getValueAt(i,0)));
             produtoVendDAO.cadastrar(produtosVendaBeans);
         }
-        alterarEstoque();
-        a();                                                                                                                                                                                                                            
+        alterarEstoque();   
+        inicializarArrayDaTabela();
+        jLabelFrenteDaTabela.setVisible(true);
         jTextFieldCodigo.setText("");
         jTextFieldQuantidade.setText("");
         jTextFieldValorUnitario.setText("");
@@ -298,6 +304,7 @@ public class PDV extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Favor, preencha todos os campos \n ou selecione o campo codigo e aperte F2");
             }else{
                 preencherTabela();
+                jLabelFrenteDaTabela.setVisible(false);
                 jTextFieldCodigo.setText("");
                 jLabelNomeProduto.setText("");
                 jTextFieldValorUnitario.setText("");
@@ -391,6 +398,7 @@ public class PDV extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabelCpfCnpj;
+    private javax.swing.JLabel jLabelFrenteDaTabela;
     private javax.swing.JLabel jLabelNome;
     private javax.swing.JLabel jLabelNomeProduto;
     private javax.swing.JLabel jLabelValorTotal;
