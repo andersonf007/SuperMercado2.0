@@ -78,7 +78,6 @@ public class CadPessoa extends javax.swing.JFrame {
         jComboBoxSexo = new javax.swing.JComboBox();
         jTextFieldLogin = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jComboBoxTipoPessoa = new javax.swing.JComboBox();
         jTextFieldSenha = new javax.swing.JTextField();
@@ -86,14 +85,18 @@ public class CadPessoa extends javax.swing.JFrame {
         jCheckBoxAtivo = new javax.swing.JCheckBox();
         jCheckBoxAdm = new javax.swing.JCheckBox();
         jButtonEditar = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableUsuarios = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTablePessoaFisica = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTablePessoaJuridica = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
@@ -225,11 +228,6 @@ public class CadPessoa extends javax.swing.JFrame {
         jPanel1.add(jLabel6);
         jLabel6.setBounds(200, 250, 60, 20);
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel9.setText("Login:");
-        jPanel1.add(jLabel9);
-        jLabel9.setBounds(40, 250, 60, 20);
-
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel16.setText("Tipo de pessoa:");
         jPanel1.add(jLabel16);
@@ -281,6 +279,11 @@ public class CadPessoa extends javax.swing.JFrame {
         });
         jPanel1.add(jButtonEditar);
         jButtonEditar.setBounds(750, 270, 110, 40);
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel17.setText("Login:");
+        jPanel1.add(jLabel17);
+        jLabel17.setBounds(40, 250, 60, 20);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(10, 10, 1040, 340);
@@ -347,6 +350,21 @@ public class CadPessoa extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane3);
         jScrollPane3.setBounds(360, 380, 340, 190);
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel9.setText("Listagem de usuarios");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(790, 350, 180, 30);
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel18.setText("Listagem de pessoas físicas");
+        getContentPane().add(jLabel18);
+        jLabel18.setBounds(70, 350, 230, 30);
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel19.setText("Listagem de pessoas jurídicas");
+        getContentPane().add(jLabel19);
+        jLabel19.setBounds(410, 350, 240, 30);
 
         setSize(new java.awt.Dimension(1100, 602));
         setLocationRelativeTo(null);
@@ -896,6 +914,9 @@ public class CadPessoa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

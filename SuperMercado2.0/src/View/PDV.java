@@ -20,7 +20,6 @@ import ModelDao.VendaDAO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
-import javax.swing.table.TableModel;
 
 /**
  *
@@ -75,7 +74,7 @@ public class PDV extends javax.swing.JFrame {
         jLabelNome = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
         jLabelNomeProduto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N

@@ -45,7 +45,7 @@ public class BuscarProdutos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableProdutos = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(null);
 
