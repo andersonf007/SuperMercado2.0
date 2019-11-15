@@ -72,6 +72,8 @@ public class PDV extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabelNome = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -183,6 +185,14 @@ public class PDV extends javax.swing.JFrame {
         jLabel8.setBounds(10, 500, 60, 20);
         getContentPane().add(jLabelNome);
         jLabelNome.setBounds(60, 500, 200, 20);
+
+        jLabel5.setText("Com indicador no campo de codigo pressiione (F2) para Procurar Produtos");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(10, 590, 460, 14);
+
+        jLabel9.setText("Clique em \"Adicionar Cliente\" para inverir um cliente na venda");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(10, 570, 390, 14);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_telaprincipal.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -393,9 +403,11 @@ public class PDV extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelCpfCnpj;
     private javax.swing.JLabel jLabelFrenteDaTabela;
     private javax.swing.JLabel jLabelNome;

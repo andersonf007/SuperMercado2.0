@@ -10,29 +10,25 @@ import ModelDao.EnderecoDAO;
 import ModelDao.PessoaFisicaDAO;
 import ModelDao.PessoaJuridicaDAO;
 import ModelDao.UsuarioDAO;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author anderson
  */
-public class CadPessoa extends javax.swing.JFrame {
+public final class CadPessoa extends javax.swing.JFrame {
 
     PessoaFisicaDAO pessoaFisicaDAO  = new PessoaFisicaDAO();
     PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
     UsuarioDAO usuarioDAO = new UsuarioDAO();
     EnderecoDAO enderecoDAO = new EnderecoDAO();
     UsuarioBeans usuarioBeans = new UsuarioBeans();
-    ArrayList<UsuarioBeans> ListUsuarioBeans = new ArrayList<UsuarioBeans>();
-    ArrayList<EnderecoBeans> ListEnderecoBeans = new ArrayList<EnderecoBeans>();
-    ArrayList<PessoaFisicaBeans> ListPessoaFisicaBeans = new ArrayList<PessoaFisicaBeans>();
-    ArrayList<PessoaJuridicaBeans> ListPessoaJuridicaBeans = new ArrayList<PessoaJuridicaBeans>();
+    ArrayList<UsuarioBeans> ListUsuarioBeans = new ArrayList<>();
+    ArrayList<EnderecoBeans> ListEnderecoBeans = new ArrayList<>();
+    ArrayList<PessoaFisicaBeans> ListPessoaFisicaBeans = new ArrayList<>();
+    ArrayList<PessoaJuridicaBeans> ListPessoaJuridicaBeans = new ArrayList<>();
     ArrayList dadosUsuarios = new ArrayList(); 
     ArrayList dadosPessoasFisicas = new ArrayList(); 
     ArrayList dadosPessoasJuridicas = new ArrayList(); 
@@ -469,30 +465,12 @@ public class CadPessoa extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jComboBoxTipoPessoaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxTipoPessoaItemStateChanged
-            if(jComboBoxTipoPessoa.getSelectedItem().equals("Física") || jComboBoxTipoPessoa.getSelectedItem().equals("Jurídica")){
-                
-                
-                jTextFieldCep.setEnabled(true);
-                jTextFieldLogradouro.setEnabled(true);
-                jTextFieldNumero.setEnabled(true);
-                jTextFieldCidade.setEnabled(true);
-                jTextFieldBairro.setEnabled(true);
-                jTextFieldUf.setEnabled(true);
-                jTextFieldTelefone.setEnabled(true);
-                jTextFieldCPFCNPJ.setEnabled(true);
-                jTextFieldRGIE.setEnabled(true);
-                jComboBoxSexo.setEnabled(true);                
-                jCheckBoxAtivo.setEnabled(true);
-                jButtonSalvar.setEnabled(true);           
-                jButtonCancelar.setEnabled(true);
-                
-                jTextFieldSenha.setEnabled(false);
-                jTextFieldLogin.setEnabled(false);
-                jCheckBoxAdm.setEnabled(false);
-                jTablePessoaFisica.setEnabled(false);
-                jTablePessoaJuridica.setEnabled(false);
-                jTableUsuarios.setEnabled(false);
-                
+            if(jComboBoxTipoPessoa.getSelectedItem().equals("Física")){
+                validarSelecaoAoSelecionarTabela();
+                jComboBoxSexo.setEnabled(true);
+            }else if(jComboBoxTipoPessoa.getSelectedItem().equals("Jurídica")){
+                validarSelecaoAoSelecionarTabela();
+                jComboBoxSexo.setEnabled(false);
             }else if(jComboBoxTipoPessoa.getSelectedItem().equals("Funcionário")){
                                 
                 jTextFieldCep.setEnabled(false);
@@ -849,10 +827,6 @@ public class CadPessoa extends javax.swing.JFrame {
         jButtonCancelar.setEnabled(true);            
         jButtonEditar.setEnabled(true);
         jComboBoxTipoPessoa.setEnabled(false);
-        
-        //jTablePessoaFisica.setEnabled(true);
-        //jTablePessoaJuridica.setEnabled(true);
-        //jTableUsuarios.setEnabled(false);
     }
     
     public void validarCamposBotaoEditar(){
@@ -861,6 +835,29 @@ public class CadPessoa extends javax.swing.JFrame {
         jTablePessoaFisica.setEnabled(false);
         jTablePessoaJuridica.setEnabled(false);
         jTableUsuarios.setEnabled(false);
+    }
+    
+    public void validarSelecaoAoSelecionarTabela(){
+        
+                jTextFieldCep.setEnabled(true);
+                jTextFieldLogradouro.setEnabled(true);
+                jTextFieldNumero.setEnabled(true);
+                jTextFieldCidade.setEnabled(true);
+                jTextFieldBairro.setEnabled(true);
+                jTextFieldUf.setEnabled(true);
+                jTextFieldTelefone.setEnabled(true);
+                jTextFieldCPFCNPJ.setEnabled(true);
+                jTextFieldRGIE.setEnabled(true);                
+                jCheckBoxAtivo.setEnabled(true);
+                jButtonSalvar.setEnabled(true);           
+                jButtonCancelar.setEnabled(true);
+                
+                jTextFieldSenha.setEnabled(false);
+                jTextFieldLogin.setEnabled(false);
+                jCheckBoxAdm.setEnabled(false);
+                jTablePessoaFisica.setEnabled(false);
+                jTablePessoaJuridica.setEnabled(false);
+                jTableUsuarios.setEnabled(false);
     }
     /**
      * @param args the command line arguments
