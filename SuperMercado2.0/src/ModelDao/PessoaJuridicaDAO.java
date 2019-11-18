@@ -162,9 +162,15 @@ public class PessoaJuridicaDAO extends CadastroPessoaJuridicaBeans{
                     return false;
                 }
             }
+            for(int j = 0; j < numeros.length;j++){
+                if(pessoaJuridica.getNome().charAt(i) == numeros[j]){
+                    return false;
+                }
+            }
+
         }
         for(int k = 0; k < UF.length;k++){
-            //if(pessoaJuridica.)
+
         }
 
         return true;

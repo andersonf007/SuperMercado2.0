@@ -18,4 +18,5 @@ public abstract class CadastroVenda {
     public abstract ArrayList<VendaBeans> buscar();
     
     public abstract int confereQuantidadeDeVendasRegistradas();
+
 }

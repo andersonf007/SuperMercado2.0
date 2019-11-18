@@ -16,5 +16,7 @@ public abstract class CadastroProdutosVenda {
     public abstract void cadastrar(ProdutosVendaBeans object);
     
     public abstract ArrayList<ProdutosVendaBeans> buscar();
+
+    public abstract boolean validarCaracteresEspeciaisProduto(String codigo, String valor,String quantidade);
     
 }

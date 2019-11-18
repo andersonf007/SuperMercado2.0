@@ -14,8 +14,8 @@ public class EstoqueController {
     static Estoque estoque;
     
     public static void abrirEstoque(){
-        if(estoque == null) estoque = new Estoque();
-        
+        estoque = null;
+        estoque = new Estoque();               
         estoque.setVisible(true);
 
     }

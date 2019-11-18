@@ -18,8 +18,8 @@ public class PdvController {
     static PDV pdv;
     
     public static void abrePdv(){
-        if(pdv == null) pdv = new PDV();
-        
+        pdv = null;
+        pdv = new PDV();               
         pdv.setVisible(true);
     }
     
