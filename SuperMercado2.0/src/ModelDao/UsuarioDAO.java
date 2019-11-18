@@ -1,5 +1,5 @@
 package ModelDao;
-import Exceptions.NomeInvalidoException;
+import Exceptions.*;
 import ModelBeans.CadastroUsuarioBeans;
 import ModelBeans.UsuarioBeans;
 import java.io.BufferedReader;
@@ -122,35 +122,31 @@ public class UsuarioDAO extends CadastroUsuarioBeans{
         return contador;
     }
    
-    public boolean validadorUsuario(UsuarioBeans usuario) throws NomeInvalidoException{ // Não vi necessidade de verificar ID já que gera automaticamente
-        char[] especiais = {'#','@','%','&','*','(',')','+','-','$','!','?','/','|','=','§','¹','²','³','£','*','-',',','<','>','.',';',':'};
-        char[] numeros = {'0','1','2','3','4','5','6','7','8','9'};
-        for(int i = 0; i < usuario.getNome().length();i++){
-            for (char especiai : especiais) {
-                if (usuario.getNome().charAt(i) == especiai) {
-                    throw new NomeInvalidoException();
-                }
-            }
-            for (char numb : numeros){
-                if(usuario.getNome().charAt(i) == numb){
-                    return false;
-                }
+    public boolean validadorUsuario(UsuarioBeans usuario) throws ValidacaoException{ // Não vi necessidade de verificar ID já que gera automaticamente
+        if(!usuario.getNome().matches("[a-zA-Z\\s]+")){ // Verifica se o nome possui caracteres especiais
+            throw  new NomeInvalidoException();
+        }
+
+        for (UsuarioBeans listUsuarioBean : ListUsuarioBeans) { // Verifica se existe um usuario com o mesmo login
+            if (listUsuarioBean.getLogin().equals(usuario.getLogin())) {
+                throw new LoginRepetidoException();
             }
         }
-        for(int i = 0; i < usuario.getLogin().length();i++) {
-            for (char especiai : especiais) {
-                if (usuario.getNome().charAt(i) == especiai) {
-                    return false;
-                }
-            }
-        }
-        for(int i = 0; i < usuario.getSenha().length();i++) {
-            for (char especiai : especiais) {
-                if (usuario.getNome().charAt(i) == especiai) {
-                    return false;
-                }
-            }
+        if(!usuario.getSenha().matches("[a-zA-Z\\d]")){
+            throw new SenhaInvalidaException();
         }
         return true;
+    }
+    public boolean validarLogin(String login, String senha) throws ValidacaoException{
+        for (UsuarioBeans listUsuarioBean : ListUsuarioBeans) {
+            if (listUsuarioBean.getLogin().equals(login) && listUsuarioBean.getSenha().equals(senha)) {
+                if(listUsuarioBean.getAtivo()){
+                    return true;
+                }else{
+                    throw new UsuaroNaoAtivoException();
+                }
+            }
+        }
+        throw new LoginSenhaInvalidos();
     }
 }

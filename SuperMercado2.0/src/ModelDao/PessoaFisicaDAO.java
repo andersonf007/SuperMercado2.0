@@ -1,5 +1,7 @@
 package ModelDao;
 
+import Exceptions.NomeInvalidoException;
+import Exceptions.ValidacaoException;
 import ModelBeans.CadastroPessoaFisicaBeans;
 import ModelBeans.PessoaFisicaBeans;
 import java.io.BufferedReader;
@@ -133,49 +135,19 @@ public class PessoaFisicaDAO extends CadastroPessoaFisicaBeans {
         return contador;
     }
 
-    public boolean validadorPessoaFisica(PessoaFisicaBeans pessoaFisica) {
-        char[] especiais = {'#', '@', '%', '&', '*', '(', ')', '+', '-', '$', '!', '?', '/', '|', '=', '§', '¹', '²', '³', '£', '*', '-', ',', '<', '>', '.', ';', ':'};
-        char[] numeros = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
-        int count = -1;
-        for (int i = 0; i < pessoaFisica.getCpf().length(); i++) {
-            for (int k = 0; k < numeros.length; k++) {
-                if (pessoaFisica.getCpf().charAt(i) == numeros[k]) {
-                    count += 1;
-                }
-            }
-        }
-        if (count != pessoaFisica.getCpf().length()) {
-            return false;
-        } else {
-            count = -1;
-        }
-        for (int i = 0; i < pessoaFisica.getRg().length(); i++) {
-            for (int k = 0; k < numeros.length; k++) {
-                if (pessoaFisica.getRg().charAt(i) == numeros[k]) {
-                    count += 1;
-                }
-            }
-        }
-        if (count != pessoaFisica.getRg().length()) {
+    public boolean validadorPessoaFisica(PessoaFisicaBeans pessoaFisica) throws ValidacaoException {
+        if(!pessoaFisica.getCpf().matches("[0-9]{11}]")){
             return false;
         }
-        for (int i = 0; i < pessoaFisica.getNome().length(); i++) {
-            for (int k = 0; k < especiais.length; k++) {
-                if (pessoaFisica.getNome().charAt(i) == especiais[k]) {
-                    return false;
-                }
-            }
-        }
-        for(int i = 0; i < pessoaFisica.getTelefone().length(); i++){
-            for (int k = 0; k < numeros.length; k++){
-                if(pessoaFisica.getTelefone().charAt(i) == numeros[k]){
-                    count += 1;
-                }
-            }
-        }
-        if(count != pessoaFisica.getTelefone().length()){
+        if(!pessoaFisica.getRg().matches("[0-9]{1,11}")){
             return false;
         }
+        if(!pessoaFisica.getNome().matches("[a-zA-Z\\s]+")){ // Verifica se o nome possui caracteres especiais
+            throw  new NomeInvalidoException();
+        }
+       if(!pessoaFisica.getTelefone().matches("[0-9]{11}")){
+           return false;
+       }
         return true;
     }
 
