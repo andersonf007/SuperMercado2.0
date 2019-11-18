@@ -16,9 +16,8 @@ public class FormaPagamentoController {
     static FormaPagamento formaPagamento;
     
     public static void abrirFormaPagamento(){
-        if(formaPagamento == null)
-            formaPagamento = new FormaPagamento();
-        
+        formaPagamento = null;
+        formaPagamento = new FormaPagamento();               
         formaPagamento.setVisible(true);
     }
     

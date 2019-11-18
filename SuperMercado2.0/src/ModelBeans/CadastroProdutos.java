@@ -21,8 +21,6 @@ public abstract class CadastroProdutos {
     
     public abstract int confereQuantidadeDeProdutosRegistrados();
     
-    public abstract boolean validadorProduto(ProdutoBeans produto);
-    
     public abstract boolean validarDuplicidade(ProdutoBeans object);
     
     public abstract void alterarEstoque(ProdutoBeans object);

@@ -6,6 +6,7 @@
 package View;
 
 import Controllers.PdvController;
+import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -245,13 +246,20 @@ public class FormaPagamento extends javax.swing.JFrame {
         jTextFieldValorPago.setText("");
         jLabelTotalAPagar.setText("");
         jLabelTotalPago.setText("");
-        jLabelTroco.setText("");
+        jLabelTroco.setText("");       
+        jButtonFinalizar.setEnabled(false);
         this.dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarActionPerformed
         if(Double.parseDouble(jLabelTotalAPagar.getText()) <= Double.parseDouble(jTextFieldValorPago.getText())){
             PdvController.receberConfirmacaoPagamento(""+jComboBoxFormaPagamento.getSelectedItem(),""+jComboBoxDescontoAcrescimo.getSelectedItem(),Double.parseDouble(jTextFieldDescontoAcrescimo.getText()));
+            jTextFieldDescontoAcrescimo.setText("0.00");
+            jTextFieldValorPago.setText("");
+            jLabelTotalAPagar.setText("");
+            jLabelTotalPago.setText("");
+            jLabelTroco.setText("");
+            jButtonFinalizar.setEnabled(false);
             this.dispose();
         }else{
             JOptionPane.showMessageDialog(null, "Informe o valor para pagamento corretamente!");

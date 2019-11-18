@@ -7,14 +7,14 @@ public class ProdutosController {
     static BuscarProdutos buscarProdutos;
     
     public static void abreBuscarProdutos(){
-        if(buscarProdutos == null) buscarProdutos = new BuscarProdutos();
-        
+        buscarProdutos = null;
+        buscarProdutos = new BuscarProdutos();               
         buscarProdutos.setVisible(true);
     }
     
     public static void abreCadProdutos(){
-        if(cadProdutos == null) cadProdutos = new CadProdutos();
-        
+        cadProdutos = null;
+        cadProdutos = new CadProdutos();               
         cadProdutos.setVisible(true);
     }
    

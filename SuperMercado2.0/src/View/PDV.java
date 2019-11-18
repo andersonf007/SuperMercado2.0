@@ -190,7 +190,7 @@ public class PDV extends javax.swing.JFrame {
         getContentPane().add(jLabel5);
         jLabel5.setBounds(10, 590, 460, 14);
 
-        jLabel9.setText("Clique em \"Adicionar Cliente\" para inverir um cliente na venda");
+        jLabel9.setText("Clique em \"Adicionar Cliente\" para inserir um cliente na venda");
         getContentPane().add(jLabel9);
         jLabel9.setBounds(10, 570, 390, 14);
 

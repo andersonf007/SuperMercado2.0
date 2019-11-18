@@ -65,17 +65,17 @@ public class ProdutosVendaDAO extends CadastroProdutosVenda{
     public boolean validarCaracteresEspeciaisProduto(String codigo, String valor, String quantidade) {
         try {
             int cod = Integer.parseInt(codigo);
-        }catch(Exception){
+        }catch(Exception ex){
 
         }
         try {
             double val = Double.parseDouble(valor);
-        }catch (){
+       }catch(Exception ex){
 
         }
         try {
             double quant = Double.parseDouble(quantidade);
-        }catch (){
+        }catch(Exception ex){
 
         }
         return true;
