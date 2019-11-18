@@ -91,19 +91,19 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void jButtonAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcessarActionPerformed
         
-        //try {
-            //usuarioDAO.validarLogin(jTextFieldNome.getText(),jTextFieldSenha.getText());
+        try {
+            usuarioDAO.validarLogin(jTextFieldNome.getText(),jTextFieldSenha.getText());
             TelaPrincipal telaPrincipal = new TelaPrincipal();
             telaPrincipal.setVisible(true);
             this.dispose();
-        /*}catch(UsuaroNaoAtivoException ex){
+        }catch(UsuaroNaoAtivoException ex){
             JOptionPane.showMessageDialog(null, "Este usuario não está ativo");
         } catch(LoginSenhaInvalidos ex){
             JOptionPane.showMessageDialog(null, "Usuario ou senha incorreto!");
         }
         catch (ValidacaoException ex) {
             Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
     }//GEN-LAST:event_jButtonAcessarActionPerformed
 
     /**
