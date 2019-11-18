@@ -5,6 +5,7 @@
  */
 package ModelBeans;
 
+import Exceptions.ValidacaoException;
 import java.util.ArrayList;
 
 /**
@@ -20,4 +21,10 @@ public abstract class CadastroUsuarioBeans {
     public abstract ArrayList<UsuarioBeans> busca();
     
     public abstract int confereQuantidadeDeUsuariosRegistrados();
+    
+    public abstract boolean validadorUsuario(UsuarioBeans usuario) throws ValidacaoException;
+    
+    public abstract boolean validarDuplicidade(UsuarioBeans usuario) throws ValidacaoException;
+    
+    public abstract boolean validarLogin(String login, String senha) throws ValidacaoException;
 }

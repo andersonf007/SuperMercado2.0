@@ -5,14 +5,20 @@
  */
 package View;
 
+import Exceptions.LoginSenhaInvalidos;
+import Exceptions.UsuaroNaoAtivoException;
+import Exceptions.ValidacaoException;
+import ModelDao.UsuarioDAO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
-/**
+/*
  *
  * @author ander
  */
 public class TelaLogin extends javax.swing.JFrame {
 
+    UsuarioDAO usuarioDAO = new UsuarioDAO();
     /**
      * Creates new form NewJFrame
      */
@@ -84,13 +90,20 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcessarActionPerformed
-        if(jTextFieldNome.getText().equals("1") && jTextFieldSenha.getText().equals("1")){
+        
+        //try {
+            //usuarioDAO.validarLogin(jTextFieldNome.getText(),jTextFieldSenha.getText());
             TelaPrincipal telaPrincipal = new TelaPrincipal();
             telaPrincipal.setVisible(true);
-            dispose();
-        }else{
-            JOptionPane.showMessageDialog(null,"Usuário ou senha incorreto");
+            this.dispose();
+        /*}catch(UsuaroNaoAtivoException ex){
+            JOptionPane.showMessageDialog(null, "Este usuario não está ativo");
+        } catch(LoginSenhaInvalidos ex){
+            JOptionPane.showMessageDialog(null, "Usuario ou senha incorreto!");
         }
+        catch (ValidacaoException ex) {
+            Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
     }//GEN-LAST:event_jButtonAcessarActionPerformed
 
     /**

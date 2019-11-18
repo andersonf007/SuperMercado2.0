@@ -122,21 +122,29 @@ public class UsuarioDAO extends CadastroUsuarioBeans{
         return contador;
     }
    
-    public boolean validadorUsuario(UsuarioBeans usuario) throws ValidacaoException{ // Não vi necessidade de verificar ID já que gera automaticamente
+    @Override 
+    public boolean validadorUsuario(UsuarioBeans usuario) throws ValidacaoException{ 
         if(!usuario.getNome().matches("[a-zA-Z\\s]+")){ // Verifica se o nome possui caracteres especiais
             throw  new NomeInvalidoException();
         }
 
+        if(!usuario.getSenha().matches("[a-zA-Z\\d]")){ // So permite letras e numeros
+            throw new SenhaInvalidaException();
+        }
+        return true;
+    }
+    
+    @Override
+    public boolean validarDuplicidade(UsuarioBeans usuario) throws ValidacaoException{
         for (UsuarioBeans listUsuarioBean : ListUsuarioBeans) { // Verifica se existe um usuario com o mesmo login
             if (listUsuarioBean.getLogin().equals(usuario.getLogin())) {
                 throw new LoginRepetidoException();
             }
         }
-        if(!usuario.getSenha().matches("[a-zA-Z\\d]")){
-            throw new SenhaInvalidaException();
-        }
         return true;
     }
+    
+    @Override
     public boolean validarLogin(String login, String senha) throws ValidacaoException{
         for (UsuarioBeans listUsuarioBean : ListUsuarioBeans) {
             if (listUsuarioBean.getLogin().equals(login) && listUsuarioBean.getSenha().equals(senha)) {

@@ -1,7 +1,10 @@
 
 package View;
 
+import Exceptions.LoginRepetidoException;
 import Exceptions.NomeInvalidoException;
+import Exceptions.SenhaInvalidaException;
+import Exceptions.ValidacaoException;
 import ModelBeans.EnderecoBeans;
 import ModelBeans.ModelTabela;
 import ModelBeans.PessoaFisicaBeans;
@@ -12,6 +15,8 @@ import ModelDao.PessoaFisicaDAO;
 import ModelDao.PessoaJuridicaDAO;
 import ModelDao.UsuarioDAO;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 
@@ -443,6 +448,7 @@ public final class CadPessoa extends javax.swing.JFrame {
                     int id = ++quantidade;                
                     UsuarioBeans usuario = new UsuarioBeans(nome,adm, id, login, senha,ativo);
                     usuarioDAO.validadorUsuario(usuario);
+                    usuarioDAO.validarDuplicidade(usuario);
                     usuarioDAO.cadastrar(usuario);
                 }
                 preencherTabelaUsuarios();
@@ -451,6 +457,14 @@ public final class CadPessoa extends javax.swing.JFrame {
         }catch(NomeInvalidoException ex){
             JOptionPane.showMessageDialog(null, ex);
             jTextFieldNome.requestFocus();
+        }catch(LoginRepetidoException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+            jTextFieldLogin.requestFocus();
+        } catch(SenhaInvalidaException ex){
+            JOptionPane.showMessageDialog(null, ex);
+            jTextFieldSenha.requestFocus();
+        } catch (ValidacaoException ex) {
+            JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
