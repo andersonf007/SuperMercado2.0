@@ -159,4 +159,19 @@ public class UsuarioDAO extends CadastroUsuarioBeans{
         }
         throw new LoginSenhaInvalidos();
     }
+    
+    @Override
+    public boolean ValidarAdm(String login, String senha) throws ValidacaoException{
+        ListUsuarioBeans = busca();
+        for (UsuarioBeans listUsuarioBean : ListUsuarioBeans) {
+            if (listUsuarioBean.getLogin().equals(login) && listUsuarioBean.getSenha().equals(senha)) {
+                if(listUsuarioBean.getAdm()){
+                    return true;
+                }else{
+                    //throw new UsuaroNaoAtivoException();
+                }
+            }
+        }
+        throw new LoginSenhaInvalidos();
+    }
 }

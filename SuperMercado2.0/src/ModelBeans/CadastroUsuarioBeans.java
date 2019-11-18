@@ -27,4 +27,6 @@ public abstract class CadastroUsuarioBeans {
     public abstract boolean validarDuplicidade(UsuarioBeans usuario) throws ValidacaoException;
     
     public abstract boolean validarLogin(String login, String senha) throws ValidacaoException;
+    
+    public abstract boolean ValidarAdm(String login, String senha) throws ValidacaoException;
 }
