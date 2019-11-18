@@ -260,7 +260,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Clique em &quot;Adicionar Cliente&quot; para inverir um cliente na venda"/>
+        <Property name="text" type="java.lang.String" value="Clique em &quot;Adicionar Cliente&quot; para inserir um cliente na venda"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
