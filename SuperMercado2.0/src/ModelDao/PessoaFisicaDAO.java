@@ -166,6 +166,16 @@ public class PessoaFisicaDAO extends CadastroPessoaFisicaBeans {
                 }
             }
         }
+        for(int i = 0; i < pessoaFisica.getTelefone().length(); i++){
+            for (int k = 0; k < numeros.length; k++){
+                if(pessoaFisica.getTelefone().charAt(i) == numeros[k]){
+                    count += 1;
+                }
+            }
+        }
+        if(count != pessoaFisica.getTelefone().length()){
+            return false;
+        }
         return true;
     }
 

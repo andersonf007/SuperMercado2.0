@@ -130,6 +130,7 @@ public class PessoaJuridicaDAO extends CadastroPessoaJuridicaBeans{
     public boolean validadorPessoaJuridica(PessoaJuridicaBeans pessoaJuridica){
         char[] especiais = {'#', '@', '%', '&', '*', '(', ')', '+', '-', '$', '!', '?', '/', '|', '=', '§', '¹', '²', '³', '£', '*', '-', ',', '<', '>', '.', ';', ':'};
         char[] numeros = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        String[] UF = {"PE","AL","PB","RN","CE","PI","MA","RN","SE","BA","TO","PA","AP","RR","AM","RO","AC","MT","GO","DF","MS","MG","ES","RJ","SP","PR","SC","RS"};
         int count = -1;
         for (int i = 0; i < pessoaJuridica.getCnpj().length(); i++) {
             for (int k = 0; k < numeros.length; k++) {
@@ -152,6 +153,8 @@ public class PessoaJuridicaDAO extends CadastroPessoaJuridicaBeans{
         }
         if (count != pessoaJuridica.getIe().length()) {
             return false;
+        }else {
+            count = -1;
         }
         for (int i = 0; i < pessoaJuridica.getNome().length(); i++) {
             for (int k = 0; k < especiais.length; k++) {
@@ -160,6 +163,10 @@ public class PessoaJuridicaDAO extends CadastroPessoaJuridicaBeans{
                 }
             }
         }
+        for(int k = 0; k < UF.length;k++){
+            //if(pessoaJuridica.)
+        }
+
         return true;
     }
 
