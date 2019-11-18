@@ -136,7 +136,7 @@ public class ProdutoDAO extends CadastroProdutos{
         busca();
         
         for(int i = 0; i < ListProdutosBeans.size(); i++){
-            if(ListProdutosBeans.get(i).equals(object)){
+            if(ListProdutosBeans.get(i).getNome().equals(object.getNome())){
                 return false;
             }
         }

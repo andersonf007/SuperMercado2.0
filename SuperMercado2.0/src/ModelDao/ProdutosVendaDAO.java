@@ -60,5 +60,25 @@ public class ProdutosVendaDAO extends CadastroProdutosVenda{
         }
         return ListProdutosVendaBeans;
     }
-    
+
+    @Override
+    public boolean validarCaracteresEspeciaisProduto(String codigo, String valor, String quantidade) {
+        try {
+            int cod = Integer.parseInt(codigo);
+        }catch(Exception){
+
+        }
+        try {
+            double val = Double.parseDouble(valor);
+        }catch (){
+
+        }
+        try {
+            double quant = Double.parseDouble(quantidade);
+        }catch (){
+
+        }
+        return true;
+    }
+
 }
