@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Raquell Vieira
+ * @author anderson
  */
 public class GerarRelatorioPDF {
 
