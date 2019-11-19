@@ -9,6 +9,7 @@ import Controllers.EstoqueController;
 import Controllers.PdvController;
 import Controllers.PessoaController;
 import Controllers.ProdutosController;
+import Controllers.RelatorioController;
 
 /**
  *
@@ -39,6 +40,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonCadProduto = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jButtonEstoque = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -105,6 +107,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().add(jPanel3);
         jPanel3.setBounds(400, 20, 120, 130);
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(410, 350, 73, 23);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Logo Fenix 2 .png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(50, 150, 420, 280);
@@ -136,6 +147,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         EstoqueController estoqueController = new EstoqueController();
         EstoqueController.abrirEstoque();
     }//GEN-LAST:event_jButtonEstoqueActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        RelatorioController relatorioController = new RelatorioController();
+        relatorioController.abreRelatorio();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,6 +189,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCadPessoa;
     private javax.swing.JButton jButtonCadProduto;
     private javax.swing.JButton jButtonEstoque;

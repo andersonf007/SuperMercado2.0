@@ -5,12 +5,19 @@
  */
 package View;
 
+import ModelDao.GerarRelatorioPDF;
+import com.itextpdf.text.DocumentException;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author anderson
  */
 public class Relatorio extends javax.swing.JFrame {
 
+    GerarRelatorioPDF gerarRelatorioPDF = new GerarRelatorioPDF();
     /**
      * Creates new form Relatorio
      */
@@ -42,6 +49,11 @@ public class Relatorio extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,6 +91,16 @@ public class Relatorio extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(299, 171));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            gerarRelatorioPDF.criarRelatorio(jTextFieldCpfCnpj.getText(), 0);
+        } catch (DocumentException ex) {
+            Logger.getLogger(Relatorio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Relatorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
