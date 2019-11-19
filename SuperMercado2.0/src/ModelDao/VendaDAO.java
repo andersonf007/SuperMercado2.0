@@ -44,7 +44,7 @@ public class VendaDAO extends CadastroVenda{
     }
 
     @Override
-    public ArrayList<VendaBeans> buscar() {
+    public ArrayList<VendaBeans> buscarTodosOsRegistros() {
         String linha;
         try {
             FileInputStream arquivo = new FileInputStream("venda.txt");
@@ -93,6 +93,37 @@ public class VendaDAO extends CadastroVenda{
             //JOptionPane.showMessageDialog(null, "Não existe arquivo de usuario! " + ex);
         }
         return contador;
+    }
+
+    @Override
+    public ArrayList<VendaBeans> buscarRegistrosExpecificosDeClientes(String id, String tipo) {
+        String linha;
+        try {
+            FileInputStream arquivo = new FileInputStream("venda.txt");
+            InputStreamReader input = new InputStreamReader(arquivo);
+            BufferedReader buffer = new BufferedReader(input);
+            
+            do{
+                linha = buffer.readLine();
+                if(linha != null){
+                    VendaBeans vendaBeans = new VendaBeans();
+                    String[] palavras = linha.split("#");
+                    if(palavras[1].equals(id) && palavras[6].equals(tipo)){
+                        vendaBeans.setId(Integer.parseInt(palavras[0]));
+                        vendaBeans.setIdCliente(Integer.parseInt(palavras[1]));
+                        vendaBeans.setValor(Double.parseDouble(palavras[2]));
+                        vendaBeans.setValorAcrescimo(Double.parseDouble(palavras[3]));
+                        vendaBeans.setValorDescontro(Double.parseDouble(palavras[4]));
+                        vendaBeans.setFormaPagamento(palavras[5]);
+                        vendaBeans.setTipoPessoa(palavras[6]);
+                        ListVendaBeans.add(vendaBeans);
+                    }                        
+                }                    
+            }while(linha != null);        
+        } catch (Exception ex) {
+            //JOptionPane.showMessageDialog(null, "Não existe arquivo de usuario! " + ex);
+        }
+        return ListVendaBeans;
     }
     
 }
