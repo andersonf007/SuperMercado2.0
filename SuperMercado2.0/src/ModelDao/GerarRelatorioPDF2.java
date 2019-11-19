@@ -21,17 +21,17 @@ import java.util.ArrayList;
  *
  * @author Raquell Vieira
  */
-public class GerarRelatorioPDF {
+public class GerarRelatorioPDF2 {
 
     private static Font fonteTable = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD);
     private static Font fontePadrao = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD);
 
-    public void criarRelatorio(String cpfCnpj, int flag) throws DocumentException, FileNotFoundException {
+    public static void main(String[] arq) {
+
+    }
+
+    public void criarRelatorio(String cpf) throws DocumentException, FileNotFoundException {
         
-        
-        
-        Fachada fachada = Fachada.getInstance();
-        ArrayList<Venda> vendas;
         // Criação do objeto que será um documento PDF
         Document documento = new Document();
         // Faz o apontamento para o arquivo de destino
