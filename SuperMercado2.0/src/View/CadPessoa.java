@@ -1,7 +1,10 @@
 
 package View;
 
-import Negocio.Exceptions.NomeInvalidoException;
+import Exceptions.LoginRepetidoException;
+import Exceptions.NomeInvalidoException;
+import Exceptions.SenhaInvalidaException;
+import Exceptions.ValidacaoException;
 import ModelBeans.EnderecoBeans;
 import ModelBeans.ModelTabela;
 import ModelBeans.PessoaFisicaBeans;
@@ -77,12 +80,12 @@ public final class CadPessoa extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jComboBoxTipoPessoa = new javax.swing.JComboBox();
-        jTextFieldSenha = new javax.swing.JTextField();
         jButtonSalvar = new javax.swing.JButton();
         jCheckBoxAtivo = new javax.swing.JCheckBox();
         jCheckBoxAdm = new javax.swing.JCheckBox();
         jButtonEditar = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
+        jPasswordFieldSenha = new javax.swing.JPasswordField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableUsuarios = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -241,10 +244,6 @@ public final class CadPessoa extends javax.swing.JFrame {
         jPanel1.add(jComboBoxTipoPessoa);
         jComboBoxTipoPessoa.setBounds(410, 70, 130, 30);
 
-        jTextFieldSenha.setEnabled(false);
-        jPanel1.add(jTextFieldSenha);
-        jTextFieldSenha.setBounds(200, 280, 170, 30);
-
         jButtonSalvar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonSalvar.setText("Salvar");
         jButtonSalvar.setEnabled(false);
@@ -281,6 +280,10 @@ public final class CadPessoa extends javax.swing.JFrame {
         jLabel17.setText("Login:");
         jPanel1.add(jLabel17);
         jLabel17.setBounds(40, 250, 60, 20);
+
+        jPasswordFieldSenha.setEnabled(false);
+        jPanel1.add(jPasswordFieldSenha);
+        jPasswordFieldSenha.setBounds(200, 280, 170, 30);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(10, 10, 1040, 340);
@@ -384,7 +387,7 @@ public final class CadPessoa extends javax.swing.JFrame {
         String uf = jTextFieldUf.getText();
 
         String login = jTextFieldLogin.getText();
-        String senha = jTextFieldSenha.getText();
+        String senha = jPasswordFieldSenha.getText();
         boolean adm = jCheckBoxAdm.isSelected();
         try{
             if(jComboBoxTipoPessoa.getSelectedItem().equals("Física")){
@@ -443,6 +446,7 @@ public final class CadPessoa extends javax.swing.JFrame {
                     int id = ++quantidade;                
                     UsuarioBeans usuario = new UsuarioBeans(nome,adm, id, login, senha,ativo);
                     usuarioDAO.validadorUsuario(usuario);
+                    usuarioDAO.validarDuplicidade(usuario);
                     usuarioDAO.cadastrar(usuario);
                 }
                 preencherTabelaUsuarios();
@@ -451,6 +455,14 @@ public final class CadPessoa extends javax.swing.JFrame {
         }catch(NomeInvalidoException ex){
             JOptionPane.showMessageDialog(null, ex);
             jTextFieldNome.requestFocus();
+        }catch(LoginRepetidoException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+            jTextFieldLogin.requestFocus();
+        } catch(SenhaInvalidaException ex){
+            JOptionPane.showMessageDialog(null, ex);
+            jPasswordFieldSenha.requestFocus();
+        } catch (ValidacaoException ex) {
+            JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
@@ -479,7 +491,7 @@ public final class CadPessoa extends javax.swing.JFrame {
                 jTableUsuarios.setEnabled(false);
                 
                 jTextFieldLogin.setEnabled(true);
-                jTextFieldSenha.setEnabled(true);
+                jPasswordFieldSenha.setEnabled(true);
                 jCheckBoxAdm.setEnabled(true);
                 jCheckBoxAtivo.setEnabled(true);
                 jButtonSalvar.setEnabled(true);
@@ -500,7 +512,7 @@ public final class CadPessoa extends javax.swing.JFrame {
         jTextFieldCPFCNPJ.setText("");
         jTextFieldRGIE.setText("");
         jTextFieldLogin.setText("");
-        jTextFieldSenha.setText("");
+        jPasswordFieldSenha.setText("");
         jComboBoxTipoPessoa.setSelectedIndex(0);        
         jCheckBoxAdm.setSelected(false);
         jCheckBoxAtivo.setSelected(false);
@@ -518,7 +530,7 @@ public final class CadPessoa extends javax.swing.JFrame {
         jTextFieldRGIE.setEnabled(false);
         jComboBoxSexo.setEnabled(false);
         jComboBoxTipoPessoa.setEnabled(false);
-        jTextFieldSenha.setEnabled(false);
+        jPasswordFieldSenha.setEnabled(false);
         jTextFieldLogin.setEnabled(false);
         jButtonSalvar.setEnabled(false);           
         jButtonCancelar.setEnabled(false);
@@ -553,7 +565,7 @@ public final class CadPessoa extends javax.swing.JFrame {
         jCheckBoxAdm.setEnabled(true);        
         jCheckBoxAtivo.setEnabled(true);                
         jTextFieldLogin.setEnabled(true);        
-        jTextFieldSenha.setEnabled(true); 
+        jPasswordFieldSenha.setEnabled(true); 
                 
         flag = 1;
         codigoPessoa = Integer.parseInt(""+jTableUsuarios.getValueAt(jTableUsuarios.getSelectedRow(), 0));
@@ -564,7 +576,7 @@ public final class CadPessoa extends javax.swing.JFrame {
             if(ListUsuarioBeans.get(i).getId() == codigoPessoa){
                 jTextFieldNome.setText(ListUsuarioBeans.get(i).getNome());
                 jTextFieldLogin.setText(ListUsuarioBeans.get(i).getLogin());
-                jTextFieldSenha.setText(ListUsuarioBeans.get(i).getSenha());
+                jPasswordFieldSenha.setText(ListUsuarioBeans.get(i).getSenha());
                 jCheckBoxAdm.setSelected(ListUsuarioBeans.get(i).getAdm());
                 jCheckBoxAtivo.setSelected(ListUsuarioBeans.get(i).getAtivo());
             }
@@ -627,7 +639,7 @@ public final class CadPessoa extends javax.swing.JFrame {
             jTextFieldCPFCNPJ.setText("");
             jTextFieldRGIE.setText("");
             jTextFieldLogin.setText("");
-            jTextFieldSenha.setText("");
+            jPasswordFieldSenha.setText("");
             jCheckBoxAdm.setSelected(false);
             jCheckBoxAtivo.setSelected(false);
             jComboBoxTipoPessoa.setEnabled(true);
@@ -776,7 +788,7 @@ public final class CadPessoa extends javax.swing.JFrame {
         jTextFieldCPFCNPJ.setText("");
         jTextFieldRGIE.setText("");
         jTextFieldLogin.setText("");
-        jTextFieldSenha.setText("");
+        jPasswordFieldSenha.setText("");
         jComboBoxTipoPessoa.setSelectedIndex(0);
         jComboBoxSexo.setSelectedIndex(0);
         jCheckBoxAdm.setSelected(false);
@@ -799,7 +811,7 @@ public final class CadPessoa extends javax.swing.JFrame {
     
     public void validacaoDeCampos2(){
         jTextFieldLogin.setEnabled(false);
-        jTextFieldSenha.setEnabled(false);
+        jPasswordFieldSenha.setEnabled(false);
         jCheckBoxAdm.setEnabled(false);
         jButtonSalvar.setEnabled(false);
         
@@ -842,7 +854,7 @@ public final class CadPessoa extends javax.swing.JFrame {
                 jButtonSalvar.setEnabled(true);           
                 jButtonCancelar.setEnabled(true);
                 
-                jTextFieldSenha.setEnabled(false);
+                jPasswordFieldSenha.setEnabled(false);
                 jTextFieldLogin.setEnabled(false);
                 jCheckBoxAdm.setEnabled(false);
                 jTablePessoaFisica.setEnabled(false);
@@ -857,7 +869,7 @@ public final class CadPessoa extends javax.swing.JFrame {
         jCheckBoxAdm.setEnabled(false);        
         jCheckBoxAtivo.setEnabled(false);                
         jTextFieldLogin.setEnabled(false);        
-        jTextFieldSenha.setEnabled(false);
+        jPasswordFieldSenha.setEnabled(false);
 
         jTextFieldNome.setEnabled(true);
         jTablePessoaFisica.setEnabled(true);
@@ -930,6 +942,7 @@ public final class CadPessoa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField jPasswordFieldSenha;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -945,7 +958,6 @@ public final class CadPessoa extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldNome;
     private javax.swing.JTextField jTextFieldNumero;
     private javax.swing.JTextField jTextFieldRGIE;
-    private javax.swing.JTextField jTextFieldSenha;
     private javax.swing.JTextField jTextFieldTelefone;
     private javax.swing.JTextField jTextFieldUf;
     // End of variables declaration//GEN-END:variables

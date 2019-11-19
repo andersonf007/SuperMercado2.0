@@ -5,14 +5,20 @@
  */
 package View;
 
+import Exceptions.LoginSenhaInvalidos;
+import Exceptions.UsuaroNaoAtivoException;
+import Exceptions.ValidacaoException;
+import ModelDao.UsuarioDAO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
-/**
+/*
  *
  * @author ander
  */
 public class TelaLogin extends javax.swing.JFrame {
 
+    UsuarioDAO usuarioDAO = new UsuarioDAO();
     /**
      * Creates new form NewJFrame
      */
@@ -32,10 +38,10 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextFieldNome = new javax.swing.JTextField();
-        jTextFieldSenha = new javax.swing.JTextField();
         jButtonAcessar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jPasswordFieldSenha = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -52,8 +58,6 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel3.setBounds(10, 270, 60, 40);
         getContentPane().add(jTextFieldNome);
         jTextFieldNome.setBounds(60, 270, 150, 40);
-        getContentPane().add(jTextFieldSenha);
-        jTextFieldSenha.setBounds(60, 320, 150, 40);
 
         jButtonAcessar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonAcessar.setText("Acessar");
@@ -74,6 +78,8 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel4.setText("jLabel4");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(20, 0, 430, 300);
+        getContentPane().add(jPasswordFieldSenha);
+        jPasswordFieldSenha.setBounds(60, 320, 150, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundotelaLogin.png"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -84,12 +90,19 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcessarActionPerformed
-        if(jTextFieldNome.getText().equals("1") && jTextFieldSenha.getText().equals("1")){
+        
+        try {
+            usuarioDAO.validarLogin(jTextFieldNome.getText(),jPasswordFieldSenha.getText());
             TelaPrincipal telaPrincipal = new TelaPrincipal();
             telaPrincipal.setVisible(true);
-            dispose();
-        }else{
-            JOptionPane.showMessageDialog(null,"Usuário ou senha incorreto");
+            this.dispose();
+        }catch(UsuaroNaoAtivoException ex){
+            JOptionPane.showMessageDialog(null, "Este usuario não está ativo");
+        } catch(LoginSenhaInvalidos ex){
+            JOptionPane.showMessageDialog(null, "Usuario ou senha incorreto!");
+        }
+        catch (ValidacaoException ex) {
+            Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonAcessarActionPerformed
 
@@ -142,7 +155,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPasswordField jPasswordFieldSenha;
     private javax.swing.JTextField jTextFieldNome;
-    private javax.swing.JTextField jTextFieldSenha;
     // End of variables declaration//GEN-END:variables
 }
