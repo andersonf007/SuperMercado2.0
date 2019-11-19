@@ -1,7 +1,7 @@
 package Negocio.Exceptions;
 
 public class RgInvalidoException extends ValidacaoException {
-    RgInvalidoException(){
+    public RgInvalidoException(){
         super("Rg Invalido");
     }
 }

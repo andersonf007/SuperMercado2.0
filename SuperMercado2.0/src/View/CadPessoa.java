@@ -1,10 +1,10 @@
 
 package View;
 
-import Exceptions.LoginRepetidoException;
-import Exceptions.NomeInvalidoException;
-import Exceptions.SenhaInvalidaException;
-import Exceptions.ValidacaoException;
+import Negocio.Exceptions.LoginRepetidoException;
+import Negocio.Exceptions.NomeInvalidoException;
+import Negocio.Exceptions.SenhaInvalidaException;
+import Negocio.Exceptions.ValidacaoException;
 import ModelBeans.EnderecoBeans;
 import ModelBeans.ModelTabela;
 import ModelBeans.PessoaFisicaBeans;
