@@ -1,7 +1,8 @@
 package ModelDao;
 
-import Exceptions.NomeInvalidoException;
-import Exceptions.ValidacaoException;
+import Negocio.Exceptions.CpfInvalidoException;
+import Negocio.Exceptions.NomeInvalidoException;
+import Negocio.Exceptions.ValidacaoException;
 import ModelBeans.CadastroPessoaFisicaBeans;
 import ModelBeans.PessoaFisicaBeans;
 import java.io.BufferedReader;
@@ -14,7 +15,6 @@ import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class PessoaFisicaDAO extends CadastroPessoaFisicaBeans {
@@ -137,7 +137,7 @@ public class PessoaFisicaDAO extends CadastroPessoaFisicaBeans {
 
     public boolean validadorPessoaFisica(PessoaFisicaBeans pessoaFisica) throws ValidacaoException {
         if(!pessoaFisica.getCpf().matches("[0-9]{11}]")){
-            return false;
+            throw new CpfInvalidoException();
         }
         if(!pessoaFisica.getRg().matches("[0-9]{1,11}")){
             return false;

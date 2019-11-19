@@ -1,5 +1,5 @@
 package ModelDao;
-import Exceptions.*;
+import Negocio.Exceptions.*;
 import ModelBeans.CadastroUsuarioBeans;
 import ModelBeans.UsuarioBeans;
 import java.io.BufferedReader;

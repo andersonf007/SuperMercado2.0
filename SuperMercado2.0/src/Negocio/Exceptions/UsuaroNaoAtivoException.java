@@ -1,4 +1,4 @@
-package Exceptions;
+package Negocio.Exceptions;
 
 public class UsuaroNaoAtivoException extends ValidacaoException{
     public UsuaroNaoAtivoException(){

@@ -1,4 +1,4 @@
-package Exceptions;
+package Negocio.Exceptions;
 
 public class ValidacaoException extends Exception {
     private String mensage;

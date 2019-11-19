@@ -1,7 +1,7 @@
 
 package View;
 
-import Exceptions.NomeInvalidoException;
+import Negocio.Exceptions.NomeInvalidoException;
 import ModelBeans.EnderecoBeans;
 import ModelBeans.ModelTabela;
 import ModelBeans.PessoaFisicaBeans;
