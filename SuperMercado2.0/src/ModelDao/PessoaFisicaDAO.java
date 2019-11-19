@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 
 public class PessoaFisicaDAO extends CadastroPessoaFisicaBeans {
 
-    ArrayList<PessoaFisicaBeans> ListPessoaFisicaBeans = new ArrayList<PessoaFisicaBeans>();
+    ArrayList<PessoaFisicaBeans> ListPessoaFisicaBeans = new ArrayList<>();
 
     @Override
     public void cadastrar(PessoaFisicaBeans object) {
@@ -83,7 +83,7 @@ public class PessoaFisicaDAO extends CadastroPessoaFisicaBeans {
     }
 
     @Override
-    public ArrayList<PessoaFisicaBeans> buscar() {
+    public ArrayList<PessoaFisicaBeans> buscarTodosOsRegistros() {
         String linha;
         try {
             FileInputStream arquivo = new FileInputStream("pessoaFisica.txt");
@@ -135,6 +135,38 @@ public class PessoaFisicaDAO extends CadastroPessoaFisicaBeans {
         return contador;
     }
 
+    @Override
+    public PessoaFisicaBeans buscarRegistroPorId(String cpf) {
+        String linha;
+        try {
+            FileInputStream arquivo = new FileInputStream("pessoaFisica.txt");
+            InputStreamReader input = new InputStreamReader(arquivo);
+            BufferedReader buffer = new BufferedReader(input);
+
+            do {
+                linha = buffer.readLine();
+                if (linha != null) {
+                    PessoaFisicaBeans pessoaFisicaBeans = new PessoaFisicaBeans();
+                    String[] palavras = linha.split("#");
+                    if(palavras[2].equals(cpf)){
+                        pessoaFisicaBeans.setCodigo(Integer.parseInt(palavras[0]));
+                        pessoaFisicaBeans.setNome(palavras[1]);
+                        pessoaFisicaBeans.setCpf(palavras[2]);
+                        pessoaFisicaBeans.setRg(palavras[3]);
+                        pessoaFisicaBeans.setSexo(palavras[4]);
+                        pessoaFisicaBeans.setTelefone(palavras[5]);
+                        pessoaFisicaBeans.setCodEndereco(Integer.parseInt(palavras[6]));
+                        pessoaFisicaBeans.setAtivo(Boolean.parseBoolean(palavras[7]));   
+                        return pessoaFisicaBeans;
+                    }                    
+                }
+            } while (linha != null);
+        } catch (Exception ex) {
+            //JOptionPane.showMessageDialog(null, "Não existe arquivo de usuario! " + ex);
+        }
+        return null;
+    }
+    
     public boolean validadorPessoaFisica(PessoaFisicaBeans pessoaFisica) throws ValidacaoException {
         if(!pessoaFisica.getCpf().matches("[0-9]{11}]")){
             throw new CpfInvalidoException();
@@ -150,6 +182,8 @@ public class PessoaFisicaDAO extends CadastroPessoaFisicaBeans {
        }
         return true;
     }
+
+    
 
 
 }

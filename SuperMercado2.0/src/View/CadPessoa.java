@@ -589,7 +589,7 @@ public final class CadPessoa extends javax.swing.JFrame {
         flag = 2;
         codigoPessoa = Integer.parseInt(""+jTablePessoaFisica.getValueAt(jTablePessoaFisica.getSelectedRow(), 0));
         ListPessoaFisicaBeans.clear();
-        ListPessoaFisicaBeans = pessoaFisicaDAO.buscar();
+        ListPessoaFisicaBeans = pessoaFisicaDAO.buscarTodosOsRegistros();
         ListEnderecoBeans.clear();
         ListEnderecoBeans = enderecoDAO.busca();
         
@@ -719,7 +719,7 @@ public final class CadPessoa extends javax.swing.JFrame {
         try {
             dadosPessoasFisicas.clear();
             ListPessoaFisicaBeans.clear(); //limpa o arrray list
-            ListPessoaFisicaBeans = pessoaFisicaDAO.buscar();           
+            ListPessoaFisicaBeans = pessoaFisicaDAO.buscarTodosOsRegistros();           
             if(dadosPessoasFisicas.isEmpty()){
                 for(int i = 0; i < ListPessoaFisicaBeans.size(); i++){
                     dadosPessoasFisicas.add(new Object[]{ListPessoaFisicaBeans.get(i).getCodigo(),ListPessoaFisicaBeans.get(i).getNome(), ListPessoaFisicaBeans.get(i).getCpf(), ListPessoaFisicaBeans.get(i).getTelefone()});

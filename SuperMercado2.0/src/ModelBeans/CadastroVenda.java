@@ -15,7 +15,9 @@ public abstract class CadastroVenda {
     
     public abstract void cadastrar(VendaBeans object);
     
-    public abstract ArrayList<VendaBeans> buscar();
+    public abstract ArrayList<VendaBeans> buscarTodosOsRegistros();
+    
+    public abstract ArrayList<VendaBeans> buscarRegistrosExpecificosDeClientes(String id,String tipo);
     
     public abstract int confereQuantidadeDeVendasRegistradas();
 

@@ -17,7 +17,9 @@ public abstract class CadastroPessoaFisicaBeans {
     
     public abstract void editar(PessoaFisicaBeans object);
     
-    public abstract ArrayList<PessoaFisicaBeans> buscar();
+    public abstract ArrayList<PessoaFisicaBeans> buscarTodosOsRegistros();
+    
+    public abstract PessoaFisicaBeans buscarRegistroPorId(String cpf);
     
     public abstract int confereQuantidadeDeRegistros();    
 }
