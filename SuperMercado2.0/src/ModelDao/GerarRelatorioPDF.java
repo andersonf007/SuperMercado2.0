@@ -33,7 +33,7 @@ public class GerarRelatorioPDF {
     //VendaBeans vendaBeans = new VendaBeans();
     VendaDAO vendaDAO = new VendaDAO();
     double valorTotal = 0;
-    int quantidade;
+    int quantidade = 0;
     
     public void criarRelatorio(String cpfCnpj, int flag) throws DocumentException, FileNotFoundException {
         String nome = "";
@@ -50,7 +50,7 @@ public class GerarRelatorioPDF {
         // Criação do objeto que será um documento PDF
         Document documento = new Document();
         // Faz o apontamento para o arquivo de destino
-        PdfWriter.getInstance(documento, new FileOutputStream("Dados/Relatorio-" + LocalDate.now() + ".Pdf"));
+        PdfWriter.getInstance(documento, new FileOutputStream("Relatorio-" + LocalDate.now() + ".Pdf"));
         // Realiza a abertura do arquivo para escrita
         documento.open();
 
@@ -102,7 +102,7 @@ public class GerarRelatorioPDF {
         }
 */      
         PdfPCell celula1 = new PdfPCell(new Phrase(pessoaFisicaBeans.getNome()));
-        PdfPCell celula2 = new PdfPCell(new Phrase(String.valueOf(ListVendaBeans.size() + 1)));
+        PdfPCell celula2 = new PdfPCell(new Phrase(String.valueOf(quantidade)));
         PdfPCell celula3 = new PdfPCell(new Phrase(String.valueOf(valorTotal)));
 
         table.addCell(celula1);
@@ -117,8 +117,9 @@ public class GerarRelatorioPDF {
         
         if(flag == 0){
             for(int i = 0; i < ListVendaBeans.size(); i++){
-                if(ListVendaBeans.get(i).getIdCliente() == pessoaFisicaBeans.getCodigo()){
+                if(ListVendaBeans.get(i).getIdCliente() == pessoaFisicaBeans.getCodigo() && ListVendaBeans.get(i).getTipoPessoa().equals("F")){
                     valorTotal += ListVendaBeans.get(i).getValor();
+                    ++quantidade;
                 }
             }
         }else{
