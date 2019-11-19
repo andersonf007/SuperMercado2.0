@@ -5,9 +5,9 @@
  */
 package View;
 
-import Exceptions.LoginSenhaInvalidos;
-import Exceptions.UsuaroNaoAtivoException;
-import Exceptions.ValidacaoException;
+import Negocio.Exceptions.LoginSenhaInvalidos;
+import Negocio.Exceptions.UsuaroNaoAtivoException;
+import Negocio.Exceptions.ValidacaoException;
 import ModelDao.UsuarioDAO;
 import java.util.logging.Level;
 import java.util.logging.Logger;

@@ -5,7 +5,7 @@
  */
 package ModelBeans;
 
-import Exceptions.ValidacaoException;
+import Negocio.Exceptions.ValidacaoException;
 import java.util.ArrayList;
 
 /**
