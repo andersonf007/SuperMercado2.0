@@ -75,7 +75,7 @@ public class BuscarPessoas extends javax.swing.JFrame {
     private void jTablePessoasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePessoasMouseClicked
         int codigo = Integer.parseInt(""+jTablePessoas.getValueAt(jTablePessoas.getSelectedRow(), 0));
         String CnpjCpf = ""+jTablePessoas.getValueAt(jTablePessoas.getSelectedRow(), 2);
-        ListPessoaFisicaBeans = pessoaFisicaDAO.buscar();
+        ListPessoaFisicaBeans = pessoaFisicaDAO.buscarTodosOsRegistros();
         ListPessoaJuridicaBeans = pessoaJuridicaDAO.buscar();
         for(int i = 0; i < ListPessoaFisicaBeans.size(); i++){
             if(codigo == ListPessoaFisicaBeans.get(i).getCodigo() && CnpjCpf.equals(ListPessoaFisicaBeans.get(i).getCpf())){
@@ -116,7 +116,7 @@ public class BuscarPessoas extends javax.swing.JFrame {
         try {
             dados.clear();
             ListPessoaFisicaBeans.clear(); //limpa o arrray list
-            ListPessoaFisicaBeans = pessoaFisicaDAO.buscar();        
+            ListPessoaFisicaBeans = pessoaFisicaDAO.buscarTodosOsRegistros();        
             ListPessoaJuridicaBeans.clear();
             ListPessoaJuridicaBeans = pessoaJuridicaDAO.buscar();
             for(int i = 0; i < ListPessoaFisicaBeans.size(); i++){

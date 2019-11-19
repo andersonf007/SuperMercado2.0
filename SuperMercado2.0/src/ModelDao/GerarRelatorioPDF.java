@@ -1,6 +1,7 @@
 
 package ModelDao;
 
+import ModelBeans.PessoaFisicaBeans;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -25,10 +26,12 @@ public class GerarRelatorioPDF {
 
     private static Font fonteTable = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD);
     private static Font fontePadrao = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD);
-
+    PessoaFisicaDAO pessoaFisicaDAO = new PessoaFisicaDAO();
+    PessoaFisicaBeans pessoaFisicaBeans = new PessoaFisicaBeans();
+    
     public void criarRelatorio(String cpfCnpj, int flag) throws DocumentException, FileNotFoundException {
         
-        
+        pessoaFisicaBeans = pessoaFisicaDAO.buscarRegistroPorId(cpfCnpj);
         
         Fachada fachada = Fachada.getInstance();
         ArrayList<Venda> vendas;
