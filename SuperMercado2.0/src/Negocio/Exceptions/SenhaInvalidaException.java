@@ -1,4 +1,4 @@
-package Exceptions;
+package Negocio.Exceptions;
 
 public class SenhaInvalidaException extends ValidacaoException {
     public SenhaInvalidaException(){

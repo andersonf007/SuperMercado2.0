@@ -1,7 +1,9 @@
 package ModelDao;
 
-import Exceptions.NomeInvalidoException;
-import Exceptions.ValidacaoException;
+import Negocio.Exceptions.CpfInvalidoException;
+import Negocio.Exceptions.NomeInvalidoException;
+import Negocio.Exceptions.RgInvalidoException;
+import Negocio.Exceptions.ValidacaoException;
 import ModelBeans.CadastroPessoaFisicaBeans;
 import ModelBeans.PessoaFisicaBeans;
 import java.io.BufferedReader;
@@ -168,10 +170,10 @@ public class PessoaFisicaDAO extends CadastroPessoaFisicaBeans {
     
     public boolean validadorPessoaFisica(PessoaFisicaBeans pessoaFisica) throws ValidacaoException {
         if(!pessoaFisica.getCpf().matches("[0-9]{11}]")){
-            return false;
+            throw new CpfInvalidoException();
         }
         if(!pessoaFisica.getRg().matches("[0-9]{1,11}")){
-            return false;
+            throw new RgInvalidoException();
         }
         if(!pessoaFisica.getNome().matches("[a-zA-Z\\s]+")){ // Verifica se o nome possui caracteres especiais
             throw  new NomeInvalidoException();

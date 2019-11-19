@@ -1,4 +1,4 @@
-package Exceptions;
+package Negocio.Exceptions;
 
 public class LoginRepetidoException extends ValidacaoException {
     public LoginRepetidoException(){
