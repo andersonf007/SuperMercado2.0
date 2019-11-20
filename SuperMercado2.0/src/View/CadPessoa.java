@@ -14,6 +14,8 @@ import ModelDao.EnderecoDAO;
 import ModelDao.PessoaFisicaDAO;
 import ModelDao.PessoaJuridicaDAO;
 import ModelDao.UsuarioDAO;
+import Negocio.Exceptions.CpfInvalidoException;
+import Negocio.Exceptions.RgInvalidoException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -391,13 +393,14 @@ public final class CadPessoa extends javax.swing.JFrame {
         boolean adm = jCheckBoxAdm.isSelected();
         try{
             if(jComboBoxTipoPessoa.getSelectedItem().equals("Física")){
-
                 if(flag == 2){
                     int idEndereco = codigoEndereco;
                     int idPessoa = codigoPessoa;
                     EnderecoBeans enderecoBeans = new EnderecoBeans(idEndereco,cep,logradouro,cidade,bairro,uf,numero);
+                    
                     enderecoDAO.editar(enderecoBeans);
                     PessoaFisicaBeans pessoaFisica = new PessoaFisicaBeans(cpfCnpj,rgie,sexo,idPessoa,nome,telefone,idEndereco,ativo);
+                    pessoaFisicaDAO.validadorPessoaFisica(pessoaFisica);
                     pessoaFisicaDAO.editar(pessoaFisica);
                 }else if(flag == 0){
                     int quantidadePessoas = pessoaFisicaDAO.confereQuantidadeDeRegistros();
@@ -408,7 +411,7 @@ public final class CadPessoa extends javax.swing.JFrame {
 
                     enderecoDAO.cadastrar(enderecoBeans);
                     PessoaFisicaBeans pessoaFisica = new PessoaFisicaBeans(cpfCnpj,rgie,sexo,idPessoa,nome,telefone,idEndereco,ativo);
-
+                    pessoaFisicaDAO.validadorPessoaFisica(pessoaFisica);
                     pessoaFisicaDAO.cadastrar(pessoaFisica);
                 }
                 preencherTabelaPessoaFisica();
@@ -419,8 +422,10 @@ public final class CadPessoa extends javax.swing.JFrame {
                     int idEndereco = codigoEndereco;
                     int idPessoa = codigoPessoa;
                     EnderecoBeans enderecoBeans = new EnderecoBeans(idEndereco,cep,logradouro,cidade,bairro,uf,numero);
+                    
                     enderecoDAO.editar(enderecoBeans);
                     PessoaJuridicaBeans pessoaJuridicaBeans = new PessoaJuridicaBeans(cpfCnpj, rgie, idPessoa, nome, telefone, idEndereco, ativo);
+                    
                     pessoaJuridicaDAO.editar(pessoaJuridicaBeans);
                 }else if(flag == 0){
                     int quantidadePessoas = pessoaJuridicaDAO.ConfereQuantidadeDeRegistros();
@@ -428,8 +433,10 @@ public final class CadPessoa extends javax.swing.JFrame {
                     int quantidadeEndereco = enderecoDAO.ConfereQuantidadeRegistros();
                     int idEndereco = ++quantidadeEndereco;
                     EnderecoBeans enderecoBeans = new EnderecoBeans(idEndereco,cep,logradouro,cidade,bairro,uf,numero);
+                    
                     enderecoDAO.cadastrar(enderecoBeans);
                     PessoaJuridicaBeans pessoaJuridicaBeans = new PessoaJuridicaBeans(cpfCnpj, rgie, idPessoa, nome, telefone, idEndereco, ativo);
+                    
                     pessoaJuridicaDAO.cadastrar(pessoaJuridicaBeans);
                 }
                 preencherTabelaPessoaJuridica();
@@ -458,10 +465,16 @@ public final class CadPessoa extends javax.swing.JFrame {
         }catch(LoginRepetidoException ex) {
             JOptionPane.showMessageDialog(null, ex);
             jTextFieldLogin.requestFocus();
-        } catch(SenhaInvalidaException ex){
+        }catch(SenhaInvalidaException ex){
             JOptionPane.showMessageDialog(null, ex);
             jPasswordFieldSenha.requestFocus();
-        } catch (ValidacaoException ex) {
+        }catch(CpfInvalidoException ex){
+            JOptionPane.showMessageDialog(null, ex);
+            jTextFieldCPFCNPJ.requestFocus();
+        }catch(RgInvalidoException ex){
+            JOptionPane.showMessageDialog(null, ex);
+            jTextFieldRGIE.requestFocus();
+        }catch (ValidacaoException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
@@ -585,7 +598,6 @@ public final class CadPessoa extends javax.swing.JFrame {
 
     private void jTablePessoaFisicaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePessoaFisicaMouseClicked
         validacaoDeCampos2();
-        
         flag = 2;
         codigoPessoa = Integer.parseInt(""+jTablePessoaFisica.getValueAt(jTablePessoaFisica.getSelectedRow(), 0));
         ListPessoaFisicaBeans.clear();
@@ -714,7 +726,7 @@ public final class CadPessoa extends javax.swing.JFrame {
     
     public void preencherTabelaPessoaFisica() {
            
-        String[] colunas = new String[]{"ID", "nome", "CPF", "Telefone"};
+        String[] colunas = new String[]{"ID", "nome", "CPF"};
         
         try {
             dadosPessoasFisicas.clear();
@@ -722,7 +734,7 @@ public final class CadPessoa extends javax.swing.JFrame {
             ListPessoaFisicaBeans = pessoaFisicaDAO.buscarTodosOsRegistros();           
             if(dadosPessoasFisicas.isEmpty()){
                 for(int i = 0; i < ListPessoaFisicaBeans.size(); i++){
-                    dadosPessoasFisicas.add(new Object[]{ListPessoaFisicaBeans.get(i).getCodigo(),ListPessoaFisicaBeans.get(i).getNome(), ListPessoaFisicaBeans.get(i).getCpf(), ListPessoaFisicaBeans.get(i).getTelefone()});
+                    dadosPessoasFisicas.add(new Object[]{ListPessoaFisicaBeans.get(i).getCodigo(),ListPessoaFisicaBeans.get(i).getNome(), ListPessoaFisicaBeans.get(i).getCpf()});
                 }
             }
         } catch (Exception ex) {
@@ -732,12 +744,10 @@ public final class CadPessoa extends javax.swing.JFrame {
         jTablePessoaFisica.setModel(modelo);
         jTablePessoaFisica.getColumnModel().getColumn(0).setPreferredWidth(50);
         jTablePessoaFisica.getColumnModel().getColumn(0).setResizable(false);
-        jTablePessoaFisica.getColumnModel().getColumn(1).setPreferredWidth(132);
+        jTablePessoaFisica.getColumnModel().getColumn(1).setPreferredWidth(152);
         jTablePessoaFisica.getColumnModel().getColumn(1).setResizable(false);
-        jTablePessoaFisica.getColumnModel().getColumn(2).setPreferredWidth(109);
+        jTablePessoaFisica.getColumnModel().getColumn(2).setPreferredWidth(130);
         jTablePessoaFisica.getColumnModel().getColumn(2).setResizable(false);
-        jTablePessoaFisica.getColumnModel().getColumn(3).setPreferredWidth(40);
-        jTablePessoaFisica.getColumnModel().getColumn(3).setResizable(false);
         jTablePessoaFisica.getTableHeader().setReorderingAllowed(false);
         jTablePessoaFisica.setAutoResizeMode(jTablePessoaFisica.AUTO_RESIZE_OFF);
         jTablePessoaFisica.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -746,7 +756,7 @@ public final class CadPessoa extends javax.swing.JFrame {
     
     public void preencherTabelaPessoaJuridica() {
            
-        String[] colunas = new String[]{"ID", "nome", "CNPJ", "Telefone"};
+        String[] colunas = new String[]{"ID", "nome", "CNPJ"};
         
         try {
             dadosPessoasJuridicas.clear();
@@ -754,7 +764,7 @@ public final class CadPessoa extends javax.swing.JFrame {
             ListPessoaJuridicaBeans = pessoaJuridicaDAO.buscar();           
             if(dadosPessoasJuridicas.isEmpty()){
                 for(int i = 0; i < ListPessoaJuridicaBeans.size(); i++){
-                    dadosPessoasJuridicas.add(new Object[]{ListPessoaJuridicaBeans.get(i).getCodigo(),ListPessoaJuridicaBeans.get(i).getNome(), ListPessoaJuridicaBeans.get(i).getCnpj() ,ListPessoaJuridicaBeans.get(i).getTelefone()});
+                    dadosPessoasJuridicas.add(new Object[]{ListPessoaJuridicaBeans.get(i).getCodigo(),ListPessoaJuridicaBeans.get(i).getNome(), ListPessoaJuridicaBeans.get(i).getCnpj()});
                 }
             }
         } catch (Exception ex) {
@@ -764,12 +774,10 @@ public final class CadPessoa extends javax.swing.JFrame {
         jTablePessoaJuridica.setModel(modelo);
         jTablePessoaJuridica.getColumnModel().getColumn(0).setPreferredWidth(50);
         jTablePessoaJuridica.getColumnModel().getColumn(0).setResizable(false);
-        jTablePessoaJuridica.getColumnModel().getColumn(1).setPreferredWidth(132);
+        jTablePessoaJuridica.getColumnModel().getColumn(1).setPreferredWidth(152);
         jTablePessoaJuridica.getColumnModel().getColumn(1).setResizable(false);
-        jTablePessoaJuridica.getColumnModel().getColumn(2).setPreferredWidth(109);
+        jTablePessoaJuridica.getColumnModel().getColumn(2).setPreferredWidth(130);
         jTablePessoaJuridica.getColumnModel().getColumn(2).setResizable(false);
-        jTablePessoaJuridica.getColumnModel().getColumn(3).setPreferredWidth(40);
-        jTablePessoaJuridica.getColumnModel().getColumn(3).setResizable(false);
         jTablePessoaJuridica.getTableHeader().setReorderingAllowed(false);
         jTablePessoaJuridica.setAutoResizeMode(jTablePessoaJuridica.AUTO_RESIZE_OFF);
         jTablePessoaJuridica.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
