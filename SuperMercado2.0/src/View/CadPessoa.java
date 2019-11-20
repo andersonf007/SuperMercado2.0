@@ -14,7 +14,10 @@ import ModelDao.EnderecoDAO;
 import ModelDao.PessoaFisicaDAO;
 import ModelDao.PessoaJuridicaDAO;
 import ModelDao.UsuarioDAO;
+import Negocio.Exceptions.CnpjInvalidoException;
 import Negocio.Exceptions.CpfInvalidoException;
+import Negocio.Exceptions.IeInvalidoException;
+import Negocio.Exceptions.PessoaDuplicadaException;
 import Negocio.Exceptions.RgInvalidoException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -400,6 +403,7 @@ public final class CadPessoa extends javax.swing.JFrame {
                     
                     enderecoDAO.editar(enderecoBeans);
                     PessoaFisicaBeans pessoaFisica = new PessoaFisicaBeans(cpfCnpj,rgie,sexo,idPessoa,nome,telefone,idEndereco,ativo);
+                    pessoaFisicaDAO.validadorDuplicidadePessoaFisica(pessoaFisica);
                     pessoaFisicaDAO.validadorPessoaFisica(pessoaFisica);
                     pessoaFisicaDAO.editar(pessoaFisica);
                 }else if(flag == 0){
@@ -411,6 +415,7 @@ public final class CadPessoa extends javax.swing.JFrame {
 
                     enderecoDAO.cadastrar(enderecoBeans);
                     PessoaFisicaBeans pessoaFisica = new PessoaFisicaBeans(cpfCnpj,rgie,sexo,idPessoa,nome,telefone,idEndereco,ativo);
+                    pessoaFisicaDAO.validadorDuplicidadePessoaFisica(pessoaFisica);
                     pessoaFisicaDAO.validadorPessoaFisica(pessoaFisica);
                     pessoaFisicaDAO.cadastrar(pessoaFisica);
                 }
@@ -425,7 +430,8 @@ public final class CadPessoa extends javax.swing.JFrame {
                     
                     enderecoDAO.editar(enderecoBeans);
                     PessoaJuridicaBeans pessoaJuridicaBeans = new PessoaJuridicaBeans(cpfCnpj, rgie, idPessoa, nome, telefone, idEndereco, ativo);
-                    
+                    pessoaJuridicaDAO.validadorDuplicidadePessoaJuridica(pessoaJuridicaBeans);
+                    pessoaJuridicaDAO.validadorPessoaJuridica(pessoaJuridicaBeans);
                     pessoaJuridicaDAO.editar(pessoaJuridicaBeans);
                 }else if(flag == 0){
                     int quantidadePessoas = pessoaJuridicaDAO.ConfereQuantidadeDeRegistros();
@@ -436,7 +442,8 @@ public final class CadPessoa extends javax.swing.JFrame {
                     
                     enderecoDAO.cadastrar(enderecoBeans);
                     PessoaJuridicaBeans pessoaJuridicaBeans = new PessoaJuridicaBeans(cpfCnpj, rgie, idPessoa, nome, telefone, idEndereco, ativo);
-                    
+                    pessoaJuridicaDAO.validadorDuplicidadePessoaJuridica(pessoaJuridicaBeans);
+                    pessoaJuridicaDAO.validadorPessoaJuridica(pessoaJuridicaBeans);
                     pessoaJuridicaDAO.cadastrar(pessoaJuridicaBeans);
                 }
                 preencherTabelaPessoaJuridica();
@@ -446,19 +453,22 @@ public final class CadPessoa extends javax.swing.JFrame {
                 if(flag == 1){
                     int id = codigoPessoa;                
                     UsuarioBeans usuario = new UsuarioBeans(nome,adm, id, login, senha,ativo); 
+                    usuarioDAO.validarDuplicidade(usuario);
                     usuarioDAO.validadorUsuario(usuario);
                     usuarioDAO.editar(usuario);
                 }else if(flag == 0){
                     int quantidade = usuarioDAO.confereQuantidadeDeUsuariosRegistrados();
                     int id = ++quantidade;                
                     UsuarioBeans usuario = new UsuarioBeans(nome,adm, id, login, senha,ativo);
-                    usuarioDAO.validadorUsuario(usuario);
                     usuarioDAO.validarDuplicidade(usuario);
+                    usuarioDAO.validadorUsuario(usuario);
                     usuarioDAO.cadastrar(usuario);
                 }
                 preencherTabelaUsuarios();
             }
             validarInformacoesDepoisDeSalvar();
+        }catch(PessoaDuplicadaException ex ){
+            JOptionPane.showMessageDialog(null, ex);
         }catch(NomeInvalidoException ex){
             JOptionPane.showMessageDialog(null, ex);
             jTextFieldNome.requestFocus();
@@ -472,6 +482,12 @@ public final class CadPessoa extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
             jTextFieldCPFCNPJ.requestFocus();
         }catch(RgInvalidoException ex){
+            JOptionPane.showMessageDialog(null, ex);
+            jTextFieldRGIE.requestFocus();
+        }catch(CnpjInvalidoException ex){
+            JOptionPane.showMessageDialog(null, ex);
+            jTextFieldCPFCNPJ.requestFocus();
+        }catch(IeInvalidoException ex){
             JOptionPane.showMessageDialog(null, ex);
             jTextFieldRGIE.requestFocus();
         }catch (ValidacaoException ex) {
