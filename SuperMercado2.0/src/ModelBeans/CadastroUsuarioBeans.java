@@ -5,7 +5,9 @@
  */
 package ModelBeans;
 
+import Exceptions.ValidacaoException;
 import Negocio.Exceptions.ValidacaoException;
+
 import java.util.ArrayList;
 
 /**
@@ -28,5 +30,5 @@ public abstract class CadastroUsuarioBeans {
     
     public abstract boolean validarLogin(String login, String senha) throws ValidacaoException;
     
-    public abstract boolean ValidarAdm(String login, String senha) throws ValidacaoException;
+    public abstract boolean ValidarAdm(String login, String senha) throws ValidacaoException, ValidacaoException;
 }

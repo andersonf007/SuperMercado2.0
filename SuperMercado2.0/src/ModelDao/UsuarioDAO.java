@@ -168,7 +168,7 @@ public class UsuarioDAO extends CadastroUsuarioBeans{
                 if(listUsuarioBean.getAdm()){
                     return true;
                 }else{
-                    //throw new UsuaroNaoAtivoException();
+                    throw new UsuarioNaoAdmException();
                 }
             }
         }

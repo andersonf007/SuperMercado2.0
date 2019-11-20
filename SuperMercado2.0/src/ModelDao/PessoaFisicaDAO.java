@@ -1,9 +1,6 @@
 package ModelDao;
 
-import Negocio.Exceptions.CpfInvalidoException;
-import Negocio.Exceptions.NomeInvalidoException;
-import Negocio.Exceptions.RgInvalidoException;
-import Negocio.Exceptions.ValidacaoException;
+import Negocio.Exceptions.*;
 import ModelBeans.CadastroPessoaFisicaBeans;
 import ModelBeans.PessoaFisicaBeans;
 import java.io.BufferedReader;
@@ -179,12 +176,19 @@ public class PessoaFisicaDAO extends CadastroPessoaFisicaBeans {
             throw  new NomeInvalidoException();
         }
        if(!pessoaFisica.getTelefone().matches("[0-9]{11}")){
-           return false;
+           throw new TelefoneInvalidoExcepition();
        }
         return true;
     }
 
-    //falta duplicidade
+    public boolean validadorDuplicidadePessoaFisica(PessoaFisicaBeans pessoaFisica) throws ValidacaoException{
+        for (PessoaFisicaBeans listPessoaFisicaBean : ListPessoaFisicaBeans) {
+            if (pessoaFisica.getCpf().equals(listPessoaFisicaBean.getCpf())){
+                throw new PessoaDuplicadaException();
+            }
+        }
+        return true;
+    }
 
 
 }
