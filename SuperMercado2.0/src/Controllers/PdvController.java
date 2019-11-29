@@ -15,23 +15,23 @@ import View.PDV;
  * @author anderson
  */
 public class PdvController {
-    static PDV pdv;
+    private PDV pdv;
     
-    public static void abrePdv(){
-        pdv = null;
-        pdv = new PDV();               
+    public void abrePdv(){
+        if(pdv == null) pdv = new PDV();
+        
         pdv.setVisible(true);
     }
     
-    public static void RecebeInformacoesProduto(ProdutoBeans produtoBeans){
+    public void RecebeInformacoesProduto(ProdutoBeans produtoBeans){
         pdv.receberProduto(produtoBeans);
     }    
     
-    public static void receberInformacoesPessoa(PessoaFisicaBeans pessoaFisicaBean,PessoaJuridicaBeans pessoaJuridicaBeans){
+    public void receberInformacoesPessoa(PessoaFisicaBeans pessoaFisicaBean,PessoaJuridicaBeans pessoaJuridicaBeans){
         pdv.receberPessoa(pessoaFisicaBean,pessoaJuridicaBeans);
     }
     
-    public static void receberConfirmacaoPagamento(String formaDePagamento,String AcrescimoDesconto,double valorAcrescimoDesconto){
+    public void receberConfirmacaoPagamento(String formaDePagamento,String AcrescimoDesconto,double valorAcrescimoDesconto){
        pdv.confirmacaoPagamento(formaDePagamento, AcrescimoDesconto, valorAcrescimoDesconto);
     }
 }

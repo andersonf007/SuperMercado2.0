@@ -14,18 +14,18 @@ import View.CadPessoa;
  */
 public class PessoaController {
     
-    static BuscarPessoas pessoa;
-    static CadPessoa cadPessoa;
+    private BuscarPessoas pessoa;
+    private CadPessoa cadPessoa;
     
-    public static void openBuscarPessoa(){
-        pessoa = null;
-        pessoa = new BuscarPessoas();               
+    public void openBuscarPessoa(){
+        if(pessoa == null) pessoa = new BuscarPessoas();               
+        
         pessoa.setVisible(true);
     }
     
-    public static void abreCadPessoa(){
-        cadPessoa = null;
-        cadPessoa = new CadPessoa();               
+    public void abreCadPessoa(){
+        if(cadPessoa == null) cadPessoa = new CadPessoa();               
+        
         cadPessoa.setVisible(true);
     }
     
