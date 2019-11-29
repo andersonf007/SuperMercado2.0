@@ -6,11 +6,16 @@
 package View;
 
 import Controllers.EstoqueController;
-import Controllers.LoginAdmController;
 import Controllers.PdvController;
 import Controllers.PessoaController;
 import Controllers.ProdutosController;
 import Controllers.RelatorioController;
+import ModelDao.UsuarioDAO;
+import Negocio.Exceptions.UsuarioNaoAdmException;
+import Negocio.Exceptions.ValidacaoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,22 +24,32 @@ import Controllers.RelatorioController;
 public class TelaPrincipal extends javax.swing.JFrame {
 
     private final PessoaController PessoaController;
-    private final LoginAdmController loginAdmController;
     private final PdvController pdv;
     private final ProdutosController produtosController;
     private final EstoqueController estoqueController;
     private final RelatorioController relatorioController;
+    private final String usuarioLogado;
+    private final String SenhaDoUsuario;
+    private final UsuarioDAO usuarioDAO;
     /**
      * Creates new form TelaPrincipal
+     * @param usuarioLogado
+     * @param SenhaDoUsuario
      */
-    public TelaPrincipal() {
+    public TelaPrincipal(String usuarioLogado,String SenhaDoUsuario) {
         initComponents();
         PessoaController = new PessoaController();
-        loginAdmController = new LoginAdmController();
         pdv = new PdvController();
         produtosController = new ProdutosController();
         estoqueController = new EstoqueController();
         relatorioController = new RelatorioController();
+        this.usuarioLogado = usuarioLogado;
+        this.SenhaDoUsuario = SenhaDoUsuario;
+        usuarioDAO = new UsuarioDAO();
+    }
+
+    private TelaPrincipal() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -53,8 +68,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonCadProduto = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jButtonEstoque = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -120,18 +136,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().add(jPanel3);
         jPanel3.setBounds(400, 20, 120, 130);
 
-        jButton1.setText("jButton1");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Logo Fenix 2 .png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(-60, 150, 420, 280);
+
+        jPanel4.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Relatório"));
+        jPanel4.setLayout(null);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/relatorio.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(410, 350, 73, 23);
+        jPanel4.add(jButton1);
+        jButton1.setBounds(10, 20, 100, 130);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Logo Fenix 2 .png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(50, 150, 420, 280);
+        getContentPane().add(jPanel4);
+        jPanel4.setBounds(400, 160, 120, 160);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_telaprincipal2.jpg"))); // NOI18N
         getContentPane().add(jLabel2);
@@ -142,8 +165,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadPessoaActionPerformed
-        
-        PessoaController.abreCadPessoa();
+        try{
+            usuarioDAO.ValidarAdm(usuarioLogado, SenhaDoUsuario);
+            PessoaController.abreCadPessoa();
+        }catch(UsuarioNaoAdmException ex){
+            JOptionPane.showMessageDialog(null, "Apenas usuario administrador pode acessar essa tela.\nPara acessar como administrador, saia do sistema e entre com um usuario com permissão.");
+        } catch (ValidacaoException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_jButtonCadPessoaActionPerformed
 
     private void jButtonPDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPDVActionPerformed
@@ -151,11 +181,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonPDVActionPerformed
 
     private void jButtonCadProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadProdutoActionPerformed
-        produtosController.abreCadProdutos();
+        try{
+            usuarioDAO.ValidarAdm(usuarioLogado, SenhaDoUsuario);
+            produtosController.abreCadProdutos();
+        }catch(UsuarioNaoAdmException ex){
+            JOptionPane.showMessageDialog(null, "Apenas usuario administrador pode acessar essa tela.\nPara acessar como administrador, saia do sistema e entre com um usuario com permissão.");
+        } catch (ValidacaoException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButtonCadProdutoActionPerformed
 
     private void jButtonEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstoqueActionPerformed
-        estoqueController.abrirEstoque();
+        try{
+            usuarioDAO.ValidarAdm(usuarioLogado, SenhaDoUsuario);
+            estoqueController.abrirEstoque();
+        }catch(UsuarioNaoAdmException ex){
+            JOptionPane.showMessageDialog(null, "Apenas usuario administrador pode acessar essa tela.\nPara acessar como administrador, saia do sistema e entre com um usuario com permissão.");
+        } catch (ValidacaoException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButtonEstoqueActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -208,5 +254,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
 }

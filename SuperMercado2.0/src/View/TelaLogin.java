@@ -26,7 +26,7 @@ public class TelaLogin extends javax.swing.JFrame {
     public TelaLogin() {
         initComponents();
         usuarioDAO = new UsuarioDAO();
-        telaPrincipal = new TelaPrincipal();
+        
     }
 
     /**
@@ -95,6 +95,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private void jButtonAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcessarActionPerformed
         try {
             usuarioDAO.validarLogin(jTextFieldNome.getText(),jPasswordFieldSenha.getText());
+            telaPrincipal = new TelaPrincipal(jTextFieldNome.getText(),jPasswordFieldSenha.getText());
             telaPrincipal.setVisible(true);
             this.dispose();
         }catch(UsuaroNaoAtivoException ex){
