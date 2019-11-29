@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  */
 public class Relatorio extends javax.swing.JFrame {
 
-    GerarRelatorioPDF gerarRelatorioPDF ;
+    private GerarRelatorioPDF gerarRelatorioPDF ;
     /**
      * Creates new form Relatorio
      */

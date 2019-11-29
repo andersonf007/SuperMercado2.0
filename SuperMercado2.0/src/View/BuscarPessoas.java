@@ -21,14 +21,14 @@ import javax.swing.ListSelectionModel;
  */
 public class BuscarPessoas extends javax.swing.JFrame {
 
-    PessoaFisicaDAO pessoaFisicaDAO;
-    PessoaJuridicaDAO pessoaJuridicaDAO;
-    PessoaFisicaBeans pessoaFisicaBeans;
-    PessoaJuridicaBeans pessoaJuridicaBeans;
-    ArrayList<PessoaFisicaBeans> ListPessoaFisicaBeans;
-    ArrayList<PessoaJuridicaBeans> ListPessoaJuridicaBeans;
-    ArrayList dados;
-    PdvController pdvController;
+    private PessoaFisicaDAO pessoaFisicaDAO;
+    private PessoaJuridicaDAO pessoaJuridicaDAO;
+    private PessoaFisicaBeans pessoaFisicaBeans;
+    private PessoaJuridicaBeans pessoaJuridicaBeans;
+    private ArrayList<PessoaFisicaBeans> ListPessoaFisicaBeans;
+    private ArrayList<PessoaJuridicaBeans> ListPessoaJuridicaBeans;
+    private ArrayList dados;
+    private PdvController pdvController;
     /**
      * Creates new form BuscarPessoas
      */
@@ -95,7 +95,7 @@ public class BuscarPessoas extends javax.swing.JFrame {
                 pessoaFisicaBeans.setTelefone(ListPessoaFisicaBeans.get(i).getTelefone());
                 pessoaFisicaBeans.setCodEndereco(ListPessoaFisicaBeans.get(i).getCodEndereco());
                 pessoaFisicaBeans.setAtivo(ListPessoaFisicaBeans.get(i).getAtivo());
-                PdvController.receberInformacoesPessoa(pessoaFisicaBeans,null);
+                pdvController.receberInformacoesPessoa(pessoaFisicaBeans,null);
                 this.dispose();
             }
         }
@@ -108,7 +108,7 @@ public class BuscarPessoas extends javax.swing.JFrame {
                 pessoaJuridicaBeans.setTelefone(ListPessoaJuridicaBeans.get(i).getTelefone());
                 pessoaJuridicaBeans.setCodEndereco(ListPessoaJuridicaBeans.get(i).getCodEndereco());
                 pessoaJuridicaBeans.setAtivo(ListPessoaJuridicaBeans.get(i).getAtivo());
-                PdvController.receberInformacoesPessoa(null,pessoaJuridicaBeans);
+                pdvController.receberInformacoesPessoa(null,pessoaJuridicaBeans);
                 this.dispose();
             }
         }

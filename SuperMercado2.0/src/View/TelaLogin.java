@@ -18,8 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class TelaLogin extends javax.swing.JFrame {
 
-    UsuarioDAO usuarioDAO;
-    TelaPrincipal telaPrincipal;
+    private UsuarioDAO usuarioDAO;
+    private TelaPrincipal telaPrincipal;
     /**
      * Creates new form NewJFrame
      */

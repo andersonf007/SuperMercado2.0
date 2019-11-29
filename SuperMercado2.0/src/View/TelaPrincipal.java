@@ -17,11 +17,11 @@ import Controllers.RelatorioController;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
-    PessoaController PessoaController;
-    PdvController pdv;
-    ProdutosController produtosController;
-    EstoqueController estoqueController;
-    RelatorioController relatorioController;
+    private PessoaController PessoaController;
+    private PdvController pdv;
+    private ProdutosController produtosController;
+    private EstoqueController estoqueController;
+    private RelatorioController relatorioController;
     /**
      * Creates new form TelaPrincipal
      */
@@ -139,27 +139,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadPessoaActionPerformed
-        
         PessoaController.abreCadPessoa();
     }//GEN-LAST:event_jButtonCadPessoaActionPerformed
 
     private void jButtonPDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPDVActionPerformed
-        
         pdv.abrePdv();
     }//GEN-LAST:event_jButtonPDVActionPerformed
 
     private void jButtonCadProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadProdutoActionPerformed
-        
         produtosController.abreCadProdutos();
     }//GEN-LAST:event_jButtonCadProdutoActionPerformed
 
     private void jButtonEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstoqueActionPerformed
-        
-        EstoqueController.abrirEstoque();
+        estoqueController.abrirEstoque();
     }//GEN-LAST:event_jButtonEstoqueActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
         relatorioController.abreRelatorio();
     }//GEN-LAST:event_jButton1ActionPerformed
 

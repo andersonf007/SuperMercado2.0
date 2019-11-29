@@ -15,8 +15,8 @@ import javax.swing.JOptionPane;
  */
 public class FormaPagamento extends javax.swing.JFrame {
 
-    PdvController pdvController;
-    double valorDescontro,valorTotal,novoValor,valorAcresmico,troco,valorTotalFixo;
+    private PdvController pdvController;
+    private double valorDescontro,valorTotal,novoValor,valorAcresmico,troco,valorTotalFixo;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -254,7 +254,7 @@ public class FormaPagamento extends javax.swing.JFrame {
 
     private void jButtonFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarActionPerformed
         if(Double.parseDouble(jLabelTotalAPagar.getText()) <= Double.parseDouble(jTextFieldValorPago.getText())){
-            PdvController.receberConfirmacaoPagamento(""+jComboBoxFormaPagamento.getSelectedItem(),""+jComboBoxDescontoAcrescimo.getSelectedItem(),Double.parseDouble(jTextFieldDescontoAcrescimo.getText()));
+            pdvController.receberConfirmacaoPagamento(""+jComboBoxFormaPagamento.getSelectedItem(),""+jComboBoxDescontoAcrescimo.getSelectedItem(),Double.parseDouble(jTextFieldDescontoAcrescimo.getText()));
             jTextFieldDescontoAcrescimo.setText("0.00");
             jTextFieldValorPago.setText("");
             jLabelTotalAPagar.setText("");

@@ -21,10 +21,10 @@ import javax.swing.ListSelectionModel;
  */
 public class BuscarProdutos extends javax.swing.JFrame {
 
-    ProdutoDAO produtoDao;
-    ArrayList<ProdutoBeans> ListProdutoBeans;
-    ArrayList dados;
-    PdvController pdvController;
+    private ProdutoDAO produtoDao;
+    private ArrayList<ProdutoBeans> ListProdutoBeans;
+    private ArrayList dados;
+    private PdvController pdvController;
     /**
      * Creates new form BuscarProdutos
      */
@@ -88,7 +88,7 @@ public class BuscarProdutos extends javax.swing.JFrame {
                 produtoBeans.setEstoque(ListProdutoBeans.get(i).getEstoque());
                 produtoBeans.setValorCusto(ListProdutoBeans.get(i).getValorCusto());
                 produtoBeans.setValorVenda(ListProdutoBeans.get(i).getValorVenda());
-                PdvController.RecebeInformacoesProduto(produtoBeans);
+                pdvController.RecebeInformacoesProduto(produtoBeans);
             }
         }
         //ProdutoBeans produtoBeansInstancia = produtoDAO.procurarProdutoNome(nome_Produto);

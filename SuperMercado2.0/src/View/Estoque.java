@@ -18,14 +18,14 @@ import javax.swing.ListSelectionModel;
  */
 public class Estoque extends javax.swing.JFrame {
 
-    ProdutoDAO produtoDao;
-    ProdutoBeans produtoBeans;
-    ArrayList<ProdutoBeans> ListProdutoBeans;
-    ArrayList dados;
-    int codigo;
-    String descricao;
-    boolean ativo;
-    double estoque, valorCusto, valorVenda,estoqueAlterado;
+    private ProdutoDAO produtoDao;
+    private ProdutoBeans produtoBeans;
+    private ArrayList<ProdutoBeans> ListProdutoBeans;
+    private ArrayList dados;
+    private int codigo;
+    private String descricao;
+    private boolean ativo;
+    private double estoque, valorCusto, valorVenda,estoqueAlterado;
     /**
      * Creates new form Estoque
      */

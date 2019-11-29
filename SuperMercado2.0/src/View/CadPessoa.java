@@ -29,19 +29,19 @@ import javax.swing.ListSelectionModel;
  */
 public final class CadPessoa extends javax.swing.JFrame {
 
-    PessoaFisicaDAO pessoaFisicaDAO;
-    PessoaJuridicaDAO pessoaJuridicaDAO;
-    UsuarioDAO usuarioDAO;
-    EnderecoDAO enderecoDAO;
-    UsuarioBeans usuarioBeans;
-    ArrayList<UsuarioBeans> ListUsuarioBeans;
-    ArrayList<EnderecoBeans> ListEnderecoBeans;
-    ArrayList<PessoaFisicaBeans> ListPessoaFisicaBeans;
-    ArrayList<PessoaJuridicaBeans> ListPessoaJuridicaBeans;
-    ArrayList dadosUsuarios; 
-    ArrayList dadosPessoasFisicas; 
-    ArrayList dadosPessoasJuridicas; 
-    int flag, codigoPessoa, codigoEndereco;//O codigoPessoa é o codigoPessoa do usuario, pessoa fisica ou juridica
+    private PessoaFisicaDAO pessoaFisicaDAO;
+    private PessoaJuridicaDAO pessoaJuridicaDAO;
+    private UsuarioDAO usuarioDAO;
+    private EnderecoDAO enderecoDAO;
+    private UsuarioBeans usuarioBeans;
+    private ArrayList<UsuarioBeans> ListUsuarioBeans;
+    private ArrayList<EnderecoBeans> ListEnderecoBeans;
+    private ArrayList<PessoaFisicaBeans> ListPessoaFisicaBeans;
+    private ArrayList<PessoaJuridicaBeans> ListPessoaJuridicaBeans;
+    private ArrayList dadosUsuarios; 
+    private ArrayList dadosPessoasFisicas; 
+    private ArrayList dadosPessoasJuridicas; 
+    private int flag, codigoPessoa, codigoEndereco;//O codigoPessoa é o codigoPessoa do usuario, pessoa fisica ou juridica
     //flag = 1 - esta editando um usuario do sistema
     //flag = 2 - esta editando uma pessoa fisica no sistema
     //flag = 3 - esta editando uma pessoa juridica no sistema

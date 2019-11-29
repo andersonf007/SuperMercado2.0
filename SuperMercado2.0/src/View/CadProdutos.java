@@ -18,10 +18,10 @@ import javax.swing.ListSelectionModel;
  */
 public class CadProdutos extends javax.swing.JFrame {
 
-    ProdutoDAO produtoDao;
-    ArrayList<ProdutoBeans> ListProdutoBeans;
-    ArrayList dados = new ArrayList();
-    int flag = 0,codigo;
+    private ProdutoDAO produtoDao;
+    private ArrayList<ProdutoBeans> ListProdutoBeans;
+    private ArrayList dados = new ArrayList();
+    private int flag = 0,codigo;
     /**
      * Creates new form CadProdutos
      */

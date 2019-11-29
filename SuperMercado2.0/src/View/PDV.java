@@ -27,20 +27,22 @@ import javax.swing.ListSelectionModel;
  */
 public class PDV extends javax.swing.JFrame {
 
-    FormaPagamentoController formaPagamentoController;
-    VendaBeans vendaBeans;
-    VendaDAO vendaDAO;
-    ProdutosVendaBeans produtosVendaBeans;
-    ProdutosVendaDAO produtoVendDAO;
-    ProdutoBeans produtoBeans;
-    ProdutoDAO produtoDAO;
-    String descricao, tipoPessoa = "";
-    int id, idCliente;
+    private FormaPagamentoController formaPagamentoController;
+    private PessoaController pessoaController;
+    private ProdutosController produtosController;
+    private VendaBeans vendaBeans;
+    private VendaDAO vendaDAO;
+    private ProdutosVendaBeans produtosVendaBeans;
+    private ProdutosVendaDAO produtoVendDAO;
+    private ProdutoBeans produtoBeans;
+    private ProdutoDAO produtoDAO;
+    private String descricao, tipoPessoa = "";
+    private int id, idCliente;
     //variaveis sendo utilizadas dentro do metodo preenchertabela
-    double valorTotal, valorUnitario, quantidade;
-    ArrayList lista ;  
-    double total =0;
-    ModelTabela modelo;
+    private double valorTotal, valorUnitario, quantidade;
+    private ArrayList lista ;  
+    private double total =0;
+    private ModelTabela modelo;
     
     /**
      * Creates new form PDV
@@ -50,6 +52,8 @@ public class PDV extends javax.swing.JFrame {
         jTextFieldCodigo.requestFocus();
         inicializarArrayDaTabela();
         formaPagamentoController = new FormaPagamentoController();
+        pessoaController = new PessoaController();
+        produtosController = new ProdutosController();
         vendaBeans = new VendaBeans();
         vendaDAO = new VendaDAO();
         produtosVendaBeans = new ProdutosVendaBeans();
@@ -305,7 +309,7 @@ public class PDV extends javax.swing.JFrame {
     
     private void jTextFieldCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCodigoKeyPressed
         if(evt.getKeyCode() == 113){
-            ProdutosController.abrirListagemProdutos();
+            produtosController.abrirListagemProdutos();
         }
     }//GEN-LAST:event_jTextFieldCodigoKeyPressed
 
@@ -331,7 +335,7 @@ public class PDV extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldQuantidadeKeyPressed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        PessoaController.openBuscarPessoa();
+        pessoaController.openBuscarPessoa();
     }//GEN-LAST:event_jLabel2MouseClicked
     
     public void preencherTabela() {
