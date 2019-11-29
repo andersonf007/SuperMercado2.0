@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 
 public class PessoaFisicaDAO extends CadastroPessoaFisicaBeans {
 
-    ArrayList<PessoaFisicaBeans> ListPessoaFisicaBeans = new ArrayList<>();
+    private ArrayList<PessoaFisicaBeans> ListPessoaFisicaBeans = new ArrayList<>();
 
     @Override
     public void cadastrar(PessoaFisicaBeans object) {

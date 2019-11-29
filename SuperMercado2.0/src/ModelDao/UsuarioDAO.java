@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 
 public class UsuarioDAO extends CadastroUsuarioBeans{
     
-    ArrayList<UsuarioBeans> ListUsuarioBeans = new ArrayList<UsuarioBeans>();
+    private ArrayList<UsuarioBeans> ListUsuarioBeans = new ArrayList<UsuarioBeans>();
 
     @Override
     public void cadastrar(UsuarioBeans object) {

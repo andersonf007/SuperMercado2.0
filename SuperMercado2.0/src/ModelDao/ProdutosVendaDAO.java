@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class ProdutosVendaDAO extends CadastroProdutosVenda{
     
-    ArrayList<ProdutosVendaBeans> ListProdutosVendaBeans = new ArrayList<>();
+    private ArrayList<ProdutosVendaBeans> ListProdutosVendaBeans = new ArrayList<>();
 
     @Override
     public void cadastrar(ProdutosVendaBeans object) {

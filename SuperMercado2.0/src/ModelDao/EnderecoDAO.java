@@ -24,8 +24,8 @@ import javax.swing.JOptionPane;
  * @author anderson
  */
 public class EnderecoDAO extends CadastroEndereco{
-    String[] UF = {"PE","AL","PB","RN","CE","PI","MA","RN","SE","BA","TO","PA","AP","RR","AM","RO","AC","MT","GO","DF","MS","MG","ES","RJ","SP","PR","SC","RS"};
-    ArrayList<EnderecoBeans> ListEnderecoBeans = new ArrayList<EnderecoBeans>();
+    private String[] UF = {"PE","AL","PB","RN","CE","PI","MA","RN","SE","BA","TO","PA","AP","RR","AM","RO","AC","MT","GO","DF","MS","MG","ES","RJ","SP","PR","SC","RS"};
+    private ArrayList<EnderecoBeans> ListEnderecoBeans = new ArrayList<EnderecoBeans>();
 
     @Override
     public void cadastrar(EnderecoBeans object) {

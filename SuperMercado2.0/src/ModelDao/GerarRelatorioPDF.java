@@ -23,14 +23,25 @@ import java.util.ArrayList;
  */
 public class GerarRelatorioPDF {
 
-    private static Font fonteTable = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD);
-    private static Font fontePadrao = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD);
-    PessoaFisicaDAO pessoaFisicaDAO = new PessoaFisicaDAO();
-    PessoaFisicaBeans pessoaFisicaBeans = new PessoaFisicaBeans();
-    ArrayList<VendaBeans> ListVendaBeans = new ArrayList<>();
-    VendaDAO vendaDAO = new VendaDAO();
-    double valorTotal = 0;
-    int quantidade = 0;
+    private final Font fonteTable;
+    private final Font fontePadrao;
+    private PessoaFisicaDAO pessoaFisicaDAO;
+    private PessoaFisicaBeans pessoaFisicaBeans;
+    private ArrayList<VendaBeans> ListVendaBeans;
+    private VendaDAO vendaDAO;
+    private double valorTotal = 0;
+    private int quantidade = 0;
+
+    public GerarRelatorioPDF() {
+        fonteTable = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD);
+        fontePadrao = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD);
+        pessoaFisicaDAO = new PessoaFisicaDAO();
+        pessoaFisicaBeans = new PessoaFisicaBeans();
+        ListVendaBeans = new ArrayList<>();
+        vendaDAO = new VendaDAO();
+    }
+    
+    
     
     public void criarRelatorio(String cpfCnpj, int flag) throws DocumentException, FileNotFoundException {
         String nome = "";

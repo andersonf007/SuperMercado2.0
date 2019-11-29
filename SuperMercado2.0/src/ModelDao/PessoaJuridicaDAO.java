@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 
 public class PessoaJuridicaDAO extends CadastroPessoaJuridicaBeans{
 
-    ArrayList<PessoaJuridicaBeans> ListPessoaJuridicaBeans = new ArrayList<PessoaJuridicaBeans>();
+    private ArrayList<PessoaJuridicaBeans> ListPessoaJuridicaBeans = new ArrayList<PessoaJuridicaBeans>();
     
     @Override
     public void cadastrar(PessoaJuridicaBeans object) {

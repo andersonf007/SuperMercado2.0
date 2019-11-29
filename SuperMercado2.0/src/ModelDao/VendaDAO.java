@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class VendaDAO extends CadastroVenda{
 
-    ArrayList<VendaBeans> ListVendaBeans = new ArrayList<>();
+    private ArrayList<VendaBeans> ListVendaBeans = new ArrayList<>();
     
     @Override
     public void cadastrar(VendaBeans object) {
