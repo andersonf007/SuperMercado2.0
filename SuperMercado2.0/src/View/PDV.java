@@ -27,9 +27,9 @@ import javax.swing.ListSelectionModel;
  */
 public class PDV extends javax.swing.JFrame {
 
-    private FormaPagamentoController formaPagamentoController;
-    private PessoaController pessoaController;
-    private ProdutosController produtosController;
+    private final FormaPagamentoController formaPagamentoController;
+    private final PessoaController pessoaController;
+    private final ProdutosController produtosController;
     private VendaBeans vendaBeans;
     private VendaDAO vendaDAO;
     private ProdutosVendaBeans produtosVendaBeans;

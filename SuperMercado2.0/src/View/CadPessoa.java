@@ -19,6 +19,7 @@ import Negocio.Exceptions.CpfInvalidoException;
 import Negocio.Exceptions.IeInvalidoException;
 import Negocio.Exceptions.PessoaDuplicadaException;
 import Negocio.Exceptions.RgInvalidoException;
+import Negocio.Exceptions.TelefoneInvalidoExcepition;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -412,7 +413,7 @@ public final class CadPessoa extends javax.swing.JFrame {
                     int idEndereco = codigoEndereco;
                     int idPessoa = codigoPessoa;
                     EnderecoBeans enderecoBeans = new EnderecoBeans(idEndereco,cep,logradouro,cidade,bairro,uf,numero);
-                    
+                    //esperando os metodos de validacoes que serao criados e nao ficarao mais no DAO
                     enderecoDAO.editar(enderecoBeans);
                     PessoaFisicaBeans pessoaFisica = new PessoaFisicaBeans(cpfCnpj,rgie,sexo,idPessoa,nome,telefone,idEndereco,ativo);
                     pessoaFisicaDAO.validadorDuplicidadePessoaFisica(pessoaFisica);
@@ -502,6 +503,9 @@ public final class CadPessoa extends javax.swing.JFrame {
         }catch(IeInvalidoException ex){
             JOptionPane.showMessageDialog(null, ex);
             jTextFieldRGIE.requestFocus();
+        }catch(TelefoneInvalidoExcepition ex){
+            JOptionPane.showMessageDialog(null, ex);
+            jTextFieldTelefone.requestFocus();
         }catch (ValidacaoException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }

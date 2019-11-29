@@ -6,6 +6,7 @@
 package View;
 
 import Controllers.EstoqueController;
+import Controllers.LoginAdmController;
 import Controllers.PdvController;
 import Controllers.PessoaController;
 import Controllers.ProdutosController;
@@ -17,17 +18,19 @@ import Controllers.RelatorioController;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
-    private PessoaController PessoaController;
-    private PdvController pdv;
-    private ProdutosController produtosController;
-    private EstoqueController estoqueController;
-    private RelatorioController relatorioController;
+    private final PessoaController PessoaController;
+    private final LoginAdmController loginAdmController;
+    private final PdvController pdv;
+    private final ProdutosController produtosController;
+    private final EstoqueController estoqueController;
+    private final RelatorioController relatorioController;
     /**
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
         initComponents();
         PessoaController = new PessoaController();
+        loginAdmController = new LoginAdmController();
         pdv = new PdvController();
         produtosController = new ProdutosController();
         estoqueController = new EstoqueController();
@@ -139,6 +142,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadPessoaActionPerformed
+        
         PessoaController.abreCadPessoa();
     }//GEN-LAST:event_jButtonCadPessoaActionPerformed
 
