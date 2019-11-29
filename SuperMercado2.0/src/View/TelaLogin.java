@@ -18,12 +18,15 @@ import javax.swing.JOptionPane;
  */
 public class TelaLogin extends javax.swing.JFrame {
 
-    UsuarioDAO usuarioDAO = new UsuarioDAO();
+    UsuarioDAO usuarioDAO;
+    TelaPrincipal telaPrincipal;
     /**
      * Creates new form NewJFrame
      */
     public TelaLogin() {
         initComponents();
+        usuarioDAO = new UsuarioDAO();
+        telaPrincipal = new TelaPrincipal();
     }
 
     /**
@@ -90,10 +93,8 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcessarActionPerformed
-        
         try {
             usuarioDAO.validarLogin(jTextFieldNome.getText(),jPasswordFieldSenha.getText());
-            TelaPrincipal telaPrincipal = new TelaPrincipal();
             telaPrincipal.setVisible(true);
             this.dispose();
         }catch(UsuaroNaoAtivoException ex){

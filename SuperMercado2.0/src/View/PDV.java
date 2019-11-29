@@ -27,13 +27,13 @@ import javax.swing.ListSelectionModel;
  */
 public class PDV extends javax.swing.JFrame {
 
-    FormaPagamentoController formaPagamentoController = new FormaPagamentoController();
-    VendaBeans vendaBeans = new VendaBeans();
-    VendaDAO vendaDAO = new VendaDAO();
-    ProdutosVendaBeans produtosVendaBeans = new ProdutosVendaBeans();
-    ProdutosVendaDAO produtoVendDAO = new ProdutosVendaDAO();
-    ProdutoBeans produtoBeans = new ProdutoBeans();
-    ProdutoDAO produtoDAO = new ProdutoDAO();
+    FormaPagamentoController formaPagamentoController;
+    VendaBeans vendaBeans;
+    VendaDAO vendaDAO;
+    ProdutosVendaBeans produtosVendaBeans;
+    ProdutosVendaDAO produtoVendDAO;
+    ProdutoBeans produtoBeans;
+    ProdutoDAO produtoDAO;
     String descricao, tipoPessoa = "";
     int id, idCliente;
     //variaveis sendo utilizadas dentro do metodo preenchertabela
@@ -49,6 +49,13 @@ public class PDV extends javax.swing.JFrame {
         initComponents();
         jTextFieldCodigo.requestFocus();
         inicializarArrayDaTabela();
+        formaPagamentoController = new FormaPagamentoController();
+        vendaBeans = new VendaBeans();
+        vendaDAO = new VendaDAO();
+        produtosVendaBeans = new ProdutosVendaBeans();
+        produtoVendDAO = new ProdutosVendaDAO();
+        produtoBeans = new ProdutoBeans();
+        produtoDAO = new ProdutoDAO();
     }
 
     @SuppressWarnings("unchecked")

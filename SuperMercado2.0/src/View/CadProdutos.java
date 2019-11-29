@@ -18,8 +18,8 @@ import javax.swing.ListSelectionModel;
  */
 public class CadProdutos extends javax.swing.JFrame {
 
-    ProdutoDAO produtoDao = new ProdutoDAO();
-    ArrayList<ProdutoBeans> ListProdutoBeans = new ArrayList<ProdutoBeans>();
+    ProdutoDAO produtoDao;
+    ArrayList<ProdutoBeans> ListProdutoBeans;
     ArrayList dados = new ArrayList();
     int flag = 0,codigo;
     /**
@@ -28,6 +28,8 @@ public class CadProdutos extends javax.swing.JFrame {
     public CadProdutos() {
         initComponents();
         preencherTabelaProdutos();
+        produtoDao = new ProdutoDAO();
+        ListProdutoBeans = new ArrayList<>();
     }
 
     /**

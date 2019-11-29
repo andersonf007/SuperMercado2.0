@@ -18,10 +18,10 @@ import javax.swing.ListSelectionModel;
  */
 public class Estoque extends javax.swing.JFrame {
 
-    ProdutoDAO produtoDao = new ProdutoDAO();
-    ProdutoBeans produtoBeans = new ProdutoBeans();
-    ArrayList<ProdutoBeans> ListProdutoBeans = new ArrayList<ProdutoBeans>();
-    ArrayList dados = new ArrayList();
+    ProdutoDAO produtoDao;
+    ProdutoBeans produtoBeans;
+    ArrayList<ProdutoBeans> ListProdutoBeans;
+    ArrayList dados;
     int codigo;
     String descricao;
     boolean ativo;
@@ -32,6 +32,10 @@ public class Estoque extends javax.swing.JFrame {
     public Estoque() {
         initComponents();
         preencherTabelaUsuarios();
+        produtoDao = new ProdutoDAO();
+        produtoBeans = new ProdutoBeans();
+        ListProdutoBeans = new ArrayList<>();
+        dados = new ArrayList();
     }
 
     /**

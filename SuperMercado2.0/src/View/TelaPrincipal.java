@@ -17,11 +17,21 @@ import Controllers.RelatorioController;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
+    PessoaController PessoaController;
+    PdvController pdv;
+    ProdutosController produtosController;
+    EstoqueController estoqueController;
+    RelatorioController relatorioController;
     /**
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
         initComponents();
+        PessoaController = new PessoaController();
+        pdv = new PdvController();
+        produtosController = new ProdutosController();
+        estoqueController = new EstoqueController();
+        relatorioController = new RelatorioController();
     }
 
     /**
@@ -129,27 +139,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadPessoaActionPerformed
-        PessoaController PessoaController = new PessoaController();
+        
         PessoaController.abreCadPessoa();
     }//GEN-LAST:event_jButtonCadPessoaActionPerformed
 
     private void jButtonPDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPDVActionPerformed
-        PdvController pdv = new PdvController();
+        
         pdv.abrePdv();
     }//GEN-LAST:event_jButtonPDVActionPerformed
 
     private void jButtonCadProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadProdutoActionPerformed
-        ProdutosController produtosController = new ProdutosController();
+        
         produtosController.abreCadProdutos();
     }//GEN-LAST:event_jButtonCadProdutoActionPerformed
 
     private void jButtonEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstoqueActionPerformed
-        EstoqueController estoqueController = new EstoqueController();
+        
         EstoqueController.abrirEstoque();
     }//GEN-LAST:event_jButtonEstoqueActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        RelatorioController relatorioController = new RelatorioController();
+        
         relatorioController.abreRelatorio();
     }//GEN-LAST:event_jButton1ActionPerformed
 

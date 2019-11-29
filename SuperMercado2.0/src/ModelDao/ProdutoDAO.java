@@ -20,7 +20,7 @@ public class ProdutoDAO extends CadastroProdutos{
     @Override
     public void cadastrar(ProdutoBeans object) {
         try {
-            FileOutputStream arquivo = new FileOutputStream("produto.txt",true);
+            FileOutputStream arquivo = new FileOutputStream("\\src\\produto.txt",true);
             PrintWriter pr = new PrintWriter(arquivo);
             pr.println(object.getId()+"#"+object.getNome()+"#"+object.getEstoque()+"#"+object.getValorCusto()+"#"+object.getValorVenda()+"#"+object.getAtivo());
             pr.close();

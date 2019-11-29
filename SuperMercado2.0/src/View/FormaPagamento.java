@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class FormaPagamento extends javax.swing.JFrame {
 
-    PdvController pdvController = new PdvController();
+    PdvController pdvController;
     double valorDescontro,valorTotal,novoValor,valorAcresmico,troco,valorTotalFixo;
     /**
      * This method is called from within the constructor to initialize the form.
@@ -167,6 +167,7 @@ public class FormaPagamento extends javax.swing.JFrame {
     public FormaPagamento() {
         initComponents();
         jTextFieldValorPago.requestFocus();
+        pdvController = new PdvController();
     }
 
     public void receberInformacoesPDV(String valorTotal){

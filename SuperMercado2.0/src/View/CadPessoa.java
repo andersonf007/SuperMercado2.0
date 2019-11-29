@@ -29,18 +29,18 @@ import javax.swing.ListSelectionModel;
  */
 public final class CadPessoa extends javax.swing.JFrame {
 
-    PessoaFisicaDAO pessoaFisicaDAO  = new PessoaFisicaDAO();
-    PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
-    UsuarioDAO usuarioDAO = new UsuarioDAO();
-    EnderecoDAO enderecoDAO = new EnderecoDAO();
-    UsuarioBeans usuarioBeans = new UsuarioBeans();
-    ArrayList<UsuarioBeans> ListUsuarioBeans = new ArrayList<>();
-    ArrayList<EnderecoBeans> ListEnderecoBeans = new ArrayList<>();
-    ArrayList<PessoaFisicaBeans> ListPessoaFisicaBeans = new ArrayList<>();
-    ArrayList<PessoaJuridicaBeans> ListPessoaJuridicaBeans = new ArrayList<>();
-    ArrayList dadosUsuarios = new ArrayList(); 
-    ArrayList dadosPessoasFisicas = new ArrayList(); 
-    ArrayList dadosPessoasJuridicas = new ArrayList(); 
+    PessoaFisicaDAO pessoaFisicaDAO;
+    PessoaJuridicaDAO pessoaJuridicaDAO;
+    UsuarioDAO usuarioDAO;
+    EnderecoDAO enderecoDAO;
+    UsuarioBeans usuarioBeans;
+    ArrayList<UsuarioBeans> ListUsuarioBeans;
+    ArrayList<EnderecoBeans> ListEnderecoBeans;
+    ArrayList<PessoaFisicaBeans> ListPessoaFisicaBeans;
+    ArrayList<PessoaJuridicaBeans> ListPessoaJuridicaBeans;
+    ArrayList dadosUsuarios; 
+    ArrayList dadosPessoasFisicas; 
+    ArrayList dadosPessoasJuridicas; 
     int flag, codigoPessoa, codigoEndereco;//O codigoPessoa é o codigoPessoa do usuario, pessoa fisica ou juridica
     //flag = 1 - esta editando um usuario do sistema
     //flag = 2 - esta editando uma pessoa fisica no sistema
@@ -51,6 +51,18 @@ public final class CadPessoa extends javax.swing.JFrame {
         preencherTabelaPessoaFisica();
         preencherTabelaUsuarios();
         preencherTabelaPessoaJuridica();
+        pessoaFisicaDAO  = new PessoaFisicaDAO();
+        pessoaJuridicaDAO = new PessoaJuridicaDAO();
+        usuarioDAO = new UsuarioDAO();
+        enderecoDAO = new EnderecoDAO();
+        usuarioBeans = new UsuarioBeans();
+        ListUsuarioBeans = new ArrayList<>();
+        ListEnderecoBeans = new ArrayList<>();
+        ListPessoaFisicaBeans = new ArrayList<>();
+        ListPessoaJuridicaBeans = new ArrayList<>();
+        dadosUsuarios = new ArrayList(); 
+        dadosPessoasFisicas = new ArrayList(); 
+        dadosPessoasJuridicas = new ArrayList();
     }
 
     @SuppressWarnings("unchecked")

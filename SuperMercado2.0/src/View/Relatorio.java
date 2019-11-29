@@ -17,12 +17,13 @@ import java.util.logging.Logger;
  */
 public class Relatorio extends javax.swing.JFrame {
 
-    GerarRelatorioPDF gerarRelatorioPDF = new GerarRelatorioPDF();
+    GerarRelatorioPDF gerarRelatorioPDF ;
     /**
      * Creates new form Relatorio
      */
     public Relatorio() {
         initComponents();
+        gerarRelatorioPDF = new GerarRelatorioPDF();
     }
 
     /**

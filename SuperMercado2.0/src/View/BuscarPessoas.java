@@ -21,20 +21,28 @@ import javax.swing.ListSelectionModel;
  */
 public class BuscarPessoas extends javax.swing.JFrame {
 
-    PessoaFisicaDAO pessoaFisicaDAO = new PessoaFisicaDAO();
-    PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
-    PessoaFisicaBeans pessoaFisicaBeans = new PessoaFisicaBeans();
-    PessoaJuridicaBeans pessoaJuridicaBeans = new PessoaJuridicaBeans();
-    ArrayList<PessoaFisicaBeans> ListPessoaFisicaBeans = new ArrayList<PessoaFisicaBeans>();
-    ArrayList<PessoaJuridicaBeans> ListPessoaJuridicaBeans = new ArrayList<PessoaJuridicaBeans>();
-    ArrayList dados = new ArrayList();
-    PdvController pdvController = new PdvController();
+    PessoaFisicaDAO pessoaFisicaDAO;
+    PessoaJuridicaDAO pessoaJuridicaDAO;
+    PessoaFisicaBeans pessoaFisicaBeans;
+    PessoaJuridicaBeans pessoaJuridicaBeans;
+    ArrayList<PessoaFisicaBeans> ListPessoaFisicaBeans;
+    ArrayList<PessoaJuridicaBeans> ListPessoaJuridicaBeans;
+    ArrayList dados;
+    PdvController pdvController;
     /**
      * Creates new form BuscarPessoas
      */
     public BuscarPessoas() {
         initComponents();
         preencherTabela();
+        pessoaFisicaDAO = new PessoaFisicaDAO();
+        pessoaJuridicaDAO = new PessoaJuridicaDAO();
+        pessoaFisicaBeans = new PessoaFisicaBeans();
+        pessoaJuridicaBeans = new PessoaJuridicaBeans();
+        ListPessoaFisicaBeans = new ArrayList<>();
+        ListPessoaJuridicaBeans = new ArrayList<>();
+        dados = new ArrayList();
+        pdvController = new PdvController();
     }
 
     @SuppressWarnings("unchecked")

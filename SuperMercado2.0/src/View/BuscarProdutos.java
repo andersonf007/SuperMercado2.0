@@ -21,16 +21,20 @@ import javax.swing.ListSelectionModel;
  */
 public class BuscarProdutos extends javax.swing.JFrame {
 
-    ProdutoDAO produtoDao = new ProdutoDAO();
-    ArrayList<ProdutoBeans> ListProdutoBeans = new ArrayList<ProdutoBeans>();
-    ArrayList dados = new ArrayList();
-    PdvController pdvController = new PdvController();
+    ProdutoDAO produtoDao;
+    ArrayList<ProdutoBeans> ListProdutoBeans;
+    ArrayList dados;
+    PdvController pdvController;
     /**
      * Creates new form BuscarProdutos
      */
     public BuscarProdutos() {
         initComponents();
         preencherTabela();
+        produtoDao = new ProdutoDAO();
+        ListProdutoBeans = new ArrayList<>();
+        dados = new ArrayList();
+        pdvController = new PdvController();
     }
 
     /**
