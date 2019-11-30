@@ -20,16 +20,17 @@ public class CadProdutos extends javax.swing.JFrame {
 
     private ProdutoDAO produtoDao;
     private ArrayList<ProdutoBeans> ListProdutoBeans;
-    private ArrayList dados = new ArrayList();
+    private ArrayList dados;
     private int flag = 0,codigo;
     /**
      * Creates new form CadProdutos
      */
     public CadProdutos() {
         initComponents();
-        preencherTabelaProdutos();
         produtoDao = new ProdutoDAO();
         ListProdutoBeans = new ArrayList<>();
+        dados = new ArrayList();
+        preencherTabelaProdutos();
     }
 
     /**
@@ -231,17 +232,11 @@ public class CadProdutos extends javax.swing.JFrame {
             dados.clear();
             ListProdutoBeans.clear(); //limpa o arrray list
             ListProdutoBeans = produtoDao.busca();           
-            int quantidadeRegistro = produtoDao.confereQuantidadeDeProdutosRegistrados();
-            quantidadeRegistro--;//subtrai para ter o valor correspondente a posicao do array
-            if(dados.isEmpty()){
-                for(int i = 0; i < ListProdutoBeans.size(); i++){
-                    dados.add(new Object[]{ListProdutoBeans.get(i).getId(),ListProdutoBeans.get(i).getNome(), ListProdutoBeans.get(i).getEstoque(), ListProdutoBeans.get(i).getValorVenda()});
-                }
-            }else {
-                dados.add(new Object[]{ListProdutoBeans.get(quantidadeRegistro).getId(),ListProdutoBeans.get(quantidadeRegistro).getNome(), ListProdutoBeans.get(quantidadeRegistro).getEstoque(), ListProdutoBeans.get(quantidadeRegistro).getValorVenda()});
+            for(int i = 0; i < ListProdutoBeans.size(); i++){
+                dados.add(new Object[]{ListProdutoBeans.get(i).getId(),ListProdutoBeans.get(i).getNome(), ListProdutoBeans.get(i).getEstoque(), ListProdutoBeans.get(i).getValorVenda()});
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "nao foi possivel baixar a tabela de preencimento das pessoas\n" + ex);
+            JOptionPane.showMessageDialog(null, "nao foi possivel baixar a tabela de preencimento dos produtos\n" + ex);
         }
         ModelTabela modelo = new ModelTabela(dados, colunas);
         jTableProdutos.setModel(modelo);

@@ -46,6 +46,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.usuarioLogado = usuarioLogado;
         this.SenhaDoUsuario = SenhaDoUsuario;
         usuarioDAO = new UsuarioDAO();
+        jLabelLogin.setText(usuarioDAO.buscaNome(usuarioLogado, SenhaDoUsuario));
     }
 
     private TelaPrincipal() {
@@ -68,9 +69,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonCadProduto = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jButtonEstoque = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabelLogin = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -136,10 +139,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().add(jPanel3);
         jPanel3.setBounds(400, 20, 120, 130);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Logo Fenix 2 .png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(-60, 150, 420, 280);
-
         jPanel4.setBackground(new java.awt.Color(204, 255, 204));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Relatório"));
         jPanel4.setLayout(null);
@@ -155,6 +154,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(jPanel4);
         jPanel4.setBounds(400, 160, 120, 160);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("Seja bem vindo: ");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(270, 400, 140, 30);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Logo Fenix 2 .png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(-60, 150, 420, 280);
+
+        jLabelLogin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        getContentPane().add(jLabelLogin);
+        jLabelLogin.setBounds(410, 400, 120, 30);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_telaprincipal2.jpg"))); // NOI18N
         getContentPane().add(jLabel2);
@@ -251,6 +263,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonPDV;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabelLogin;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
