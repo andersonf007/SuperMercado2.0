@@ -2,6 +2,7 @@
 package View;
 
 import ModelDao.*;
+import Negocio.EnderecoNegocio;
 import Negocio.Exceptions.LoginRepetidoException;
 import Negocio.Exceptions.NomeInvalidoException;
 import Negocio.Exceptions.SenhaInvalidaException;
@@ -17,6 +18,8 @@ import Negocio.Exceptions.IeInvalidoException;
 import Negocio.Exceptions.PessoaDuplicadaException;
 import Negocio.Exceptions.RgInvalidoException;
 import Negocio.Exceptions.TelefoneInvalidoExcepition;
+import Negocio.PessoaFisicaNegocio;
+import Negocio.PessoaJuridicaNegocio;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -27,6 +30,9 @@ import Negocio.UsuarioNegocio;
  */
 public final class CadPessoa extends javax.swing.JFrame {
     private UsuarioNegocio usuarioNegocio;
+    private PessoaFisicaNegocio pessoaFisicaNegocio;
+    private PessoaJuridicaNegocio pessoaJuridicaNegocio;
+    private EnderecoNegocio enderecoNegocio;
     private PessoaFisicaDAO pessoaFisicaDAO;
     private PessoaJuridicaDAO pessoaJuridicaDAO;
     private UsuarioDAO usuarioDAO;
@@ -50,6 +56,9 @@ public final class CadPessoa extends javax.swing.JFrame {
         preencherTabelaUsuarios();
         preencherTabelaPessoaJuridica();
         usuarioNegocio = new UsuarioNegocio(usuarioDAO);
+        pessoaFisicaNegocio = new PessoaFisicaNegocio(pessoaFisicaDAO);
+        pessoaJuridicaNegocio = new PessoaJuridicaNegocio(pessoaJuridicaDAO);
+        enderecoNegocio = new EnderecoNegocio(enderecoDAO);
         pessoaFisicaDAO  = new PessoaFisicaDAO();
         pessoaJuridicaDAO = new PessoaJuridicaDAO();
         usuarioDAO = new UsuarioDAO();
@@ -411,24 +420,18 @@ public final class CadPessoa extends javax.swing.JFrame {
                     int idEndereco = codigoEndereco;
                     int idPessoa = codigoPessoa;
                     EnderecoBeans enderecoBeans = new EnderecoBeans(idEndereco,cep,logradouro,cidade,bairro,uf,numero);
-                    //esperando os metodos de validacoes que serao criados e nao ficarao mais no DAO
-                    enderecoDAO.editar(enderecoBeans);
+                    enderecoNegocio.editarEndereco(enderecoBeans);
                     PessoaFisicaBeans pessoaFisica = new PessoaFisicaBeans(cpfCnpj,rgie,sexo,idPessoa,nome,telefone,idEndereco,ativo);
-                    pessoaFisicaDAO.validadorDuplicidadePessoaFisica(pessoaFisica);
-                    pessoaFisicaDAO.validadorPessoaFisica(pessoaFisica);
-                    pessoaFisicaDAO.editar(pessoaFisica);
+                    pessoaFisicaNegocio.editarPessoaFisica(pessoaFisica);
                 }else if(flag == 0){
                     int quantidadePessoas = pessoaFisicaDAO.confereQuantidadeDeRegistros();
                     int idPessoa = ++quantidadePessoas;
                     int quantidadeEndereco = enderecoDAO.ConfereQuantidadeRegistros();
                     int idEndereco = ++quantidadeEndereco;
                     EnderecoBeans enderecoBeans = new EnderecoBeans(idEndereco,cep,logradouro,cidade,bairro,uf,numero);
-
-                    enderecoDAO.cadastrar(enderecoBeans);
+                    enderecoNegocio.cadastrarEndereco(enderecoBeans);
                     PessoaFisicaBeans pessoaFisica = new PessoaFisicaBeans(cpfCnpj,rgie,sexo,idPessoa,nome,telefone,idEndereco,ativo);
-                    pessoaFisicaDAO.validadorDuplicidadePessoaFisica(pessoaFisica);
-                    pessoaFisicaDAO.validadorPessoaFisica(pessoaFisica);
-                    pessoaFisicaDAO.cadastrar(pessoaFisica);
+                    pessoaFisicaNegocio.cadastrarPessoaFisica(pessoaFisica);
                 }
                 preencherTabelaPessoaFisica();
 
@@ -438,24 +441,19 @@ public final class CadPessoa extends javax.swing.JFrame {
                     int idEndereco = codigoEndereco;
                     int idPessoa = codigoPessoa;
                     EnderecoBeans enderecoBeans = new EnderecoBeans(idEndereco,cep,logradouro,cidade,bairro,uf,numero);
-                    
-                    enderecoDAO.editar(enderecoBeans);
+                    enderecoNegocio.editarEndereco(enderecoBeans);
                     PessoaJuridicaBeans pessoaJuridicaBeans = new PessoaJuridicaBeans(cpfCnpj, rgie, idPessoa, nome, telefone, idEndereco, ativo);
-                    pessoaJuridicaDAO.validadorDuplicidadePessoaJuridica(pessoaJuridicaBeans);
-                    pessoaJuridicaDAO.validadorPessoaJuridica(pessoaJuridicaBeans);
-                    pessoaJuridicaDAO.editar(pessoaJuridicaBeans);
+                    pessoaJuridicaNegocio.editarPessoaJuridica(pessoaJuridicaBeans);
+
                 }else if(flag == 0){
                     int quantidadePessoas = pessoaJuridicaDAO.ConfereQuantidadeDeRegistros();
                     int idPessoa = ++quantidadePessoas;
                     int quantidadeEndereco = enderecoDAO.ConfereQuantidadeRegistros();
                     int idEndereco = ++quantidadeEndereco;
                     EnderecoBeans enderecoBeans = new EnderecoBeans(idEndereco,cep,logradouro,cidade,bairro,uf,numero);
-                    
-                    enderecoDAO.cadastrar(enderecoBeans);
+                    enderecoNegocio.cadastrarEndereco(enderecoBeans);
                     PessoaJuridicaBeans pessoaJuridicaBeans = new PessoaJuridicaBeans(cpfCnpj, rgie, idPessoa, nome, telefone, idEndereco, ativo);
-                    pessoaJuridicaDAO.validadorDuplicidadePessoaJuridica(pessoaJuridicaBeans);
-                    pessoaJuridicaDAO.validadorPessoaJuridica(pessoaJuridicaBeans);
-                    pessoaJuridicaDAO.cadastrar(pessoaJuridicaBeans);
+                    pessoaJuridicaNegocio.cadastrarPessoaJuridica(pessoaJuridicaBeans);
                 }
                 preencherTabelaPessoaJuridica();
 

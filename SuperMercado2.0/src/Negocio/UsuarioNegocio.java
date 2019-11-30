@@ -10,17 +10,16 @@ import Negocio.Exceptions.ValidacaoException;
 import java.util.ArrayList;
 
 public class UsuarioNegocio extends CadastroUsuarioBeans {
-    ArrayList<UsuarioBeans> ListUsuarioBeans;
-    IUsuarioDAO DAO;
+    private ArrayList<UsuarioBeans> ListUsuarioBeans;
+    private IUsuarioDAO DAO;
 
     public UsuarioNegocio(IUsuarioDAO DAO){
-        ListUsuarioBeans = new ArrayList<UsuarioBeans>();
         this.DAO = DAO;
+        ListUsuarioBeans = DAO.busca();
     }
 
     @Override
     public void CadastrarUsuario(UsuarioBeans Usuario) throws ValidacaoException {
-        ListUsuarioBeans = DAO.busca();
         for (UsuarioBeans listUsuarioBean : ListUsuarioBeans) { // Verifica se existe um usuario com o mesmo login
             if (listUsuarioBean.getLogin().equals(Usuario.getLogin())) {
                 throw new LoginRepetidoException();
@@ -38,7 +37,6 @@ public class UsuarioNegocio extends CadastroUsuarioBeans {
 
     @Override
     public void EditarUsuario(UsuarioBeans Usuario) throws ValidacaoException{
-        ListUsuarioBeans = DAO.busca();
         for (UsuarioBeans listUsuarioBean : ListUsuarioBeans) { // Verifica se existe um usuario com o mesmo login
             if (listUsuarioBean.getLogin().equals(Usuario.getLogin())) {
                 throw new LoginRepetidoException();
@@ -57,7 +55,6 @@ public class UsuarioNegocio extends CadastroUsuarioBeans {
 
     @Override
     public boolean validarLogin(String login, String senha) throws ValidacaoException{
-        ListUsuarioBeans = DAO.busca();
         for (UsuarioBeans listUsuarioBean : ListUsuarioBeans) {
             if (listUsuarioBean.getLogin().equals(login) && listUsuarioBean.getSenha().equals(senha)) {
                 if(listUsuarioBean.getAtivo()){
@@ -72,7 +69,6 @@ public class UsuarioNegocio extends CadastroUsuarioBeans {
 
     @Override
     public boolean ValidarAdm(String login, String senha) throws ValidacaoException{
-        ListUsuarioBeans = DAO.busca();
         for (UsuarioBeans listUsuarioBean : ListUsuarioBeans) {
             if (listUsuarioBean.getLogin().equals(login) && listUsuarioBean.getSenha().equals(senha)) {
                 if(listUsuarioBean.getAdm()){

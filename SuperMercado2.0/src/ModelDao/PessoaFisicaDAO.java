@@ -1,7 +1,6 @@
 package ModelDao;
 
-import Negocio.Exceptions.*;
-import ModelBeans.CadastroPessoaFisicaBeans;
+
 import ModelBeans.PessoaFisicaBeans;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -15,9 +14,13 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class PessoaFisicaDAO extends CadastroPessoaFisicaBeans {
+public class PessoaFisicaDAO implements IPessoaFisicaDAO {
 
-    private ArrayList<PessoaFisicaBeans> ListPessoaFisicaBeans = new ArrayList<>();
+    private ArrayList<PessoaFisicaBeans> ListPessoaFisicaBeans;
+
+    public PessoaFisicaDAO(){
+        ListPessoaFisicaBeans = new ArrayList<>();
+    }
 
     @Override
     public void cadastrar(PessoaFisicaBeans object) {
@@ -164,31 +167,4 @@ public class PessoaFisicaDAO extends CadastroPessoaFisicaBeans {
         }
         return null;
     }
-    
-    public boolean validadorPessoaFisica(PessoaFisicaBeans pessoaFisica) throws ValidacaoException {
-        if(!pessoaFisica.getCpf().matches("[0-9]{11}]")){
-            throw new CpfInvalidoException();
-        }
-        if(!pessoaFisica.getRg().matches("[0-9]{1,11}")){
-            throw new RgInvalidoException();
-        }
-        if(!pessoaFisica.getNome().matches("[a-zA-Z\\s]+")){ // Verifica se o nome possui caracteres especiais
-            throw  new NomeInvalidoException();
-        }
-       if(!pessoaFisica.getTelefone().matches("[0-9]{11}")){
-           throw new TelefoneInvalidoExcepition();
-       }
-        return true;
-    }
-
-    public boolean validadorDuplicidadePessoaFisica(PessoaFisicaBeans pessoaFisica) throws ValidacaoException{
-        for (PessoaFisicaBeans listPessoaFisicaBean : ListPessoaFisicaBeans) {
-            if (pessoaFisica.getCpf().equals(listPessoaFisicaBean.getCpf())){
-                throw new PessoaDuplicadaException();
-            }
-        }
-        return true;
-    }
-
-
 }
