@@ -49,9 +49,6 @@ public final class CadPessoa extends javax.swing.JFrame {
    
     public CadPessoa() {
         initComponents();
-        preencherTabelaPessoaFisica();
-        preencherTabelaUsuarios();
-        preencherTabelaPessoaJuridica();
         pessoaFisicaDAO  = new PessoaFisicaDAO();
         pessoaJuridicaDAO = new PessoaJuridicaDAO();
         usuarioDAO = new UsuarioDAO();
@@ -64,6 +61,9 @@ public final class CadPessoa extends javax.swing.JFrame {
         dadosUsuarios = new ArrayList(); 
         dadosPessoasFisicas = new ArrayList(); 
         dadosPessoasJuridicas = new ArrayList();
+        preencherTabelaPessoaFisica();
+        preencherTabelaUsuarios();
+        preencherTabelaPessoaJuridica();
     }
 
     @SuppressWarnings("unchecked")

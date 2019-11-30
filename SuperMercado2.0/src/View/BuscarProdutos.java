@@ -30,11 +30,11 @@ public class BuscarProdutos extends javax.swing.JFrame {
      */
     public BuscarProdutos() {
         initComponents();
-        preencherTabela();
         produtoDao = new ProdutoDAO();
         ListProdutoBeans = new ArrayList<>();
         dados = new ArrayList();
         pdvController = new PdvController();
+        preencherTabela();
     }
 
     /**

@@ -31,11 +31,11 @@ public class Estoque extends javax.swing.JFrame {
      */
     public Estoque() {
         initComponents();
-        preencherTabelaUsuarios();
         produtoDao = new ProdutoDAO();
         produtoBeans = new ProdutoBeans();
         ListProdutoBeans = new ArrayList<>();
         dados = new ArrayList();
+        preencherTabelaEstoque();
     }
 
     /**
@@ -158,12 +158,12 @@ public class Estoque extends javax.swing.JFrame {
                     ProdutoBeans produto = new ProdutoBeans(descricao,codigo, estoqueAlterado, ativo, valorCusto, valorVenda);
                     produtoDao.editar(produto);
                 }    
-                preencherTabelaUsuarios();
+                preencherTabelaEstoque();
             }           
         }
     }//GEN-LAST:event_jTextFieldEstoqueKeyPressed
 
-    public void preencherTabelaUsuarios() {
+    public void preencherTabelaEstoque() {
            
         String[] colunas = new String[]{"ID", "Descrição", "Estoque"};
         
@@ -178,7 +178,7 @@ public class Estoque extends javax.swing.JFrame {
                 }
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "nao foi possivel baixar a tabela de preencimento das pessoas\n" + ex);
+            JOptionPane.showMessageDialog(null, "nao foi possivel baixar a tabela de preencimento dos produtos\n" + ex);
         }
         ModelTabela modelo = new ModelTabela(dados, colunas);
         jTableProdutosAlteracaoEstoque.setModel(modelo);

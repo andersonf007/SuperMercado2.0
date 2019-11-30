@@ -22,6 +22,8 @@ public abstract class CadastroUsuarioBeans {
     
     public abstract ArrayList<UsuarioBeans> busca();
     
+    public abstract String buscaNome(String login, String senha);
+    
     public abstract int confereQuantidadeDeUsuariosRegistrados();
     
     public abstract boolean validadorUsuario(UsuarioBeans usuario) throws ValidacaoException;

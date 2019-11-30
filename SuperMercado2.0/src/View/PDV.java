@@ -50,7 +50,6 @@ public class PDV extends javax.swing.JFrame {
     public PDV() {
         initComponents();
         jTextFieldCodigo.requestFocus();
-        inicializarArrayDaTabela();
         formaPagamentoController = new FormaPagamentoController();
         pessoaController = new PessoaController();
         produtosController = new ProdutosController();
@@ -60,6 +59,7 @@ public class PDV extends javax.swing.JFrame {
         produtoVendDAO = new ProdutosVendaDAO();
         produtoBeans = new ProdutoBeans();
         produtoDAO = new ProdutoDAO();
+        //inicializarArrayDaTabela();
     }
 
     @SuppressWarnings("unchecked")

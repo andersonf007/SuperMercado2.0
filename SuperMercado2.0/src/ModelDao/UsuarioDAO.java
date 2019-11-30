@@ -101,6 +101,31 @@ public class UsuarioDAO extends CadastroUsuarioBeans{
     }
 
     @Override
+    public String buscaNome(String login, String senha) {
+        String linha,nome = null;
+        try {
+            FileInputStream arquivo = new FileInputStream("usuario.txt");
+            InputStreamReader input = new InputStreamReader(arquivo);
+            BufferedReader buffer = new BufferedReader(input);
+            
+            do{
+                linha = buffer.readLine();
+                if(linha != null){
+                    UsuarioBeans usuarioBeans = new UsuarioBeans();
+                    String[] palavras = linha.split("#");
+                    if(palavras[2].equals(login) && palavras[3].equals(senha)){
+                        nome = palavras[1];
+                    }
+                }                    
+            }while(linha != null);
+                        
+        } catch (Exception ex) {
+            //JOptionPane.showMessageDialog(null, "Não existe arquivo de usuario! " + ex);
+        }
+        return nome;
+    }
+    
+    @Override
     public int confereQuantidadeDeUsuariosRegistrados() {
             String linha;
             int contador = 0;

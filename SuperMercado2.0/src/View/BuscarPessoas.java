@@ -34,7 +34,6 @@ public class BuscarPessoas extends javax.swing.JFrame {
      */
     public BuscarPessoas() {
         initComponents();
-        preencherTabela();
         pessoaFisicaDAO = new PessoaFisicaDAO();
         pessoaJuridicaDAO = new PessoaJuridicaDAO();
         pessoaFisicaBeans = new PessoaFisicaBeans();
@@ -42,7 +41,8 @@ public class BuscarPessoas extends javax.swing.JFrame {
         ListPessoaFisicaBeans = new ArrayList<>();
         ListPessoaJuridicaBeans = new ArrayList<>();
         dados = new ArrayList();
-        pdvController = new PdvController();
+        pdvController = new PdvController();        
+        preencherTabela();
     }
 
     @SuppressWarnings("unchecked")
