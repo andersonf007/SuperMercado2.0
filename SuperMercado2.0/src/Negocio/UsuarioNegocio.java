@@ -3,53 +3,61 @@ package Negocio;
 import ModelBeans.CadastroUsuarioBeans;
 import ModelBeans.UsuarioBeans;
 import Negocio.Exceptions.*;
-import ModelDao.UsuarioDAO;
+import ModelDao.IUsuarioDAO;
+
 import Negocio.Exceptions.ValidacaoException;
 
 import java.util.ArrayList;
 
 public class UsuarioNegocio extends CadastroUsuarioBeans {
     ArrayList<UsuarioBeans> ListUsuarioBeans;
-    UsuarioDAO usuarioDAO;
+    IUsuarioDAO DAO;
 
-    public UsuarioNegocio(){
+    public UsuarioNegocio(IUsuarioDAO DAO){
         ListUsuarioBeans = new ArrayList<UsuarioBeans>();
-        usuarioDAO = new UsuarioDAO();
-    }
-
-    public void cadastrar(UsuarioBeans Usuario){
-        validarDuplicidade(Usuario);
-        validadorUsuario(Usuario);
-        usuarioDAO.cadastrar(Usuario);
-
+        this.DAO = DAO;
     }
 
     @Override
-    public boolean validadorUsuario(UsuarioBeans usuario) throws ValidacaoException {
-        if(!usuario.getNome().matches("[a-zA-Z\\s]+")){ // Verifica se o nome possui caracteres especiais
-            throw  new NomeInvalidoException();
-        }
-
-        if(!usuario.getSenha().matches("[a-zA-Z\\d]")){ // So permite letras e numeros
-            throw new SenhaInvalidaException();
-        }
-        return true;
-    }
-
-    @Override
-    public boolean validarDuplicidade(UsuarioBeans usuario) throws ValidacaoException{
-        ListUsuarioBeans = usuarioDAO.busca();
+    public void CadastrarUsuario(UsuarioBeans Usuario) throws ValidacaoException {
+        ListUsuarioBeans = DAO.busca();
         for (UsuarioBeans listUsuarioBean : ListUsuarioBeans) { // Verifica se existe um usuario com o mesmo login
-            if (listUsuarioBean.getLogin().equals(usuario.getLogin())) {
+            if (listUsuarioBean.getLogin().equals(Usuario.getLogin())) {
                 throw new LoginRepetidoException();
             }
         }
-        return true;
+        if(!Usuario.getNome().matches("[a-zA-Z\\s]+")){ // Verifica se o nome possui caracteres especiais
+            throw  new NomeInvalidoException();
+        }
+
+        if(!Usuario.getSenha().matches("[a-zA-Z\\d]")){ // So permite letras e numeros
+            throw new SenhaInvalidaException();
+        }
+        DAO.cadastrar(Usuario);
     }
 
     @Override
+    public void EditarUsuario(UsuarioBeans Usuario) throws ValidacaoException{
+        ListUsuarioBeans = DAO.busca();
+        for (UsuarioBeans listUsuarioBean : ListUsuarioBeans) { // Verifica se existe um usuario com o mesmo login
+            if (listUsuarioBean.getLogin().equals(Usuario.getLogin())) {
+                throw new LoginRepetidoException();
+            }
+        }
+        if(!Usuario.getNome().matches("[a-zA-Z\\s]+")){ // Verifica se o nome possui caracteres especiais
+            throw  new NomeInvalidoException();
+        }
+
+        if(!Usuario.getSenha().matches("[a-zA-Z\\d]")){ // So permite letras e numeros
+            throw new SenhaInvalidaException();
+        }
+        DAO.editar(Usuario);
+    }
+
+
+    @Override
     public boolean validarLogin(String login, String senha) throws ValidacaoException{
-        ListUsuarioBeans = usuarioDAO.busca();
+        ListUsuarioBeans = DAO.busca();
         for (UsuarioBeans listUsuarioBean : ListUsuarioBeans) {
             if (listUsuarioBean.getLogin().equals(login) && listUsuarioBean.getSenha().equals(senha)) {
                 if(listUsuarioBean.getAtivo()){
@@ -64,7 +72,7 @@ public class UsuarioNegocio extends CadastroUsuarioBeans {
 
     @Override
     public boolean ValidarAdm(String login, String senha) throws ValidacaoException{
-        ListUsuarioBeans = usuarioDAO.busca();
+        ListUsuarioBeans = DAO.busca();
         for (UsuarioBeans listUsuarioBean : ListUsuarioBeans) {
             if (listUsuarioBean.getLogin().equals(login) && listUsuarioBean.getSenha().equals(senha)) {
                 if(listUsuarioBean.getAdm()){
@@ -76,5 +84,6 @@ public class UsuarioNegocio extends CadastroUsuarioBeans {
         }
         throw new LoginSenhaInvalidos();
     }
+
 
 }

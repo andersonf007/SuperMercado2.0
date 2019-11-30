@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class UsuarioDAO{
+public class UsuarioDAO implements IUsuarioDAO{
     
     private ArrayList<UsuarioBeans> ListUsuarioBeans = new ArrayList<UsuarioBeans>();
 

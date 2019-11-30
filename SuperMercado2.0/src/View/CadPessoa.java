@@ -1,6 +1,7 @@
 
 package View;
 
+import ModelDao.*;
 import Negocio.Exceptions.LoginRepetidoException;
 import Negocio.Exceptions.NomeInvalidoException;
 import Negocio.Exceptions.SenhaInvalidaException;
@@ -10,10 +11,6 @@ import ModelBeans.ModelTabela;
 import ModelBeans.PessoaFisicaBeans;
 import ModelBeans.PessoaJuridicaBeans;
 import ModelBeans.UsuarioBeans;
-import ModelDao.EnderecoDAO;
-import ModelDao.PessoaFisicaDAO;
-import ModelDao.PessoaJuridicaDAO;
-import ModelDao.UsuarioDAO;
 import Negocio.Exceptions.CnpjInvalidoException;
 import Negocio.Exceptions.CpfInvalidoException;
 import Negocio.Exceptions.IeInvalidoException;
@@ -23,13 +20,13 @@ import Negocio.Exceptions.TelefoneInvalidoExcepition;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
-
+import Negocio.UsuarioNegocio;
 /**
  *
  * @author anderson
  */
 public final class CadPessoa extends javax.swing.JFrame {
-
+    private UsuarioNegocio usuarioNegocio;
     private PessoaFisicaDAO pessoaFisicaDAO;
     private PessoaJuridicaDAO pessoaJuridicaDAO;
     private UsuarioDAO usuarioDAO;
@@ -52,6 +49,7 @@ public final class CadPessoa extends javax.swing.JFrame {
         preencherTabelaPessoaFisica();
         preencherTabelaUsuarios();
         preencherTabelaPessoaJuridica();
+        usuarioNegocio = new UsuarioNegocio(usuarioDAO);
         pessoaFisicaDAO  = new PessoaFisicaDAO();
         pessoaJuridicaDAO = new PessoaJuridicaDAO();
         usuarioDAO = new UsuarioDAO();
@@ -466,16 +464,13 @@ public final class CadPessoa extends javax.swing.JFrame {
                 if(flag == 1){
                     int id = codigoPessoa;                
                     UsuarioBeans usuario = new UsuarioBeans(nome,adm, id, login, senha,ativo); 
-                    usuarioDAO.validarDuplicidade(usuario);
-                    usuarioDAO.validadorUsuario(usuario);
-                    usuarioDAO.editar(usuario);
+                    usuarioNegocio.EditarUsuario(usuario);
                 }else if(flag == 0){
                     int quantidade = usuarioDAO.confereQuantidadeDeUsuariosRegistrados();
                     int id = ++quantidade;                
                     UsuarioBeans usuario = new UsuarioBeans(nome,adm, id, login, senha,ativo);
-                    usuarioDAO.validarDuplicidade(usuario);
-                    usuarioDAO.validadorUsuario(usuario);
-                    usuarioDAO.cadastrar(usuario);
+                    usuarioNegocio.CadastrarUsuario(usuario);
+
                 }
                 preencherTabelaUsuarios();
             }

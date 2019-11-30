@@ -16,11 +16,9 @@ import java.util.ArrayList;
  */
 public abstract class CadastroUsuarioBeans {
 
-    public abstract void cadastrar(String nome, boolean adm,int id, String login, String senha, boolean ativo);
+    public abstract void CadastrarUsuario(UsuarioBeans Object) throws ValidacaoException;
 
-    public abstract boolean validadorUsuario(UsuarioBeans usuario) throws ValidacaoException;
-
-    public abstract boolean validarDuplicidade(UsuarioBeans usuario) throws ValidacaoException;
+    public abstract void EditarUsuario(UsuarioBeans Object) throws ValidacaoException;
 
     public abstract boolean validarLogin(String login, String senha) throws ValidacaoException;
 
