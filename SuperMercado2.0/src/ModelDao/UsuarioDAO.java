@@ -1,5 +1,5 @@
 package ModelDao;
-import Negocio.Exceptions.*;
+
 
 import ModelBeans.UsuarioBeans;
 import java.io.BufferedReader;
@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class UsuarioDAO{
+public class UsuarioDAO implements IUsuarioDAO{
     
     private ArrayList<UsuarioBeans> ListUsuarioBeans = new ArrayList<UsuarioBeans>();
 

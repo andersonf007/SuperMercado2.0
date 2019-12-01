@@ -8,6 +8,10 @@ package View;
 import ModelBeans.ModelTabela;
 import ModelBeans.ProdutoBeans;
 import ModelDao.ProdutoDAO;
+import Negocio.Exceptions.ProdutoDuplicadoException;
+import Negocio.Exceptions.ValidacaoException;
+import Negocio.ProdutoNegocio;
+
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -19,6 +23,7 @@ import javax.swing.ListSelectionModel;
 public class CadProdutos extends javax.swing.JFrame {
 
     private ProdutoDAO produtoDao;
+    private ProdutoNegocio produtoNegocio;
     private ArrayList<ProdutoBeans> ListProdutoBeans;
     private ArrayList dados;
     private int flag = 0,codigo;
@@ -27,6 +32,7 @@ public class CadProdutos extends javax.swing.JFrame {
      */
     public CadProdutos() {
         initComponents();
+        produtoNegocio = new ProdutoNegocio(produtoDao);
         produtoDao = new ProdutoDAO();
         ListProdutoBeans = new ArrayList<>();
         dados = new ArrayList();
@@ -158,23 +164,27 @@ public class CadProdutos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) throws ValidacaoException {//GEN-FIRST:event_jButtonSalvarActionPerformed
         String descricao = jTextFieldDescricao.getText();
         Double estoque = Double.parseDouble(jTextFieldEstoque.getText());
         Double valorCusto = Double.parseDouble(jTextFieldValorDeCusto.getText());
         Double valorVenda = Double.parseDouble(jTextFieldValorDeVenda.getText());
         boolean ativo = jCheckBoxAtivo.isSelected();
-        if(flag == 1){
-            int id = codigo;
-            ProdutoBeans produto = new ProdutoBeans(descricao,id, estoque, ativo, valorCusto, valorVenda);
-            produtoDao.editar(produto);
-        }else{
-            int quantidade = produtoDao.confereQuantidadeDeProdutosRegistrados();
-            int id = ++quantidade;
-            ProdutoBeans produto = new ProdutoBeans(descricao,id, estoque, ativo, valorCusto, valorVenda);
-            produtoDao.cadastrar(produto);
-        }        
-        
+        try {
+
+            if (flag == 1) {
+                int id = codigo;
+                ProdutoBeans produto = new ProdutoBeans(descricao, id, estoque, ativo, valorCusto, valorVenda);
+                produtoNegocio.editarProduto(produto);
+            } else {
+                int quantidade = produtoDao.confereQuantidadeDeProdutosRegistrados();
+                int id = ++quantidade;
+                ProdutoBeans produto = new ProdutoBeans(descricao, id, estoque, ativo, valorCusto, valorVenda);
+                produtoDao.cadastrar(produto);
+            }
+        }catch (ProdutoDuplicadoException ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }
         preencherTabelaProdutos();
         
         jButtonEditar.setEnabled(false);

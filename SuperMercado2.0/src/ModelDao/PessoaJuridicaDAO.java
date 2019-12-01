@@ -1,11 +1,5 @@
 package ModelDao;
-import ModelBeans.CadastroPessoaJuridicaBeans;
 import ModelBeans.PessoaJuridicaBeans;
-import Negocio.Exceptions.CnpjInvalidoException;
-import Negocio.Exceptions.IeInvalidoException;
-import Negocio.Exceptions.NomeInvalidoException;
-import Negocio.Exceptions.ValidacaoException;
-import Negocio.Exceptions.PessoaDuplicadaException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -18,7 +12,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class PessoaJuridicaDAO extends CadastroPessoaJuridicaBeans{
+public class PessoaJuridicaDAO implements IPessoaJuridicaDAO{
 
     private ArrayList<PessoaJuridicaBeans> ListPessoaJuridicaBeans = new ArrayList<PessoaJuridicaBeans>();
     
@@ -132,29 +126,6 @@ public class PessoaJuridicaDAO extends CadastroPessoaJuridicaBeans{
         return contador;
     }
 
-    public boolean validadorPessoaJuridica(PessoaJuridicaBeans pessoaJuridica) throws ValidacaoException {
-
-        if(!pessoaJuridica.getCnpj().matches("[0-9]{14}")){
-            throw new CnpjInvalidoException();
-        }
-        if(!pessoaJuridica.getIe().matches("[0-9]{6,9}")){
-            throw new IeInvalidoException();
-        }
-        if(!pessoaJuridica.getNome().matches("[a-zA-Z\\s]+")){
-            throw new NomeInvalidoException();
-        }
-
-
-        return true;
-    }
-    public boolean validadorDuplicidadePessoaJuridica(PessoaJuridicaBeans pessoaJuridica) throws ValidacaoException{
-        for (PessoaJuridicaBeans listPessoaJuridicaBean : ListPessoaJuridicaBeans) {
-            if (pessoaJuridica.getCnpj().equals(listPessoaJuridicaBean.getCnpj())){
-                throw new PessoaDuplicadaException();
-            }
-        }
-        return true;
-    }
 
 
 

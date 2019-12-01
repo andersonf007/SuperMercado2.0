@@ -1,27 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ModelBeans;
 
-import java.util.ArrayList;
 
-/**
- *
- * @author anderson
- */
+import Negocio.Exceptions.ValidacaoException;
+
 public abstract class CadastroProdutos {
     
-    public abstract void cadastrar(ProdutoBeans object);
+    public abstract void cadastrarProduto(ProdutoBeans object) throws ValidacaoException;
     
-    public abstract void editar(ProdutoBeans object);
-    
-    public abstract ArrayList<ProdutoBeans> busca();
-    
-    public abstract int confereQuantidadeDeProdutosRegistrados();
-    
-    public abstract boolean validarDuplicidade(ProdutoBeans object);
-    
-    public abstract void alterarEstoque(ProdutoBeans object);
+    public abstract void editarProduto(ProdutoBeans object) throws ValidacaoException;
+
 }

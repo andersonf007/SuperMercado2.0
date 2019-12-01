@@ -5,6 +5,8 @@
  */
 package ModelBeans;
 
+import Negocio.Exceptions.ValidacaoException;
+
 import java.util.ArrayList;
 
 /**
@@ -13,12 +15,8 @@ import java.util.ArrayList;
  */
 public abstract class CadastroEndereco {
     
-    public abstract void cadastrar(EnderecoBeans object);
+    public abstract void cadastrarEndereco(EnderecoBeans object) throws ValidacaoException;
     
-    public abstract void editar(EnderecoBeans object);
-        
-    public abstract ArrayList<EnderecoBeans> busca();
-    
-    public abstract int ConfereQuantidadeRegistros();   
-    
+    public abstract void editarEndereco(EnderecoBeans object) throws ValidacaoException;
+
 }

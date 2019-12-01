@@ -8,6 +8,7 @@ package View;
 import Negocio.Exceptions.LoginSenhaInvalidos;
 import Negocio.Exceptions.UsuaroNaoAtivoException;
 import Negocio.Exceptions.ValidacaoException;
+import Negocio.UsuarioNegocio;
 import ModelDao.UsuarioDAO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,12 +21,14 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private UsuarioDAO usuarioDAO;
     private TelaPrincipal telaPrincipal;
+    private UsuarioNegocio usuarioNegocio;
     /**
      * Creates new form NewJFrame
      */
     public TelaLogin() {
         initComponents();
         usuarioDAO = new UsuarioDAO();
+        usuarioNegocio = new UsuarioNegocio(usuarioDAO);
         
     }
 
@@ -94,7 +97,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void jButtonAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcessarActionPerformed
         try {
-            usuarioDAO.validarLogin(jTextFieldNome.getText(),jPasswordFieldSenha.getText());
+            usuarioNegocio.validarLogin(jTextFieldNome.getText(),jPasswordFieldSenha.getText());
             telaPrincipal = new TelaPrincipal(jTextFieldNome.getText(),jPasswordFieldSenha.getText());
             telaPrincipal.setVisible(true);
             this.dispose();

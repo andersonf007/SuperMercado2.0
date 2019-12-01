@@ -5,10 +5,7 @@
  */
 package ModelBeans;
 
-/**
- *
- * @author anderson
- */
+
 public class PessoaBeans {
     
    private int Codigo;
@@ -55,30 +52,21 @@ public class PessoaBeans {
         Telefone = telefone;
     }
 
-    /**
-     * @return the CodEndereco
-     */
+
     public int getCodEndereco() {
         return CodEndereco;
     }
 
-    /**
-     * @param CodEndereco the CodEndereco to set
-     */
     public void setCodEndereco(int CodEndereco) {
         this.CodEndereco = CodEndereco;
     }
 
-    /**
-     * @return the ativo
-     */
+
     public boolean getAtivo() {
         return ativo;
     }
 
-    /**
-     * @param ativo the ativo to set
-     */
+
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }

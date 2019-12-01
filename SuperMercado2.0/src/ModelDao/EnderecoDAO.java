@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
  *
  * @author anderson
  */
-public class EnderecoDAO extends CadastroEndereco{
+public class EnderecoDAO implements IEnderecoDAO{
     private String[] UF = {"PE","AL","PB","RN","CE","PI","MA","RN","SE","BA","TO","PA","AP","RR","AM","RO","AC","MT","GO","DF","MS","MG","ES","RJ","SP","PR","SC","RS"};
     private ArrayList<EnderecoBeans> ListEnderecoBeans = new ArrayList<EnderecoBeans>();
 
@@ -138,11 +138,5 @@ public class EnderecoDAO extends CadastroEndereco{
         return contador;
     }
 
-    
-    public boolean validarEndereco(EnderecoBeans endereco){
-        for(int k = 0; k < UF.length;k++){
 
-        }
-        return false;
-    }
 }

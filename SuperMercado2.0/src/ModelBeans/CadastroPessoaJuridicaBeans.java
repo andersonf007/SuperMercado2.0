@@ -5,6 +5,8 @@
  */
 package ModelBeans;
 
+import Negocio.Exceptions.ValidacaoException;
+
 import java.util.ArrayList;
 
 /**
@@ -13,11 +15,8 @@ import java.util.ArrayList;
  */
 public abstract class CadastroPessoaJuridicaBeans {
     
-    public abstract void cadastrar(PessoaJuridicaBeans object);
+    public abstract void cadastrarPessoaJuridica(PessoaJuridicaBeans object) throws ValidacaoException;
     
-    public abstract void editar(PessoaJuridicaBeans object);
-    
-    public abstract ArrayList<PessoaJuridicaBeans> buscar();
-    
-    public abstract int ConfereQuantidadeDeRegistros();
+    public abstract void editarPessoaJuridica(PessoaJuridicaBeans object) throws ValidacaoException;
+
 }

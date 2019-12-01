@@ -15,10 +15,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author anderson
- */
+
 public class VendaDAO extends CadastroVenda{
 
     private ArrayList<VendaBeans> ListVendaBeans = new ArrayList<>();
