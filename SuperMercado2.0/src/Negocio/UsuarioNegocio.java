@@ -40,24 +40,16 @@ public class UsuarioNegocio extends CadastroUsuarioBeans {
     @Override
     public void EditarUsuario(UsuarioBeans usuario) throws ValidacaoException{
         //ListUsuarioBeans = DAO.busca();
-        boolean existe = false;
-        for (UsuarioBeans listUsuarioBean : ListUsuarioBeans) { // Verifica se existe um usuario com o mesmo login
-            if (listUsuarioBean.getLogin().equals(usuario.getLogin())) {
-                existe = true;
-            }
-        }
-        if(existe) {
+
+
             if (!usuario.getNome().matches("^([a-zA-Zà-üÀ-Ü]|-|_|\\s)+$")) { // Verifica se o nome possui caracteres especiais
                 throw new NomeInvalidoException();
             }
 
-            if (!usuario.getSenha().matches("[a-zA-Z0-1]+")) { // So permite letras e numeros
+            if (!usuario.getSenha().matches("[a-zA-Z0-9]+")) { // So permite letras e numeros
                 throw new SenhaInvalidaException();
             }
             DAO.editar(usuario);
-        }else {
-            throw new UsuarioNaoExisteException();
-        }
     }
 
 
