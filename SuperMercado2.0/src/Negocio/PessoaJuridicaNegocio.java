@@ -38,13 +38,8 @@ public class PessoaJuridicaNegocio extends CadastroPessoaJuridicaBeans {
 
     public void editarPessoaJuridica(PessoaJuridicaBeans pessoaJuridica) throws ValidacaoException{
         //ListPessoaJuridicaBeans = DAO.buscar();
-        boolean existe = false;
-        for (PessoaJuridicaBeans listPessoaJuridicaBean : ListPessoaJuridicaBeans) {
-            if (pessoaJuridica.getCnpj().equals(listPessoaJuridicaBean.getCnpj())){
-                existe = true;
-            }
-        }
-        if(existe) {
+
+
             if (!pessoaJuridica.getCnpj().matches("[0-9]{14}")) {
                 throw new CnpjInvalidoException();
             }
@@ -55,8 +50,5 @@ public class PessoaJuridicaNegocio extends CadastroPessoaJuridicaBeans {
                 throw new NomeInvalidoException();
             }
             DAO.editar(pessoaJuridica);
-        }else {
-            throw new PessoaNaoExisteException();
-        }
     }
 }
