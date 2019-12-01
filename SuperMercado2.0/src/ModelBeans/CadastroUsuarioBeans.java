@@ -5,6 +5,9 @@
  */
 package ModelBeans;
 
+import Negocio.Exceptions.LoginRepetidoException;
+import Negocio.Exceptions.NomeInvalidoException;
+import Negocio.Exceptions.SenhaInvalidaException;
 import Negocio.Exceptions.ValidacaoException;
 import Negocio.Exceptions.ValidacaoException;
 
@@ -17,7 +20,7 @@ import java.util.ArrayList;
 public abstract class CadastroUsuarioBeans {
 
     
-    public abstract void cadastrar(UsuarioBeans object);
+   public abstract void cadastrar(UsuarioBeans Usuario) throws LoginRepetidoException,NomeInvalidoException,SenhaInvalidaException;
     
     public abstract void editar(UsuarioBeans object);
     

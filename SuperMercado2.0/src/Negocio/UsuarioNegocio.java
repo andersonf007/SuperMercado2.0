@@ -17,7 +17,8 @@ public class UsuarioNegocio extends CadastroUsuarioBeans {
         usuarioDAO = new UsuarioDAO();
     }
 
-    public void cadastrar(UsuarioBeans Usuario){
+    @Override
+    public void cadastrar(UsuarioBeans Usuario) throws LoginRepetidoException,NomeInvalidoException,SenhaInvalidaException{
         validarDuplicidade(Usuario);
         validadorUsuario(Usuario);
         usuarioDAO.cadastrar(Usuario);
