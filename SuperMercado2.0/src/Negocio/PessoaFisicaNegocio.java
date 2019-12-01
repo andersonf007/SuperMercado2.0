@@ -47,7 +47,7 @@ public class PessoaFisicaNegocio extends CadastroPessoaFisicaBeans {
             }
         }
         if(existe) {
-            if (!pessoaFisica.getCpf().matches("[0-9]{11}]")) {
+            if(!pessoaFisica.getCpf().matches("[0-9]{11}")){
                 throw new CpfInvalidoException();
             }
             if (!pessoaFisica.getRg().matches("[0-9]{1,11}")) {
