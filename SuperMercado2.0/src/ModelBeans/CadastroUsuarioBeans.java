@@ -19,11 +19,11 @@ import java.util.ArrayList;
  */
 public abstract class CadastroUsuarioBeans {
 
-    public abstract void CadastrarUsuario(UsuarioBeans Object) throws ValidacaoException;
+    public abstract void cadastrarUsuario(UsuarioBeans Object) throws ValidacaoException;
 
-    public abstract void EditarUsuario(UsuarioBeans Object) throws ValidacaoException;
+    public abstract void editarUsuario(UsuarioBeans Object) throws ValidacaoException;
 
     public abstract boolean validarLogin(String login, String senha) throws ValidacaoException;
 
-    public abstract boolean ValidarAdm(String login, String senha) throws  ValidacaoException;
+    public abstract boolean validarAdm(String login, String senha) throws  ValidacaoException;
 }

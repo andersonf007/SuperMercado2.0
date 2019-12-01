@@ -20,7 +20,7 @@ public class UsuarioNegocio extends CadastroUsuarioBeans {
     }
 
     @Override
-    public void CadastrarUsuario(UsuarioBeans usuario) throws ValidacaoException {
+    public void cadastrarUsuario(UsuarioBeans usuario) throws ValidacaoException {
         //ListUsuarioBeans = DAO.busca();        
         for (UsuarioBeans listUsuarioBean : ListUsuarioBeans) { // Verifica se existe um usuario com o mesmo login
             if (listUsuarioBean.getLogin().equals(usuario.getLogin())) {
@@ -38,7 +38,7 @@ public class UsuarioNegocio extends CadastroUsuarioBeans {
     }
 
     @Override
-    public void EditarUsuario(UsuarioBeans usuario) throws ValidacaoException{
+    public void editarUsuario(UsuarioBeans usuario) throws ValidacaoException{
         //ListUsuarioBeans = DAO.busca();
         boolean existe = false;
         for (UsuarioBeans listUsuarioBean : ListUsuarioBeans) { // Verifica se existe um usuario com o mesmo login
@@ -77,7 +77,7 @@ public class UsuarioNegocio extends CadastroUsuarioBeans {
     }
 
     @Override
-    public boolean ValidarAdm(String login, String senha) throws ValidacaoException{
+    public boolean validarAdm(String login, String senha) throws ValidacaoException{
         //ListUsuarioBeans = DAO.busca();
         for (UsuarioBeans listUsuarioBean : ListUsuarioBeans) {
             if (listUsuarioBean.getLogin().equals(login) && listUsuarioBean.getSenha().equals(senha)) {

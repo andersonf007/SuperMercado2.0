@@ -65,7 +65,6 @@ public final class CadPessoa extends javax.swing.JFrame {
         dadosPessoasFisicas = new ArrayList(); 
         dadosPessoasJuridicas = new ArrayList(); 
         usuarioNegocio = new UsuarioNegocio(usuarioDAO);
-        //usuarioNegocio = new UsuarioNegocio();
         pessoaFisicaNegocio = new PessoaFisicaNegocio(pessoaFisicaDAO);
         pessoaJuridicaNegocio = new PessoaJuridicaNegocio(pessoaJuridicaDAO);
         enderecoNegocio = new EnderecoNegocio(enderecoDAO);
@@ -463,12 +462,12 @@ public final class CadPessoa extends javax.swing.JFrame {
                 if(flag == 1){
                     int id = codigoPessoa;                
                     UsuarioBeans usuario = new UsuarioBeans(nome,adm, id, login, senha,ativo); 
-                    usuarioNegocio.EditarUsuario(usuario);
+                    usuarioNegocio.editarUsuario(usuario);
                 }else if(flag == 0){
                     int quantidade = usuarioDAO.confereQuantidadeDeUsuariosRegistrados();
                     int id = ++quantidade;                
                     UsuarioBeans usuario = new UsuarioBeans(nome,adm, id, login, senha,ativo);
-                    usuarioNegocio.CadastrarUsuario(usuario);
+                    usuarioNegocio.cadastrarUsuario(usuario);
 
                 }
                 preencherTabelaUsuarios();
@@ -488,6 +487,9 @@ public final class CadPessoa extends javax.swing.JFrame {
         }catch(CpfInvalidoException ex){
             JOptionPane.showMessageDialog(null, ex);
             jTextFieldCPFCNPJ.requestFocus();
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, ex);
+            jTextFieldNumero.requestFocus();
         }catch(RgInvalidoException ex){
             JOptionPane.showMessageDialog(null, ex);
             jTextFieldRGIE.requestFocus();
@@ -605,6 +607,8 @@ public final class CadPessoa extends javax.swing.JFrame {
         jCheckBoxAtivo.setEnabled(true);                
         jTextFieldLogin.setEnabled(true);        
         jPasswordFieldSenha.setEnabled(true); 
+        jTablePessoaJuridica.setEnabled(false);
+        jTablePessoaFisica.setEnabled(false);
                 
         flag = 1;
         codigoPessoa = Integer.parseInt(""+jTableUsuarios.getValueAt(jTableUsuarios.getSelectedRow(), 0));
@@ -624,6 +628,9 @@ public final class CadPessoa extends javax.swing.JFrame {
 
     private void jTablePessoaFisicaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePessoaFisicaMouseClicked
         validacaoDeCampos2();
+        jTablePessoaJuridica.setEnabled(false);
+        jTableUsuarios.setEnabled(false);
+        
         flag = 2;
         codigoPessoa = Integer.parseInt(""+jTablePessoaFisica.getValueAt(jTablePessoaFisica.getSelectedRow(), 0));
         ListPessoaFisicaBeans.clear();
@@ -687,7 +694,8 @@ public final class CadPessoa extends javax.swing.JFrame {
 
     private void jTablePessoaJuridicaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePessoaJuridicaMouseClicked
         validacaoDeCampos2();
-        
+        jTablePessoaFisica.setEnabled(false);
+        jTableUsuarios.setEnabled(false);
         flag = 3;
         codigoPessoa = Integer.parseInt(""+jTablePessoaJuridica.getValueAt(jTablePessoaJuridica.getSelectedRow(), 0));
         ListPessoaJuridicaBeans.clear();

@@ -34,6 +34,11 @@ public class GerarRelatorioPDF {
     private VendaDAO vendaDAO;
     private double valorTotal = 0;
     private int quantidade = 0;
+    private Document documento;// Criação do objeto que será um documento PDF
+    
+    PdfPCell celulaClienteNome;
+    PdfPCell celulaQuantidadeDeCompras;
+    PdfPCell celularValorTotalDeCompras;
 
     public GerarRelatorioPDF() {
         fonteTable = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD);
@@ -44,6 +49,11 @@ public class GerarRelatorioPDF {
         pessoaJuridicaBeans = new PessoaJuridicaBeans();
         ListVendaBeans = new ArrayList<>();
         vendaDAO = new VendaDAO();
+        documento = new Document();
+        
+        celulaClienteNome = new PdfPCell(new Phrase("Nome", fonteTable));
+        celulaQuantidadeDeCompras = new PdfPCell(new Phrase("Quantidade", fonteTable));
+        celularValorTotalDeCompras = new PdfPCell(new Phrase("Valor total", fonteTable));
     }
     
     
@@ -62,26 +72,22 @@ public class GerarRelatorioPDF {
         
         ValorTotal(flag);
         
-        // Criação do objeto que será um documento PDF
-        Document documento = new Document();
+        
         // Faz o apontamento para o arquivo de destino
         PdfWriter.getInstance(documento, new FileOutputStream("\\Registros Fenix Sistemas\\relatorios\\Relatorio de "+nome +" "+ LocalDate.now() +".Pdf"));
         // Realiza a abertura do arquivo para escrita
         documento.open();
         //cabeçalho
-        Paragraph paragrafo = new Paragraph("Somatório de compras do cliente "+nome+"\n\n", fontePadrao);
-        paragrafo.setAlignment(Element.ALIGN_CENTER);
-        documento.add(paragrafo);
+        Paragraph cabecalho = new Paragraph("Somatório de compras do cliente "+nome+"\n\n", fontePadrao);
+        cabecalho.setAlignment(Element.ALIGN_CENTER);
+        documento.add(cabecalho);
 
         PdfPTable table = new PdfPTable(new float[]{2f, 5f, 5f});
         
-        PdfPCell celulaClienteNome = new PdfPCell(new Phrase("Nome", fonteTable));
         celulaClienteNome.setHorizontalAlignment(Element.ALIGN_CENTER);
 
-        PdfPCell celulaQuantidadeDeCompras = new PdfPCell(new Phrase("Quantidade", fonteTable));
         celulaQuantidadeDeCompras.setHorizontalAlignment(Element.ALIGN_CENTER);
 
-        PdfPCell celularValorTotalDeCompras = new PdfPCell(new Phrase("Valor total", fonteTable));
         celularValorTotalDeCompras.setHorizontalAlignment(Element.ALIGN_CENTER);
 
         table.addCell(celulaClienteNome);

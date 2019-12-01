@@ -181,7 +181,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jButtonCadPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadPessoaActionPerformed
         try{
-            usuarioNegocio.ValidarAdm(usuarioLogado, SenhaDoUsuario);
+            usuarioNegocio.validarAdm(usuarioLogado, SenhaDoUsuario);
             PessoaController.abreCadPessoa();
         }catch(UsuarioNaoAdmException ex){
             JOptionPane.showMessageDialog(null, "Apenas usuario administrador pode acessar essa tela.\nPara acessar como administrador, saia do sistema e entre com um usuario com permissão.");
@@ -197,7 +197,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jButtonCadProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadProdutoActionPerformed
         try{
-            usuarioNegocio.ValidarAdm(usuarioLogado, SenhaDoUsuario);
+            usuarioNegocio.validarAdm(usuarioLogado, SenhaDoUsuario);
             produtosController.abreCadProdutos();
         }catch(UsuarioNaoAdmException ex){
             JOptionPane.showMessageDialog(null, "Apenas usuario administrador pode acessar essa tela.\nPara acessar como administrador, saia do sistema e entre com um usuario com permissão.");
@@ -209,7 +209,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jButtonEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstoqueActionPerformed
         try{
-            usuarioNegocio.ValidarAdm(usuarioLogado, SenhaDoUsuario);
+            usuarioNegocio.validarAdm(usuarioLogado, SenhaDoUsuario);
             estoqueController.abrirEstoque();
         }catch(UsuarioNaoAdmException ex){
             JOptionPane.showMessageDialog(null, "Apenas usuario administrador pode acessar essa tela.\nPara acessar como administrador, saia do sistema e entre com um usuario com permissão.");
