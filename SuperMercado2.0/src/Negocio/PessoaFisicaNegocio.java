@@ -16,6 +16,7 @@ public class PessoaFisicaNegocio extends CadastroPessoaFisicaBeans {
 
    }
 
+   @Override
     public void cadastrarPessoaFisica(PessoaFisicaBeans pessoaFisica) throws ValidacaoException{
         //ListPessoaFisicaBeans = DAO.buscarTodosOsRegistros();
         for (PessoaFisicaBeans listPessoaFisicaBean : ListPessoaFisicaBeans) {
@@ -38,15 +39,10 @@ public class PessoaFisicaNegocio extends CadastroPessoaFisicaBeans {
         DAO.cadastrar(pessoaFisica);
     }
 
+   @Override
     public void editarPessoaFisica(PessoaFisicaBeans pessoaFisica) throws ValidacaoException{
         //ListPessoaFisicaBeans = DAO.buscarTodosOsRegistros();
-        boolean existe = false;
-        for (PessoaFisicaBeans listPessoaFisicaBean : ListPessoaFisicaBeans) {
-            if (pessoaFisica.getCpf().equals(listPessoaFisicaBean.getCpf())){
-                existe = true;
-            }
-        }
-        if(existe) {
+
             if(!pessoaFisica.getCpf().matches("[0-9]{11}")){
                 throw new CpfInvalidoException();
             }
@@ -60,10 +56,5 @@ public class PessoaFisicaNegocio extends CadastroPessoaFisicaBeans {
                 throw new TelefoneInvalidoExcepition();
             }
             DAO.editar(pessoaFisica);
-
-        }else{
-            throw new PessoaNaoExisteException();
         }
-    }
-
 }
