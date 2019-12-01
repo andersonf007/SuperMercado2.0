@@ -5,10 +5,7 @@
  */
 package Controllers;
 import View.Relatorio;
-/**
- *
- * @author anderson
- */
+
 public class RelatorioController {
     private static Relatorio relatorio;
 

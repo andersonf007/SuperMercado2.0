@@ -96,10 +96,10 @@ public class Relatorio extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             if(jComboBox1.getSelectedItem().equals("CPF")){
-               gerarRelatorioPDF.criarRelatorio(jTextFieldCpfCnpj.getText(), 0); 
+               gerarRelatorioPDF.criarRelatorio(jTextFieldCpfCnpj.getText(), 0);
             }else{
                 gerarRelatorioPDF.criarRelatorio(jTextFieldCpfCnpj.getText(), 1);
-            }            
+            }
         } catch (DocumentException ex) {
             Logger.getLogger(Relatorio.class.getName()).log(Level.SEVERE, null, ex);
         } catch (FileNotFoundException ex) {
@@ -114,7 +114,7 @@ public class Relatorio extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

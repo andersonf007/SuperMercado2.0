@@ -23,7 +23,7 @@ public class PessoaFisicaNegocio extends CadastroPessoaFisicaBeans {
                 throw new PessoaDuplicadaException();
             }
         }
-        if(!pessoaFisica.getCpf().matches("[0-9]{11}]")){
+        if(!pessoaFisica.getCpf().matches("[0-9]{11}")){
             throw new CpfInvalidoException();
         }
         if(!pessoaFisica.getRg().matches("[0-9]{1,11}")){
@@ -32,7 +32,7 @@ public class PessoaFisicaNegocio extends CadastroPessoaFisicaBeans {
         if(!pessoaFisica.getNome().matches("[a-zA-Z\\s]+")){ // Verifica se o nome possui caracteres especiais
             throw  new NomeInvalidoException();
         }
-        if(!pessoaFisica.getTelefone().matches("[0-9]{11}")){
+        if(!pessoaFisica.getTelefone().matches("[0-9]{1,11}")){
             throw new TelefoneInvalidoExcepition();
         }
         DAO.cadastrar(pessoaFisica);
@@ -40,24 +40,28 @@ public class PessoaFisicaNegocio extends CadastroPessoaFisicaBeans {
 
     public void editarPessoaFisica(PessoaFisicaBeans pessoaFisica) throws ValidacaoException{
         //ListPessoaFisicaBeans = DAO.buscarTodosOsRegistros();
+        boolean existe = false;
         for (PessoaFisicaBeans listPessoaFisicaBean : ListPessoaFisicaBeans) {
             if (pessoaFisica.getCpf().equals(listPessoaFisicaBean.getCpf())){
-                throw new PessoaDuplicadaException();
+                existe = true;
             }
         }
-        if(!pessoaFisica.getCpf().matches("[0-9]{11}]")){
-            throw new CpfInvalidoException();
+        if(existe) {
+            if (!pessoaFisica.getCpf().matches("[0-9]{11}]")) {
+                throw new CpfInvalidoException();
+            }
+            if (!pessoaFisica.getRg().matches("[0-9]{1,11}")) {
+                throw new RgInvalidoException();
+            }
+            if (!pessoaFisica.getNome().matches("[a-zA-Z\\s]+")) { // Verifica se o nome possui caracteres especiais
+                throw new NomeInvalidoException();
+            }
+            if (!pessoaFisica.getTelefone().matches("[0-9]{1,11}")) {
+                throw new TelefoneInvalidoExcepition();
+            }
+            DAO.editar(pessoaFisica);
+
         }
-        if(!pessoaFisica.getRg().matches("[0-9]{1,11}")){
-            throw new RgInvalidoException();
-        }
-        if(!pessoaFisica.getNome().matches("[a-zA-Z\\s]+")){ // Verifica se o nome possui caracteres especiais
-            throw  new NomeInvalidoException();
-        }
-        if(!pessoaFisica.getTelefone().matches("[0-9]{11}")){
-            throw new TelefoneInvalidoExcepition();
-        }
-        DAO.editar(pessoaFisica);
     }
 
 }

@@ -28,13 +28,13 @@ public class EnderecoNegocio extends CadastroEndereco {
             if(!endereco.getCep().matches("[0-9]{8}")){
                 throw new CepInvalidoException();
             }
-            if(!endereco.getNumero().matches("[a-zA-Z\\d]")){
+            if(!endereco.getNumero().matches("[a-zA-Z0-9]+")){
                 throw new NumeroInvalidoException();
             }
-            if(!endereco.getCidade().matches("[0-10a-zA-Z\\s]+")){
+            if(!endereco.getCidade().matches("[0-9a-zA-Z\\s]+")){
                 throw new CidadeInvalidoException();
             }
-            if(!endereco.getBairro().matches("[0-10a-zA-Z\\s]+")){
+            if(!endereco.getBairro().matches("[0-9a-zA-Z\\s]+")){
                 throw new BairroInvalidoException();
             }
             DAO.cadastrar(endereco);
@@ -56,13 +56,13 @@ public class EnderecoNegocio extends CadastroEndereco {
             if(!endereco.getCep().matches("[0-9]{8}")){
                 throw new CepInvalidoException();
             }
-            if(!endereco.getNumero().matches("[a-zA-Z\\d]")){
-                throw new NumeroInvalidoException();
+           if(!endereco.getNumero().matches("[a-zA-Z0-9]+")){
+              throw new NumeroInvalidoException();
             }
-            if(!endereco.getCidade().matches("[0-10a-zA-Z\\s]+")){
+            if(!endereco.getCidade().matches("[0-9a-zA-Z\\s]+")){
                 throw new CidadeInvalidoException();
             }
-            if(!endereco.getBairro().matches("[0-10a-zA-Z\\s]+")){
+            if(!endereco.getBairro().matches("[0-9a-zA-Z\\s]+")){
                 throw new BairroInvalidoException();
             }
             DAO.editar(endereco);
