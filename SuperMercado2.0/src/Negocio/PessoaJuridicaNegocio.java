@@ -30,7 +30,7 @@ public class PessoaJuridicaNegocio extends CadastroPessoaJuridicaBeans {
         if(!pessoaJuridica.getIe().matches("[0-9]{6,9}")){
             throw new IeInvalidoException();
         }
-        if(!pessoaJuridica.getNome().matches("[a-zA-Z\\s]+")){
+        if(!pessoaJuridica.getNome().matches("^([a-zA-Zà-üÀ-Ü]|-|_|\\s)+$")){
             throw new NomeInvalidoException();
         }
         DAO.cadastrar(pessoaJuridica);
@@ -38,20 +38,25 @@ public class PessoaJuridicaNegocio extends CadastroPessoaJuridicaBeans {
 
     public void editarPessoaJuridica(PessoaJuridicaBeans pessoaJuridica) throws ValidacaoException{
         //ListPessoaJuridicaBeans = DAO.buscar();
+        boolean existe = false;
         for (PessoaJuridicaBeans listPessoaJuridicaBean : ListPessoaJuridicaBeans) {
             if (pessoaJuridica.getCnpj().equals(listPessoaJuridicaBean.getCnpj())){
-                throw new PessoaDuplicadaException();
+                existe = true;
             }
         }
-        if(!pessoaJuridica.getCnpj().matches("[0-9]{14}")){
-            throw new CnpjInvalidoException();
+        if(existe) {
+            if (!pessoaJuridica.getCnpj().matches("[0-9]{14}")) {
+                throw new CnpjInvalidoException();
+            }
+            if (!pessoaJuridica.getIe().matches("[0-9]{6,9}")) {
+                throw new IeInvalidoException();
+            }
+            if (!pessoaJuridica.getNome().matches("^([a-zA-Zà-üÀ-Ü]|-|_|\\s)+$")) {
+                throw new NomeInvalidoException();
+            }
+            DAO.editar(pessoaJuridica);
+        }else {
+            throw new PessoaNaoExisteException();
         }
-        if(!pessoaJuridica.getIe().matches("[0-9]{6,9}")){
-            throw new IeInvalidoException();
-        }
-        if(!pessoaJuridica.getNome().matches("[a-zA-Z\\s]+")){
-            throw new NomeInvalidoException();
-        }
-        DAO.editar(pessoaJuridica);
     }
 }

@@ -29,9 +29,11 @@ public class ProdutoNegocio extends CadastroProdutos {
     public void editarProduto(ProdutoBeans produto) throws ValidacaoException{
         for(int i = 0; i < ListProdutosBeans.size();i++){
             if(produto.getNome().equals(ListProdutosBeans.indexOf(i))){
-                throw new ProdutoDuplicadoException();
+                DAO.editar(produto);
+                break;
             }
         }
-        DAO.editar(produto);
+        //ProdutoNaoExisteException
+
     }
 }

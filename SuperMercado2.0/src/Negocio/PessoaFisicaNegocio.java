@@ -29,7 +29,7 @@ public class PessoaFisicaNegocio extends CadastroPessoaFisicaBeans {
         if(!pessoaFisica.getRg().matches("[0-9]{1,11}")){
             throw new RgInvalidoException();
         }
-        if(!pessoaFisica.getNome().matches("[a-zA-Z\\s]+")){ // Verifica se o nome possui caracteres especiais
+        if(!pessoaFisica.getNome().matches("^([a-zA-Zà-üÀ-Ü]|-|_|\\s)+$")){ // Verifica se o nome possui caracteres especiais
             throw  new NomeInvalidoException();
         }
         if(!pessoaFisica.getTelefone().matches("[0-9]{1,11}")){
@@ -53,7 +53,7 @@ public class PessoaFisicaNegocio extends CadastroPessoaFisicaBeans {
             if (!pessoaFisica.getRg().matches("[0-9]{1,11}")) {
                 throw new RgInvalidoException();
             }
-            if (!pessoaFisica.getNome().matches("[a-zA-Z\\s]+")) { // Verifica se o nome possui caracteres especiais
+            if (!pessoaFisica.getNome().matches("^([a-zA-Zà-üÀ-Ü]|-|_|\\s)+$")) { // Verifica se o nome possui caracteres especiais
                 throw new NomeInvalidoException();
             }
             if (!pessoaFisica.getTelefone().matches("[0-9]{1,11}")) {
@@ -61,6 +61,8 @@ public class PessoaFisicaNegocio extends CadastroPessoaFisicaBeans {
             }
             DAO.editar(pessoaFisica);
 
+        }else{
+            throw new PessoaNaoExisteException();
         }
     }
 
