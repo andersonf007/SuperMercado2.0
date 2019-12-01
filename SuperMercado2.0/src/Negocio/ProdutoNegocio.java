@@ -16,7 +16,7 @@ public class ProdutoNegocio extends CadastroProdutos {
         this.DAO = DAO;
         ListProdutosBeans = DAO.busca();
     }
-
+    // colocar validacoes par nao inserir letras em valor de custo, estoque e valor de venda
     public void cadastrarProduto(ProdutoBeans produto) throws ValidacaoException {
         for(int i = 0; i < ListProdutosBeans.size();i++){
              if(produto.getNome().equals(ListProdutosBeans.indexOf(i))){
@@ -25,7 +25,7 @@ public class ProdutoNegocio extends CadastroProdutos {
         }
         DAO.cadastrar(produto);
     }
-
+    // colocar validacoes par nao inserir letras em valor de custo, estoque e valor de venda
     public void editarProduto(ProdutoBeans produto) throws ValidacaoException{
         for(int i = 0; i < ListProdutosBeans.size();i++){
             if(produto.getNome().equals(ListProdutosBeans.indexOf(i))){
