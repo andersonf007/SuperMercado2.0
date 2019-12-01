@@ -23,7 +23,7 @@ public class ProdutoDAO implements IProduto{
     @Override
     public void cadastrar(ProdutoBeans object) {
         try {
-            FileOutputStream arquivo = new FileOutputStream("\\src\\produto.txt",true);
+            FileOutputStream arquivo = new FileOutputStream("\\Registros Fenix Sistemas\\produto.txt",true);
             PrintWriter pr = new PrintWriter(arquivo);
             pr.println(object.getId()+"#"+object.getNome()+"#"+object.getEstoque()+"#"+object.getValorCusto()+"#"+object.getValorVenda()+"#"+object.getAtivo());
             pr.close();
@@ -38,7 +38,7 @@ public class ProdutoDAO implements IProduto{
         try {
             //lê o arquivo e edita a linha de interesse
             ArrayList<String> conteudoDoArquivo = new ArrayList<>();
-            File file = new File("produto.txt");
+            File file = new File("\\Registros Fenix Sistemas\\produto.txt");
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
 
@@ -70,8 +70,9 @@ public class ProdutoDAO implements IProduto{
     @Override
     public ArrayList<ProdutoBeans> busca() {
         String linha;
+        if(ListProdutosBeans != null) ListProdutosBeans.clear();
         try {
-            FileInputStream arquivo = new FileInputStream("produto.txt");
+            FileInputStream arquivo = new FileInputStream("\\Registros Fenix Sistemas\\produto.txt");
             InputStreamReader input = new InputStreamReader(arquivo);
             BufferedReader buffer = new BufferedReader(input);
             
@@ -101,7 +102,7 @@ public class ProdutoDAO implements IProduto{
          String linha;
             int contador = 0;
         try {
-            FileInputStream arquivo = new FileInputStream("produto.txt");
+            FileInputStream arquivo = new FileInputStream("\\Registros Fenix Sistemas\\produto.txt");
             InputStreamReader input = new InputStreamReader(arquivo);
             BufferedReader buffer = new BufferedReader(input);
             
@@ -120,8 +121,7 @@ public class ProdutoDAO implements IProduto{
    
     @Override
     public boolean validarDuplicidade(ProdutoBeans object){
-        busca();
-        
+        busca();        
         for(int i = 0; i < ListProdutosBeans.size(); i++){
             if(ListProdutosBeans.get(i).getNome().equals(object.getNome())){
                 return false;
@@ -135,7 +135,7 @@ public class ProdutoDAO implements IProduto{
         try {
             //lê o arquivo e edita a linha de interesse
             ArrayList<String> conteudoDoArquivo = new ArrayList<>();
-            File file = new File("produto.txt");
+            File file = new File("\\Registros Fenix Sistemas\\produto.txt");
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
 

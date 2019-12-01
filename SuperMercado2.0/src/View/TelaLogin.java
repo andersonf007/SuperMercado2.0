@@ -29,7 +29,7 @@ public class TelaLogin extends javax.swing.JFrame {
         initComponents();
         usuarioDAO = new UsuarioDAO();
         usuarioNegocio = new UsuarioNegocio(usuarioDAO);
-        
+        //usuarioNegocio = new UsuarioNegocio();
     }
 
     /**

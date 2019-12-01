@@ -5,6 +5,7 @@ import ModelBeans.EnderecoBeans;
 import java.util.ArrayList;
 
 public interface IEnderecoDAO {
+    
     public void cadastrar(EnderecoBeans object);
 
     public void editar(EnderecoBeans object);

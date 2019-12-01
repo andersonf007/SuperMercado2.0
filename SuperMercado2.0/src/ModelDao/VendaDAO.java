@@ -23,7 +23,7 @@ public class VendaDAO extends CadastroVenda{
     @Override
     public void cadastrar(VendaBeans object) {
         try {
-            FileOutputStream arquivo = new FileOutputStream("venda.txt",true);
+            FileOutputStream arquivo = new FileOutputStream("\\Registros Fenix Sistemas\\venda.txt",true);
             PrintWriter pr = new PrintWriter(arquivo);
             pr.println(object.getId()
                     +"#"+object.getIdCliente()
@@ -43,8 +43,9 @@ public class VendaDAO extends CadastroVenda{
     @Override
     public ArrayList<VendaBeans> buscarTodosOsRegistros() {
         String linha;
+        if(ListVendaBeans != null) ListVendaBeans.clear();
         try {
-            FileInputStream arquivo = new FileInputStream("venda.txt");
+            FileInputStream arquivo = new FileInputStream("\\Registros Fenix Sistemas\\venda.txt");
             InputStreamReader input = new InputStreamReader(arquivo);
             BufferedReader buffer = new BufferedReader(input);
             
@@ -75,7 +76,7 @@ public class VendaDAO extends CadastroVenda{
         String linha;
         int contador = 0;
         try {
-            FileInputStream arquivo = new FileInputStream("venda.txt");
+            FileInputStream arquivo = new FileInputStream("\\Registros Fenix Sistemas\\venda.txt");
             InputStreamReader input = new InputStreamReader(arquivo);
             BufferedReader buffer = new BufferedReader(input);
             
@@ -95,8 +96,9 @@ public class VendaDAO extends CadastroVenda{
     @Override
     public ArrayList<VendaBeans> buscarRegistrosExpecificosDeClientes(String id, String tipo) {
         String linha;
+        if(ListVendaBeans != null) ListVendaBeans.clear();
         try {
-            FileInputStream arquivo = new FileInputStream("venda.txt");
+            FileInputStream arquivo = new FileInputStream("\\Registros Fenix Sistemas\\venda.txt");
             InputStreamReader input = new InputStreamReader(arquivo);
             BufferedReader buffer = new BufferedReader(input);
             

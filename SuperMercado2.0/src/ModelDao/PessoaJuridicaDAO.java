@@ -19,7 +19,7 @@ public class PessoaJuridicaDAO implements IPessoaJuridicaDAO{
     @Override
     public void cadastrar(PessoaJuridicaBeans object) {
         try {
-            FileOutputStream arquivo = new FileOutputStream("pessoajuridica.txt",true);
+            FileOutputStream arquivo = new FileOutputStream("\\Registros Fenix Sistemas\\pessoajuridica.txt",true);
             PrintWriter pr = new PrintWriter(arquivo);
             pr.println(object.getCodigo()
                        +"#"+object.getNome()
@@ -39,7 +39,7 @@ public class PessoaJuridicaDAO implements IPessoaJuridicaDAO{
         try {
             //lê o arquivo e edita a linha de interesse
             ArrayList<String> conteudoDoArquivo = new ArrayList<>();
-            File file = new File("pessoajuridica.txt");
+            File file = new File("\\Registros Fenix Sistemas\\pessoajuridica.txt");
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
 
@@ -77,8 +77,9 @@ public class PessoaJuridicaDAO implements IPessoaJuridicaDAO{
     @Override
     public ArrayList<PessoaJuridicaBeans> buscar() {
         String linha;
+        if(ListPessoaJuridicaBeans != null) ListPessoaJuridicaBeans.clear();
         try {
-            FileInputStream arquivo = new FileInputStream("pessoajuridica.txt");
+            FileInputStream arquivo = new FileInputStream("\\Registros Fenix Sistemas\\pessoajuridica.txt");
             InputStreamReader input = new InputStreamReader(arquivo);
             BufferedReader buffer = new BufferedReader(input);
             
@@ -109,7 +110,7 @@ public class PessoaJuridicaDAO implements IPessoaJuridicaDAO{
         String linha;
         int contador = 0;
         try {
-            FileInputStream arquivo = new FileInputStream("pessoajuridica.txt");
+            FileInputStream arquivo = new FileInputStream("\\Registros Fenix Sistemas\\pessoajuridica.txt");
             InputStreamReader input = new InputStreamReader(arquivo);
             BufferedReader buffer = new BufferedReader(input);
             

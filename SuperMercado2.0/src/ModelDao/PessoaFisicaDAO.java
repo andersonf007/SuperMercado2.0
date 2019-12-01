@@ -25,7 +25,7 @@ public class PessoaFisicaDAO implements IPessoaFisicaDAO {
     @Override
     public void cadastrar(PessoaFisicaBeans object) {
         try {
-            FileOutputStream arquivo = new FileOutputStream("pessoaFisica.txt", true);
+            FileOutputStream arquivo = new FileOutputStream("\\Registros Fenix Sistemas\\pessoaFisica.txt", true);
             PrintWriter pr = new PrintWriter(arquivo);
             pr.println(object.getCodigo()
                     + "#" + object.getNome()
@@ -47,7 +47,7 @@ public class PessoaFisicaDAO implements IPessoaFisicaDAO {
         try {
             //lê o arquivo e edita a linha de interesse
             ArrayList<String> conteudoDoArquivo = new ArrayList<>();
-            File file = new File("pessoaFisica.txt");
+            File file = new File("\\Registros Fenix Sistemas\\pessoaFisica.txt");
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
 
@@ -86,8 +86,9 @@ public class PessoaFisicaDAO implements IPessoaFisicaDAO {
     @Override
     public ArrayList<PessoaFisicaBeans> buscarTodosOsRegistros() {
         String linha;
+        if(ListPessoaFisicaBeans != null) ListPessoaFisicaBeans.clear();
         try {
-            FileInputStream arquivo = new FileInputStream("pessoaFisica.txt");
+            FileInputStream arquivo = new FileInputStream("\\Registros Fenix Sistemas\\pessoaFisica.txt");
             InputStreamReader input = new InputStreamReader(arquivo);
             BufferedReader buffer = new BufferedReader(input);
 
@@ -119,7 +120,7 @@ public class PessoaFisicaDAO implements IPessoaFisicaDAO {
         String linha;
         int contador = 0;
         try {
-            FileInputStream arquivo = new FileInputStream("pessoaFisica.txt");
+            FileInputStream arquivo = new FileInputStream("\\Registros Fenix Sistemas\\pessoaFisica.txt");
             InputStreamReader input = new InputStreamReader(arquivo);
             BufferedReader buffer = new BufferedReader(input);
 
@@ -140,7 +141,7 @@ public class PessoaFisicaDAO implements IPessoaFisicaDAO {
     public PessoaFisicaBeans buscarRegistroPorId(String cpf) {
         String linha;
         try {
-            FileInputStream arquivo = new FileInputStream("pessoaFisica.txt");
+            FileInputStream arquivo = new FileInputStream("\\Registros Fenix Sistemas\\pessoaFisica.txt");
             InputStreamReader input = new InputStreamReader(arquivo);
             BufferedReader buffer = new BufferedReader(input);
 

@@ -26,7 +26,7 @@ public class ProdutosVendaDAO extends CadastroProdutosVenda{
     @Override
     public void cadastrar(ProdutosVendaBeans object) {
         try {
-            FileOutputStream arquivo = new FileOutputStream("ProdutosVendidos.txt",true);
+            FileOutputStream arquivo = new FileOutputStream("\\Registros Fenix Sistemas\\ProdutosVendidos.txt",true);
             PrintWriter pr = new PrintWriter(arquivo);
             pr.println(object.getIdVenda()+"#"+object.getIdProduto());
             pr.close();
@@ -39,8 +39,9 @@ public class ProdutosVendaDAO extends CadastroProdutosVenda{
     @Override
     public ArrayList<ProdutosVendaBeans> buscar() {
         String linha;
+        if(ListProdutosVendaBeans != null) ListProdutosVendaBeans.clear();
         try {
-            FileInputStream arquivo = new FileInputStream("ProdutosVendidos.txt");
+            FileInputStream arquivo = new FileInputStream("\\Registros Fenix Sistemas\\ProdutosVendidos.txt");
             InputStreamReader input = new InputStreamReader(arquivo);
             BufferedReader buffer = new BufferedReader(input);
             

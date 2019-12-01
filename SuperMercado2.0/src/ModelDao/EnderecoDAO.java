@@ -30,7 +30,7 @@ public class EnderecoDAO implements IEnderecoDAO{
     @Override
     public void cadastrar(EnderecoBeans object) {
         try {
-            FileOutputStream arquivo = new FileOutputStream("endereco.txt",true);
+            FileOutputStream arquivo = new FileOutputStream("\\Registros Fenix Sistemas\\endereco.txt",true);
             PrintWriter pr = new PrintWriter(arquivo);
             pr.println(object.getId()
                        +"#"+object.getCep()
@@ -51,7 +51,7 @@ public class EnderecoDAO implements IEnderecoDAO{
         try {
             //lê o arquivo e edita a linha de interesse
             ArrayList<String> conteudoDoArquivo = new ArrayList<>();
-            File file = new File("endereco.txt");
+            File file = new File("\\Registros Fenix Sistemas\\endereco.txt");
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
 
@@ -89,39 +89,39 @@ public class EnderecoDAO implements IEnderecoDAO{
     @Override
     public ArrayList<EnderecoBeans> busca() {
     String linha;
-        try {
-            FileInputStream arquivo = new FileInputStream("endereco.txt");
-            InputStreamReader input = new InputStreamReader(arquivo);
-            BufferedReader buffer = new BufferedReader(input);
-            
-            do{
-                linha = buffer.readLine();
-                if(linha != null){
-                    EnderecoBeans enderecoBeans = new EnderecoBeans();
-                    String[] palavras = linha.split("#");
-                        enderecoBeans.setId(Integer.parseInt(palavras[0]));
-                        enderecoBeans.setCep(palavras[1]);
-                        enderecoBeans.setCidade(palavras[2]);
-                        enderecoBeans.setBairro(palavras[3]);
-                        enderecoBeans.setLogradouro(palavras[4]);
-                        enderecoBeans.setUf(palavras[5]);
-                        enderecoBeans.setNumero(palavras[6]);
-                        ListEnderecoBeans.add(enderecoBeans);
-                    }                    
-            }while(linha != null);
-                        
-        } catch (Exception ex) {
-            //JOptionPane.showMessageDialog(null, "Não existe arquivo de usuario! " + ex);
-        }
-        return ListEnderecoBeans;
+    if(ListEnderecoBeans != null) ListEnderecoBeans.clear();
+    try {
+        FileInputStream arquivo = new FileInputStream("\\Registros Fenix Sistemas\\endereco.txt");
+        InputStreamReader input = new InputStreamReader(arquivo);
+        BufferedReader buffer = new BufferedReader(input);
+
+        do{
+            linha = buffer.readLine();
+            if(linha != null){
+                EnderecoBeans enderecoBeans = new EnderecoBeans();
+                String[] palavras = linha.split("#");
+                    enderecoBeans.setId(Integer.parseInt(palavras[0]));
+                    enderecoBeans.setCep(palavras[1]);
+                    enderecoBeans.setCidade(palavras[2]);
+                    enderecoBeans.setBairro(palavras[3]);
+                    enderecoBeans.setLogradouro(palavras[4]);
+                    enderecoBeans.setUf(palavras[5]);
+                    enderecoBeans.setNumero(palavras[6]);
+                    ListEnderecoBeans.add(enderecoBeans);
+                }                    
+        }while(linha != null);                        
+    } catch (Exception ex) {
+        //JOptionPane.showMessageDialog(null, "Não existe arquivo de usuario! " + ex);
     }
+    return ListEnderecoBeans;
+}
 
     @Override
     public int ConfereQuantidadeRegistros() {
             String linha;
             int contador = 0;
         try {
-            FileInputStream arquivo = new FileInputStream("Endereco.txt");
+            FileInputStream arquivo = new FileInputStream("\\Registros Fenix Sistemas\\Endereco.txt");
             InputStreamReader input = new InputStreamReader(arquivo);
             BufferedReader buffer = new BufferedReader(input);
             

@@ -13,15 +13,15 @@ import View.FormaPagamento;
  */
 public class FormaPagamentoController {
     
-    private FormaPagamento formaPagamento;
+    private static FormaPagamento formaPagamento;
     
-    public void abrirFormaPagamento(){
+    public static void abrirFormaPagamento(){
         if(formaPagamento == null) formaPagamento = new FormaPagamento();
         
         formaPagamento.setVisible(true);
     }
     
-    public void enviarInformacoesDoPdv(String valorTotal){
+    public static void enviarInformacoesDoPdv(String valorTotal){
         formaPagamento.receberInformacoesPDV(valorTotal);
     }
     

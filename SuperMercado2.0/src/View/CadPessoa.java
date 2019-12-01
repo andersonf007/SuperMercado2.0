@@ -51,14 +51,7 @@ public final class CadPessoa extends javax.swing.JFrame {
     //flag = 3 - esta editando uma pessoa juridica no sistema
    
     public CadPessoa() {
-        initComponents();
-        preencherTabelaPessoaFisica();
-        preencherTabelaUsuarios();
-        preencherTabelaPessoaJuridica();
-        usuarioNegocio = new UsuarioNegocio(usuarioDAO);
-        pessoaFisicaNegocio = new PessoaFisicaNegocio(pessoaFisicaDAO);
-        pessoaJuridicaNegocio = new PessoaJuridicaNegocio(pessoaJuridicaDAO);
-        enderecoNegocio = new EnderecoNegocio(enderecoDAO);
+        initComponents();        
         pessoaFisicaDAO  = new PessoaFisicaDAO();
         pessoaJuridicaDAO = new PessoaJuridicaDAO();
         usuarioDAO = new UsuarioDAO();
@@ -70,7 +63,15 @@ public final class CadPessoa extends javax.swing.JFrame {
         ListPessoaJuridicaBeans = new ArrayList<>();
         dadosUsuarios = new ArrayList(); 
         dadosPessoasFisicas = new ArrayList(); 
-        dadosPessoasJuridicas = new ArrayList();
+        dadosPessoasJuridicas = new ArrayList(); 
+        usuarioNegocio = new UsuarioNegocio(usuarioDAO);
+        //usuarioNegocio = new UsuarioNegocio();
+        pessoaFisicaNegocio = new PessoaFisicaNegocio(pessoaFisicaDAO);
+        pessoaJuridicaNegocio = new PessoaJuridicaNegocio(pessoaJuridicaDAO);
+        enderecoNegocio = new EnderecoNegocio(enderecoDAO);
+        preencherTabelaPessoaFisica();
+        preencherTabelaUsuarios();
+        preencherTabelaPessoaJuridica();
     }
 
     @SuppressWarnings("unchecked")

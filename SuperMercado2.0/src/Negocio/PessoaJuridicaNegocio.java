@@ -8,6 +8,7 @@ import Negocio.Exceptions.*;
 import java.util.ArrayList;
 
 public class PessoaJuridicaNegocio extends CadastroPessoaJuridicaBeans {
+    
     private IPessoaJuridicaDAO DAO;
     private ArrayList<PessoaJuridicaBeans> ListPessoaJuridicaBeans;
 
@@ -17,6 +18,7 @@ public class PessoaJuridicaNegocio extends CadastroPessoaJuridicaBeans {
     }
 
     public void cadastrarPessoaJuridica(PessoaJuridicaBeans pessoaJuridica) throws ValidacaoException{
+        //ListPessoaJuridicaBeans = DAO.buscar();
         for (PessoaJuridicaBeans listPessoaJuridicaBean : ListPessoaJuridicaBeans) {
             if (pessoaJuridica.getCnpj().equals(listPessoaJuridicaBean.getCnpj())){
                 throw new PessoaDuplicadaException();
@@ -35,6 +37,7 @@ public class PessoaJuridicaNegocio extends CadastroPessoaJuridicaBeans {
     }
 
     public void editarPessoaJuridica(PessoaJuridicaBeans pessoaJuridica) throws ValidacaoException{
+        //ListPessoaJuridicaBeans = DAO.buscar();
         for (PessoaJuridicaBeans listPessoaJuridicaBean : ListPessoaJuridicaBeans) {
             if (pessoaJuridica.getCnpj().equals(listPessoaJuridicaBean.getCnpj())){
                 throw new PessoaDuplicadaException();

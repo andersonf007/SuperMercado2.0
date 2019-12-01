@@ -11,9 +11,9 @@ import View.Estoque;
  */
 public class EstoqueController {
     
-    private Estoque estoque;
+    private static Estoque estoque;
     
-    public void abrirEstoque(){
+    public static void abrirEstoque(){
         if(estoque == null) estoque = new Estoque();               
         
         estoque.setVisible(true);

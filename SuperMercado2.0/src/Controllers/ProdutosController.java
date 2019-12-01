@@ -3,22 +3,22 @@ import View.BuscarProdutos;
 import View.CadProdutos;
 
 public class ProdutosController {
-    private CadProdutos cadProdutos;
-    private BuscarProdutos buscarProdutos;
+    private static CadProdutos cadProdutos;
+    private static BuscarProdutos buscarProdutos;
     
-    public void abreBuscarProdutos(){
+    public static void abreBuscarProdutos(){
         if(buscarProdutos == null)buscarProdutos = new BuscarProdutos();               
         
         buscarProdutos.setVisible(true);
     }
     
-    public void abreCadProdutos(){
+    public static void abreCadProdutos(){
         if(cadProdutos == null) cadProdutos = new CadProdutos();               
         
         cadProdutos.setVisible(true);
     }
    
-    public void abrirListagemProdutos(){
+    public static void abrirListagemProdutos(){
         new BuscarProdutos().setVisible(true);
     }
 }

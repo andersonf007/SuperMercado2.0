@@ -2,7 +2,6 @@ package Negocio;
 
 import ModelBeans.CadastroProdutos;
 import ModelBeans.ProdutoBeans;
-import ModelDao.IEnderecoDAO;
 import ModelDao.IProduto;
 import Negocio.Exceptions.ProdutoDuplicadoException;
 import Negocio.Exceptions.ValidacaoException;

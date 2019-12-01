@@ -35,6 +35,7 @@ public class Estoque extends javax.swing.JFrame {
         produtoBeans = new ProdutoBeans();
         ListProdutoBeans = new ArrayList<>();
         dados = new ArrayList();
+        codigo = 0;
         preencherTabelaEstoque();
     }
 
@@ -148,6 +149,8 @@ public class Estoque extends javax.swing.JFrame {
         if(evt.getKeyCode() == 10){
             if(jCheckBoxEntrada.isSelected() && jCheckBoxSaida.isSelected()){
                 JOptionPane.showMessageDialog(null, "Marque apenas um tipo de movimentação por vez!");
+            }else if(codigo == 0){
+                JOptionPane.showMessageDialog(null, "Selecione um produto!");
             }else{
                 if(jCheckBoxEntrada.isSelected()){
                     estoqueAlterado = estoque + Double.parseDouble(jTextFieldEstoque.getText());

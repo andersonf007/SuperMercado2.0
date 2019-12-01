@@ -10,9 +10,9 @@ import View.Relatorio;
  * @author anderson
  */
 public class RelatorioController {
-    private Relatorio relatorio;
+    private static Relatorio relatorio;
 
-    public void abreRelatorio(){
+    public static void abreRelatorio(){
         if(relatorio == null) relatorio = new Relatorio();               
         
         relatorio.setVisible(true);

@@ -17,6 +17,7 @@ public class PessoaFisicaNegocio extends CadastroPessoaFisicaBeans {
    }
 
     public void cadastrarPessoaFisica(PessoaFisicaBeans pessoaFisica) throws ValidacaoException{
+        //ListPessoaFisicaBeans = DAO.buscarTodosOsRegistros();
         for (PessoaFisicaBeans listPessoaFisicaBean : ListPessoaFisicaBeans) {
             if (pessoaFisica.getCpf().equals(listPessoaFisicaBean.getCpf())){
                 throw new PessoaDuplicadaException();
@@ -37,8 +38,8 @@ public class PessoaFisicaNegocio extends CadastroPessoaFisicaBeans {
         DAO.cadastrar(pessoaFisica);
     }
 
-
     public void editarPessoaFisica(PessoaFisicaBeans pessoaFisica) throws ValidacaoException{
+        //ListPessoaFisicaBeans = DAO.buscarTodosOsRegistros();
         for (PessoaFisicaBeans listPessoaFisicaBean : ListPessoaFisicaBeans) {
             if (pessoaFisica.getCpf().equals(listPessoaFisicaBean.getCpf())){
                 throw new PessoaDuplicadaException();

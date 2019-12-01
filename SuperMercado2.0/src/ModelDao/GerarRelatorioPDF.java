@@ -58,7 +58,7 @@ public class GerarRelatorioPDF {
         // Criação do objeto que será um documento PDF
         Document documento = new Document();
         // Faz o apontamento para o arquivo de destino
-        PdfWriter.getInstance(documento, new FileOutputStream("Relatorio-" + LocalDate.now() + ".Pdf"));
+        PdfWriter.getInstance(documento, new FileOutputStream("\\Registros Fenix Sistemas\\Relatorio-" + LocalDate.now() + ".Pdf"));
         // Realiza a abertura do arquivo para escrita
         documento.open();
 

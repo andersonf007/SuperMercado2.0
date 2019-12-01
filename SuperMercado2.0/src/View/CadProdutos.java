@@ -13,6 +13,8 @@ import Negocio.Exceptions.ValidacaoException;
 import Negocio.ProdutoNegocio;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 
@@ -32,8 +34,8 @@ public class CadProdutos extends javax.swing.JFrame {
      */
     public CadProdutos() {
         initComponents();
-        produtoNegocio = new ProdutoNegocio(produtoDao);
         produtoDao = new ProdutoDAO();
+        produtoNegocio = new ProdutoNegocio(produtoDao);
         ListProdutoBeans = new ArrayList<>();
         dados = new ArrayList();
         preencherTabelaProdutos();
@@ -62,6 +64,7 @@ public class CadProdutos extends javax.swing.JFrame {
         jCheckBoxAtivo = new javax.swing.JCheckBox();
         jButtonEditar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -71,28 +74,28 @@ public class CadProdutos extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Valor de venda:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(30, 270, 150, 40);
+        jLabel2.setBounds(20, 280, 150, 40);
         getContentPane().add(jTextFieldValorDeVenda);
-        jTextFieldValorDeVenda.setBounds(30, 310, 140, 40);
+        jTextFieldValorDeVenda.setBounds(20, 320, 140, 40);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Valor de custo:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 190, 150, 40);
+        jLabel3.setBounds(20, 200, 150, 40);
         getContentPane().add(jTextFieldValorDeCusto);
-        jTextFieldValorDeCusto.setBounds(30, 230, 140, 40);
+        jTextFieldValorDeCusto.setBounds(20, 240, 140, 40);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Estoque:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(30, 110, 150, 40);
+        jLabel4.setBounds(20, 120, 150, 40);
         getContentPane().add(jTextFieldEstoque);
-        jTextFieldEstoque.setBounds(30, 150, 140, 40);
+        jTextFieldEstoque.setBounds(20, 160, 140, 40);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Descrição:");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(30, 30, 150, 40);
+        jLabel5.setBounds(20, 40, 150, 40);
 
         jTextFieldDescricao.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -100,7 +103,7 @@ public class CadProdutos extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextFieldDescricao);
-        jTextFieldDescricao.setBounds(30, 70, 140, 40);
+        jTextFieldDescricao.setBounds(20, 80, 140, 40);
 
         jButtonSalvar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButtonSalvar.setText("Salvar");
@@ -155,16 +158,21 @@ public class CadProdutos extends javax.swing.JFrame {
         getContentPane().add(jButtonCancelar);
         jButtonCancelar.setBounds(400, 40, 90, 30);
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("Coloque ponto \" . \" em vez de virgula \" , \".");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(10, 370, 280, 20);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_telaprincipal.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(-10, -10, 530, 390);
+        jLabel1.setBounds(-10, -10, 530, 440);
 
-        setSize(new java.awt.Dimension(527, 413));
+        setSize(new java.awt.Dimension(527, 433));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) throws ValidacaoException {//GEN-FIRST:event_jButtonSalvarActionPerformed
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_jButtonSalvarActionPerformed
         String descricao = jTextFieldDescricao.getText();
         Double estoque = Double.parseDouble(jTextFieldEstoque.getText());
         Double valorCusto = Double.parseDouble(jTextFieldValorDeCusto.getText());
@@ -184,12 +192,15 @@ public class CadProdutos extends javax.swing.JFrame {
             }
         }catch (ProdutoDuplicadoException ex){
             JOptionPane.showMessageDialog(null, ex);
+        } catch (ValidacaoException ex) {
+            Logger.getLogger(CadProdutos.class.getName()).log(Level.SEVERE, null, ex);
         }
         preencherTabelaProdutos();
         
         jButtonEditar.setEnabled(false);
         jButtonSalvar.setEnabled(false);
         jButtonCancelar.setEnabled(false);
+        jCheckBoxAtivo.setSelected(false);
         
         jTextFieldDescricao.setText("");
         jTextFieldEstoque.setText("");
@@ -221,7 +232,8 @@ public class CadProdutos extends javax.swing.JFrame {
 
     private void jTextFieldDescricaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldDescricaoMouseClicked
         jButtonSalvar.setEnabled(true);
-        jButtonCancelar.setEnabled(true);
+        jButtonCancelar.setEnabled(true);        
+        jCheckBoxAtivo.setSelected(true);
     }//GEN-LAST:event_jTextFieldDescricaoMouseClicked
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
@@ -232,6 +244,7 @@ public class CadProdutos extends javax.swing.JFrame {
         jButtonEditar.setEnabled(false);
         jButtonSalvar.setEnabled(false);
         jButtonCancelar.setEnabled(false);
+        jCheckBoxAtivo.setSelected(false);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
    
     public void preencherTabelaProdutos() {
@@ -308,6 +321,7 @@ public class CadProdutos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableProdutos;
     private javax.swing.JTextField jTextFieldDescricao;

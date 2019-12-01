@@ -1,6 +1,5 @@
 package ModelDao;
 
-
 import ModelBeans.UsuarioBeans;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -20,7 +19,7 @@ public class UsuarioDAO implements IUsuarioDAO{
 
     public void cadastrar(UsuarioBeans object) {
         try {
-            FileOutputStream arquivo = new FileOutputStream("usuario.txt",true);
+            FileOutputStream arquivo = new FileOutputStream("\\Registros Fenix Sistemas\\usuario.txt",true);
             PrintWriter pr = new PrintWriter(arquivo);
             pr.println(object.getId()
                         +"#"+object.getNome()
@@ -40,7 +39,7 @@ public class UsuarioDAO implements IUsuarioDAO{
        try {
         //lê o arquivo e edita a linha de interesse
         ArrayList<String> conteudoDoArquivo = new ArrayList<>();
-        File file = new File("usuario.txt");
+        File file = new File("\\Registros Fenix Sistemas\\usuario.txt");
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
 
@@ -71,11 +70,11 @@ public class UsuarioDAO implements IUsuarioDAO{
 
     public ArrayList<UsuarioBeans> busca() {
         String linha;
+        if(ListUsuarioBeans != null) ListUsuarioBeans.clear();
         try {
-            FileInputStream arquivo = new FileInputStream("usuario.txt");
+            FileInputStream arquivo = new FileInputStream("\\Registros Fenix Sistemas\\usuario.txt");
             InputStreamReader input = new InputStreamReader(arquivo);
             BufferedReader buffer = new BufferedReader(input);
-            
             do{
                 linha = buffer.readLine();
                 if(linha != null){
@@ -100,14 +99,12 @@ public class UsuarioDAO implements IUsuarioDAO{
     public String buscaNome(String login, String senha) {
         String linha,nome = null;
         try {
-            FileInputStream arquivo = new FileInputStream("usuario.txt");
+            FileInputStream arquivo = new FileInputStream("\\Registros Fenix Sistemas\\usuario.txt");
             InputStreamReader input = new InputStreamReader(arquivo);
             BufferedReader buffer = new BufferedReader(input);
-            
             do{
                 linha = buffer.readLine();
                 if(linha != null){
-                    UsuarioBeans usuarioBeans = new UsuarioBeans();
                     String[] palavras = linha.split("#");
                     if(palavras[2].equals(login) && palavras[3].equals(senha)){
                         nome = palavras[1];
@@ -125,7 +122,7 @@ public class UsuarioDAO implements IUsuarioDAO{
             String linha;
             int contador = 0;
         try {
-            FileInputStream arquivo = new FileInputStream("usuario.txt");
+            FileInputStream arquivo = new FileInputStream("\\Registros Fenix Sistemas\\usuario.txt");
             InputStreamReader input = new InputStreamReader(arquivo);
             BufferedReader buffer = new BufferedReader(input);
             
