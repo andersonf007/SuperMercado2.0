@@ -4,9 +4,7 @@ import ModelBeans.CadastroUsuarioBeans;
 import ModelBeans.UsuarioBeans;
 import Negocio.Exceptions.*;
 import ModelDao.IUsuarioDAO;
-
 import Negocio.Exceptions.ValidacaoException;
-
 import java.util.ArrayList;
 
 public class UsuarioNegocio extends CadastroUsuarioBeans {

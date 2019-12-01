@@ -164,7 +164,7 @@ public class CadProdutos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) throws ValidacaoException {//GEN-FIRST:event_jButtonSalvarActionPerformed
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_jButtonSalvarActionPerformed
         String descricao = jTextFieldDescricao.getText();
         Double estoque = Double.parseDouble(jTextFieldEstoque.getText());
         Double valorCusto = Double.parseDouble(jTextFieldValorDeCusto.getText());
