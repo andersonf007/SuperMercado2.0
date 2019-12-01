@@ -12,4 +12,6 @@ public interface IPessoaJuridicaDAO {
     public ArrayList<PessoaJuridicaBeans> buscar();
 
     public int ConfereQuantidadeDeRegistros();
+    
+    public PessoaJuridicaBeans buscarRegistroPorId(String cpf);
 }

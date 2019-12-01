@@ -49,7 +49,7 @@ public class Relatorio extends javax.swing.JFrame {
         jLabel1.setText("CPF / CNPJ:");
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton1.setText("Buscar");
+        jButton1.setText("Gerar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -95,7 +95,11 @@ public class Relatorio extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            gerarRelatorioPDF.criarRelatorio(jTextFieldCpfCnpj.getText(), 0);
+            if(jComboBox1.getSelectedItem().equals("CPF")){
+               gerarRelatorioPDF.criarRelatorio(jTextFieldCpfCnpj.getText(), 0); 
+            }else{
+                gerarRelatorioPDF.criarRelatorio(jTextFieldCpfCnpj.getText(), 1);
+            }            
         } catch (DocumentException ex) {
             Logger.getLogger(Relatorio.class.getName()).log(Level.SEVERE, null, ex);
         } catch (FileNotFoundException ex) {

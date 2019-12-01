@@ -59,7 +59,7 @@ public class PDV extends javax.swing.JFrame {
         produtoVendDAO = new ProdutosVendaDAO();
         produtoBeans = new ProdutoBeans();
         produtoDAO = new ProdutoDAO();
-        //inicializarArrayDaTabela();
+        lista = new ArrayList();
     }
 
     @SuppressWarnings("unchecked")
@@ -144,7 +144,7 @@ public class PDV extends javax.swing.JFrame {
 
         jLabelFrenteDaTabela.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/tabelaVazia.PNG"))); // NOI18N
         getContentPane().add(jLabelFrenteDaTabela);
-        jLabelFrenteDaTabela.setBounds(270, 110, 480, 370);
+        jLabelFrenteDaTabela.setBounds(272, 132, 480, 350);
 
         jTableListaDeProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -221,15 +221,6 @@ public class PDV extends javax.swing.JFrame {
         }
     }
     
-    public void inicializarArrayDaTabela(){
-        if(lista != null){
-            lista = null;
-            lista = new ArrayList();
-        }else{
-            lista = new ArrayList();
-        }
-    }
-    
     public void confirmacaoPagamento(String formaDePagamento,String AcrescimoDesconto,double valorAcrescimoDesconto){
         ////recebe informacoes para salvar a venda no txt
         int quantidadeRegistros = vendaDAO.confereQuantidadeDeVendasRegistradas();
@@ -259,7 +250,6 @@ public class PDV extends javax.swing.JFrame {
             produtoVendDAO.cadastrar(produtosVendaBeans);
         }
         alterarEstoque();   
-        inicializarArrayDaTabela();
         jLabelFrenteDaTabela.setVisible(true);
         jTextFieldCodigo.setText("");
         jTextFieldQuantidade.setText("");
@@ -270,6 +260,7 @@ public class PDV extends javax.swing.JFrame {
         jLabelValorTotal.setText("");
         jTextFieldQuantidade.setEnabled(false);
         jTextFieldValorUnitario.setEnabled(false);
+        lista.clear();
         valorTotal = 0;
         valorUnitario = 0;
         quantidade = 0;
@@ -287,7 +278,6 @@ public class PDV extends javax.swing.JFrame {
         jTextFieldQuantidade.setText(Integer.toString(1));
         jTextFieldQuantidade.setEnabled(true);
         jTextFieldValorUnitario.setEnabled(true);
-        jButtonConfirmar.setEnabled(true);
         jTextFieldQuantidade.requestFocus();
         getContentPane().repaint();   
     }
@@ -323,7 +313,8 @@ public class PDV extends javax.swing.JFrame {
             if(jTextFieldCodigo.getText().isEmpty() || jTextFieldQuantidade.getText().isEmpty() || jTextFieldValorUnitario .getText().isEmpty()){
                 JOptionPane.showMessageDialog(null, "Favor, preencha todos os campos \n ou selecione o campo codigo e aperte F2");
             }else{
-                preencherTabela();
+                preencherTabela();                
+                jButtonConfirmar.setEnabled(true);
                 jLabelFrenteDaTabela.setVisible(false);
                 jTextFieldCodigo.setText("");
                 jLabelNomeProduto.setText("");

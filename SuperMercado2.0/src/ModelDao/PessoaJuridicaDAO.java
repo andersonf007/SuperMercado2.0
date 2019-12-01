@@ -127,6 +127,36 @@ public class PessoaJuridicaDAO implements IPessoaJuridicaDAO{
         return contador;
     }
 
+    @Override
+    public PessoaJuridicaBeans buscarRegistroPorId(String cnpj) {
+        String linha;
+        try {
+            FileInputStream arquivo = new FileInputStream("\\Registros Fenix Sistemas\\pessoajuridica.txt");
+            InputStreamReader input = new InputStreamReader(arquivo);
+            BufferedReader buffer = new BufferedReader(input);
+
+            do {
+                linha = buffer.readLine();
+                if (linha != null) {
+                    PessoaJuridicaBeans pessoaJuridicaBeans = new PessoaJuridicaBeans();
+                    String[] palavras = linha.split("#");
+                    if(palavras[2].equals(cnpj)){
+                        pessoaJuridicaBeans.setCodigo(Integer.parseInt(palavras[0]));
+                        pessoaJuridicaBeans.setNome(palavras[1]);
+                        pessoaJuridicaBeans.setCnpj(palavras[2]);
+                        pessoaJuridicaBeans.setIe(palavras[3]);
+                        pessoaJuridicaBeans.setTelefone(palavras[4]);
+                        pessoaJuridicaBeans.setCodEndereco(Integer.parseInt(palavras[5]));
+                        pessoaJuridicaBeans.setAtivo(Boolean.parseBoolean(palavras[6]));   
+                        return pessoaJuridicaBeans;
+                    }                    
+                }
+            } while (linha != null);
+        } catch (Exception ex) {
+            //JOptionPane.showMessageDialog(null, "Não existe arquivo de usuario! " + ex);
+        }
+        return null;
+    }
 
 
 

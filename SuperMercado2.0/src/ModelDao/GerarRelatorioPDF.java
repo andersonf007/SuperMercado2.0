@@ -2,6 +2,7 @@
 package ModelDao;
 
 import ModelBeans.PessoaFisicaBeans;
+import ModelBeans.PessoaJuridicaBeans;
 import ModelBeans.VendaBeans;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -27,6 +28,8 @@ public class GerarRelatorioPDF {
     private final Font fontePadrao;
     private PessoaFisicaDAO pessoaFisicaDAO;
     private PessoaFisicaBeans pessoaFisicaBeans;
+    private PessoaJuridicaDAO pessoaJuridicaDAO;
+    private PessoaJuridicaBeans pessoaJuridicaBeans;
     private ArrayList<VendaBeans> ListVendaBeans;
     private VendaDAO vendaDAO;
     private double valorTotal = 0;
@@ -37,6 +40,8 @@ public class GerarRelatorioPDF {
         fontePadrao = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD);
         pessoaFisicaDAO = new PessoaFisicaDAO();
         pessoaFisicaBeans = new PessoaFisicaBeans();
+        pessoaJuridicaDAO = new PessoaJuridicaDAO();
+        pessoaJuridicaBeans = new PessoaJuridicaBeans();
         ListVendaBeans = new ArrayList<>();
         vendaDAO = new VendaDAO();
     }
@@ -45,12 +50,14 @@ public class GerarRelatorioPDF {
     
     public void criarRelatorio(String cpfCnpj, int flag) throws DocumentException, FileNotFoundException {
         String nome = "";
-        if(flag == 0){
+        if(flag == 0){//busca o registro da pessoa fisica ou juridica
             pessoaFisicaBeans = pessoaFisicaDAO.buscarRegistroPorId(cpfCnpj);
             nome = pessoaFisicaBeans.getNome();
             ListVendaBeans = vendaDAO.buscarRegistrosExpecificosDeClientes(String.valueOf(pessoaFisicaBeans.getCodigo()), "F");
         }else{
-            
+            pessoaJuridicaBeans = pessoaJuridicaDAO.buscarRegistroPorId(cpfCnpj);
+            nome = pessoaJuridicaBeans.getNome();
+            ListVendaBeans = vendaDAO.buscarRegistrosExpecificosDeClientes(String.valueOf(pessoaJuridicaBeans.getCodigo()), "J");
         }
         
         ValorTotal(flag);
@@ -58,10 +65,10 @@ public class GerarRelatorioPDF {
         // Criação do objeto que será um documento PDF
         Document documento = new Document();
         // Faz o apontamento para o arquivo de destino
-        PdfWriter.getInstance(documento, new FileOutputStream("\\Registros Fenix Sistemas\\Relatorio-" + LocalDate.now() + ".Pdf"));
+        PdfWriter.getInstance(documento, new FileOutputStream("\\Registros Fenix Sistemas\\relatorios\\Relatorio de "+nome +" "+ LocalDate.now() +".Pdf"));
         // Realiza a abertura do arquivo para escrita
         documento.open();
-
+        //cabeçalho
         Paragraph paragrafo = new Paragraph("Somatório de compras do cliente "+nome+"\n\n", fontePadrao);
         paragrafo.setAlignment(Element.ALIGN_CENTER);
         documento.add(paragrafo);
@@ -81,7 +88,7 @@ public class GerarRelatorioPDF {
         table.addCell(celulaQuantidadeDeCompras);
         table.addCell(celularValorTotalDeCompras);
 
-        PdfPCell celula1 = new PdfPCell(new Phrase(pessoaFisicaBeans.getNome()));
+        PdfPCell celula1 = new PdfPCell(new Phrase(nome));
         PdfPCell celula2 = new PdfPCell(new Phrase(String.valueOf(quantidade)));
         PdfPCell celula3 = new PdfPCell(new Phrase(String.valueOf(valorTotal)));
 
@@ -104,7 +111,12 @@ public class GerarRelatorioPDF {
                 }
             }
         }else{
-            
+            for(int i = 0; i < ListVendaBeans.size(); i++){
+                if(ListVendaBeans.get(i).getIdCliente() == pessoaJuridicaBeans.getCodigo() && ListVendaBeans.get(i).getTipoPessoa().equals("J")){
+                    valorTotal += ListVendaBeans.get(i).getValor();
+                    ++quantidade;
+                }
+            }
         }
         
     }

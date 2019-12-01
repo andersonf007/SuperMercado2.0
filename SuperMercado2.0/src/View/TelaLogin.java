@@ -62,6 +62,12 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel3.setText("LOGIN:");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(10, 270, 60, 40);
+
+        jTextFieldNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldNomeKeyPressed(evt);
+            }
+        });
         getContentPane().add(jTextFieldNome);
         jTextFieldNome.setBounds(60, 270, 150, 40);
 
@@ -70,6 +76,11 @@ public class TelaLogin extends javax.swing.JFrame {
         jButtonAcessar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAcessarActionPerformed(evt);
+            }
+        });
+        jButtonAcessar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonAcessarKeyPressed(evt);
             }
         });
         getContentPane().add(jButtonAcessar);
@@ -84,6 +95,12 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel4.setText("jLabel4");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(20, 0, 430, 300);
+
+        jPasswordFieldSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordFieldSenhaKeyPressed(evt);
+            }
+        });
         getContentPane().add(jPasswordFieldSenha);
         jPasswordFieldSenha.setBounds(60, 320, 150, 40);
 
@@ -96,6 +113,26 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcessarActionPerformed
+        acessar();
+    }//GEN-LAST:event_jButtonAcessarActionPerformed
+
+    private void jTextFieldNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNomeKeyPressed
+        if(evt.getKeyCode() == 10){
+            jPasswordFieldSenha.requestFocus();
+        }
+    }//GEN-LAST:event_jTextFieldNomeKeyPressed
+
+    private void jPasswordFieldSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldSenhaKeyPressed
+        if(evt.getKeyCode() == 10){
+            jButtonAcessar.requestFocus();
+        }
+    }//GEN-LAST:event_jPasswordFieldSenhaKeyPressed
+
+    private void jButtonAcessarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonAcessarKeyPressed
+        acessar();
+    }//GEN-LAST:event_jButtonAcessarKeyPressed
+
+    public void acessar(){
         try {
             usuarioNegocio.validarLogin(jTextFieldNome.getText(),jPasswordFieldSenha.getText());
             telaPrincipal = new TelaPrincipal(jTextFieldNome.getText(),jPasswordFieldSenha.getText());
@@ -109,8 +146,7 @@ public class TelaLogin extends javax.swing.JFrame {
         catch (ValidacaoException ex) {
             Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButtonAcessarActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */
