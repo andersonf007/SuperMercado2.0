@@ -179,48 +179,67 @@ public class FormaPagamento extends javax.swing.JFrame {
         if(evt.getKeyCode() == 10){
             if(jLabelTotalPago.getText().isEmpty()){//verifica se ja foi preenchido o valor pago pelo cliente para poder fazer validacoes de pagamento
                 if(jComboBoxDescontoAcrescimo.getSelectedItem().equals("Desconto")){
-                    valorDescontro = Double.parseDouble(jTextFieldDescontoAcrescimo.getText());
-                    valorTotal = Double.parseDouble(jLabelTotalAPagar.getText());
-                    novoValor = valorTotal - valorDescontro;
-                    jLabelTotalAPagar.setText(Double.toString(novoValor));
+                    try {
+                        valorDescontro = Double.parseDouble(jTextFieldDescontoAcrescimo.getText());
+                        valorTotal = Double.parseDouble(jLabelTotalAPagar.getText());
+                        novoValor = valorTotal - valorDescontro;
+                        jLabelTotalAPagar.setText(Double.toString(novoValor));
+                    }catch (NumberFormatException ex){
+                        JOptionPane.showMessageDialog(null, "Digite apenas Numeros");
+                    }
                 }else{
-                    valorAcresmico = Double.parseDouble(jTextFieldDescontoAcrescimo.getText());
-                    valorTotal = Double.parseDouble(jLabelTotalAPagar.getText());
-                    novoValor = valorTotal + valorAcresmico;
-                    jLabelTotalAPagar.setText(Double.toString(novoValor));
+                    try {
+                        valorAcresmico = Double.parseDouble(jTextFieldDescontoAcrescimo.getText());
+                        valorTotal = Double.parseDouble(jLabelTotalAPagar.getText());
+                        novoValor = valorTotal + valorAcresmico;
+                        jLabelTotalAPagar.setText(Double.toString(novoValor));
+                    }catch (NumberFormatException ex){
+                        JOptionPane.showMessageDialog(null, "Digite apenas Numeros");
+                    }
+
                 } 
                 jTextFieldValorPago.requestFocus();
             }else{//se entrou aqui significa que foi informado o valor pago mas quiseram altrar o desconto ou acrescimo
                 if(jComboBoxDescontoAcrescimo.getSelectedItem().equals("Desconto")){
-                    valorDescontro = Double.parseDouble(jTextFieldDescontoAcrescimo.getText());
-                    novoValor = valorTotalFixo - valorDescontro;
-                    jLabelTotalAPagar.setText(Double.toString(novoValor));
-                    //altera os labels com as novas informacoes apois o novo desconto
-                    if(Double.parseDouble(jTextFieldValorPago.getText()) < Double.parseDouble(jLabelTotalAPagar.getText())){
-                        JOptionPane.showMessageDialog(null, "Valor informado é inferior a venda. Cuidado com o desconto!");
-                        jTextFieldValorPago.requestFocus();
-                        jLabelTotalPago.setText("");
-                        jLabelTroco.setText("");
-                    }else{
-                        jLabelTotalPago.setText(jTextFieldValorPago.getText());
-                        troco = Double.parseDouble(jLabelTotalPago.getText()) - Double.parseDouble(jLabelTotalAPagar.getText());
-                        jLabelTroco.setText(Double.toString(troco));
-                    }                    
-                }else{
-                    valorAcresmico = Double.parseDouble(jTextFieldDescontoAcrescimo.getText());
-                    novoValor = valorTotalFixo + valorAcresmico;
-                    jLabelTotalAPagar.setText(Double.toString(novoValor));
-                    //altera os labels com as novas informacoes apois o novo acrescimo
-                    if(Double.parseDouble(jTextFieldValorPago.getText()) < Double.parseDouble(jLabelTotalAPagar.getText())){
-                        JOptionPane.showMessageDialog(null, "Valor informado é inferior a venda. Cuidade com o acrescimo!");
-                        jTextFieldValorPago.requestFocus();
-                        jLabelTotalPago.setText("");
-                        jLabelTroco.setText("");
-                    }else{
-                        jLabelTotalPago.setText(jTextFieldValorPago.getText());
-                        troco = Double.parseDouble(jLabelTotalPago.getText()) + Double.parseDouble(jLabelTotalAPagar.getText());
-                        jLabelTroco.setText(Double.toString(troco));
+                    try {
+                        valorDescontro = Double.parseDouble(jTextFieldDescontoAcrescimo.getText());
+                        novoValor = valorTotalFixo - valorDescontro;
+                        jLabelTotalAPagar.setText(Double.toString(novoValor));
+                        //altera os labels com as novas informacoes apois o novo desconto
+                        if(Double.parseDouble(jTextFieldValorPago.getText()) < Double.parseDouble(jLabelTotalAPagar.getText())){
+                            JOptionPane.showMessageDialog(null, "Valor informado é inferior a venda. Cuidado com o desconto!");
+                            jTextFieldValorPago.requestFocus();
+                            jLabelTotalPago.setText("");
+                            jLabelTroco.setText("");
+                        }else{
+                            jLabelTotalPago.setText(jTextFieldValorPago.getText());
+                            troco = Double.parseDouble(jLabelTotalPago.getText()) - Double.parseDouble(jLabelTotalAPagar.getText());
+                            jLabelTroco.setText(Double.toString(troco));
+                        }
+                    }catch (NumberFormatException ex){
+                        JOptionPane.showMessageDialog(null, "Digite apenas Numeros");
                     }
+
+                }else{
+                    try {
+                        valorAcresmico = Double.parseDouble(jTextFieldDescontoAcrescimo.getText());
+                        novoValor = valorTotalFixo + valorAcresmico;
+                        jLabelTotalAPagar.setText(Double.toString(novoValor));
+                        //altera os labels com as novas informacoes apois o novo acrescimo
+                        if(Double.parseDouble(jTextFieldValorPago.getText()) < Double.parseDouble(jLabelTotalAPagar.getText())){
+                            JOptionPane.showMessageDialog(null, "Valor informado é inferior a venda. Cuidade com o acrescimo!");
+                            jTextFieldValorPago.requestFocus();
+                            jLabelTotalPago.setText("");
+                            jLabelTroco.setText("");
+                        }else{
+                            jLabelTotalPago.setText(jTextFieldValorPago.getText());
+                            troco = Double.parseDouble(jLabelTotalPago.getText()) + Double.parseDouble(jLabelTotalAPagar.getText());
+                            jLabelTroco.setText(Double.toString(troco));
+                        }
+                    }catch (NumberFormatException ex){
+                        JOptionPane.showMessageDialog(null, "Digite apenas Numeros");
+                    }
+
                 } 
             }            
         }
@@ -228,17 +247,23 @@ public class FormaPagamento extends javax.swing.JFrame {
 
     private void jTextFieldValorPagoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldValorPagoKeyPressed
         if(evt.getKeyCode() == 10){
-            if(Double.parseDouble(jTextFieldValorPago.getText()) < Double.parseDouble(jLabelTotalAPagar.getText())){
-                JOptionPane.showMessageDialog(null, "Valor informado é inferior a venda");
-                jTextFieldValorPago.requestFocus();
-                jLabelTotalPago.setText("");
-                jLabelTroco.setText("");
-            }else{
-                jLabelTotalPago.setText(jTextFieldValorPago.getText());
-                troco = Double.parseDouble(jLabelTotalPago.getText()) - Double.parseDouble(jLabelTotalAPagar.getText());
-                jLabelTroco.setText(Double.toString(troco));
-                jButtonFinalizar.setEnabled(true);
+            try {
+                if(Double.parseDouble(jTextFieldValorPago.getText()) < Double.parseDouble(jLabelTotalAPagar.getText())){
+                    JOptionPane.showMessageDialog(null, "Valor informado é inferior a venda");
+                    jTextFieldValorPago.requestFocus();
+                    jLabelTotalPago.setText("");
+                    jLabelTroco.setText("");
+                }else{
+                    jLabelTotalPago.setText(jTextFieldValorPago.getText());
+                    troco = Double.parseDouble(jLabelTotalPago.getText()) - Double.parseDouble(jLabelTotalAPagar.getText());
+                    jLabelTroco.setText(Double.toString(troco));
+                    jButtonFinalizar.setEnabled(true);
+                }
+            }catch (NumberFormatException ex){
+                JOptionPane.showMessageDialog(null, "Digite apenas Numeros");
+                jTextFieldDescontoAcrescimo.requestFocus();
             }
+
         }
     }//GEN-LAST:event_jTextFieldValorPagoKeyPressed
 

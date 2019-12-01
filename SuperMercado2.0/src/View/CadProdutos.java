@@ -8,6 +8,7 @@ package View;
 import ModelBeans.ModelTabela;
 import ModelBeans.ProdutoBeans;
 import ModelDao.ProdutoDAO;
+import Negocio.Exceptions.NomeInvalidoException;
 import Negocio.Exceptions.ProdutoDuplicadoException;
 import Negocio.Exceptions.ValidacaoException;
 import Negocio.ProdutoNegocio;
@@ -174,40 +175,53 @@ public class CadProdutos extends javax.swing.JFrame {
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_jButtonSalvarActionPerformed
         String descricao = jTextFieldDescricao.getText();
-        Double estoque = Double.parseDouble(jTextFieldEstoque.getText());
-        Double valorCusto = Double.parseDouble(jTextFieldValorDeCusto.getText());
-        Double valorVenda = Double.parseDouble(jTextFieldValorDeVenda.getText());
-        boolean ativo = jCheckBoxAtivo.isSelected();
+        Double estoque = null;
+        Double valorCusto = null;
+        Double valorVenda = null;
         try {
-
-            if (flag == 1) {
-                int id = codigo;
-                ProdutoBeans produto = new ProdutoBeans(descricao, id, estoque, ativo, valorCusto, valorVenda);
-                produtoNegocio.editarProduto(produto);
-            } else {
-                int quantidade = produtoDao.confereQuantidadeDeProdutosRegistrados();
-                int id = ++quantidade;
-                ProdutoBeans produto = new ProdutoBeans(descricao, id, estoque, ativo, valorCusto, valorVenda);
-                produtoDao.cadastrar(produto);
-            }
-        }catch (ProdutoDuplicadoException ex){
-            JOptionPane.showMessageDialog(null, ex);
-        } catch (ValidacaoException ex) {
-            Logger.getLogger(CadProdutos.class.getName()).log(Level.SEVERE, null, ex);
+            estoque = Double.parseDouble(jTextFieldEstoque.getText());
+            valorCusto = Double.parseDouble(jTextFieldValorDeCusto.getText());
+            valorVenda = Double.parseDouble(jTextFieldValorDeVenda.getText());
+        }catch (NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Digite apenas Numeros");
+            jTextFieldDescricao.requestFocus();
         }
-        preencherTabelaProdutos();
-        
-        jButtonEditar.setEnabled(false);
-        jButtonSalvar.setEnabled(false);
-        jButtonCancelar.setEnabled(false);
-        jCheckBoxAtivo.setSelected(false);
-        
-        jTextFieldDescricao.setText("");
-        jTextFieldEstoque.setText("");
-        jTextFieldValorDeCusto.setText("");
-        jTextFieldValorDeVenda.setText("");
-        
-        flag = 0;
+        if(estoque != null && valorCusto != null && valorVenda != null) {
+            boolean ativo = jCheckBoxAtivo.isSelected();
+            try {
+
+                if (flag == 1) {
+                    int id = codigo;
+                    ProdutoBeans produto = new ProdutoBeans(descricao, id, estoque, ativo, valorCusto, valorVenda);
+                    produtoNegocio.editarProduto(produto);
+                } else {
+                    int quantidade = produtoDao.confereQuantidadeDeProdutosRegistrados();
+                    int id = ++quantidade;
+                    ProdutoBeans produto = new ProdutoBeans(descricao, id, estoque, ativo, valorCusto, valorVenda);
+                    produtoNegocio.cadastrarProduto(produto);
+                }
+            } catch (ProdutoDuplicadoException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            } catch (NomeInvalidoException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+                jTextFieldDescricao.requestFocus();
+            } catch (ValidacaoException ex) {
+                Logger.getLogger(CadProdutos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            preencherTabelaProdutos();
+
+            jButtonEditar.setEnabled(false);
+            jButtonSalvar.setEnabled(false);
+            jButtonCancelar.setEnabled(false);
+            jCheckBoxAtivo.setSelected(false);
+
+            jTextFieldDescricao.setText("");
+            jTextFieldEstoque.setText("");
+            jTextFieldValorDeCusto.setText("");
+            jTextFieldValorDeVenda.setText("");
+
+            flag = 0;
+        }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jTableProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProdutosMouseClicked

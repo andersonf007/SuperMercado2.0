@@ -5,6 +5,8 @@
  */
 package ModelBeans;
 
+import Negocio.Exceptions.ValidacaoException;
+
 import java.util.ArrayList;
 
 /**
@@ -12,11 +14,6 @@ import java.util.ArrayList;
  * @author anderson
  */
 public abstract class CadastroProdutosVenda {
-    
-    public abstract void cadastrar(ProdutosVendaBeans object);
-    
-    public abstract ArrayList<ProdutosVendaBeans> buscar();
 
-    public abstract boolean validarCaracteresEspeciaisProduto(String codigo, String valor,String quantidade);
-    
+    public abstract boolean validarCaracteresEspeciaisProduto(String codigo, String valor, String quantidade);
 }
