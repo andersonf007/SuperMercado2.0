@@ -464,9 +464,7 @@ public final class CadPessoa extends javax.swing.JFrame {
                 preencherTabelaUsuarios();
             }
             validarInformacoesDepoisDeSalvar();
-        }catch(PessoaDuplicadaException ex ){
-            JOptionPane.showMessageDialog(null, ex);
-        }catch(NomeInvalidoException ex){
+        } catch(NomeInvalidoException ex){
             JOptionPane.showMessageDialog(null, ex);
             jTextFieldNome.requestFocus();
         }catch(LoginRepetidoException ex) {
@@ -475,25 +473,19 @@ public final class CadPessoa extends javax.swing.JFrame {
         }catch(SenhaInvalidaException ex){
             JOptionPane.showMessageDialog(null, ex);
             jPasswordFieldSenha.requestFocus();
-        }catch(CpfInvalidoException ex){
+        }catch(CpfInvalidoException | CnpjInvalidoException ex){
             JOptionPane.showMessageDialog(null, ex);
             jTextFieldCPFCNPJ.requestFocus();
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null, ex);
             jTextFieldNumero.requestFocus();
-        }catch(RgInvalidoException ex){
+        }catch(RgInvalidoException | IeInvalidoException ex){
             JOptionPane.showMessageDialog(null, ex);
             jTextFieldRGIE.requestFocus();
-        }catch(CnpjInvalidoException ex){
-            JOptionPane.showMessageDialog(null, ex);
-            jTextFieldCPFCNPJ.requestFocus();
-        }catch(IeInvalidoException ex){
-            JOptionPane.showMessageDialog(null, ex);
-            jTextFieldRGIE.requestFocus();
-        }catch(TelefoneInvalidoExcepition ex){
+        } catch(TelefoneInvalidoExcepition ex){
             JOptionPane.showMessageDialog(null, ex);
             jTextFieldTelefone.requestFocus();
-        }catch (ValidacaoException ex) {
+        } catch(ValidacaoException ex ){
             JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed

@@ -5,6 +5,10 @@ import ModelBeans.PessoaFisicaBeans;
 import ModelBeans.PessoaJuridicaBeans;
 import ModelBeans.ProdutoBeans;
 import ModelBeans.VendaBeans;
+import Negocio.Exceptions.CnpjInvalidoException;
+import Negocio.Exceptions.CpfInvalidoException;
+import Negocio.Exceptions.PessoaNaoExisteException;
+import Negocio.Exceptions.ValidacaoException;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -64,16 +68,33 @@ public class GerarRelatorioPDF {
         celulaEstoque = new PdfPCell(new Phrase("Estoque", fonteTable));
     }
   
-    public void criarRelatorioSomatorio(String cpfCnpj, int flag) throws DocumentException, FileNotFoundException {
+    public void criarRelatorioSomatorio(String cpfCnpj, int flag) throws DocumentException, FileNotFoundException, ValidacaoException {
         String nome = "";
         if(flag == 0){//busca o registro da pessoa fisica ou juridica
-            pessoaFisicaBeans = pessoaFisicaDAO.buscarRegistroPorId(cpfCnpj);
-            nome = pessoaFisicaBeans.getNome();
-            ListVendaBeans = vendaDAO.buscarRegistrosExpecificosDeClientes(String.valueOf(pessoaFisicaBeans.getCodigo()), "F");
+            if(!cpfCnpj.matches("[0-9]{11}")){
+                throw new CpfInvalidoException();
+            }else {
+                pessoaFisicaBeans = pessoaFisicaDAO.buscarRegistroPorId(cpfCnpj);
+                if(pessoaFisicaBeans != null){
+                    nome = pessoaFisicaBeans.getNome();
+                    ListVendaBeans = vendaDAO.buscarRegistrosExpecificosDeClientes(String.valueOf(pessoaFisicaBeans.getCodigo()), "F");
+                }else {
+                    throw new PessoaNaoExisteException();
+                }
+
+            }
         }else{
-            pessoaJuridicaBeans = pessoaJuridicaDAO.buscarRegistroPorId(cpfCnpj);
-            nome = pessoaJuridicaBeans.getNome();
-            ListVendaBeans = vendaDAO.buscarRegistrosExpecificosDeClientes(String.valueOf(pessoaJuridicaBeans.getCodigo()), "J");
+            if(!cpfCnpj.matches("[0-9]{14}")){
+                throw new CnpjInvalidoException();
+            }else {
+                pessoaJuridicaBeans = pessoaJuridicaDAO.buscarRegistroPorId(cpfCnpj);
+                if(pessoaJuridicaBeans!= null){
+                    nome = pessoaJuridicaBeans.getNome();
+                    ListVendaBeans = vendaDAO.buscarRegistrosExpecificosDeClientes(String.valueOf(pessoaJuridicaBeans.getCodigo()), "J");
+                }else {
+                    throw new PessoaNaoExisteException();
+                }
+            }
         }
         
         ValorTotal(flag);

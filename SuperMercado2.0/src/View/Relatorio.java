@@ -6,11 +6,15 @@
 package View;
 
 import ModelDao.GerarRelatorioPDF;
+import Negocio.Exceptions.CnpjInvalidoException;
+import Negocio.Exceptions.CpfInvalidoException;
+import Negocio.Exceptions.PessoaNaoExisteException;
+import Negocio.Exceptions.ValidacaoException;
 import com.itextpdf.text.DocumentException;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /**
  *
@@ -115,10 +119,10 @@ public class Relatorio extends javax.swing.JFrame {
                 gerarRelatorioPDF.criarRelatorioSomatorio(jTextFieldCpfCnpj.getText(), 1);
             }
             JOptionPane.showMessageDialog(null, "Relatorio Gerado em: \nC:\\ Registros Fenix Sistemas \\ relatorios");
-        } catch (DocumentException ex) {
+        } catch (DocumentException | FileNotFoundException ex) {
             Logger.getLogger(Relatorio.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Relatorio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ValidacaoException ex){
+            JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jButtonGerarSomatorioActionPerformed
 
@@ -126,9 +130,7 @@ public class Relatorio extends javax.swing.JFrame {
         try {
             gerarRelatorioPDF.criarRelatorioEstoque();
             JOptionPane.showMessageDialog(null, "Relatorio Gerado em: \nC:\\ Registros Fenix Sistemas \\ relatorios");
-        } catch (DocumentException ex) {
-            Logger.getLogger(Relatorio.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FileNotFoundException ex) {
+        } catch (DocumentException | FileNotFoundException ex) {
             Logger.getLogger(Relatorio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -149,13 +151,7 @@ public class Relatorio extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Relatorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Relatorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Relatorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Relatorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
