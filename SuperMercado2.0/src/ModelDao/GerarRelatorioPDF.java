@@ -25,7 +25,7 @@ import java.util.ArrayList;
  */
 public class GerarRelatorioPDF {
 
-    private final Font fonteTable;
+    private final Font fonteTable; //todas as variaveis que estam como final é porque elas tem que ser constante
     private final Font fontePadrao;
     private PessoaFisicaDAO pessoaFisicaDAO;
     private PessoaFisicaBeans pessoaFisicaBeans;
@@ -37,13 +37,13 @@ public class GerarRelatorioPDF {
     private VendaDAO vendaDAO;
     private double valorTotal = 0;
     private int quantidade = 0;
-    private Document documento;// Criação do objeto que será um documento PDF
-    PdfPTable table;
-    PdfPCell celulaClienteNome;
-    PdfPCell celulaQuantidadeDeCompras;
-    PdfPCell celularValorTotalDeCompras;
-    PdfPCell celulaProduto;
-    PdfPCell celulaEstoque;
+    private final Document documento;// Criação do objeto que será um documento PDF
+    private PdfPTable table;
+    private final PdfPCell celulaClienteNome;
+    private final PdfPCell celulaQuantidadeDeCompras;
+    private final PdfPCell celularValorTotalDeCompras;
+    private final PdfPCell celulaProduto;
+    private final PdfPCell celulaEstoque;
 
     public GerarRelatorioPDF() {
         fonteTable = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD);
@@ -63,9 +63,7 @@ public class GerarRelatorioPDF {
         celulaProduto = new PdfPCell(new Phrase("produto", fonteTable));
         celulaEstoque = new PdfPCell(new Phrase("Estoque", fonteTable));
     }
-    
-    
-    
+  
     public void criarRelatorioSomatorio(String cpfCnpj, int flag) throws DocumentException, FileNotFoundException {
         String nome = "";
         if(flag == 0){//busca o registro da pessoa fisica ou juridica
