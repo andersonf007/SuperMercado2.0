@@ -54,7 +54,7 @@ public class UsuarioNegocio extends CadastroUsuarioBeans {
 
 
     @Override
-    public boolean validarLogin(String login, String senha) throws ValidacaoException{
+    public boolean validarLogin(String login, String senha) throws ValidacaoException{ //Verifica se o login e senha do usuario estão corretos
         //ListUsuarioBeans = DAO.busca();
         for (UsuarioBeans listUsuarioBean : ListUsuarioBeans) {
             if (listUsuarioBean.getLogin().equals(login) && listUsuarioBean.getSenha().equals(senha)) {
@@ -69,7 +69,7 @@ public class UsuarioNegocio extends CadastroUsuarioBeans {
     }
 
     @Override
-    public boolean validarAdm(String login, String senha) throws ValidacaoException{
+    public boolean validarAdm(String login, String senha) throws ValidacaoException{ //Verifica se um usuario é admnistrador
         //ListUsuarioBeans = DAO.busca();
         for (UsuarioBeans listUsuarioBean : ListUsuarioBeans) {
             if (listUsuarioBean.getLogin().equals(login) && listUsuarioBean.getSenha().equals(senha)) {

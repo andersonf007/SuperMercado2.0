@@ -16,7 +16,7 @@ public class EnderecoNegocio extends CadastroEndereco {
     }
 
     @Override
-    public void cadastrarEndereco(EnderecoBeans endereco) throws ValidacaoException {
+    public void cadastrarEndereco(EnderecoBeans endereco) throws ValidacaoException { // Faz as validações do objeto e chama o método de cadastrar do repositório
         boolean cadastro = false;
         for (String s : UF) {
             if (endereco.getUf().equals(s)) {
@@ -25,13 +25,13 @@ public class EnderecoNegocio extends CadastroEndereco {
             }
         }
         if(cadastro){
-            if(!endereco.getCep().matches("[0-9]{8}")){
+            if(!endereco.getCep().matches("[0-9]{8}")){  //Verifica se o CEP possui apenas numeros e possuem um tamanho de 8 caracteres
                 throw new CepInvalidoException();
             }
-            if(!endereco.getNumero().matches("[a-zA-Z0-9]+")){
+            if(!endereco.getNumero().matches("[a-zA-Z0-9]+")){ //Verifica se o Numero possui apenas letras e numeros
                 throw new NumeroInvalidoException();
             }
-            if(!endereco.getCidade().matches("^([a-zA-Zà-üÀ-Ü0-9]|-|_|\\s)+$")){
+            if(!endereco.getCidade().matches("^([a-zA-Zà-üÀ-Ü0-9]|-|_|\\s)+$")){ // Verifica se o nome da cidade possui caracteres especiais
                 throw new CidadeInvalidoException();
             }
             if(!endereco.getBairro().matches("^([a-zA-Zà-üÀ-Ü0-9]|-|_|\\s)+$")){

@@ -16,7 +16,7 @@ public class PessoaJuridicaNegocio extends CadastroPessoaJuridicaBeans {
         this.DAO = DAO;
         ListPessoaJuridicaBeans = DAO.buscar();
     }
-
+    // Todos os comentários de PessoaFisicaNegocio também se aplicam nessa classe
     public void cadastrarPessoaJuridica(PessoaJuridicaBeans pessoaJuridica) throws ValidacaoException{
         //ListPessoaJuridicaBeans = DAO.buscar();
         for (PessoaJuridicaBeans listPessoaJuridicaBean : ListPessoaJuridicaBeans) {

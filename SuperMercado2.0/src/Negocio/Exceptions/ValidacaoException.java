@@ -8,7 +8,4 @@ public class ValidacaoException extends Exception {
         this.mensage = mensage;
     }
 
-    public String getMensage() {
-        return mensage;
-    }
 }

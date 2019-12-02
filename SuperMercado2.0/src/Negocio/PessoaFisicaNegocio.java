@@ -17,8 +17,7 @@ public class PessoaFisicaNegocio extends CadastroPessoaFisicaBeans {
    }
 
    @Override
-    public void cadastrarPessoaFisica(PessoaFisicaBeans pessoaFisica) throws ValidacaoException{
-        //ListPessoaFisicaBeans = DAO.buscarTodosOsRegistros();
+    public void cadastrarPessoaFisica(PessoaFisicaBeans pessoaFisica) throws ValidacaoException{ //Faz as verificações necessárias e envia os dados para o repositorio
         for (PessoaFisicaBeans listPessoaFisicaBean : ListPessoaFisicaBeans) {
             if (pessoaFisica.getCpf().equals(listPessoaFisicaBean.getCpf())){
                 throw new PessoaDuplicadaException();
@@ -27,7 +26,7 @@ public class PessoaFisicaNegocio extends CadastroPessoaFisicaBeans {
         if(!pessoaFisica.getCpf().matches("[0-9]{11}")){
             throw new CpfInvalidoException();
         }
-        if(!pessoaFisica.getRg().matches("[0-9]{1,11}")){
+        if(!pessoaFisica.getRg().matches("[0-9]{1,11}")){ //Verifica se o RG possui apenas numeros com até 11 caracteres
             throw new RgInvalidoException();
         }
         if(!pessoaFisica.getNome().matches("^([a-zA-Zà-üÀ-Ü]|-|_|\\s)+$")){ // Verifica se o nome possui caracteres especiais
