@@ -5,13 +5,28 @@
  */
 package Negocio;
 
+import ModelBeans.CadastroProdutosVenda;
+import ModelBeans.ProdutosVendaBeans;
+import Negocio.Exceptions.ValidacaoException;
+
 /**
  *
  * @author anderson
  */
-public class ProdutoVendaNegocio {
-    
-    //recebe as informacoes da tela de pdv ( quando o usuario clica enter no campo quantidade)
-    // e verifica se tem alguma letra e se tem virgula tb pois doble so recebe ponto 
-    //verificar tambem no cadastro e edicao do produto
+public class ProdutoVendaNegocio extends CadastroProdutosVenda {
+
+    @Override
+    public boolean validarCaracteresEspeciaisProduto(String codigo, String valor, String quantidade) {
+        if (!codigo.matches("[0-9.]+")) {
+            return false;
+        }
+        if (!valor.matches("[0-9.]+")) {
+            return false;
+        }
+        if (!quantidade.matches("[0-9]")) {
+            return false;
+        }
+        return true;
+
+    }
 }

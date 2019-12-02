@@ -3,6 +3,7 @@ package ModelDao;
 
 import ModelBeans.PessoaFisicaBeans;
 import ModelBeans.PessoaJuridicaBeans;
+import ModelBeans.ProdutoBeans;
 import ModelBeans.VendaBeans;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -30,7 +31,9 @@ public class GerarRelatorioPDF {
     private PessoaFisicaBeans pessoaFisicaBeans;
     private PessoaJuridicaDAO pessoaJuridicaDAO;
     private PessoaJuridicaBeans pessoaJuridicaBeans;
+    private ProdutoDAO produtoDAO;
     private ArrayList<VendaBeans> ListVendaBeans;
+    private ArrayList<ProdutoBeans> ListProdutosBeans;
     private VendaDAO vendaDAO;
     private double valorTotal = 0;
     private int quantidade = 0;
@@ -39,6 +42,8 @@ public class GerarRelatorioPDF {
     PdfPCell celulaClienteNome;
     PdfPCell celulaQuantidadeDeCompras;
     PdfPCell celularValorTotalDeCompras;
+    PdfPCell celulaProduto;
+    PdfPCell celulaEstoque;
 
     public GerarRelatorioPDF() {
         fonteTable = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD);
@@ -47,13 +52,16 @@ public class GerarRelatorioPDF {
         pessoaFisicaBeans = new PessoaFisicaBeans();
         pessoaJuridicaDAO = new PessoaJuridicaDAO();
         pessoaJuridicaBeans = new PessoaJuridicaBeans();
+        produtoDAO = new ProdutoDAO();
         ListVendaBeans = new ArrayList<>();
+        ListProdutosBeans = new ArrayList<>();
         vendaDAO = new VendaDAO();
         documento = new Document();
-        table = new PdfPTable(new float[]{2f, 5f, 5f});
         celulaClienteNome = new PdfPCell(new Phrase("Nome", fonteTable));
         celulaQuantidadeDeCompras = new PdfPCell(new Phrase("Quantidade", fonteTable));
         celularValorTotalDeCompras = new PdfPCell(new Phrase("Valor total", fonteTable));
+        celulaProduto = new PdfPCell(new Phrase("produto", fonteTable));
+        celulaEstoque = new PdfPCell(new Phrase("Estoque", fonteTable));
     }
     
     
@@ -84,6 +92,8 @@ public class GerarRelatorioPDF {
         celulaClienteNome.setHorizontalAlignment(Element.ALIGN_CENTER);
         celulaQuantidadeDeCompras.setHorizontalAlignment(Element.ALIGN_CENTER);
         celularValorTotalDeCompras.setHorizontalAlignment(Element.ALIGN_CENTER);
+        
+        table = new PdfPTable(new float[]{2f, 5f, 5f});
 
         table.addCell(celulaClienteNome);
         table.addCell(celulaQuantidadeDeCompras);
@@ -123,7 +133,33 @@ public class GerarRelatorioPDF {
         }        
     }
     
-    public void criarRelatorioEstoque(){
+    public void criarRelatorioEstoque() throws DocumentException, FileNotFoundException{
         
+        ListProdutosBeans = produtoDAO.busca();
+        
+        PdfWriter.getInstance(documento, new FileOutputStream("\\Registros Fenix Sistemas\\relatorios\\Relatorio de estoque "+ LocalDate.now() +".Pdf"));
+        documento.open();
+        
+        Paragraph cabecalho = new Paragraph("Relatório de estoque\n\n", fontePadrao);
+        cabecalho.setAlignment(Element.ALIGN_CENTER);
+        documento.add(cabecalho);
+        
+        celulaProduto.setHorizontalAlignment(Element.ALIGN_CENTER);
+        celulaEstoque.setHorizontalAlignment(Element.ALIGN_CENTER);
+        
+        table = new PdfPTable(new float[]{6f, 2f});
+        
+        table.addCell(celulaProduto);
+        table.addCell(celulaEstoque);
+        
+        for(int i = 0; i < ListProdutosBeans.size(); i++){
+            PdfPCell celula1 = new PdfPCell(new Phrase(ListProdutosBeans.get(i).getNome()));
+            PdfPCell celula2 = new PdfPCell(new Phrase(String.valueOf(ListProdutosBeans.get(i).getEstoque())));
+            
+            table.addCell(celula1);
+            table.addCell(celula2);
+        }
+        documento.add(table);
+        documento.close();        
     }
 }

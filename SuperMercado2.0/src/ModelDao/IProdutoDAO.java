@@ -4,7 +4,7 @@ import ModelBeans.ProdutoBeans;
 
 import java.util.ArrayList;
 
-public interface IProduto {
+public interface IProdutoDAO {
     public void cadastrar(ProdutoBeans object);
 
     public void editar(ProdutoBeans object);
@@ -12,8 +12,6 @@ public interface IProduto {
     public ArrayList<ProdutoBeans> busca();
 
     public int confereQuantidadeDeProdutosRegistrados();
-
-    public boolean validarDuplicidade(ProdutoBeans object);
 
     public void alterarEstoque(ProdutoBeans object);
 }

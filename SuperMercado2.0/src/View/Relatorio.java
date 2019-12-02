@@ -70,7 +70,7 @@ public class Relatorio extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("CPF / CNPJ:");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(10, 11, 96, 22);
+        jLabel1.setBounds(10, 20, 96, 22);
         jPanel1.add(jTextFieldCpfCnpj);
         jTextFieldCpfCnpj.setBounds(10, 44, 137, 34);
 
@@ -114,7 +114,7 @@ public class Relatorio extends javax.swing.JFrame {
             }else{
                 gerarRelatorioPDF.criarRelatorioSomatorio(jTextFieldCpfCnpj.getText(), 1);
             }
-            JOptionPane.showMessageDialog(null, "Relatorio Gerado em: \nC:\\Registros Fenix Sistemas\\relatorios");
+            JOptionPane.showMessageDialog(null, "Relatorio Gerado em: \nC:\\ Registros Fenix Sistemas \\ relatorios");
         } catch (DocumentException ex) {
             Logger.getLogger(Relatorio.class.getName()).log(Level.SEVERE, null, ex);
         } catch (FileNotFoundException ex) {
@@ -123,7 +123,14 @@ public class Relatorio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonGerarSomatorioActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        try {
+            gerarRelatorioPDF.criarRelatorioEstoque();
+            JOptionPane.showMessageDialog(null, "Relatorio Gerado em: \nC:\\ Registros Fenix Sistemas \\ relatorios");
+        } catch (DocumentException ex) {
+            Logger.getLogger(Relatorio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Relatorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

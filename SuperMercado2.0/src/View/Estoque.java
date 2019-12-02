@@ -153,13 +153,21 @@ public class Estoque extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Selecione um produto!");
             }else{
                 if(jCheckBoxEntrada.isSelected()){
-                    estoqueAlterado = estoque + Double.parseDouble(jTextFieldEstoque.getText());
-                    ProdutoBeans produto = new ProdutoBeans(descricao,codigo, estoqueAlterado, ativo, valorCusto, valorVenda);
-                    produtoDao.editar(produto);
+                    if(!jTextFieldEstoque.getText().matches("[0-9.]")){
+                        JOptionPane.showMessageDialog(null, "Apenas Numeros!");
+                    }else {
+                        estoqueAlterado = estoque + Double.parseDouble(jTextFieldEstoque.getText());
+                        ProdutoBeans produto = new ProdutoBeans(descricao, codigo, estoqueAlterado, ativo, valorCusto, valorVenda);
+                        produtoDao.editar(produto);
+                    }
                 }else{
-                    estoqueAlterado = estoque - Double.parseDouble(jTextFieldEstoque.getText());
-                    ProdutoBeans produto = new ProdutoBeans(descricao,codigo, estoqueAlterado, ativo, valorCusto, valorVenda);
-                    produtoDao.editar(produto);
+                    if(!jTextFieldEstoque.getText().matches("[0-9.]")) {
+                        JOptionPane.showMessageDialog(null, "Apenas Numeros!");
+                    }else {
+                        estoqueAlterado = estoque - Double.parseDouble(jTextFieldEstoque.getText());
+                        ProdutoBeans produto = new ProdutoBeans(descricao, codigo, estoqueAlterado, ativo, valorCusto, valorVenda);
+                        produtoDao.editar(produto);
+                    }
                 }    
                 preencherTabelaEstoque();
             }           

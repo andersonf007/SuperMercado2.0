@@ -1,5 +1,4 @@
 package ModelDao;
-import ModelBeans.CadastroProdutos;
 import ModelBeans.ProdutoBeans;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -13,7 +12,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class ProdutoDAO implements IProduto{
+public class ProdutoDAO implements IProdutoDAO {
 
     private ArrayList<ProdutoBeans> ListProdutosBeans;
 
@@ -119,17 +118,7 @@ public class ProdutoDAO implements IProduto{
         return contador;
     }
    
-    @Override
-    public boolean validarDuplicidade(ProdutoBeans object){
-        busca();        
-        for(int i = 0; i < ListProdutosBeans.size(); i++){
-            if(ListProdutosBeans.get(i).getNome().equals(object.getNome())){
-                return false;
-            }
-        }
-        return true;
-    }
-    
+
     @Override
     public void alterarEstoque(ProdutoBeans object){
         try {

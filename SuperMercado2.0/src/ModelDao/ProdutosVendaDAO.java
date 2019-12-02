@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  *
  * @author anderson
  */
-public class ProdutosVendaDAO extends CadastroProdutosVenda{
+public class ProdutosVendaDAO implements IProdutosVendaDAO{
     
     private ArrayList<ProdutosVendaBeans> ListProdutosVendaBeans = new ArrayList<>();
 
@@ -62,24 +62,6 @@ public class ProdutosVendaDAO extends CadastroProdutosVenda{
         return ListProdutosVendaBeans;
     }
 
-    @Override
-    public boolean validarCaracteresEspeciaisProduto(String codigo, String valor, String quantidade) {
-        try {
-            int cod = Integer.parseInt(codigo);
-        }catch(Exception ex){
 
-        }
-        try {
-            double val = Double.parseDouble(valor);
-       }catch(Exception ex){
-
-        }
-        try {
-            double quant = Double.parseDouble(quantidade);
-        }catch(Exception ex){
-
-        }
-        return true;
-    }
 
 }
