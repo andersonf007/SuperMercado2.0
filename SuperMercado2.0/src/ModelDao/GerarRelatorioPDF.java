@@ -35,7 +35,7 @@ public class GerarRelatorioPDF {
     private double valorTotal = 0;
     private int quantidade = 0;
     private Document documento;// Criação do objeto que será um documento PDF
-    
+    PdfPTable table;
     PdfPCell celulaClienteNome;
     PdfPCell celulaQuantidadeDeCompras;
     PdfPCell celularValorTotalDeCompras;
@@ -50,7 +50,7 @@ public class GerarRelatorioPDF {
         ListVendaBeans = new ArrayList<>();
         vendaDAO = new VendaDAO();
         documento = new Document();
-        
+        table = new PdfPTable(new float[]{2f, 5f, 5f});
         celulaClienteNome = new PdfPCell(new Phrase("Nome", fonteTable));
         celulaQuantidadeDeCompras = new PdfPCell(new Phrase("Quantidade", fonteTable));
         celularValorTotalDeCompras = new PdfPCell(new Phrase("Valor total", fonteTable));
@@ -58,7 +58,7 @@ public class GerarRelatorioPDF {
     
     
     
-    public void criarRelatorio(String cpfCnpj, int flag) throws DocumentException, FileNotFoundException {
+    public void criarRelatorioSomatorio(String cpfCnpj, int flag) throws DocumentException, FileNotFoundException {
         String nome = "";
         if(flag == 0){//busca o registro da pessoa fisica ou juridica
             pessoaFisicaBeans = pessoaFisicaDAO.buscarRegistroPorId(cpfCnpj);
@@ -72,7 +72,6 @@ public class GerarRelatorioPDF {
         
         ValorTotal(flag);
         
-        
         // Faz o apontamento para o arquivo de destino
         PdfWriter.getInstance(documento, new FileOutputStream("\\Registros Fenix Sistemas\\relatorios\\Relatorio de "+nome +" "+ LocalDate.now() +".Pdf"));
         // Realiza a abertura do arquivo para escrita
@@ -82,12 +81,8 @@ public class GerarRelatorioPDF {
         cabecalho.setAlignment(Element.ALIGN_CENTER);
         documento.add(cabecalho);
 
-        PdfPTable table = new PdfPTable(new float[]{2f, 5f, 5f});
-        
         celulaClienteNome.setHorizontalAlignment(Element.ALIGN_CENTER);
-
         celulaQuantidadeDeCompras.setHorizontalAlignment(Element.ALIGN_CENTER);
-
         celularValorTotalDeCompras.setHorizontalAlignment(Element.ALIGN_CENTER);
 
         table.addCell(celulaClienteNome);
@@ -105,6 +100,8 @@ public class GerarRelatorioPDF {
         documento.add(table);
 
         documento.close();
+        
+        
     }
     
     public void ValorTotal(int flag){
@@ -123,8 +120,10 @@ public class GerarRelatorioPDF {
                     ++quantidade;
                 }
             }
-        }
+        }        
+    }
+    
+    public void criarRelatorioEstoque(){
         
     }
-
 }

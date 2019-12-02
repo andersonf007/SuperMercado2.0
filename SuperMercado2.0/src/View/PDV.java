@@ -117,7 +117,7 @@ public class PDV extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextFieldQuantidade);
-        jTextFieldQuantidade.setBounds(20, 350, 240, 50);
+        jTextFieldQuantidade.setBounds(20, 340, 240, 50);
 
         jLabel2.setBackground(new java.awt.Color(204, 255, 204));
         jLabel2.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
